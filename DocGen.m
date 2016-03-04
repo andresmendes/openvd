@@ -11,7 +11,7 @@ clc                         % Clear command window
 publish('index','outputDir','../Vehicle-Dynamics-Documentation/','evalCode',false);
 % Templates
 publish('TemplateSimple','outputDir','../Vehicle-Dynamics-Documentation/','evalCode',true);
-publish('TemplateArticulated','outputDir','../Vehicle-Dynamics-Documentation/','evalCode'
+publish('TemplateArticulated','outputDir','../Vehicle-Dynamics-Documentation/','evalCode',true);
 % Tire model
 publish('+VehicleDynamics/@Tire/Tire','outputDir','../Vehicle-Dynamics-Documentation/','evalCode',false);
     publish('+VehicleDynamics/@TireLinear/TireLinear','outputDir','../Vehicle-Dynamics-Documentation/','evalCode',false);

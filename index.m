@@ -11,6 +11,11 @@
 
 import VehicleDynamics.*
 
+%%
+% Getting started:
+%
+% Run and explore <TemplateSimple.html TemplateSimple.m> or <TemplateArticulated.html TemplateArticulated.m>
+%
 %% Description
 %
 % <<ilustracoes/fluxograma.svg>>

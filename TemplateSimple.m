@@ -134,7 +134,6 @@ set(figFrame,'PaperPosition',[0 0 16 7])
 PaperPos = get(figFrame,'PaperPosition');
 set(figFrame,'PaperSize',PaperPos(3:4))
 
-print(figFrame,'-dpdf','frame.pdf')
 %%
 % Animation
 %
