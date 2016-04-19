@@ -7,7 +7,7 @@ clear all                   % Clear workspace
 close all                   % Closing figures
 clc                         % Clear command window
 
-import VehicleDynamics.*   % Import package VehicleDynamics
+import VehicleDynamicsLateral.*   % Import package VehicleDynamicsLateral
 
 %% Integration parameters
 %
@@ -44,7 +44,7 @@ a11 = 0;
 a12 = 0;
 a13 = 0;
 TireData = [a0 a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13];
-TireModel = VehicleDynamics.TirePacejka1989(TireData);
+TireModel = VehicleDynamicsLateral.TirePacejka1989(TireData);
 
 %% Vehicle parameters
 % Chosen Vehicle: <VehicleSimpleNonlinear3DOF.html VehicleSimpleNonlinear3DOF.m>.
@@ -59,7 +59,7 @@ nR = 2;                     % number of tires in the rear axle
 largT = 2;                  % width [m]
 muy = 0.8;                  % coefficient of operation friction
 VehicleData = [mF0 mR0 IT DELTA lT nF nR largT muy];
-System = VehicleDynamics.VehicleSimpleNonlinear3DOF(VehicleData,TireModel);
+System = VehicleDynamicsLateral.VehicleSimpleNonlinear3DOF(VehicleData,TireModel);
 
 %% Integration
 [TOUT,XOUT] = ode45(@(t, estados) System.Model(t, estados),TSPAN,x0);
@@ -77,7 +77,7 @@ VEL = XOUT(:,6);            % CG velocity [m/s]
 
 %% Results
 % Details: <Graphics.html Graphics.m>
-G = VehicleDynamics.Graphics(System);
+G = VehicleDynamicsLateral.Graphics(System);
 
 f1 = figure(1);
 set(f1,'Units','centimeters')

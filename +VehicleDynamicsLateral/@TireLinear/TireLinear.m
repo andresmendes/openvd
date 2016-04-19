@@ -13,21 +13,21 @@
 %
 %% Description
 %
-% A equação que descreve este modelo é dada por:
+% A equaï¿½ï¿½o que descreve este modelo ï¿½ dada por:
 %
 % $$ F_y = K \alpha $$
 %
 % $F_y$ is the lateral force, $K$ is the cornering stiffness and $\alpha$ is the tire slip angle.
 %
-% *Hipóteses*
+% *Hipï¿½teses*
 %
-% * Relação linear.
-% * Válido apenas para pequenos ângulos de deriva.
+% * Relaï¿½ï¿½o linear.
+% * Vï¿½lido apenas para pequenos ï¿½ngulos de deriva.
 %
 %% Code
 %
 
-classdef TireLinear < VehicleDynamics.Tire
+classdef TireLinear < VehicleDynamicsLateral.Tire
     methods
         % Constructor
         function self = TireLinear(varargin)

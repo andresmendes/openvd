@@ -5,11 +5,11 @@
 % Installation steps:
 %
 % * Download the Vehicle-Dynamics package by clicking on "Download ZIP" in <https://github.com/andresmendes/Vehicle-Dynamics https://github.com/andresmendes/Vehicle-Dynamics>.
-% * Save the package (folder "+VehicleDynamics") in the MATLAB(R) _path_ or add your current path to the _paths list_. More details in <http://www.mathworks.com/help/matlab/ref/path.html  help path>.
+% * Save the package (folder "+VehicleDynamicsLateral") in the MATLAB(R) _path_ or add your current path to the _paths list_. More details in <http://www.mathworks.com/help/matlab/ref/path.html  help path>.
 % * Import the entire package with the command:
 %
 
-import VehicleDynamics.*
+import VehicleDynamicsLateral.*
 
 %%
 % Getting started:
@@ -58,5 +58,5 @@ import VehicleDynamics.*
 %
 %% See Also
 %
-% <https://github.com/andresmendes/Vehicle-Dynamics https://github.com/andresmendes/Vehicle-Dynamics>
+% <https://github.com/andresmendes/Vehicle-Dynamics-Lateral https://github.com/andresmendes/Vehicle-Dynamics-Lateral>
 %

@@ -18,15 +18,15 @@
 %
 % $$ F_y = - \frac{\mu_y}{\mu_{y,n}} (F_{y,n}(\alpha_{eq}) + S_v)$$
 %
-% Onde $\alpha_{eq}$ é o ângulo de deriva equivalente:
+% Onde $\alpha_{eq}$ ï¿½ o ï¿½ngulo de deriva equivalente:
 %
 % $$ \alpha_{eq} = \frac{\mu_{y0}}{\mu_y} \frac{F_{z0}}{F_z} (\alpha + S_h)$$
 %
-% e $F_{y,n}$ é a equação característica nominal dada por:
+% e $F_{y,n}$ ï¿½ a equaï¿½ï¿½o caracterï¿½stica nominal dada por:
 %
 % $$ F_{y,n} = D \sin(C \arctan(B \alpha - E (B \alpha - \arctan(B \alpha)))) $$
 %
-% Onde $B$, $C$, $D$ e $E$ são coeficientes do modelo que podem ser obtidos através das seguintes expressões:
+% Onde $B$, $C$, $D$ e $E$ sï¿½o coeficientes do modelo que podem ser obtidos atravï¿½s das seguintes expressï¿½es:
 %
 % $$ C = a_0 $$
 %
@@ -36,28 +36,28 @@
 %
 % $$ E = a_6 F_z + a_7$$
 %
-% Os deslocamentos da curva são dados por:
+% Os deslocamentos da curva sï¿½o dados por:
 %
 % $$ S_h = a_8 \gamma + a_9 F_z + a_{10} $$
 %
 % $$ S_v = a_{11} F_z \gamma + a_{12} F_z + a_{13} $$
 %
-% O modelo implementado aqui realiza tratamento do ângulo de deriva para valores acima de 90 graus. A partir deste valor a direção de avanço sobre a curva característica se inverte. O ângulo utilizado no modelo de Tire deve ser igual a zero quando o ângulo de deriva no método convencional for igual a 180. Isto deve ser feito porque a força lateral com 180 graus de ângulo de deriva deve ser igual a zero e não máxima como ocorre no modelo sem tratamento. Isto é obtido através da inclusão da linha de código:
+% O modelo implementado aqui realiza tratamento do ï¿½ngulo de deriva para valores acima de 90 graus. A partir deste valor a direï¿½ï¿½o de avanï¿½o sobre a curva caracterï¿½stica se inverte. O ï¿½ngulo utilizado no modelo de Tire deve ser igual a zero quando o ï¿½ngulo de deriva no mï¿½todo convencional for igual a 180. Isto deve ser feito porque a forï¿½a lateral com 180 graus de ï¿½ngulo de deriva deve ser igual a zero e nï¿½o mï¿½xima como ocorre no modelo sem tratamento. Isto ï¿½ obtido atravï¿½s da inclusï¿½o da linha de cï¿½digo:
 %
 % _ALPHA = asin(sin(alpha));_
 %
-% Em que o ângulo de deriva sem tratamento "alpha" da origem ao ângulo com
-% tratamento "ALPHA" que será usado no cálculo da força lateral.
+% Em que o ï¿½ngulo de deriva sem tratamento "alpha" da origem ao ï¿½ngulo com
+% tratamento "ALPHA" que serï¿½ usado no cï¿½lculo da forï¿½a lateral.
 %
-% *Hipóteses*
+% *Hipï¿½teses*
 %
-% * Relação não linear.
-% * Ângulo de deriva vai de -180 a 180 graus.
+% * Relaï¿½ï¿½o nï¿½o linear.
+% * ï¿½ngulo de deriva vai de -180 a 180 graus.
 %
 %% Code
 %
 
-classdef TirePacejka1989 < VehicleDynamics.Tire
+classdef TirePacejka1989 < VehicleDynamicsLateral.Tire
     methods
         % constructor
         function self = TirePacejka1989(varargin)
@@ -84,14 +84,14 @@ classdef TirePacejka1989 < VehicleDynamics.Tire
 
         function Fy = Characteristic(self,alpha,Fz,muy)
             % Input
-            % alpha - Ângulo de deriva [rad]
+            % alpha - ï¿½ngulo de deriva [rad]
             % Fz - Load [N]
             % muy - Lateral friction coefficient (*1000) [-]
 
-            % Tratamento do ângulo de deriva
+            % Tratamento do ï¿½ngulo de deriva
             ALPHA = asin(sin(alpha));           % [rad]
-            ALPHA = 180/pi*ALPHA;               % Conversão [rad] - [deg]
-            % Parâmetros nominais
+            ALPHA = 180/pi*ALPHA;               % Conversï¿½o [rad] - [deg]
+            % Parï¿½metros nominais
             a0 = self.params(1);
             a1 = self.params(2);
             a2 = self.params(3);
@@ -107,7 +107,7 @@ classdef TirePacejka1989 < VehicleDynamics.Tire
             a12 = self.params(13);
             a13 = self.params(14);
 
-            Fz = Fz/1000;                       % Conversão [N] - [kN]
+            Fz = Fz/1000;                       % Conversï¿½o [N] - [kN]
 
             camber = 0;                         % Camber angle
 
@@ -120,7 +120,7 @@ classdef TirePacejka1989 < VehicleDynamics.Tire
             B = BCD/(C*D);                      % stiffness factor
             Sh = a8*camber + a9*Fz + a10;       % Horizontal shift
             Sv = a11*Fz*camber + a12*Fz + a13;  % Vertical shift
-            ALPHAeq = muy0/muy*(ALPHA + Sh);    % Ângulo de deriva equivalente
+            ALPHAeq = muy0/muy*(ALPHA + Sh);    % ï¿½ngulo de deriva equivalente
             % Reference characteristics
             fy = D*sin(C*atan(B*ALPHAeq - E*(B*ALPHAeq - atan(B*ALPHAeq))));
             % Lateral force

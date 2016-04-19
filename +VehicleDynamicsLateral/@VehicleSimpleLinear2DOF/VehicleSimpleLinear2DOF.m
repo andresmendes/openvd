@@ -19,7 +19,7 @@
 %% Code
 %
 
-classdef VehicleSimpleLinear2DOF < VehicleDynamics.VehicleSimple
+classdef VehicleSimpleLinear2DOF < VehicleDynamicsLateral.VehicleSimple
 	methods
         % Constructor
         function self = VehicleSimpleLinear2DOF(varargin)
@@ -44,7 +44,7 @@ classdef VehicleSimpleLinear2DOF < VehicleDynamics.VehicleSimple
                 entradaVetor = [mF0 mR0 IT DELTA lT nF nR largT muy];
                 % Definindo os par?metros da classe
                 self.params = self.convert(entradaVetor);
-                self.tire = VehicleDynamics.TirePolynomial;
+                self.tire = VehicleDynamicsLateral.TirePolynomial;
             else
                 self.params = self.convert(varargin{1});
                 self.tire = varargin{2};

@@ -28,7 +28,7 @@
 %% Code
 %
 
-classdef TirePolynomial < VehicleDynamics.Tire
+classdef TirePolynomial < VehicleDynamicsLateral.Tire
     methods
         % Constructor
         function self = TirePolynomial(varargin)
@@ -63,7 +63,7 @@ classdef TirePolynomial < VehicleDynamics.Tire
 end
 
 %% References
-% [1] SADRI, S.; WU, C. Stability analysis of a nonlinear vehicle model in plane motion using the concept of lyapunov exponents. Vehicle System Dynamics, Taylor & Francis, v. 51, n. 6, p.906–924, 2013.
+% [1] SADRI, S.; WU, C. Stability analysis of a nonlinear vehicle model in plane motion using the concept of lyapunov exponents. Vehicle System Dynamics, Taylor & Francis, v. 51, n. 6, p.906ï¿½924, 2013.
 %
 %% See Also
 %

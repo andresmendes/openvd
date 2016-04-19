@@ -7,7 +7,7 @@ clear all                   % Clear workspace
 close all                   % Closing figures
 clc                         % Clear command window
 
-import VehicleDynamics.*   % Import package Vehicle Dynamics
+import VehicleDynamicsLateral.*   % Import package Vehicle Dynamics
 
 %% Integration parameters
 %
@@ -30,7 +30,7 @@ x0 = [dPSI0 ALPHAT0 dPHI0 VEL0 PHI0 PSI0 X0 Y0];
 %% Default models and parameters
 % Definindo o modelo de veículo sem passagem de argumentos os parâmetros e modelos padrão são usados.
 
-System = VehicleDynamics.VehicleArticulatedNonlinear4DOF;
+System = VehicleDynamicsLateral.VehicleArticulatedNonlinear4DOF;
 
 %% Integration
 % Integration using mass matrix. Details: <http://www.mathworks.com/help/matlab/ref/ode45.html?searchHighlight=%22mass%20matrix%22 ode45 (Mass matrix)>
@@ -56,7 +56,7 @@ YT = XOUT(:,8);             % Tractor CG vertical position [m]
 %% Results
 % Details: <Graphics.html Graphics.m>
 
-G = VehicleDynamics.Graphics(System);
+G = VehicleDynamicsLateral.Graphics(System);
 
 %%
 % Trajectory

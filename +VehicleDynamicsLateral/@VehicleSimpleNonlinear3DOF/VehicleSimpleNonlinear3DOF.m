@@ -12,32 +12,32 @@
 % </table> </html>
 %
 %% Description
-% O centro de massa do veículo é dado pelo ponto $T$ e os eixos dianteiro e traseiro são dados pelos pontos $F$ e $R$, respectivamente. A constante $a$ mede a distância do ponto $F$ ao $T$ e $b$ a distância do ponto $T$ ao $R$. Os ângulos $\alpha_F$ e $\alpha_R$ são os ângulos de deriva nos eixos dianteiro e traseiro. $\alpha_T$ is the vehicle side slip angle and $\psi$ is the vehicle yaw angle. Por fim, $\delta$ é o ângulo de esterçamento.
+% O centro de massa do veï¿½culo ï¿½ dado pelo ponto $T$ e os eixos dianteiro e traseiro sï¿½o dados pelos pontos $F$ e $R$, respectivamente. A constante $a$ mede a distï¿½ncia do ponto $F$ ao $T$ e $b$ a distï¿½ncia do ponto $T$ ao $R$. Os ï¿½ngulos $\alpha_F$ e $\alpha_R$ sï¿½o os ï¿½ngulos de deriva nos eixos dianteiro e traseiro. $\alpha_T$ is the vehicle side slip angle and $\psi$ is the vehicle yaw angle. Por fim, $\delta$ ï¿½ o ï¿½ngulo de esterï¿½amento.
 %
 % <<ilustracoes/modeloSimples.svg>>
 %
 %% Code
 %
 
-classdef VehicleSimpleNonlinear3DOF < VehicleDynamics.VehicleSimple
+classdef VehicleSimpleNonlinear3DOF < VehicleDynamicsLateral.VehicleSimple
 	methods
         % Constructor
         function self = VehicleSimpleNonlinear3DOF(varargin)
             if nargin == 0
-                % Entrada padrão dos dados do veículo
+                % Entrada padrï¿½o dos dados do veï¿½culo
                 mF0 = 5237;     % Massa no eixo dianteiro [kg]
                 mR0 = 2440;     % Massa no eixo traseiro [kg]
-                IT = 46100;     % Momento de inércia [kg*m2]
-                DELTA = 0;      % Esterçamento do eixo dianteiro [rad]
-                lT = 3.550;     % Distância entre os eixos [m]
-                nF = 2;         % Número de tires no eixo dianteiro
-                nR = 2;         % Número de tires no eixo traseiro
-                largT = 2;      % width do veículo[m]
-                muy = 0.3;      % Coeficiente de atrito de operação
+                IT = 46100;     % Momento de inï¿½rcia [kg*m2]
+                DELTA = 0;      % Esterï¿½amento do eixo dianteiro [rad]
+                lT = 3.550;     % Distï¿½ncia entre os eixos [m]
+                nF = 2;         % Nï¿½mero de tires no eixo dianteiro
+                nR = 2;         % Nï¿½mero de tires no eixo traseiro
+                largT = 2;      % width do veï¿½culo[m]
+                muy = 0.3;      % Coeficiente de atrito de operaï¿½ï¿½o
                 entradaVetor = [mF0 mR0 IT DELTA lT nF nR largT muy];
-                % Definindo os parâmetros da classe
+                % Definindo os parï¿½metros da classe
                 self.params = self.convert(entradaVetor);
-                self.tire = VehicleDynamics.tirePacejka;
+                self.tire = VehicleDynamicsLateral.tirePacejka;
             else
                 self.params = self.convert(varargin{1});
                 self.tire = varargin{2};
@@ -48,18 +48,18 @@ classdef VehicleSimpleNonlinear3DOF < VehicleDynamics.VehicleSimple
         end
 
         %% Model
-        % Função com as equações de estado do modelo
+        % Funï¿½ï¿½o com as equaï¿½ï¿½es de estado do modelo
         function dx = Model(self,~,estados)
-            % Dados do veículo
+            % Dados do veï¿½culo
             m = self.params(10);        % massa do veiculo [kg]
             I = self.params(3);         % momento de inercia [kg]
             a = self.params(11);        % distancia do eixo dianteiro ao centro de massa [m]
             b = self.params(12);        % distancia do eixo dianteiro ao centro de massa [m]
-            nF = self.params(6);        % Número de tires no eixo dianteiro do caminhão-trator
-            nR = self.params(7);        % Número de tires no eixo traseiro do caminhão-trator
-            muy = self.params(9);       % Coeficiente de atrito de operação
+            nF = self.params(6);        % Nï¿½mero de tires no eixo dianteiro do caminhï¿½o-trator
+            nR = self.params(7);        % Nï¿½mero de tires no eixo traseiro do caminhï¿½o-trator
+            muy = self.params(9);       % Coeficiente de atrito de operaï¿½ï¿½o
             DELTA = self.params(4);
-            g = 9.81;                   % Aceleração da gravidade [m/s^2]
+            g = 9.81;                   % Aceleraï¿½ï¿½o da gravidade [m/s^2]
             FzF = self.params(1)*g;     % Carga vertical no eixo dianteiro [N]
             FzR = self.params(2)*g;     % Carga vertical no eixo traseiro [N]
             % Estados
@@ -68,29 +68,29 @@ classdef VehicleSimpleNonlinear3DOF < VehicleDynamics.VehicleSimple
             v = estados(6);
             PSI = estados(3);
 
-            % Angulos de deriva não linear
+            % Angulos de deriva nï¿½o linear
             ALPHAF = atan2((v*sin(ALPHAT) + a*dPSI),(v*cos(ALPHAT))) - DELTA; % Dianteiro
             ALPHAR = atan2((v*sin(ALPHAT) - b*dPSI),(v*cos(ALPHAT)));         % Traseiro
 
-            % Forças longitudinais
+            % Forï¿½as longitudinais
             FxF = 0;
             FxR = 0;
 
-            % Curva característica
+            % Curva caracterï¿½stica
             FyF = nF*self.tire.Characteristic(ALPHAF,FzF/nF,muy);
             FyR = nR*self.tire.Characteristic(ALPHAR,FzR/nR,muy);
 
-            % Equações de estado
+            % Equaï¿½ï¿½es de estado
             dx(1,1) = (FyF*a*cos(DELTA) - FyR*b + FxF*a*sin(DELTA))/I;
             dx(2,1) = (FyR + FyF*cos(DELTA) + FxF*sin(DELTA) - m*(dPSI*v*cos(ALPHAT) + (sin(ALPHAT)*(FxR + 	FxF*cos(DELTA) - FyF*sin(DELTA) +...
                       dPSI*m*v*sin(ALPHAT)))/(m*cos(ALPHAT))))/(m*(v*cos(ALPHAT) + (v*sin(ALPHAT)^2)/cos(ALPHAT)));
             dx(6,1) = (FxR*cos(ALPHAT) + FyR*sin(ALPHAT) - FyF*cos(ALPHAT)*sin(DELTA) + FyF*cos(DELTA)*sin(ALPHAT) + ...
                       FxF*sin(ALPHAT)*sin(DELTA) + FxF*cos(ALPHAT)*cos(DELTA))/(m*cos(ALPHAT)^2 + m*sin(ALPHAT)^2);
 
-            % Obtenção da orientação
+            % Obtenï¿½ï¿½o da orientaï¿½ï¿½o
             dx(3,1) = dPSI; % dPSI
 
-            % Equações adicionais para o posicionamento (Não necessárias para a dinâmica em guinada)
+            % Equaï¿½ï¿½es adicionais para o posicionamento (Nï¿½o necessï¿½rias para a dinï¿½mica em guinada)
             dx(4,1) = v*cos(ALPHAT + PSI); % X
             dx(5,1) = v*sin(ALPHAT + PSI); % Y
         end
@@ -99,16 +99,16 @@ classdef VehicleSimpleNonlinear3DOF < VehicleDynamics.VehicleSimple
 
     methods (Static)
         %% convert
-        % A função convert adiciona no vetor de entrada ([mF0 mR0 IT DELTA lT nF nR largT muy]) os parâmetros restantes do modelo de veículo ([mT a b]).
+        % A funï¿½ï¿½o convert adiciona no vetor de entrada ([mF0 mR0 IT DELTA lT nF nR largT muy]) os parï¿½metros restantes do modelo de veï¿½culo ([mT a b]).
         function parametros = convert(entrada)
             mF0 = entrada(1);       % Massa no eixo dianteiro [kg]
             mR0 = entrada(2);       % Massa no eixo traseiro [kg]
-            lT = entrada(5);        % Distância entre os eixos [m]
-            % Conversão dos dados para os parâmetros usados na equação de movimento
-            mT = mF0 + mR0;         % massa do veículo [kg]
-            a = mR0/mT*lT;          % Distância (F-T) [m]
-            b = lT - a;             % Distância (R-T) [m]
-            % Saída
+            lT = entrada(5);        % Distï¿½ncia entre os eixos [m]
+            % Conversï¿½o dos dados para os parï¿½metros usados na equaï¿½ï¿½o de movimento
+            mT = mF0 + mR0;         % massa do veï¿½culo [kg]
+            a = mR0/mT*lT;          % Distï¿½ncia (F-T) [m]
+            b = lT - a;             % Distï¿½ncia (R-T) [m]
+            % Saï¿½da
             parametros = [entrada mT a b];
         end
     end
