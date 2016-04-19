@@ -1,5 +1,5 @@
-%% Template simples
-% Exemplo de script para simulação de veículo simples, sem articulação.
+%% Template Simple
+% Template script for the simulation of simple vehicle, without articulation.
 %
 %% Code start
 
@@ -26,7 +26,7 @@ V0 = 20;                    % Initial CG velocity [m/s]
 x0 = [dPSI0 ALPHAT0 PSI0 X0 Y0 V0];
 
 %% Tire parameters
-% Pneu escolhido: <TirePacejka1989.html TirePacejka1989.m>.
+% Chosen tire: <TirePacejka1989.html TirePacejka1989.m>.
 %
 
 a0 = 1.002806;
@@ -76,7 +76,11 @@ YT = XOUT(:,5);             % CG vertical position [m]
 VEL = XOUT(:,6);            % CG velocity [m/s]
 
 %% Results
+%
 % Details: <Graphics.html Graphics.m>
+%
+% Coordinates over time
+
 G = VehicleDynamicsLateral.Graphics(System);
 
 f1 = figure(1);
@@ -116,8 +120,6 @@ ax4 = subplot(2,2,4);
     ylabel(ax4,'$v$ [m/s]','Interpreter','Latex')
     title(ax4,'$v$ x $t$','Interpreter','Latex')
 
-%% Results
-
 %%
 % Trajectory
 %
@@ -142,7 +144,7 @@ G.Animation([XT YT PSI dPSI VEL ALPHAT],TOUT,0);
 
 %%
 %
-% <<ilustracoes/AnimacaoSimples.gif>>
+% <<illustrations/AnimationSimple.gif>>
 %
 %% See Also
 %

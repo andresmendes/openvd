@@ -1,24 +1,23 @@
-%% Vehicle Dynamics
-% This repository is a library of functions destinated to vehicle dynamics simulation.
+%% Vehicle Dynamics - Lateral
+% This repository provides a collection of functions destinated to the lateral dynamics simulations of ground vehicles.
 %
 %% Instructions
 % Installation steps:
 %
-% * Download the Vehicle-Dynamics package by clicking on "Download ZIP" in <https://github.com/andresmendes/Vehicle-Dynamics https://github.com/andresmendes/Vehicle-Dynamics>.
+% * Download the Vehicle-Dynamics package by clicking on "Download ZIP" in <https://github.com/andresmendes/Vehicle-Dynamics-Lateral https://github.com/andresmendes/Vehicle-Dynamics-Lateral>.
 % * Save the package (folder "+VehicleDynamicsLateral") in the MATLAB(R) _path_ or add your current path to the _paths list_. More details in <http://www.mathworks.com/help/matlab/ref/path.html  help path>.
 % * Import the entire package with the command:
 %
 
 import VehicleDynamicsLateral.*
 
-%%
-% Getting started:
+%% Getting started
 %
-% Run and explore <TemplateSimple.html TemplateSimple.m> or <TemplateArticulated.html TemplateArticulated.m>
+% Run and explore the files <TemplateSimple.html TemplateSimple.m> and <TemplateArticulated.html TemplateArticulated.m>.
 %
 %% Description
 %
-% <<ilustracoes/fluxograma.svg>>
+% <<illustrations/fluxograma.svg>>
 %
 %% Templates
 % The templates simulate vehicle systems according to the flowchart above.
@@ -39,7 +38,7 @@ import VehicleDynamicsLateral.*
 %
 % * <TireComparison.html TireComparison>
 %
-% Outros: <Tire.html Tire (Abstract)>
+% Other: <Tire.html Tire (Abstract)>
 %
 %% Vehicle model
 % Function with the state equations of the model.
@@ -51,10 +50,18 @@ import VehicleDynamicsLateral.*
 % * <VehicleArticulatedLinear4DOF.html Vehicle Articulated Linear 3 DOF> (Pendente)
 % * <VehicleArticulatedNonlinear4DOF.html Vehicle Articulated Nonlinear 4 DOF>
 %
-% Outros: <VehicleSimple.html Vehicle Simple (Abstract)> | <VehicleArticulated.html Vehicle Articulated (Abstract)>
+% Other: <VehicleSimple.html Vehicle Simple (Abstract)> | <VehicleArticulated.html Vehicle Articulated (Abstract)>
 %
 %% Graphics
 % Functions for graphics generation: <Graphics.html Graphics>.
+%
+%% Documentation
+%
+% Documentation Generator: <DocGen.html DocGen>.
+%
+%% Contribution
+%
+% Instructions for contribution can be found here:
 %
 %% See Also
 %
