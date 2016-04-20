@@ -1,11 +1,11 @@
-%% Linear tire
-% Linear relation between tire lateral force and slip angle.
+%% Linear Tire
+% Linear relationship between tire lateral force and slip angle.
 %
 %% Sintax
 % |Fy = _TireModel_.Characteristic(alpha)|
 %
 %% Arguments
-% The following table describes the input arguments:
+% The following table describes the input arguments
 %
 % <html> <table border=1 width="97%">
 % <tr> <td width="30%"><tt>alpha</tt></td> <td width="70%">Tire slip angle [rad]</td> </tr>
@@ -13,16 +13,16 @@
 %
 %% Description
 %
-% A equa��o que descreve este modelo � dada por:
+% The lateral force of the tire can be calculated as
 %
 % $$ F_y = K \alpha $$
 %
-% $F_y$ is the lateral force, $K$ is the cornering stiffness and $\alpha$ is the tire slip angle.
+% where $F_y$ is the lateral force, $K$ is the cornering stiffness and $\alpha$ is the tire slip angle.
 %
-% *Hip�teses*
+% *Hypothesis*
 %
-% * Rela��o linear.
-% * V�lido apenas para pequenos �ngulos de deriva.
+% * Linear tire model
+% * Valid only for small values of slip angle
 %
 %% Code
 %
@@ -53,5 +53,5 @@ end
 
 %% See Also
 %
-% <index.html Index> | <TirePolynomial.html Tire polynomial> | <TirePacejka1989.html Tire Pacejka 1989>
+% <index.html Index> | <TirePolynomial.html Polynomial Tire> | <TirePacejka1989.html Pacejka 1989 Tire>
 %

@@ -1,4 +1,4 @@
-%% Pneu (Abstract)
+%% Tire (Abstract)
 %
 
 classdef (Abstract) Tire

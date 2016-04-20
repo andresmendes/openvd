@@ -1,5 +1,5 @@
-%% Nonlinear 2 DOF vehicle model
-% Bicycle model nonlinear with 2 degrees of freedom.
+%% Nonlinear 2 DOF Simple Vehicle
+% Nonlinear bicycle model with 2 degrees of freedom.
 %
 %% Sintax
 % |dx = _VehicleModel_.Model(~,estados)|
@@ -12,7 +12,7 @@
 % </table> </html>
 %
 %% Description
-% O centro de massa do ve?culo ? dado pelo ponto $T$ e os eixos dianteiro e traseiro s?o dados pelos pontos $F$ e $R$, respectivamente. A constante $a$ mede a dist?ncia do ponto $F$ ao $T$ e $b$ a dist?ncia do ponto $T$ ao $R$. Os ?ngulos $\alpha_F$ e $\alpha_R$ s?o os ?ngulos de deriva nos eixos dianteiro e traseiro. $\alpha_T$ is the vehicle side slip angle and $\psi$ is the vehicle yaw angle. Por fim, $\delta$ ? o ?ngulo de ester?amento.
+% The center of gravity of the vehicle is located at the point $T$. The front and rear axles are located ate the points $F$ and $R$, respectively. The constant $a$ measures the distance of point $F$ to $T$ and $b$ the distance of point $T$ to $R$. The angles $\alpha_F$ e $\alpha_R$ are the front and rear slip angles, respectively. $\alpha_T$ is the vehicle side slip angle and $\psi$ is the vehicle yaw angle. $\delta$ is the steering angle.
 %
 % <<illustrations/modeloSimples.svg>>
 %
@@ -24,25 +24,24 @@ classdef VehicleSimpleLinear2DOF < VehicleDynamicsLateral.VehicleSimple
         % Constructor
         function self = VehicleSimpleLinear2DOF(varargin)
             if nargin == 0
-                % Entrada padr?o dos dados do ve?culo
                 % Vehicle data
-                m = 2527; % [kg]
-                Iz = 6550; % [kgm2]
-                lf = 1.37; % [m]
-                lr = 1.86; % [m]
+                m = 2527;                   % [kg]
+                Iz = 6550;                  % [kgm2]
+                lf = 1.37;                  % [m]
+                lr = 1.86;                  % [m]
 
-                mF0 = lr*m/(lf+lr);                  % Massa sobre o eixo dianteiro [kg]
-                mR0 = lf*m/(lf+lr);                  % Massa sobre o eixo traseiro [kg]
-                IT = Iz;                 % Momento de in?rcia [kg*m2]
-                DELTA = 0;                  % Ester?amento do eixo dianteiro [rad]
-                lT = lf+lr;                 % Dist?ncia entre os eixos[m]
-                % (Os dados de tire j? s?o do eixo equivalente)
-                nF = 1;                     % N?mero de tires no eixo dianteiro
-                nR = 1;                     % N?mero de tires no eixo traseiro
-                largT = 2;                  % width [m]
-                muy = 0.7;                  % Coeficiente de atrito de opera??o
+                mF0 = lr*m/(lf+lr);         % Mass @ F [kg]
+                mR0 = lf*m/(lf+lr);         % Mass @ R [kg]
+                IT = Iz;                    % Moment of inertia [kg*m2]
+                DELTA = 0;                  % Steering angle [rad]
+                lT = lf+lr;                 % [m]
+
+                nF = 1;                     % Number of tires @ F
+                nR = 1;                     % Number of tires @ R
+                largT = 2;                  % Width [m]
+                muy = 0.7;                  % Operational friction coefficient
                 entradaVetor = [mF0 mR0 IT DELTA lT nF nR largT muy];
-                % Definindo os par?metros da classe
+                % Defining class parameters
                 self.params = self.convert(entradaVetor);
                 self.tire = VehicleDynamicsLateral.TirePolynomial;
             else
@@ -58,18 +57,18 @@ classdef VehicleSimpleLinear2DOF < VehicleDynamicsLateral.VehicleSimple
         % Function with the model
         function dx = Model(self,~,estados)
             % Data
-            m = self.params(10);        % massa do veiculo [kg]
-            Iz = self.params(3);         % momento de inercia [kg]
-            lf = self.params(11);        % distancia do eixo dianteiro ao centro de massa [m]
-            lr = self.params(12);        % distancia do eixo dianteiro ao centro de massa [m]
-            nF = self.params(6);        % N?mero de tires no eixo dianteiro do caminh?o-trator
-            nR = self.params(7);        % N?mero de tires no eixo traseiro do caminh?o-trator
-            muy = self.params(9);       % Coeficiente de atrito de opera??o
+            m = self.params(10);            % Vehicle total mass [kg]
+            Iz = self.params(3);            % Moment of inertia [kg]
+            lf = self.params(11);           % [m]
+            lr = self.params(12);           % [m]
+            nF = self.params(6);            % Number of tires @ F
+            nR = self.params(7);            % Number of tires @ R
+            muy = self.params(9);           % Operational friction coefficient
             deltaf = self.params(4);
-            g = 9.81;                   % Acelera??o da gravidade [m/s^2]
-            vx = 20; % m/
-            FzF = self.params(1)*g;     % Carga vertical no eixo dianteiro [N]
-            FzR = self.params(2)*g;     % Carga vertical no eixo traseiro [N]
+            g = 9.81;                       % Gravity [m/s^2]
+            vx = 20;                        % [m/s]
+            FzF = self.params(1)*g;         % Vertical load @ F [N]
+            FzR = self.params(2)*g;         % Vertical load @ R [N]
 
             % States
             vy = estados(1);
@@ -103,16 +102,16 @@ classdef VehicleSimpleLinear2DOF < VehicleDynamicsLateral.VehicleSimple
     end
 
     methods (Static)
-        %% convert
-        % A fun??o convert adiciona no vetor de entrada ([mF0 mR0 IT DELTA lT nF nR largT muy]) os par?metros restantes do modelo de ve?culo ([mT a b]).
+        %% Conversion
+        % The parameters directly measured are typically different from the parameters in the equation of motion. Thus, a function is written to convert the entry data (entrada = [mF0 mR0 IT DELTA lT nF nR largT muy]) to the parameters vector ([entrada mT a b]).
         function parametros = convert(entrada)
-            mF0 = entrada(1);       % Massa no eixo dianteiro [kg]
-            mR0 = entrada(2);       % Massa no eixo traseiro [kg]
-            lT = entrada(5);        % Dist?ncia entre os eixos [m]
-            % Convers?o dos dados para os par?metros usados na equa??o de movimento
-            mT = mF0 + mR0;         % massa do ve?culo [kg]
-            a = mR0/mT*lT;          % Dist?ncia (F-T) [m]
-            b = lT - a;             % Dist?ncia (R-T) [m]
+            mF0 = entrada(1);               % Mass @ F [kg]
+            mR0 = entrada(2);               % Mass @ R [kg]
+            lT = entrada(5);                %  [m]
+
+            mT = mF0 + mR0;                 % Vehicle total mass [kg]
+            a = mR0/mT*lT;                  % [m]
+            b = lT - a;                     % [m]
             % Sa?da
             parametros = [entrada mT a b];
         end

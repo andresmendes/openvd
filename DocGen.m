@@ -34,10 +34,11 @@ publish('+VehicleDynamicsLateral/@Tire/Tire','outputDir','../Vehicle-Dynamics-La
 publish('TireComparison','outputDir','../Vehicle-Dynamics-Lateral-Documentation/','evalCode',true);
 
 % Vehicle model
+publish('+VehicleDynamicsLateral/@VehicleSimple/VehicleSimple','outputDir','../Vehicle-Dynamics-Lateral-Documentation/','evalCode',false);
+    publish('+VehicleDynamicsLateral/@VehicleSimpleLinear2DOF/VehicleSimpleLinear2DOF','outputDir','../Vehicle-Dynamics-Lateral-Documentation/','evalCode',false);
+    publish('+VehicleDynamicsLateral/@VehicleSimpleNonlinear3DOF/VehicleSimpleNonlinear3DOF','outputDir','../Vehicle-Dynamics-Lateral-Documentation/','evalCode',false);
 publish('+VehicleDynamicsLateral/@VehicleArticulated/VehicleArticulated','outputDir','../Vehicle-Dynamics-Lateral-Documentation/','evalCode',false);
     publish('+VehicleDynamicsLateral/@VehicleArticulatedNonlinear4DOF/VehicleArticulatedNonlinear4DOF','outputDir','../Vehicle-Dynamics-Lateral-Documentation/','evalCode',false);
-publish('+VehicleDynamicsLateral/@VehicleSimple/VehicleSimple','outputDir','../Vehicle-Dynamics-Lateral-Documentation/','evalCode',false);
-    publish('+VehicleDynamicsLateral/@VehicleSimpleNonlinear3DOF/VehicleSimpleNonlinear3DOF','outputDir','../Vehicle-Dynamics-Lateral-Documentation/','evalCode',false);
 
 % Graphics
 publish('+VehicleDynamicsLateral/@Graphics/Graphics','outputDir','../Vehicle-Dynamics-Lateral-Documentation/','evalCode',false);

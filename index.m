@@ -1,5 +1,5 @@
 %% Vehicle Dynamics - Lateral
-% This repository provides a collection of functions destinated to the lateral dynamics simulations of ground vehicles.
+% This repository provides a collection of functions destinated to lateral dynamics simulations of ground vehicles.
 %
 %% Instructions
 % Installation steps:
@@ -26,13 +26,13 @@ import VehicleDynamicsLateral.*
 % * Articulated vehicle simulation: <TemplateArticulated.html TemplateArticulated.m>
 %
 %% Tire model
-% Relation between lateral force and slip angle.
+% Relationship between lateral force and slip angle.
 %
 % Tire models:
 %
 % * <TireLinear.html Linear Tire>
 % * <TirePolynomial.html Polynomial Tire>
-% * <TirePacejka1989.html Pacejka Tire>
+% * <TirePacejka1989.html Pacejka 1989 Tire>
 %
 % Academic:
 %
