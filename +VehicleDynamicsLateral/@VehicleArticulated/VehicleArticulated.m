@@ -3,10 +3,10 @@
 
 classdef (Abstract) VehicleArticulated  < VehicleDynamicsLateral.VehicleSimple
     properties
-        distRA
-        distAS
-        distSM
-        widthSemi % Largura do semirreboque
+        nM
+        wS
+        lS
+        c
 	end
 end
 

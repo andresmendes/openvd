@@ -8,10 +8,18 @@ classdef (Abstract) VehicleSimple
 
     properties
 		params
-        tire
-        distFT
-        distTR
-        width
+		IT
+		lf
+		lr
+		mF0
+		mR0
+		deltaf
+		lT
+		nF
+		nR
+		wT
+		muy
+		tire
 	end
 end
 
