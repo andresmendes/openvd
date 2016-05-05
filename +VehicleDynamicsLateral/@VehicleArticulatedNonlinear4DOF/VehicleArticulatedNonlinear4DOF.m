@@ -27,41 +27,40 @@
 classdef VehicleArticulatedNonlinear4DOF < VehicleDynamicsLateral.VehicleArticulated
 	methods
         % Constructor
-        function self = VehicleArticulatedNonlinear4DOF(varargin)
-            if nargin == 0
-                % Entrada padr�o dos dados do ve�culo
-                mF0 = 5237;         % Massa no eixo dianteiro do caminh�o-trator desacoplado [kg]
-                mR0 = 2440;         % Massa no eixo traseiro do caminh�o-trator desacoplado [kg]
-                mF = 6000;          % Massa no eixo dianteiro do caminh�o-trator (F) [kg]
-                mR = 10000;         % Massa no eixo traseiro do caminh�o-trator (R) [kg]
-                mM = 17000;         % Massa no eixo do semirreboque (M) [kg]
-                IT = 46100;         % Momento de in�rcia do caminh�o-trator [kg*m2]
-                IS = 452010;        % Momento de in�rcia do semirreboque [kg*m2]
-                DELTA = 0;          % Ester�amento do eixo dianteiro [rad]
-                c = -0.310;         % Dist�ncia da articula��o ao eixo traseiro do caminh�o-trator (A-R) [m]
-                lT = 3.550;         % Dist�ncia entre os eixos do caminh�o-trator [m]
-                lS = 7.700;         % Dist�ncia entre a articula��o e o eixo do semirreboque [m]
-                nF = 2;             % N�mero de tires no eixo dianteiro do caminh�o-trator
-                nR = 4;             % N�mero de tires no eixo traseiro do caminh�o-trator
-                nM = 8;             % N�mero de tires no eixo do semirreboque
-                widthT = 2.6;     % width do caminh�o-trator [m]
-                widthS = 2.550;   % width do semirreboque [m]
-                muy = 0.3;          % Coeficiente de atrito de opera��o
-                entradaVetor = [mF0 mR0 mF mR mM IT IS DELTA c lT lS nF nR nM widthT widthS muy];
-                % Definindo os par�metros da classe
-                self.params = self.convert(entradaVetor);
-                self.tire = VehicleDynamicsLateral.TirePacejka1989;
-            else
-                self.params = self.convert(varargin{1});
-                self.tire = varargin{2};
-            end
-                self.distFT = self.params(20);
-                self.distTR = self.params(21);
-                self.distRA = self.params(9);
-                self.distAS = self.params(22);
-                self.distSM = self.params(23);
-                self.width = self.params(15);
-                self.widthSemi = self.params(16);
+        function self = VehicleArticulatedNonlinear4DOF(IT, lf, lr, mF0, mR0, deltaf, lT, nF, nR, wT, muy, tire, nM, wS, lS, c)
+            % Entrada padr�o dos dados do ve�culo
+            self.mF0 = mF0;         % Massa no eixo dianteiro do caminh�o-trator desacoplado [kg]
+            self.mR0 = mR0;         % Massa no eixo traseiro do caminh�o-trator desacoplado [kg]
+            self.mF = mF;           % Massa no eixo dianteiro do caminh�o-trator (F) [kg]
+            self.mR = mR;           % Massa no eixo traseiro do caminh�o-trator (R) [kg]
+            self.mM = mM;           % Massa no eixo do semirreboque (M) [kg]
+            self.IT = IT;           % Momento de in�rcia do caminh�o-trator [kg*m2]
+            self.IS = IS;           % Momento de in�rcia do semirreboque [kg*m2]
+            self.DELTA = DELTA;     % Ester�amento do eixo dianteiro [rad]
+            self.c = c;             % Dist�ncia da articula��o ao eixo traseiro do caminh�o-trator (A-R) [m]
+            self.lT = lT;           % Dist�ncia entre os eixos do caminh�o-trator [m]
+            self.lS = lS;           % Dist�ncia entre a articula��o e o eixo do semirreboque [m]
+            self.nF = nF;           % N�mero de tires no eixo dianteiro do caminh�o-trator
+            self.nR = nR;           % N�mero de tires no eixo traseiro do caminh�o-trator
+            self.nM = nM;           % N�mero de tires no eixo do semirreboque
+            self.wT = wT;           % width do caminh�o-trator [m]
+            self.wS = wS;           % width do semirreboque [m]
+            self.muy = muy;         % Coeficiente de atrito de opera��o
+
+			g = 9.81;               % Acelera��o da gravidade [m/s^2]
+
+            self.mT = mF0 + mR0;         % massa do caminh�o-trator [kg]
+            self.a = mR0/mT*lT;          % Dist�ncia do eixo dianteiro ao CG do caminh�o-trator (F-T) [m]
+            self.b = lT - a;             % Dist�ncia do eixo traseiro ao CG do caminh�o-trator (R-T) [m]
+            self.A = mF*g + mR*g - mT*g; % For�a vertical na articula��o [N]
+            self.mS = (A + mM*g)/g;      % massa do semirreboque [kg]
+            self.d = (lS*mM)/mS;         % Dist�ncia da articula��o ao CG do semirreboque (A-S) [m]
+            self.e = lS - d;             % Dist�ncia do eixo traseiro ao CG do semirreboque (M-S) [m]
+
+
+            self.params = [mF0 mR0 mF mR mM IT IS DELTA c lT lS nF nR nM wT wS muy mT mS a b d e];
+            % Definindo os par�metros da classe
+            self.tire = tire;
         end
 
         %% Model
@@ -82,9 +81,9 @@ classdef VehicleArticulatedNonlinear4DOF < VehicleDynamicsLateral.VehicleArticul
             nR = self.params(13);       % N�mero de tires no eixo traseiro do caminh�o-trator
             nM = self.params(14);       % N�mero de tires no eixo do semirreboque
             g = 9.81;                   % Acelera��o da gravidade [m/s^2]
-            FzF = self.params(3)*g;     % Carga vertical no eixo dianteiro [N]
-            FzR = self.params(4)*g;     % Carga vertical no eixo traseiro [N]
-            FzM = self.params(5)*g;     % Carga vertical no eixo do semirreboque [N]
+            FzF = self.params(3) * g;     % Carga vertical no eixo dianteiro [N]
+            FzR = self.params(4) * g;     % Carga vertical no eixo traseiro [N]
+            FzM = self.params(5) * g;     % Carga vertical no eixo do semirreboque [N]
             muy = self.params(17);      % Coeficiente de atrito de opera��o
             % Defini��o dos estados
             dPSI = estados(1,1);        % Velocidade angular do caminh�o-trator [rad/s]
@@ -196,7 +195,7 @@ classdef VehicleArticulatedNonlinear4DOF < VehicleDynamicsLateral.VehicleArticul
 
     methods (Static)
         %% convert
-        % A fun��o convert adiciona no vetor de entrada ([mF0 mR0 mF mR mM IT IS DELTA c lT lS nF nR nM widthT widthS muy]) os par�metros restantes do modelo de ve�culo ([mT mS a b d e]).
+        % A fun��o convert adiciona no vetor de entrada ([mF0 mR0 mF mR mM IT IS DELTA c lT lS nF nR nM wT wS muy]) os par�metros restantes do modelo de ve�culo ([mT mS a b d e]).
         function parametros = convert(entrada)
             mF0 = entrada(1);       % Massa no eixo dianteiro do caminh�o-trator desacoplado [kg]
             mR0 = entrada(2);       % Massa no eixo traseiro do caminh�o-trator desacoplado [kg]
