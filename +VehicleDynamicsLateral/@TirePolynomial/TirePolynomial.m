@@ -30,26 +30,20 @@
 classdef TirePolynomial < VehicleDynamicsLateral.Tire
     methods
         % Constructor
-        function self = TirePolynomial(varargin)
-            if nargin == 0
-                % Tire parameters [1]
-                Ca = 57300;
-                k = 4.87;
+        function self = TirePolynomial(Ca, k)
+            % Tire parameters [1]
+            self.Ca = Ca;
+            self.k = k;
 
-                k1 = 2*Ca;
-                k2 = 2*Ca*k;
-                self.params = [k1 k2];
-            else
-                self.params = varargin{1};
-            end
+            % polynomial model coefficients
+            self.k1 = 2 * Ca;
+            self.k2 = 2 * Ca * k;
+            self.params = [k1 k2];
         end
 
-        function Fy = Characteristic(self,alpha,~,~)
-            % Polynomial model coefficients
-            k1 = self.params(1);
-            k2 = self.params(2);
+        function Fy = Characteristic(self, alpha)
             % Lateral force
-            Fy = - (k1*alpha-k2*alpha.^3);
+            Fy = - (self.k1 * alpha - self.k2 * alpha.^3);
         end
     end
 
@@ -57,7 +51,10 @@ classdef TirePolynomial < VehicleDynamicsLateral.Tire
     %
 
     properties
-        params
+        Ca
+        k
+        k1
+        k2
     end
 end
 

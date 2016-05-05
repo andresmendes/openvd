@@ -30,16 +30,14 @@
 classdef TireLinear < VehicleDynamicsLateral.Tire
     methods
         % Constructor
-        function self = TireLinear(varargin)
-            if nargin == 0
-                self.params = 1000;
-            else
-                self.params = varargin{1};
+        function self = TireLinear(k)
+                self.params = k;
+                self.k = k
             end
         end
 
-        function Fy = Characteristic(self,alpha)
-            Fy = -self.params*alpha;
+        function Fy = Characteristic(self, alpha)
+            Fy = -self.k * alpha;
         end
     end
 
@@ -47,7 +45,7 @@ classdef TireLinear < VehicleDynamicsLateral.Tire
     %
 
     properties
-        params
+        k % cornering stiffness
     end
 end
 

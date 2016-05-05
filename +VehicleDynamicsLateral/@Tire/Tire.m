@@ -3,11 +3,7 @@
 
 classdef (Abstract) Tire
 	methods(Abstract)
-		Characteristic(self,alpha)
-	end
-
-    properties(Abstract)
-		params
+		Characteristic(self, alpha)
 	end
 end
 

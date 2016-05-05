@@ -59,30 +59,26 @@
 classdef TirePacejka1989 < VehicleDynamicsLateral.Tire
     methods
         % constructor
-        function self = TirePacejka1989(varargin)
-            if nargin == 0
-                % Default values
-                a0 = 1.002806;      % Shape factor [-]
-                a1 = 2.014156;      % Load dependency of lateral friction (*1000) [1/kN]
-                a2 = 710.5013;      % Lateral friction level (*1000) [-]
-                a3 = 5226.341;      % Maximum cornering stiffness [N/deg]
-                a4 = 78.87699;      % Load at maximum cornering stiffness [kN]
-                a5 = 0.01078379;    % Camber sensitivity of cornering stiffness
-                a6 = -0.004759443;  % Load dependency of curvature factor
-                a7 = 0.6704447;     % Curvature factor level
-                a8 = 0;             % Camber sensitivity of horizontal shift
-                a9 = 0;             % Load dependency of horizontal shift
-                a10 = 0;            % Horizontal shift level
-                a11 = 0;            % Combined load and camber sensitivity of vertical shift
-                a12 = 0;            % Load dependency of vertical shift
-                a13 = 0;            % Vertical shift level
-                self.params = [a0 a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13];
-            else
-                self.params = varargin{1};
-            end
+        function self = TirePacejka1989(a0,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13)
+            % Default values
+            self.a0 = a0;              % Shape factor [-]
+            self.a1 = a1;              % Load dependency of lateral friction (*1000) [1/kN]
+            self.a2 = a2;              % Lateral friction level (*1000) [-]
+            self.a3 = a3;              % Maximum cornering stiffness [N/deg]
+            self.a4 = a4;              % Load at maximum cornering stiffness [kN]
+            self.a5 = a5;              % Camber sensitivity of cornering stiffness
+            self.a6 = a6;              % Load dependency of curvature factor
+            self.a7 = a7;              % Curvature factor level
+            self.a8 = a8;              % Camber sensitivity of horizontal shift
+            self.a9 = a9;              % Load dependency of horizontal shift
+            self.a10 = a10;            % Horizontal shift level
+            self.a11 = a11;            % Combined load and camber sensitivity of vertical shift
+            self.a12 = a12;            % Load dependency of vertical shift
+            self.a13 = a13;            % Vertical shift level
+            self.params = [a0 a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13];
         end
 
-        function Fy = Characteristic(self,alpha,Fz,muy)
+        function Fy = Characteristic(self, alpha, Fz, muy)
             % Input
             % alpha - slip angle [rad]
             % Fz    - Load [N]
@@ -133,6 +129,20 @@ classdef TirePacejka1989 < VehicleDynamicsLateral.Tire
 
     properties
         params
+        a0
+        a1
+        a2
+        a3
+        a4
+        a5
+        a6
+        a7
+        a8
+        a9
+        a10
+        a11
+        a12
+        a13
     end
 end
 
