@@ -66,7 +66,7 @@ classdef VehicleArticulatedNonlinear4DOF < VehicleDynamicsLateral.VehicleArticul
 
         %% Model
         % Fun��o com as equa��es de estado do modelo
-        function dx = Model(self,~,estados)
+        function dx = Model(self, ~, estados)
             % Dados do ve�culo
             mT = self.params(18);       % massa do veiculo [kg]
             mS = self.params(19);       % massa do veiculo [kg]
@@ -217,21 +217,6 @@ classdef VehicleArticulatedNonlinear4DOF < VehicleDynamicsLateral.VehicleArticul
             % Sa�da
             parametros = [entrada mT mS a b d e];
         end
-    end
-
-    %% Properties
-    %
-
-    properties
-        params
-        tire
-        distFT
-        distTR
-        distRA
-        distAS
-        distSM
-        width     % width do caminh�o-trator
-        widthSemi % width do semirreboque
     end
 end
 

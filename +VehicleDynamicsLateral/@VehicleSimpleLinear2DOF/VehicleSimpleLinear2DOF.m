@@ -55,7 +55,7 @@ classdef VehicleSimpleLinear2DOF < VehicleDynamicsLateral.VehicleSimple
 
         %% Model
         % Function with the model
-        function dx = Model(self,~,estados)
+        function dx = Model(self, ~, estados)
             % Data
             m = self.params(10);            % Vehicle total mass [kg]
             Iz = self.params(3);            % Moment of inertia [kg]
@@ -116,18 +116,6 @@ classdef VehicleSimpleLinear2DOF < VehicleDynamicsLateral.VehicleSimple
             parametros = [entrada mT a b];
         end
     end
-
-    %% Properties
-    %
-
-    properties
-        params
-        tire
-        distFT
-        distTR
-        width
-    end
-
 end
 
 %% See Also

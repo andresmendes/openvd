@@ -1,20 +1,11 @@
-%% Veículo articulado (Abstract)
+%% Veï¿½culo articulado (Abstract)
 %
 
-classdef (Abstract) VehicleArticulated
-	methods(Abstract)
-		% VeiculoArticuladoNaoLinear4GDL(self,t,estados)
-	end
-
-    properties(Abstract)
-		params
-        tire
-        distFT
-        distTR
+classdef (Abstract) VehicleArticulated  < VehicleDynamicsLateral.VehicleSimple
+    properties
         distRA
         distAS
         distSM
-        width     % Largura do caminhão-trator
         widthSemi % Largura do semirreboque
 	end
 end

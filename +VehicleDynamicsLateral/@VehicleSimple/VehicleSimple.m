@@ -1,12 +1,12 @@
-%% Veículo simples (Abstract)
+%% Veï¿½culo simples (Abstract)
 %
 
 classdef (Abstract) VehicleSimple
 	methods(Abstract)
-		% VeiculoArticuladoNaoLinear4GDL(self,t,estados)
+		Model(self, t, estados)
 	end
 
-    properties(Abstract)
+    properties
 		params
         tire
         distFT

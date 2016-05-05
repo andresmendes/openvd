@@ -49,7 +49,7 @@ classdef VehicleSimpleNonlinear3DOF < VehicleDynamicsLateral.VehicleSimple
 
         %% Model
         % Fun��o com as equa��es de estado do modelo
-        function dx = Model(self,~,estados)
+        function dx = Model(self, ~, estados)
             % Dados do ve�culo
             m = self.params(10);        % massa do veiculo [kg]
             I = self.params(3);         % momento de inercia [kg]
@@ -112,18 +112,6 @@ classdef VehicleSimpleNonlinear3DOF < VehicleDynamicsLateral.VehicleSimple
             parametros = [entrada mT a b];
         end
     end
-
-    %% Properties
-    %
-
-    properties
-        params
-        tire
-        distFT
-        distTR
-        width
-    end
-
 end
 
 %% See Also
