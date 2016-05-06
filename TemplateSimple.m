@@ -29,14 +29,22 @@ x0 = [dPSI0 ALPHAT0 PSI0 X0 Y0 V0];
 % Chosen tire: <TirePacejka1989.html TirePacejka1989.m>.
 %
 
-a0 = 1.002806;
-a1 = 2.014156;
-a2 = 710.5013;
-a3 = 5226.341;
-a4 = 78.87699;
-a5 = 0.01078379;
-a6 = -0.004759443;
-a7 = 0.6704447;
+a0 = 1.0;
+a1 = 2.0;
+a2 = 700.0;
+a3 = 5000.0;
+a4 = 80.0;
+a5 = 0.0;
+a6 = 0.0;
+a7 = 0.7;
+% a0 = 1.002806;
+% a1 = 2.014156;
+% a2 = 710.5013;
+% a3 = 5226.341;
+% a4 = 78.87699;
+% a5 = 0.01078379;
+% a6 = -0.004759443;
+% a7 = 0.6704447;
 a8 = 0;
 a9 = 0;
 a10 = 0;
@@ -125,16 +133,6 @@ ax4 = subplot(2,2,4);
 %
 
 G.Frame([XT YT PSI dPSI VEL ALPHAT],TOUT,0);
-
-figFrame = gcf;
-% Setting Matlab figure
-set(figFrame,'Units','centimeters')
-set(figFrame,'Position',[0 0 16 7])
-% Setting PDF
-set(figFrame,'PaperUnits','centimeters')
-set(figFrame,'PaperPosition',[0 0 16 7])
-PaperPos = get(figFrame,'PaperPosition');
-set(figFrame,'PaperSize',PaperPos(3:4))
 
 %%
 % Animation

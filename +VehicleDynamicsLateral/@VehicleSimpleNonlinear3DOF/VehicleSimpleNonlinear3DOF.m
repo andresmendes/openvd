@@ -82,10 +82,8 @@ classdef VehicleSimpleNonlinear3DOF < VehicleDynamicsLateral.VehicleSimple
 
             % Equa��es de estado
             dx(1,1) = (FyF*a*cos(DELTA) - FyR*b + FxF*a*sin(DELTA))/I;
-            dx(2,1) = (FyR + FyF*cos(DELTA) + FxF*sin(DELTA) - m*(dPSI*v*cos(ALPHAT) + (sin(ALPHAT)*(FxR + 	FxF*cos(DELTA) - FyF*sin(DELTA) +...
-                      dPSI*m*v*sin(ALPHAT)))/(m*cos(ALPHAT))))/(m*(v*cos(ALPHAT) + (v*sin(ALPHAT)^2)/cos(ALPHAT)));
-            dx(6,1) = (FxR*cos(ALPHAT) + FyR*sin(ALPHAT) - FyF*cos(ALPHAT)*sin(DELTA) + FyF*cos(DELTA)*sin(ALPHAT) + ...
-                      FxF*sin(ALPHAT)*sin(DELTA) + FxF*cos(ALPHAT)*cos(DELTA))/(m*cos(ALPHAT)^2 + m*sin(ALPHAT)^2);
+            dx(2,1) = -(FxR*sin(ALPHAT) - FyF*cos(ALPHAT - DELTA) - FyR*cos(ALPHAT) + FxF*sin(ALPHAT - DELTA) + dPSI*m*v)/(m*v);
+            dx(6,1) = (FxR*cos(ALPHAT) + FxF*cos(ALPHAT - DELTA) + FyR*sin(ALPHAT) + FyF*sin(ALPHAT - DELTA))/m;
 
             % Obten��o da orienta��o
             dx(3,1) = dPSI; % dPSI
