@@ -11,6 +11,10 @@ classdef Simulator
 			if isa(vehicle, VehicleDynamicsLateral.VehicleArticulated)
 				options = odeset('Mass', @System.MassMatrix);
 				[TOUT,XOUT] = ode45(@(t, estados) System.Model(t, estados), tspan, vehicle.getInitialState(), options);
+
+				% retrieve states exclusive to the articulated vehicle
+				self.dPHI = XOUT(:, 7);           % Articulation rate [rad/s]
+				self.PHI = XOUT(:, 8);            % Articulation angle [rad]
 			else
 				[TOUT, XOUT] = ode45(@(t, estados) System.Model(t, estados), tspan, vehicle.getInitialState());
 
@@ -21,8 +25,6 @@ classdef Simulator
 			self.XT = XOUT(:, 4);             % CG horizontal position [m]
 			self.YT = XOUT(:, 5);             % CG vertical position [m]
 			self.VEL = XOUT(:, 6);            % CG velocity [m/s]
-			self.dPHI = XOUT(:, 7);           % Articulation rate [rad/s]
-			self.PHI = XOUT(:, 8);            % Articulation angle [rad]
         end
 	end
 
