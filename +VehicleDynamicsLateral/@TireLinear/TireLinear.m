@@ -41,9 +41,6 @@ classdef TireLinear < VehicleDynamicsLateral.Tire
         end
     end
 
-    %% Properties
-    %
-
     properties
         k % cornering stiffness
     end

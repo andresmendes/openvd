@@ -58,23 +58,22 @@
 
 classdef TirePacejka1989 < VehicleDynamicsLateral.Tire
     methods
-        % constructor
-        function self = TirePacejka1989(a0,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13)
-            % Default values
-            self.a0 = a0;              % Shape factor [-]
-            self.a1 = a1;              % Load dependency of lateral friction (*1000) [1/kN]
-            self.a2 = a2;              % Lateral friction level (*1000) [-]
-            self.a3 = a3;              % Maximum cornering stiffness [N/deg]
-            self.a4 = a4;              % Load at maximum cornering stiffness [kN]
-            self.a5 = a5;              % Camber sensitivity of cornering stiffness
-            self.a6 = a6;              % Load dependency of curvature factor
-            self.a7 = a7;              % Curvature factor level
-            self.a8 = a8;              % Camber sensitivity of horizontal shift
-            self.a9 = a9;              % Load dependency of horizontal shift
-            self.a10 = a10;            % Horizontal shift level
-            self.a11 = a11;            % Combined load and camber sensitivity of vertical shift
-            self.a12 = a12;            % Load dependency of vertical shift
-            self.a13 = a13;            % Vertical shift level
+        % Constructor
+        function self = TirePacejka1989(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13)
+            self.a0 = a0; % Shape factor [-]
+            self.a1 = a1; % Load dependency of lateral friction (*1000) [1/kN]
+            self.a2 = a2; % Lateral friction level (*1000) [-]
+            self.a3 = a3; % Maximum cornering stiffness [N/deg]
+            self.a4 = a4; % Load at maximum cornering stiffness [kN]
+            self.a5 = a5; % Camber sensitivity of cornering stiffness
+            self.a6 = a6; % Load dependency of curvature factor
+            self.a7 = a7; % Curvature factor level
+            self.a8 = a8; % Camber sensitivity of horizontal shift
+            self.a9 = a9; % Load dependency of horizontal shift
+            self.a10 = a10; % Horizontal shift level
+            self.a11 = a11; % Combined load and camber sensitivity of vertical shift
+            self.a12 = a12; % Load dependency of vertical shift
+            self.a13 = a13; % Vertical shift level
             self.params = [a0 a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13];
         end
 
@@ -85,8 +84,8 @@ classdef TirePacejka1989 < VehicleDynamicsLateral.Tire
             % muy   - Lateral friction coefficient (*1000) [-]
 
             % Slip angle treatment
-            ALPHA = asin(sin(alpha));           % [rad]
-            ALPHA = 180/pi*ALPHA;               % Conversion [rad] - [deg]
+            ALPHA = asin(sin(alpha));          % [rad]
+            ALPHA = 180/pi*ALPHA;   % Conversion [rad] - [deg]
             % Nominal parameters
             a0 = self.params(1);
             a1 = self.params(2);
@@ -103,29 +102,29 @@ classdef TirePacejka1989 < VehicleDynamicsLateral.Tire
             a12 = self.params(13);
             a13 = self.params(14);
 
-            Fz = Fz/1000;                       % Conversion [N] - [kN]
+            Fz = Fz/1000;           % Conversion [N] - [kN]
 
-            camber = 0;                         % Camber angle
+            camber = 0;             % Camber angle
 
-            C = a0;                             % Shape factor
-            muy0 = a1*Fz + a2;                  % Lateral friction coefficient nominal [-]
-            muy = muy*1000;                     % Lateral friction coefficient operacional
-            D = muy0*Fz;                        % muy = lateral friction coefficient
+            C = a0;                 % Shape factor
+            muy0 = a1*Fz + a2;      % Lateral friction coefficient nominal [-]
+            muy = muy*1000;         % Lateral friction coefficient operacional
+            D = muy0*Fz;            % muy = lateral friction coefficient
             BCD = a3*sin(2*atan(Fz/a4))*(1-a5*abs(camber)); % Cornering stiffness
-            E = a6*Fz + a7;                     % Curvature factor
-            B = BCD/(C*D);                      % stiffness factor
-            Sh = a8*camber + a9*Fz + a10;       % Horizontal shift
-            Sv = a11*Fz*camber + a12*Fz + a13;  % Vertical shift
-            ALPHAeq = muy0/muy*(ALPHA + Sh);    % Equivalent slip angle
-            % Reference characteristics
+            E = a6*Fz + a7;         % Curvature factor
+            B = BCD/(C*D);          % stiffness factor
+            Sh = a8*camber + a9*Fz + a10;      % Horizontal shift
+            Sv = a11*Fz*camber + a12*Fz + a13; % Vertical shift
+            ALPHAeq = muy0/muy*(ALPHA + Sh);   % Equivalent slip angle
+ % Reference characteristics
             fy = D*sin(C*atan(B*ALPHAeq - E*(B*ALPHAeq - atan(B*ALPHAeq))));
-            % Lateral force
+ % Lateral force
             Fy = -muy/muy0*(fy + Sv);
         end
     end
 
-    %% Properties
-    %
+   %% Properties
+   %
 
     properties
         params

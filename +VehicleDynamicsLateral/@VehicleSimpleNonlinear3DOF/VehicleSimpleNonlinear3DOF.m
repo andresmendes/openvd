@@ -23,22 +23,22 @@ classdef VehicleSimpleNonlinear3DOF < VehicleDynamicsLateral.VehicleSimple
 	methods
         % Constructor
         function self = VehicleSimpleNonlinear3DOF(IT, mF0, mR0, deltaf, lT, nF, nR, wT, muy, tire)
-	        self.IT = IT;                          % Moment of inertia [kg*m2]
+	        self.IT = IT;
 
 			self.mF0 = mF0;
 			self.mR0 = mR0;
 
-			self.mT = self.mF0 + self.mR0;         % Vehicle total mass [kg]
-	        self.a = self.mR0 / self.mT*self.lT;   % [m]
-	        self.b = self.lT - self.a;             % [m]
+			self.mT = self.mF0 + self.mR0;
+	        self.a = self.mR0 / self.mT*self.lT;
+	        self.b = self.lT - self.a;
 
-	        self.deltaf = 0;                       % Steering angle [rad]
-	        self.lT = self.a + self.b;             % [m]
+	        self.deltaf = 0;
+	        self.lT = self.a + self.b;
 
-	        self.nF = nR;                          % Number of tires @ F
-	        self.nR = nF;                          % Number of tires @ R
-	        self.wT = wT;                          % Width [m]
-	        self.muy = muy;                        % Operational friction coefficient
+	        self.nF = nR;
+	        self.nR = nF;
+	        self.wT = wT;
+	        self.muy = muy;
 
 	        self.params = [self.mF0 self.mR0 self.IT self.deltaf self.lT self.nF self.nR self.wT self.muy self.mT self.a self.b];
 	        self.tire = tire;
@@ -48,13 +48,13 @@ classdef VehicleSimpleNonlinear3DOF < VehicleDynamicsLateral.VehicleSimple
         % Função com as equações de estado do modelo
         function dx = Model(self, ~, estados)
 			% Data
-            m = self.mT;              % Vehicle total mass [kg]
-            I = self.IT;              % Moment of inertia [kg]
-            a = self.a;               % [m]
-            b = self.b;               % [m]
-            nF = self.nF;             % Number of tires @ F
-            nR = self.nR;             % Number of tires @ R
-            muy = self.muy;           % Operational friction coefficient
+            m = self.mT;
+            I = self.IT;
+            a = self.a;
+            b = self.b;
+            nF = self.nF;
+            nR = self.nR;
+            muy = self.muy;
             DELTA = self.deltaf;
 
 			g = 9.81;                 % Acelera��o da gravidade [m/s^2]
