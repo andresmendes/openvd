@@ -22,31 +22,30 @@
 classdef VehicleSimpleNonlinear3DOF < VehicleDynamicsLateral.VehicleSimple
 	methods
         % Constructor
-        function self = VehicleSimpleNonlinear3DOF(IT, lf, lr, mF0, mR0, deltaf, lT, nF, nR, wT, muy, tire)
+        function self = VehicleSimpleNonlinear3DOF(IT, mF0, mR0, deltaf, lT, nF, nR, wT, muy, tire)
 	        self.IT = IT;                          % Moment of inertia [kg*m2]
-	        self.lf = lf;                          % [m]
-	        self.lr = lr;                          % [m]
+
+			self.mF0 = mF0;
+			self.mR0 = mR0;
 
 			self.mT = self.mF0 + self.mR0;         % Vehicle total mass [kg]
-	        self.a = self.mR0 / self.mT * self.lT; % [m]
+	        self.a = self.mR0 / self.mT*self.lT;   % [m]
 	        self.b = self.lT - self.a;             % [m]
 
-	        self.mF0 = lr * m / (lf + lr);         % Mass @ F [kg]
-	        self.mR0 = lf * m / (lf + lr);         % Mass @ R [kg]
 	        self.deltaf = 0;                       % Steering angle [rad]
-	        self.lT = lf + lr;                     % [m]
+	        self.lT = self.a + self.b;             % [m]
 
 	        self.nF = nR;                          % Number of tires @ F
 	        self.nR = nF;                          % Number of tires @ R
 	        self.wT = wT;                          % Width [m]
 	        self.muy = muy;                        % Operational friction coefficient
 
-	        self.params = [mF0 mR0 IT DELTA lT nF nR largT muy mT a b];
+	        self.params = [self.mF0 self.mR0 self.IT self.deltaf self.lT self.nF self.nR self.wT self.muy self.mT self.a self.b];
 	        self.tire = tire;
         end
 
         %% Model
-        % Fun��o com as equa��es de estado do modelo
+        % Função com as equações de estado do modelo
         function dx = Model(self, ~, estados)
 			% Data
             m = self.mT;              % Vehicle total mass [kg]
@@ -60,38 +59,38 @@ classdef VehicleSimpleNonlinear3DOF < VehicleDynamicsLateral.VehicleSimple
 
 			g = 9.81;                 % Acelera��o da gravidade [m/s^2]
 
-            FzF = self.mF0 * g;       % Vertical load @ F [N]
-            FzR = self.mR0 * g;       % Vertical load @ R [N]
+            FzF = self.mF0*g;       % Vertical load @ F [N]
+            FzR = self.mR0*g;       % Vertical load @ R [N]
 
             % Estados
             dPSI = estados(1);
             ALPHAT = estados(2);
-            v = estados(6);
             PSI = estados(3);
+            v = estados(6);
 
-            % Angulos de deriva n�o linear
-            ALPHAF = atan2((v * sin(ALPHAT) + a * dPSI), (v * cos(ALPHAT))) - DELTA; % Dianteiro
-            ALPHAR = atan2((v * sin(ALPHAT) - b * dPSI), (v * cos(ALPHAT)));         % Traseiro
+            % Ângulos de deriva não linear
+            ALPHAF = atan2((v*sin(ALPHAT) + a*dPSI), (v*cos(ALPHAT))) - DELTA; % Dianteiro
+            ALPHAR = atan2((v*sin(ALPHAT) - b*dPSI), (v*cos(ALPHAT)));         % Traseiro
 
-            % For�as longitudinais
+            % Forças longitudinais
             FxF = 0;
             FxR = 0;
 
-            % Curva caracter�stica
+            % Curva característica
             FyF = nF*self.tire.Characteristic(ALPHAF,FzF/nF,muy);
             FyR = nR*self.tire.Characteristic(ALPHAR,FzR/nR,muy);
 
-            % Equa��es de estado
-            dx(1,1) = (FyF*a*cos(DELTA) - FyR*b + FxF*a*sin(DELTA))/I;
+            % Equações de estado
+            dx(1,1) = (FyF*a*cos(DELTA) - FyR*b + FxF*a*sin(DELTA)) / I;
             dx(2,1) = (FyR + FyF*cos(DELTA) + FxF*sin(DELTA) - m*(dPSI*v*cos(ALPHAT) + (sin(ALPHAT)*(FxR + 	FxF*cos(DELTA) - FyF*sin(DELTA) +...
                       dPSI*m*v*sin(ALPHAT)))/(m*cos(ALPHAT))))/(m*(v*cos(ALPHAT) + (v*sin(ALPHAT)^2)/cos(ALPHAT)));
             dx(6,1) = (FxR*cos(ALPHAT) + FyR*sin(ALPHAT) - FyF*cos(ALPHAT)*sin(DELTA) + FyF*cos(DELTA)*sin(ALPHAT) + ...
                       FxF*sin(ALPHAT)*sin(DELTA) + FxF*cos(ALPHAT)*cos(DELTA))/(m*cos(ALPHAT)^2 + m*sin(ALPHAT)^2);
 
-            % Obten��o da orienta��o
+            % Obtenção da orientação
             dx(3,1) = dPSI; % dPSI
 
-            % Equa��es adicionais para o posicionamento (N�o necess�rias para a din�mica em guinada)
+            % Equações adicionais para o posicionamento (Não necessárias para a dinâmica em guinada)
             dx(4,1) = v*cos(ALPHAT + PSI); % X
             dx(5,1) = v*sin(ALPHAT + PSI); % Y
         end

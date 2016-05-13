@@ -21,25 +21,25 @@
 
 classdef VehicleSimpleLinear2DOF < VehicleDynamicsLateral.VehicleSimple
 	methods
-        % Constructor
         function self = VehicleSimpleLinear2DOF(IT, lf, lr, mF0, mR0, deltaf, lT, nF, nR, wT, muy, tire)
-	        self.IT = IT;                          % Moment of inertia [kg*m2]
-	        self.lf = lf;                          % [m]
-	        self.lr = lr;                          % [m]
+        	% Constructor for the vehicle
+	        self.IT = IT;
+	        self.lf = lf;
+	        self.lr = lr;
 
-			self.mT = self.mF0 + self.mR0;         % Vehicle total mass [kg]
-	        self.a = self.mR0 / self.mT * self.lT; % [m]
-	        self.b = self.lT - self.a;             % [m]
+			self.mT = self.mF0 + self.mR0;
+	        self.a = self.mR0 / self.mT * self.lT;
+	        self.b = self.lT - self.a;
 
-	        self.mF0 = lr * m / (lf + lr);         % Mass @ F [kg]
-	        self.mR0 = lf * m / (lf + lr);         % Mass @ R [kg]
-	        self.deltaf = deltaf;                  % Steering angle [rad]
-	        self.lT = lf + lr;                     % [m]
+	        self.mF0 = lr * m / (lf + lr);
+	        self.mR0 = lf * m / (lf + lr);
+	        self.deltaf = deltaf;
+	        self.lT = lf + lr;
 
-	        self.nF = nR;                          % Number of tires @ F
-	        self.nR = nF;                          % Number of tires @ R
-	        self.wT = wT;                          % Width [m]
-	        self.muy = muy;                        % Operational friction coefficient
+	        self.nF = nR;
+	        self.nR = nF;
+	        self.wT = wT;
+	        self.muy = muy;
 
 	        self.params = [mF0 mR0 IT DELTA lT nF nR largT muy mT a b];
 	        self.tire = tire;
@@ -49,13 +49,13 @@ classdef VehicleSimpleLinear2DOF < VehicleDynamicsLateral.VehicleSimple
         % Function with the model
         function dx = Model(self, ~, estados)
             % Data
-            m = self.mT;              % Vehicle total mass [kg]
-            Iz = self.IT;             % Moment of inertia [kg]
-            lf = self.a;              % [m]
-            lr = self.b;              % [m]
-            nF = self.nF;             % Number of tires @ F
-            nR = self.nR;             % Number of tires @ R
-            muy = self.muy;           % Operational friction coefficient
+            m = self.mT;
+            Iz = self.IT;
+            lf = self.a;
+            lr = self.b;
+            nF = self.nF;
+            nR = self.nR;
+            muy = self.muy;
             deltaf = self.deltaf;
 
             g = 9.81;                 % Gravity [m/s^2]
