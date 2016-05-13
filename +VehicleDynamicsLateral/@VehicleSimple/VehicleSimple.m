@@ -1,9 +1,14 @@
 classdef (Abstract) VehicleSimple
     % VehicleSimple Tractor vehicle without semitrailer
-    %   Abstract class representing a tractor vehicle without semitrailer. Extend this class in order to create a new vehicle model to be used with the simulator.
+    % Abstract class representing a tractor vehicle without semitrailer. Extend this class in order to create a new vehicle model to be used with the simulator.
 
 	methods(Abstract)
 		Model(self, t, estados)
+
+		function f = getInitialState()
+			% Transforms properties into a vector so it can be used by the integrator
+			return [self.dPSI0 self.ALPHAT0 self.PSI0 self.X0 self.Y0 self.V0];
+		end
 	end
 
     properties
