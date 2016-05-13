@@ -15,7 +15,8 @@ import VehicleDynamicsLateral.*   % Import package VehicleDynamicsLateral
 % Simulation time
 T = 6;                      % Total simulation time [s]
 resol = 50;                 % Resolution
-TSPAN = 0:T/resol:T;        % Time span [s]
+TSPAN = 0:T/resol:T;        % Time span [s
+
 % Initial conditions
 dPSI0 = 0.7;                % Initial yaw rate [rad/s]
 ALPHAT0 = -0.2;             % Initial side slip angle [rad]
@@ -43,8 +44,7 @@ a10 = 0;
 a11 = 0;
 a12 = 0;
 a13 = 0;
-TireData = [a0 a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13];
-TireModel = VehicleDynamicsLateral.TirePacejka1989(TireData);
+TireModel = VehicleDynamicsLateral.TirePacejka1989(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13);
 
 %% Vehicle parameters
 % Chosen Vehicle: <VehicleSimpleNonlinear3DOF.html VehicleSimpleNonlinear3DOF.m>.
@@ -52,17 +52,16 @@ TireModel = VehicleDynamicsLateral.TirePacejka1989(TireData);
 mF0 = 700;                  % mass over front axle [kg]
 mR0 = 600;                  % mass over rear axle [kg]
 IT = 10000;                 % moment of inertia [kg*m2]
-DELTA = 0;                  % front axle steering [rad]
+deltaf = 0;                 % front axle steering [rad]
 lT = 3.550;                 % distance between axles [m]
 nF = 2;                     % number of tires in the front axle
 nR = 2;                     % number of tires in the rear axle
-largT = 2;                  % width [m]
+wT = 2;                     % width [m]
 muy = 0.8;                  % coefficient of operation friction
-VehicleData = [mF0 mR0 IT DELTA lT nF nR largT muy];
-System = VehicleDynamicsLateral.VehicleSimpleNonlinear3DOF(VehicleData,TireModel);
+System = VehicleDynamicsLateral.VehicleSimpleNonlinear3DOF(IT, mF0, mR0, deltaf, lT, nF, nR, wT, muy, TireModel);
 
 %% Integration
-[TOUT,XOUT] = ode45(@(t, estados) System.Model(t, estados),TSPAN,x0);
+[TOUT, XOUT] = ode45(@(t, estados) System.Model(t, estados),TSPAN,x0);
 
 %% Post integration
 %
