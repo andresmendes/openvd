@@ -1,5 +1,5 @@
 %% Tire comparison
-% Comparison between tire models: <PneuLinear.html linear>, <PneuPolinomial.html polinomial> e <PneuPacejka1989.html Pacejka 1989>.
+% Comparison between tire models: <TireLinear.html linear>, <TirePolynomial.html polinomial> e <TirePacejka1989.html Pacejka 1989>.
 %
 %% Description
 % O modelo de pneu relaciona a for�a lateral com o �ngulo de deriva (�ngulo formado entre o vetor velocidade do centro do pneu com o plano longitudinal do pneu). The typical relation between these two variables can be observed in the figure below (Adapted from [1]). Besides, its possible to verify the definition of slip angle.
@@ -7,15 +7,15 @@
 % <<illustrations/CurvaCaracteristica.svg>>
 %
 %% Equival�ncia
-% Supondo um modelo de pneu <PneuPacejka1989.html Pacejka 1989> de refer�ncia � poss�vel obter um modelo <PneuLinear.html linear> e <PneuPolinomial.html polinomial> equivalente. Isto � feito igualando o coeficiente de rigidez lateral dos tr�s modelos e igualando a for�a lateral m�xima dos modelos <PneuPolinomial.html polinomial> e <PneuPacejka1989.html Pacejka 1989>.
+% Supondo um modelo de pneu <TirePacejka1989.html Pacejka 1989> de refer�ncia � poss�vel obter um modelo <TireLinear.html linear> e <TirePolynomial.html polinomial> equivalente. Isto � feito igualando o coeficiente de rigidez lateral dos tr�s modelos e igualando a for�a lateral m�xima dos modelos <TirePolynomial.html polinomial> e <TirePacejka1989.html Pacejka 1989>.
 %
-% The model <PneuPacejka1989.html Pacejka 1989> depends on the parameters $a_0$, $a_1$, $a_2$, $a_3$, $a_4$, $a_5$, $a_6$ e $a_7$ that defines the constants $B$, $C$, $D$ e $E$ wich can be used to define the constants of the equivalent models.
+% The model <TirePacejka1989.html Pacejka 1989> depends on the parameters $a_0$, $a_1$, $a_2$, $a_3$, $a_4$, $a_5$, $a_6$ e $a_7$ that defines the constants $B$, $C$, $D$ e $E$ wich can be used to define the constants of the equivalent models.
 %
-% O modelo <PneuLinear.html linear> equivalente possui cornering stiffness $K$ dado por:
+% O modelo <TireLinear.html linear> equivalente possui cornering stiffness $K$ dado por:
 %
 % $$ K = B C D$$
 %
-% O modelo <PneuPolinomial.html polinomial> equivalente possui coeficientes $k_1$ e $k_2$ dados por:
+% O modelo <TirePolynomial.html polinomial> equivalente possui coeficientes $k_1$ e $k_2$ dados por:
 %
 % $$ k_1 = B C D $$
 %
@@ -33,7 +33,7 @@ clear all                   % Clear workspace
 close all                   % Closing figures
 clc                         % Clear command window
 
-import DinamicaVeicular.*   % Importando o pacote Dinamica Veicular
+import VehicleDynamicsLateral.*   % Importando o pacote Dinamica Veicular
 
 deriva = (0:0.1:15)*pi/180;         % �ngulo de deriva [rad]
 
@@ -54,7 +54,8 @@ a10 = 0;
 a11 = 0;
 a12= 0;
 a13 = 0;
-pPac = DinamicaVeicular.PneuPacejka1989([a0 a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13]);
+pPac = TirePacejka1989([a0 a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13]);
+% pPac = VehicleDynamicsLateral.TirePacejka1989([a0 a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13]);
 
 muy0 = a1*Fz/1000 + a2;
 D = muy0*Fz/1000;
@@ -64,14 +65,14 @@ BCD = a3*sin(2*atan(Fz/1000/a4))*(1-a5*abs(camber));
 
 K = BCD*180/pi;
 
-pLin = DinamicaVeicular.PneuLinear(K);
+pLin = VehicleDynamicsLateral.TireLinear(K);
 
 % Pneu polinomial equivalente
 
 k1 = BCD*180/pi;
 k2 = (4*k1^3)/(27*D^2);
 
-pPol = DinamicaVeicular.PneuPolinomial([k1 k2]);
+pPol = VehicleDynamicsLateral.TirePolynomial([k1 k2]);
 
 % Lateral force
 FyPac = pPac.Characteristic(deriva,Fz,muy0/1000);
@@ -80,7 +81,7 @@ FyPol = pPol.Characteristic(deriva);
 
 % Graphics
 
-g = DinamicaVeicular.Graficos;
+g = VehicleDynamicsLateral.Graphics;
 
 figure(1)
 ax = gca;

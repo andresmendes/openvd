@@ -91,43 +91,76 @@ VEL = XOUT(:,6);            % CG velocity [m/s]
 
 G = VehicleDynamicsLateral.Graphics(System);
 
+% f1 = figure(1);
+% set(f1,'Units','centimeters')
+% set(f1,'Position',[5 0 16 16])
+% set(f1,'PaperUnits','centimeters')
+% set(f1,'PaperPosition',[0 0 16 16])
+% PaperPos = get(f1,'PaperPosition');
+% set(f1,'PaperSize',PaperPos(3:4))
+% % Subplot grid
+% ax1 = subplot(2,2,1);
+% ax2 = subplot(2,2,2);
+% ax3 = subplot(2,2,3);
+% ax4 = subplot(2,2,4);
+%     % Subplot (1)
+%     set(ax1,'NextPlot','add','Box','on','XGrid','on','YGrid','on')
+%     plot(ax1,TOUT,dPSI,'r')
+%     xlabel(ax1,'$t$ [s]','Interpreter','Latex')
+%     ylabel(ax1,'$\dot{\psi}$ [rad/s]','Interpreter','Latex')
+%     title(ax1,'$\dot{\psi}$ x $t$','Interpreter','Latex')
+%     % Subplot (2)
+%     set(ax2,'NextPlot','add','Box','on','XGrid','on','YGrid','on')
+%     plot(ax2,TOUT,ALPHAT,'r')
+%     xlabel(ax2,'$t$ [s]','Interpreter','Latex')
+%     ylabel(ax2,'$\alpha_T$ [rad]','Interpreter','Latex')
+%     title(ax2,'$\alpha_T$ x $t$','Interpreter','Latex')
+%     % Subplot (3)
+%     set(ax3,'NextPlot','add','Box','on','XGrid','on','YGrid','on')
+%     plot(ax3,TOUT,PSI,'r')
+%     xlabel(ax3,'$t$ [s]','Interpreter','Latex')
+%     ylabel(ax3,'$\psi$ [rad]','Interpreter','Latex')
+%     title(ax3,'$\psi$ x $t$','Interpreter','Latex')
+%     % Subplot (4)
+%     set(ax4,'NextPlot','add','Box','on','XGrid','on','YGrid','on')
+%     plot(ax4,TOUT,VEL,'r')
+%     xlabel(ax4,'$t$ [s]','Interpreter','Latex')
+%     ylabel(ax4,'$v$ [m/s]','Interpreter','Latex')
+%     title(ax4,'$v$ x $t$','Interpreter','Latex')
+
 f1 = figure(1);
 set(f1,'Units','centimeters')
-set(f1,'Position',[5 0 16 16])
+set(f1,'Position',[5 0 9 12])
 set(f1,'PaperUnits','centimeters')
-set(f1,'PaperPosition',[0 0 16 16])
+set(f1,'PaperPosition',[0 0 9 12])
 PaperPos = get(f1,'PaperPosition');
 set(f1,'PaperSize',PaperPos(3:4))
 % Subplot grid
-ax1 = subplot(2,2,1);
-ax2 = subplot(2,2,2);
-ax3 = subplot(2,2,3);
-ax4 = subplot(2,2,4);
+ax1 = subplot(3,1,1);
+ax2 = subplot(3,1,2);
+ax3 = subplot(3,1,3);
     % Subplot (1)
     set(ax1,'NextPlot','add','Box','on','XGrid','on','YGrid','on')
-    plot(ax1,TOUT,dPSI,'r')
+    plot(ax1,TOUT,dPSI,'k')
     xlabel(ax1,'$t$ [s]','Interpreter','Latex')
     ylabel(ax1,'$\dot{\psi}$ [rad/s]','Interpreter','Latex')
     title(ax1,'$\dot{\psi}$ x $t$','Interpreter','Latex')
     % Subplot (2)
     set(ax2,'NextPlot','add','Box','on','XGrid','on','YGrid','on')
-    plot(ax2,TOUT,ALPHAT,'r')
+    plot(ax2,TOUT,ALPHAT,'k')
     xlabel(ax2,'$t$ [s]','Interpreter','Latex')
     ylabel(ax2,'$\alpha_T$ [rad]','Interpreter','Latex')
     title(ax2,'$\alpha_T$ x $t$','Interpreter','Latex')
     % Subplot (3)
     set(ax3,'NextPlot','add','Box','on','XGrid','on','YGrid','on')
-    plot(ax3,TOUT,PSI,'r')
+    plot(ax3,TOUT,VEL,'k')
     xlabel(ax3,'$t$ [s]','Interpreter','Latex')
-    ylabel(ax3,'$\psi$ [rad]','Interpreter','Latex')
-    title(ax3,'$\psi$ x $t$','Interpreter','Latex')
-    % Subplot (4)
-    set(ax4,'NextPlot','add','Box','on','XGrid','on','YGrid','on')
-    plot(ax4,TOUT,VEL,'r')
-    xlabel(ax4,'$t$ [s]','Interpreter','Latex')
-    ylabel(ax4,'$v$ [m/s]','Interpreter','Latex')
-    title(ax4,'$v$ x $t$','Interpreter','Latex')
+    ylabel(ax3,'$v_T$ [m/s]','Interpreter','Latex')
+    title(ax3,'$v_T$ x $t$','Interpreter','Latex')
 
+
+
+print(gcf,'-dpdf','figura.pdf')
 %%
 % Trajectory
 %

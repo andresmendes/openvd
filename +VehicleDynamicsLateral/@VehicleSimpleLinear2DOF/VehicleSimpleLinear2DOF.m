@@ -84,7 +84,7 @@ classdef VehicleSimpleLinear2DOF < VehicleDynamicsLateral.VehicleSimple
             Fyr = nR*self.tire.Characteristic(alphar,FzR/nR,muy);
 
             % State equations
-            dvy = (Fyf*cos(deltaf) + Fyr - m*vx*r)/m;
+            dvy = (Fyf*cos(deltaf) + Fyr - m*vx*r)  /m;
             dr = (lf*Fyf*cos(deltaf) - lr*Fyr)/Iz;
 
             % State derivative
