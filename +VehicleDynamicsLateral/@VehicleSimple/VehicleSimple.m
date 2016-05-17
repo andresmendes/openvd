@@ -15,6 +15,7 @@ classdef (Abstract) VehicleSimple
 		params
 		IT % Moment of inertia [kg*m2]
 		mT % Vehicle total mass [kg]
+		g % Gravity
 		a % [m]
 		b % [m]
 		mF0 % Vehicle frontal mass [kg]

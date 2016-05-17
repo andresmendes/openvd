@@ -27,64 +27,76 @@
 classdef VehicleArticulatedNonlinear4DOF < VehicleDynamicsLateral.VehicleArticulated
 	methods
         % Constructor
-        function self = VehicleArticulatedNonlinear4DOF(IT, lf, lr, mF0, mR0, deltaf, lT, nF, nR, wT, muy, tire, nM, wS, lS, c)
-            % Entrada padr�o dos dados do ve�culo
-            self.mF0 = mF0;         % Massa no eixo dianteiro do caminh�o-trator desacoplado [kg]
-            self.mR0 = mR0;         % Massa no eixo traseiro do caminh�o-trator desacoplado [kg]
-            self.mF = mF;           % Massa no eixo dianteiro do caminh�o-trator (F) [kg]
-            self.mR = mR;           % Massa no eixo traseiro do caminh�o-trator (R) [kg]
-            self.mM = mM;           % Massa no eixo do semirreboque (M) [kg]
-            self.IT = IT;           % Momento de in�rcia do caminh�o-trator [kg*m2]
-            self.IS = IS;           % Momento de in�rcia do semirreboque [kg*m2]
-            self.DELTA = DELTA;     % Ester�amento do eixo dianteiro [rad]
-            self.c = c;             % Dist�ncia da articula��o ao eixo traseiro do caminh�o-trator (A-R) [m]
-            self.lT = lT;           % Dist�ncia entre os eixos do caminh�o-trator [m]
-            self.lS = lS;           % Dist�ncia entre a articula��o e o eixo do semirreboque [m]
-            self.nF = nF;           % N�mero de tires no eixo dianteiro do caminh�o-trator
-            self.nR = nR;           % N�mero de tires no eixo traseiro do caminh�o-trator
-            self.nM = nM;           % N�mero de tires no eixo do semirreboque
-            self.wT = wT;           % width do caminh�o-trator [m]
-            self.wS = wS;           % width do semirreboque [m]
-            self.muy = muy;         % Coeficiente de atrito de opera��o
-
-			g = 9.81;               % Acelera��o da gravidade [m/s^2]
-
-            self.mT = mF0 + mR0;         % massa do caminh�o-trator [kg]
-            self.a = mR0/mT*lT;          % Dist�ncia do eixo dianteiro ao CG do caminh�o-trator (F-T) [m]
-            self.b = lT - a;             % Dist�ncia do eixo traseiro ao CG do caminh�o-trator (R-T) [m]
-            self.A = mF*g + mR*g - mT*g; % For�a vertical na articula��o [N]
-            self.mS = (A + mM*g)/g;      % massa do semirreboque [kg]
-            self.d = (lS*mM)/mS;         % Dist�ncia da articula��o ao CG do semirreboque (A-S) [m]
-            self.e = lS - d;             % Dist�ncia do eixo traseiro ao CG do semirreboque (M-S) [m]
-
-
-            self.params = [mF0 mR0 mF mR mM IT IS DELTA c lT lS nF nR nM wT wS muy mT mS a b d e];
-            % Definindo os par�metros da classe
-            self.tire = tire;
+        function self = VehicleArticulatedNonlinear4DOF()
+            self.mF0 = 5200;
+            self.mR0 = 2400;
+            self.mF = 6000;
+            self.mR = 10000;
+            self.mM = 17000;
+            self.IT = 46000;
+            self.IS = 450000;
+            self.lT = 3.5;
+            self.lS = 7.7;
+            self.c = -0.3;
+            self.nF = 2;
+            self.nR = 4;
+            self.nM = 8;
+            self.wT = 2.6;
+            self.wS = 2.4;
+            self.muy = 0.3;
+            self.deltaf = 0;
+			self.g = 9.81;
         end
+
+		function value = get.mT(self)
+			value = self.mF0 + self.mR0;
+		end
+
+		function value = get.a(self)
+			value = self.mR0 / self.mT * self.lT;
+		end
+
+		function value = get.b(self)
+			value = self.lT - self.a;
+		end
+
+		function value = get.A(self)
+			value = self.mF*self.g + self.mR*self.g - self.mT*self.g;
+		end
+
+		function value = get.mS(self)
+			value = (self.A + self.mM*self.g)/self.g;
+		end
+
+		function value = get.d(self)
+			value = (self.lS * self.mM) / self.mS;
+		end
+
+		function value = get.e(self)
+			value = self.lS - self.d;
+		end
 
         %% Model
         % Fun��o com as equa��es de estado do modelo
         function dx = Model(self, ~, estados)
             % Dados do ve�culo
-            mT = self.params(18);       % massa do veiculo [kg]
-            mS = self.params(19);       % massa do veiculo [kg]
-            % IT = self.params(6);       % momento de inercia [kg]
-            % IS = self.params(7);       % momento de inercia [kg]
-            a = self.params(20);        % distancia do eixo dianteiro ao centro de massa do caminh�o-trator [m]
-            b = self.params(21);        % distancia do eixo traseiro ao centro de massa do caminh�o-trator [m]
-            c = self.params(9);         % distancia da articula��o ao centro de massa do caminh�o-trator [m]
-            d = self.params(22);        % distancia do eixo traseiro ao centro de massa do caminh�o-trator [m]
-            e = self.params(23);        % distancia da articula��o ao centro de massa do caminh�o-trator [m]
-            DELTA = self.params(8);     % Ester�amento [rad]
-            nF = self.params(12);       % N�mero de tires no eixo dianteiro do caminh�o-trator
-            nR = self.params(13);       % N�mero de tires no eixo traseiro do caminh�o-trator
-            nM = self.params(14);       % N�mero de tires no eixo do semirreboque
-            g = 9.81;                   % Acelera��o da gravidade [m/s^2]
-            FzF = self.params(3) * g;     % Carga vertical no eixo dianteiro [N]
-            FzR = self.params(4) * g;     % Carga vertical no eixo traseiro [N]
-            FzM = self.params(5) * g;     % Carga vertical no eixo do semirreboque [N]
-            muy = self.params(17);      % Coeficiente de atrito de opera��o
+            mT = self.mT;       % massa do veiculo [kg]
+            mS = self.mS;       % massa do veiculo [kg]
+            a = self.a;        % distancia do eixo dianteiro ao centro de massa do caminh�o-trator [m]
+            b = self.b;        % distancia do eixo traseiro ao centro de massa do caminh�o-trator [m]
+            c = self.c;         % distancia da articula��o ao centro de massa do caminh�o-trator [m]
+            d = self.d;        % distancia do eixo traseiro ao centro de massa do caminh�o-trator [m]
+            e = self.e;        % distancia da articula��o ao centro de massa do caminh�o-trator [m]
+            deltaf = self.deltaf;     % Ester�amento [rad]
+            nF = self.nF;       % N�mero de tires no eixo dianteiro do caminh�o-trator
+            nR = self.nR;       % N�mero de tires no eixo traseiro do caminh�o-trator
+            nM = self.nM;       % N�mero de tires no eixo do semirreboque
+            g = self.g;                   % Gravity acceleration [m/s^2]
+            FzF = self.mF * g;   % Carga vertical no eixo dianteiro [N]
+            FzR = self.mR * g;   % Carga vertical no eixo traseiro [N]
+            FzM = self.mM * g;   % Carga vertical no eixo do semirreboque [N]
+            muy = self.muy;      % Coeficiente de atrito de opera��o
+
             % Defini��o dos estados
             dPSI = estados(1,1);        % Velocidade angular do caminh�o-trator [rad/s]
             ALPHAT = estados(2,1);      % �ngulo de deriva do CG do caminh�o-trator [rad]
@@ -94,7 +106,7 @@ classdef VehicleArticulatedNonlinear4DOF < VehicleDynamicsLateral.VehicleArticul
             PSI = estados(6,1);         % �ngulo de orienta��o do caminh�o-trator [rad]
 
             % Angulos de deriva n�o linear
-            ALPHAF = atan2((a*dPSI + VEL*sin(ALPHAT)),(VEL*cos(ALPHAT))) - DELTA;
+            ALPHAF = atan2((a*dPSI + VEL*sin(ALPHAT)),(VEL*cos(ALPHAT))) - deltaf;
             ALPHAR = atan2((-b*dPSI + VEL*sin(ALPHAT)),(VEL*cos(ALPHAT)));
             ALPHAM = atan2(((d + e)*(dPHI - dPSI) + VEL*sin(ALPHAT + PHI) - b*dPSI*cos(PHI) - ...
                      c*dPSI*cos(PHI)),(VEL*cos(ALPHAT + PHI) + b*dPSI*sin(PHI) + c*dPSI*sin(PHI)));
@@ -109,11 +121,11 @@ classdef VehicleArticulatedNonlinear4DOF < VehicleDynamicsLateral.VehicleArticul
             FyM = nM*self.tire.Characteristic(ALPHAM,FzM/nM,muy);
 
             % ddPSI,dALPHAT,ddPHI,dPHI,dVEL
-            f1 = FxR + FxF*cos(DELTA) + FxM*cos(PHI) - FyF*sin(DELTA) + FyM*sin(PHI) - b*dPSI^2*mS - c*dPSI^2*mS + VEL*dPSI*mS*sin(ALPHAT) ...
+            f1 = FxR + FxF*cos(deltaf) + FxM*cos(PHI) - FyF*sin(deltaf) + FyM*sin(PHI) - b*dPSI^2*mS - c*dPSI^2*mS + VEL*dPSI*mS*sin(ALPHAT) ...
                     + VEL*dPSI*mT*sin(ALPHAT) - d*dPHI^2*mS*cos(PHI) - d*dPSI^2*mS*cos(PHI) + 2*d*dPHI*dPSI*mS*cos(PHI);
-            f2 = FyR + FyF*cos(DELTA) + FyM*cos(PHI) + FxF*sin(DELTA) - FxM*sin(PHI) - VEL*dPSI*mS*cos(ALPHAT) - VEL*dPSI*mT*cos(ALPHAT) + ...
+            f2 = FyR + FyF*cos(deltaf) + FyM*cos(PHI) + FxF*sin(deltaf) - FxM*sin(PHI) - VEL*dPSI*mS*cos(ALPHAT) - VEL*dPSI*mT*cos(ALPHAT) + ...
                  d*dPHI^2*mS*sin(PHI) + d*dPSI^2*mS*sin(PHI) - 2*d*dPHI*dPSI*mS*sin(PHI);
-            f3 = a*(FyF*cos(DELTA) + FxF*sin(DELTA)) - FyR*b - (b + c)*(d*mS*sin(PHI)*dPHI^2 - 2*d*mS*sin(PHI)*dPHI*dPSI + d*mS*sin(PHI)*dPSI^2 - ...
+            f3 = a*(FyF*cos(deltaf) + FxF*sin(deltaf)) - FyR*b - (b + c)*(d*mS*sin(PHI)*dPHI^2 - 2*d*mS*sin(PHI)*dPHI*dPSI + d*mS*sin(PHI)*dPSI^2 - ...
                  VEL*mS*cos(ALPHAT)*dPSI + FyM*cos(PHI) - FxM*sin(PHI));
             f4 = d*(b*dPSI^2*mS*sin(PHI) - FyM + c*dPSI^2*mS*sin(PHI) + VEL*dPSI*mS*cos(ALPHAT + PHI)) - FyM*e;
             f5 = dPHI;
@@ -136,24 +148,23 @@ classdef VehicleArticulatedNonlinear4DOF < VehicleDynamicsLateral.VehicleArticul
 
         function M = MassMatrix(self,~,estados)
             % Dados do ve�culo
-            mT = self.params(18);       % massa do veiculo [kg]
-            mS = self.params(19);       % massa do veiculo [kg]
-            IT = self.params(6);        % momento de inercia [kg]
-            IS = self.params(7);        % momento de inercia [kg]
-            % a = self.params(20);        % distancia do eixo dianteiro ao centro de massa do caminh�o-trator [m]
-            b = self.params(21);        % distancia do eixo traseiro ao centro de massa do caminh�o-trator [m]
-            c = self.params(9);         % distancia da articula��o ao centro de massa do caminh�o-trator [m]
-            d = self.params(22);        % distancia do eixo traseiro ao centro de massa do caminh�o-trator [m]
-            % e = self.params(23);        % distancia da articula��o ao centro de massa do caminh�o-trator [m]
-            % DELTA = self.params(8);   % Ester�amento [rad]
-            % nF = self.params(12);      % N�mero de tires no eixo dianteiro do caminh�o-trator
-            % nR = self.params(13);      % N�mero de tires no eixo traseiro do caminh�o-trator
-            % nM = self.params(14);      % N�mero de tires no eixo do semirreboque
-            % g = 9.81;                  % Acelera��o da gravidade [m/s^2]
-            % FzF = self.params(3)*g;     % Carga vertical no eixo dianteiro [N]
-            % FzR = self.params(4)*g;     % Carga vertical no eixo traseiro [N]
-            % FzM = self.params(5)*g;     % Carga vertical no eixo do semirreboque [N]
-            % muy = self.params(17);      % Coeficiente de atrito de opera��o
+			mT = self.mT;       % massa do veiculo [kg]
+			mS = self.mS;       % massa do veiculo [kg]
+			a = self.a;        % distancia do eixo dianteiro ao centro de massa do caminh�o-trator [m]
+			b = self.b;        % distancia do eixo traseiro ao centro de massa do caminh�o-trator [m]
+			c = self.c;         % distancia da articula��o ao centro de massa do caminh�o-trator [m]
+			d = self.d;        % distancia do eixo traseiro ao centro de massa do caminh�o-trator [m]
+			e = self.e;        % distancia da articula��o ao centro de massa do caminh�o-trator [m]
+			deltaf = self.deltaf;     % Ester�amento [rad]
+			nF = self.nF;       % N�mero de tires no eixo dianteiro do caminh�o-trator
+			nR = self.nR;       % N�mero de tires no eixo traseiro do caminh�o-trator
+			nM = self.nM;       % N�mero de tires no eixo do semirreboque
+			g = self.g;                   % Gravity acceleration [m/s^2]
+			FzF = self.mF * g;   % Carga vertical no eixo dianteiro [N]
+			FzR = self.mR * g;   % Carga vertical no eixo traseiro [N]
+			FzM = self.mM * g;   % Carga vertical no eixo do semirreboque [N]
+			muy = self.muy;      % Coeficiente de atrito de opera��o
+
             % Defini��o dos estados
             % dPSI = estados(1,1);              % Velocidade angular do caminh�o-trator [rad/s]
             ALPHAT = estados(2,1);      % �ngulo de deriva do CG do caminh�o-trator [rad]
@@ -187,34 +198,6 @@ classdef VehicleArticulatedNonlinear4DOF < VehicleDynamicsLateral.VehicleArticul
                   0   0   0   0  0 1 0 0;...
                   0   0   0   0  0 0 1 0;...
                   0   0   0   0  0 0 0 1];
-        end
-
-
-
-    end
-
-    methods (Static)
-        %% convert
-        % A fun��o convert adiciona no vetor de entrada ([mF0 mR0 mF mR mM IT IS DELTA c lT lS nF nR nM wT wS muy]) os par�metros restantes do modelo de ve�culo ([mT mS a b d e]).
-        function parametros = convert(entrada)
-            mF0 = entrada(1);       % Massa no eixo dianteiro do caminh�o-trator desacoplado [kg]
-            mR0 = entrada(2);       % Massa no eixo traseiro do caminh�o-trator desacoplado [kg]
-            mF = entrada(3);        % Massa no eixo dianteiro do caminh�o-trator (F) [kg]
-            mR = entrada(4);        % Massa no eixo traseiro do caminh�o-trator (R) [kg]
-            mM = entrada(5);        % Massa no eixo do semirreboque (M) [kg]
-            lT = entrada(10);       % Dist�ncia entre os eixos do caminh�o-trator [m]
-            lS = entrada(11);       % Dist�ncia entre a articula��o e o eixo do semirreboque [m]
-            % Convers�o dos dados para os par�metros usados na equa��o de movimento
-            g = 9.81;               % Acelera��o da gravidade [m/s^2]
-            mT = mF0 + mR0;         % massa do caminh�o-trator [kg]
-            a = mR0/mT*lT;          % Dist�ncia do eixo dianteiro ao CG do caminh�o-trator (F-T) [m]
-            b = lT - a;             % Dist�ncia do eixo traseiro ao CG do caminh�o-trator (R-T) [m]
-            A = mF*g + mR*g - mT*g; % For�a vertical na articula��o [N]
-            mS = (A + mM*g)/g;      % massa do semirreboque [kg]
-            d = (lS*mM)/mS;         % Dist�ncia da articula��o ao CG do semirreboque (A-S) [m]
-            e = lS - d;             % Dist�ncia do eixo traseiro ao CG do semirreboque (M-S) [m]
-            % Sa�da
-            parametros = [entrada mT mS a b d e];
         end
     end
 end

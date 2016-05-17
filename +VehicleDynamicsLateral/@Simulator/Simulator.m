@@ -36,7 +36,7 @@ classdef Simulator
 	end
 
     properties
-		Vehicle % Vehiclemodel to be used inthe simulation
+		Vehicle % Vehicle model to be used inthe simulation
 		TSpan % a vector indicating the intervals in which the simulation steps will be conducted
         dPSI % Yaw rate [rad/s]
         ALPHAT % Side slip angle [rad]

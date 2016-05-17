@@ -30,15 +30,9 @@
 classdef TirePolynomial < VehicleDynamicsLateral.Tire
     methods
         % Constructor
-        function self = TirePolynomial(Ca, k)
-            % Tire parameters [1]
-            self.Ca = Ca;
-            self.k = k;
-
-            % polynomial model coefficients
-            self.k1 = 2 * Ca;
-            self.k2 = 2 * Ca * k;
-            self.params = [k1 k2];
+        function self = TirePolynomial()
+            self.k1 = 115000;
+            self.k2 = 560000;
         end
 
         function Fy = Characteristic(self, alpha)
@@ -51,10 +45,8 @@ classdef TirePolynomial < VehicleDynamicsLateral.Tire
     %
 
     properties
-        Ca
-        k
-        k1
-        k2
+        k1 % 1st polynomial coefficient, cornering stiffness [N/rad]
+        k2 % 2nd polynomial coefficient [N/rad^3]
     end
 end
 

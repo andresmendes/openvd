@@ -22,27 +22,33 @@
 classdef VehicleSimpleNonlinear3DOF < VehicleDynamicsLateral.VehicleSimple
 	methods
         % Constructor
-        function self = VehicleSimpleNonlinear3DOF(IT, mF0, mR0, deltaf, lT, nF, nR, wT, muy, tire)
-	        self.IT = IT;
-
-			self.mF0 = mF0;
-			self.mR0 = mR0;
-
-			self.mT = self.mF0 + self.mR0;
-	        self.a = self.mR0 / self.mT*self.lT;
-	        self.b = self.lT - self.a;
-
+        function self = VehicleSimpleNonlinear3DOF()
+	        self.mF0 = 700;
+	        self.mR0 = 600;
+	        self.IT = 10000;
+	        self.lT = 3.5;
+	        self.nF = 2;
+	        self.nR = 2;
+	        self.wT = 2;
+	        self.muy = .8;
 	        self.deltaf = 0;
-	        self.lT = self.a + self.b;
-
-	        self.nF = nR;
-	        self.nR = nF;
-	        self.wT = wT;
-	        self.muy = muy;
-
-	        self.params = [self.mF0 self.mR0 self.IT self.deltaf self.lT self.nF self.nR self.wT self.muy self.mT self.a self.b];
-	        self.tire = tire;
         end
+
+		function value = get.mT(self)
+			value = self.mF0 + self.mR0;
+		end
+
+		function value = get.a(self)
+			value = self.mR0 / self.mT*self.lT;
+		end
+
+		function value = get.b(self)
+			value = self.lT - self.a;
+		end
+
+		function value = get.lT(self)
+			value = self.a + self.b;
+		end
 
         %% Model
         % Função com as equações de estado do modelo
@@ -55,7 +61,7 @@ classdef VehicleSimpleNonlinear3DOF < VehicleDynamicsLateral.VehicleSimple
             nF = self.nF;
             nR = self.nR;
             muy = self.muy;
-            DELTA = self.deltaf;
+            deltaf = self.deltaf;
 
 			g = 9.81;                 % Acelera��o da gravidade [m/s^2]
 
@@ -69,7 +75,7 @@ classdef VehicleSimpleNonlinear3DOF < VehicleDynamicsLateral.VehicleSimple
             v = estados(6);
 
             % Ângulos de deriva não linear
-            ALPHAF = atan2((v*sin(ALPHAT) + a*dPSI), (v*cos(ALPHAT))) - DELTA; % Dianteiro
+            ALPHAF = atan2((v*sin(ALPHAT) + a*dPSI), (v*cos(ALPHAT))) - deltaf; % Dianteiro
             ALPHAR = atan2((v*sin(ALPHAT) - b*dPSI), (v*cos(ALPHAT)));         % Traseiro
 
             % Forças longitudinais
@@ -81,11 +87,11 @@ classdef VehicleSimpleNonlinear3DOF < VehicleDynamicsLateral.VehicleSimple
             FyR = nR*self.tire.Characteristic(ALPHAR,FzR/nR,muy);
 
             % Equações de estado
-            dx(1,1) = (FyF*a*cos(DELTA) - FyR*b + FxF*a*sin(DELTA)) / I;
-            dx(2,1) = (FyR + FyF*cos(DELTA) + FxF*sin(DELTA) - m*(dPSI*v*cos(ALPHAT) + (sin(ALPHAT)*(FxR + 	FxF*cos(DELTA) - FyF*sin(DELTA) +...
+            dx(1,1) = (FyF*a*cos(deltaf) - FyR*b + FxF*a*sin(deltaf)) / I;
+            dx(2,1) = (FyR + FyF*cos(deltaf) + FxF*sin(deltaf) - m*(dPSI*v*cos(ALPHAT) + (sin(ALPHAT)*(FxR + 	FxF*cos(deltaf) - FyF*sin(deltaf) +...
                       dPSI*m*v*sin(ALPHAT)))/(m*cos(ALPHAT))))/(m*(v*cos(ALPHAT) + (v*sin(ALPHAT)^2)/cos(ALPHAT)));
-            dx(6,1) = (FxR*cos(ALPHAT) + FyR*sin(ALPHAT) - FyF*cos(ALPHAT)*sin(DELTA) + FyF*cos(DELTA)*sin(ALPHAT) + ...
-                      FxF*sin(ALPHAT)*sin(DELTA) + FxF*cos(ALPHAT)*cos(DELTA))/(m*cos(ALPHAT)^2 + m*sin(ALPHAT)^2);
+            dx(6,1) = (FxR*cos(ALPHAT) + FyR*sin(ALPHAT) - FyF*cos(ALPHAT)*sin(deltaf) + FyF*cos(deltaf)*sin(ALPHAT) + ...
+                      FxF*sin(ALPHAT)*sin(deltaf) + FxF*cos(ALPHAT)*cos(deltaf))/(m*cos(ALPHAT)^2 + m*sin(ALPHAT)^2);
 
             % Obtenção da orientação
             dx(3,1) = dPSI; % dPSI

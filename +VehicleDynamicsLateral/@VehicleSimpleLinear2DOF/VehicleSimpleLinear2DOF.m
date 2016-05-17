@@ -21,29 +21,34 @@
 
 classdef VehicleSimpleLinear2DOF < VehicleDynamicsLateral.VehicleSimple
 	methods
-        function self = VehicleSimpleLinear2DOF(IT, lf, lr, mF0, mR0, deltaf, lT, nF, nR, wT, muy, tire)
+        function self = VehicleSimpleLinear2DOF()
         	% Constructor for the vehicle
-	        self.IT = IT;
-	        self.lf = lf;
-	        self.lr = lr;
-
-			self.mT = self.mF0 + self.mR0;
-	        self.a = self.mR0 / self.mT * self.lT;
-	        self.b = self.lT - self.a;
-
-	        self.mF0 = lr * m / (lf + lr);
-	        self.mR0 = lf * m / (lf + lr);
-	        self.deltaf = deltaf;
-	        self.lT = lf + lr;
-
-	        self.nF = nR;
-	        self.nR = nF;
-	        self.wT = wT;
-	        self.muy = muy;
-
-	        self.params = [mF0 mR0 IT DELTA lT nF nR largT muy mT a b];
-	        self.tire = tire;
+	        self.mF0 = 700;
+	        self.mR0 = 600;
+	        self.IT = 10000;
+	        self.lT = 3.5;
+	        self.nF = 2;
+	        self.nR = 2;
+	        self.wT = 2;
+	        self.muy = .8;
+	        self.deltaf = 0;
         end
+
+		function value = get.mT(self)
+			value = self.mF0 + self.mR0;
+		end
+
+		function value = get.a(self)
+			value = self.mR0 / self.mT * self.lT;
+		end
+
+		function value = get.b(self)
+			value = self.lT - self.a;
+		end
+
+		function value = get.lT(self)
+			value = self.a + self.b;
+		end
 
         %% Model
         % Function with the model

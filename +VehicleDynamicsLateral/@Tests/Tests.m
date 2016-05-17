@@ -52,7 +52,7 @@ classdef SolverTest < matlab.unittest.TestCase
             System.V0 = 20;                    % Initial CG velocity [m/s]
 
             simulator = VehicleDynamicsLateral.Simulator(System, TSPAN);
-            simulator.simulate();
+            simulator.Simulate();
 
             % Retrieving states
             dPSI = simulator.dPSI;
@@ -61,10 +61,6 @@ classdef SolverTest < matlab.unittest.TestCase
             XT = simulator.XT;
             YT = simulator.YT;
             VEL = simulator.VEL;
-
-            actSolution = quadraticSolver(1,-3,2);
-            expSolution = [2,1];
-            testCase.verifyEqual(actSolution,expSolution);
         end
     end
 end
