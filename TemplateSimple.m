@@ -51,7 +51,7 @@ TireModel = VehicleDynamicsLateral.TirePacejka1989(a0, a1, a2, a3, a4, a5, a6, a
 
 mF0 = 700;                  % mass over front axle [kg]
 mR0 = 600;                  % mass over rear axle [kg]
-IT = 10000;                 % moment of inertia [kg*m2]
+IT = 10000;                 % moment of inertia [kg * m2]
 deltaf = 0;                 % front axle steering [rad]
 lT = 3.550;                 % distance between axles [m]
 nF = 2;                     % number of tires in the front axle
@@ -61,7 +61,7 @@ muy = 0.8;                  % coefficient of operation friction
 System = VehicleDynamicsLateral.VehicleSimpleNonlinear3DOF(IT, mF0, mR0, deltaf, lT, nF, nR, wT, muy, TireModel);
 
 %% Integration
-[TOUT, XOUT] = ode45(@(t, estados) System.Model(t, estados),TSPAN,x0);
+[TOUT, XOUT] = ode45(@(t, estados) System.Model(t, estados), TSPAN, x0);
 
 %% Post integration
 %
