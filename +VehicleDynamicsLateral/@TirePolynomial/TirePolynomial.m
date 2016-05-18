@@ -35,7 +35,7 @@ classdef TirePolynomial < VehicleDynamicsLateral.Tire
             self.k2 = 560000;
         end
 
-        function Fy = Characteristic(self, alpha)
+        function Fy = Characteristic(self, alpha, varargin)
             % Lateral force
             Fy = - (self.k1 * alpha - self.k2 * alpha.^3);
         end
