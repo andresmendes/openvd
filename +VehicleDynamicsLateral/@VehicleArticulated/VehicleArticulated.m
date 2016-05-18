@@ -5,8 +5,24 @@ classdef (Abstract) VehicleArticulated  < VehicleDynamicsLateral.VehicleSimple
     % VehicleArticulated Articulated vehicle abstract class. It inherits properties from VehicleSimple and has additional properties related to the semitrailer.
 
 	methods(Abstract)
-		Model(self, t, estados)
-		MassMatrix(self, ~, estados)
+		MassMatrix(self, t, estados)
+	end
+
+    properties
+		mF
+		mR
+		mM
+		IS
+        nM % Number of tires on semitrailer axle
+        wS % semitrailer width [m]
+        lS % Distance from joint to semitrailer axle [m]
+        c % Distance from joint to rear axle of the tractor (A-R) [m]
+        dPHI0 % Initial articulation rate [rad/s]
+        PHI0 % Initial articulation angle [rad]
+		d
+		e
+		A
+		mS
 	end
 
 	methods
@@ -30,23 +46,6 @@ classdef (Abstract) VehicleArticulated  < VehicleDynamicsLateral.VehicleSimple
 		function value = get.e(self)
 			value = self.lS - self.d;
 		end
-	end
-
-    properties
-		mF
-		mR
-		mM
-		IS
-        nM % Number of tires on semitrailer axle
-        wS % semitrailer width [m]
-        lS % Distance from joint to semitrailer axle [m]
-        c % Distance from joint to rear axle of the tractor (A-R) [m]
-        dPHI0 % Initial articulation rate [rad/s]
-        PHI0 % Initial articulation angle [rad]
-		d
-		e
-		A
-		mS
 	end
 end
 
