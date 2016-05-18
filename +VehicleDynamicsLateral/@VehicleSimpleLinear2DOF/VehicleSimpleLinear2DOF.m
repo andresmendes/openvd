@@ -34,22 +34,6 @@ classdef VehicleSimpleLinear2DOF < VehicleDynamicsLateral.VehicleSimple
 	        self.deltaf = 0;
         end
 
-		function value = get.mT(self)
-			value = self.mF0 + self.mR0;
-		end
-
-		function value = get.a(self)
-			value = self.mR0 / self.mT * self.lT;
-		end
-
-		function value = get.b(self)
-			value = self.lT - self.a;
-		end
-
-		function value = get.lT(self)
-			value = self.a + self.b;
-		end
-
         %% Model
         % Function with the model
         function dx = Model(self, ~, estados)

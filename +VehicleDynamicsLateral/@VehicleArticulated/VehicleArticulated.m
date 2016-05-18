@@ -6,20 +6,47 @@ classdef (Abstract) VehicleArticulated  < VehicleDynamicsLateral.VehicleSimple
 
 	methods(Abstract)
 		Model(self, t, estados)
+		MassMatrix(self, ~, estados)
+	end
 
-		function f = getInitialState()
+	methods
+		function f = getInitialState(self)
 			% Transforms properties into a vector so it can be used by the integrator
-			return [self.dPSI0 self.ALPHAT0 self.PSI0 self.X0 self.Y0 self.V0 self.dPHI0 self.PHI0];
+			f = [self.dPSI0 self.ALPHAT0 self.PSI0 self.X0 self.Y0 self.V0 self.dPHI0 self.PHI0];
+		end
+
+		function value = get.A(self)
+			value = self.mF * self.g + self.mR * self.g - self.mT * self.g;
+		end
+
+		function value = get.mS(self)
+			value = (self.A + self.mM*self.g)/self.g;
+		end
+
+		function value = get.d(self)
+			value = (self.lS * self.mM) / self.mS;
+		end
+
+		function value = get.e(self)
+			value = self.lS - self.d;
 		end
 	end
 
     properties
+		mF
+		mR
+		mM
+		IS
         nM % Number of tires on semitrailer axle
         wS % semitrailer width [m]
         lS % Distance from joint to semitrailer axle [m]
         c % Distance from joint to rear axle of the tractor (A-R) [m]
         dPHI0 % Initial articulation rate [rad/s]
         PHI0 % Initial articulation angle [rad]
+		d
+		e
+		A
+		mS
 	end
 end
 

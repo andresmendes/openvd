@@ -34,22 +34,6 @@ classdef VehicleSimpleNonlinear3DOF < VehicleDynamicsLateral.VehicleSimple
 	        self.deltaf = 0;
         end
 
-		function value = get.mT(self)
-			value = self.mF0 + self.mR0;
-		end
-
-		function value = get.a(self)
-			value = self.mR0 / self.mT*self.lT;
-		end
-
-		function value = get.b(self)
-			value = self.lT - self.a;
-		end
-
-		function value = get.lT(self)
-			value = self.a + self.b;
-		end
-
         %% Model
         % Função com as equações de estado do modelo
         function dx = Model(self, ~, estados)
@@ -65,8 +49,8 @@ classdef VehicleSimpleNonlinear3DOF < VehicleDynamicsLateral.VehicleSimple
 
 			g = 9.81;                 % Acelera��o da gravidade [m/s^2]
 
-            FzF = self.mF0*g;       % Vertical load @ F [N]
-            FzR = self.mR0*g;       % Vertical load @ R [N]
+            FzF = self.mF0 * g;       % Vertical load @ F [N]
+            FzR = self.mR0 * g;       % Vertical load @ R [N]
 
             % Estados
             dPSI = estados(1);
@@ -75,30 +59,30 @@ classdef VehicleSimpleNonlinear3DOF < VehicleDynamicsLateral.VehicleSimple
             v = estados(6);
 
             % Ângulos de deriva não linear
-            ALPHAF = atan2((v*sin(ALPHAT) + a*dPSI), (v*cos(ALPHAT))) - deltaf; % Dianteiro
-            ALPHAR = atan2((v*sin(ALPHAT) - b*dPSI), (v*cos(ALPHAT)));         % Traseiro
+            ALPHAF = atan2((v * sin(ALPHAT) + a * dPSI), (v * cos(ALPHAT))) - deltaf; % Dianteiro
+            ALPHAR = atan2((v * sin(ALPHAT) - b * dPSI), (v * cos(ALPHAT)));         % Traseiro
 
             % Forças longitudinais
             FxF = 0;
             FxR = 0;
 
             % Curva característica
-            FyF = nF*self.tire.Characteristic(ALPHAF,FzF/nF,muy);
-            FyR = nR*self.tire.Characteristic(ALPHAR,FzR/nR,muy);
+            FyF = nF * self.tire.Characteristic(ALPHAF,FzF/nF,muy);
+            FyR = nR * self.tire.Characteristic(ALPHAR,FzR/nR,muy);
 
             % Equações de estado
-            dx(1,1) = (FyF*a*cos(deltaf) - FyR*b + FxF*a*sin(deltaf)) / I;
-            dx(2,1) = (FyR + FyF*cos(deltaf) + FxF*sin(deltaf) - m*(dPSI*v*cos(ALPHAT) + (sin(ALPHAT)*(FxR + 	FxF*cos(deltaf) - FyF*sin(deltaf) +...
-                      dPSI*m*v*sin(ALPHAT)))/(m*cos(ALPHAT))))/(m*(v*cos(ALPHAT) + (v*sin(ALPHAT)^2)/cos(ALPHAT)));
-            dx(6,1) = (FxR*cos(ALPHAT) + FyR*sin(ALPHAT) - FyF*cos(ALPHAT)*sin(deltaf) + FyF*cos(deltaf)*sin(ALPHAT) + ...
-                      FxF*sin(ALPHAT)*sin(deltaf) + FxF*cos(ALPHAT)*cos(deltaf))/(m*cos(ALPHAT)^2 + m*sin(ALPHAT)^2);
+            dx(1,1) = (FyF * a * cos(deltaf) - FyR * b + FxF * a * sin(deltaf)) / I;
+            dx(2,1) = (FyR + FyF * cos(deltaf) + FxF * sin(deltaf) - m*(dPSI * v * cos(ALPHAT) + (sin(ALPHAT)*(FxR + 	FxF * cos(deltaf) - FyF * sin(deltaf) +...
+                      dPSI * m * v * sin(ALPHAT)))/(m * cos(ALPHAT))))/(m*(v * cos(ALPHAT) + (v * sin(ALPHAT)^2)/cos(ALPHAT)));
+            dx(6,1) = (FxR * cos(ALPHAT) + FyR * sin(ALPHAT) - FyF * cos(ALPHAT)*sin(deltaf) + FyF * cos(deltaf)*sin(ALPHAT) + ...
+                      FxF * sin(ALPHAT)*sin(deltaf) + FxF * cos(ALPHAT)*cos(deltaf))/(m * cos(ALPHAT)^2 + m * sin(ALPHAT)^2);
 
             % Obtenção da orientação
             dx(3,1) = dPSI; % dPSI
 
             % Equações adicionais para o posicionamento (Não necessárias para a dinâmica em guinada)
-            dx(4,1) = v*cos(ALPHAT + PSI); % X
-            dx(5,1) = v*sin(ALPHAT + PSI); % Y
+            dx(4,1) = v * cos(ALPHAT + PSI); % X
+            dx(5,1) = v * sin(ALPHAT + PSI); % Y
         end
     end
 end
