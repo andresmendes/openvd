@@ -6,25 +6,6 @@ classdef (Abstract) VehicleSimple
 		Model(self, t, estados)
 	end
 
-	methods
-		function f = getInitialState(self)
-			% Transforms properties into a vector so it can be used by the integrator
-			f = [self.dPSI0 self.ALPHAT0 self.PSI0 self.X0 self.Y0 self.V0];
-		end
-
-		function value = get.mT(self)
-			value = self.mF0 + self.mR0;
-		end
-
-		function value = get.a(self)
-			value = self.mR0 / self.mT * self.lT;
-		end
-
-		function value = get.b(self)
-			value = self.lT - self.a;
-		end
-	end
-
     properties
 		IT % Moment of inertia [kg*m2]
 		mT % Vehicle total mass [kg]
@@ -47,6 +28,26 @@ classdef (Abstract) VehicleSimple
 		V0 % Initial CG velocity [m/s]
 		tire % Tire model
 	end
+    
+	methods
+		function f = getInitialState(self)
+			% Transforms properties into a vector so it can be used by the integrator
+			f = [self.dPSI0 self.ALPHAT0 self.PSI0 self.X0 self.Y0 self.V0];
+		end
+
+		function value = get.mT(self)
+			value = self.mF0 + self.mR0;
+		end
+
+		function value = get.a(self)
+			value = self.mR0 / self.mT * self.lT;
+		end
+
+		function value = get.b(self)
+			value = self.lT - self.a;
+		end
+	end
+
 end
 
 %% See Also
