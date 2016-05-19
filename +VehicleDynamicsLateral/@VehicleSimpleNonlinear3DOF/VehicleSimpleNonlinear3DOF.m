@@ -67,14 +67,14 @@ classdef VehicleSimpleNonlinear3DOF < VehicleDynamicsLateral.VehicleSimple
             FxR = 0;
 
             % Characteristic curve
-            FyF = nF * self.tire.Characteristic(ALPHAF,FzF/nF,muy);
-            FyR = nR * self.tire.Characteristic(ALPHAR,FzR/nR,muy);
+            FyF = nF * self.tire.Characteristic(ALPHAF, FzF/nF, muy);
+            FyR = nR * self.tire.Characteristic(ALPHAR, FzR/nR, muy);
 
             % Equations of motion
             dx(1,1) = v * cos(ALPHAT + PSI); % X
             dx(2,1) = v * sin(ALPHAT + PSI); % Y
             dx(3,1) = dPSI; % dPSI
-            dx(4,1) = (FxF * cos(ALPHAT - DELTA) + FxR*cos(ALPHAT) + FyF * sin(ALPHAT - DELTA) + FyR * sin(ALPHAT))/(m);
+            dx(4,1) = (FxF * cos(ALPHAT - DELTA) + FxR * cos(ALPHAT) + FyF * sin(ALPHAT - DELTA) + FyR * sin(ALPHAT))/(m);
             dx(5,1) = ( - FxF * sin(ALPHAT - DELTA) - FxR * sin(ALPHAT) + FyF * cos(ALPHAT - DELTA) + FyR * cos(ALPHAT) - m * v * dPSI) / (m * v);
             dx(6,1) = (FxF * a * sin(DELTA) + FyF * a * cos(DELTA) - FyR * b) / I;
 

@@ -88,16 +88,16 @@ classdef VehicleArticulatedNonlinear4DOF < VehicleDynamicsLateral.VehicleArticul
             FxR = 0;
             FxM = 0;
             % For�as laterais nos tires - Curva caracter�stica
-            FyF = nF * self.tire.Characteristic(ALPHAF,FzF/nF,muy);
-            FyR = nR * self.tire.Characteristic(ALPHAR,FzR/nR,muy);
-            FyM = nM * self.tire.Characteristic(ALPHAM,FzM/nM,muy);
+            FyF = nF * self.tire.Characteristic(ALPHAF, FzF/nF, muy);
+            FyR = nR * self.tire.Characteristic(ALPHAR, FzR/nR, muy);
+            FyM = nM * self.tire.Characteristic(ALPHAM, FzM/nM, muy);
 
-            % ddPSI,dALPHAT,ddPHI,dPHI,dVEL
+            % ddPSI, dALPHAT, ddPHI, dPHI, dVEL
             f1 = FxR + FxF * cos(deltaf) + FxM * cos(PHI) - FyF * sin(deltaf) + FyM * sin(PHI) - b * dPSI^2 * mS - c * dPSI^2 * mS + VEL * dPSI * mS * sin(ALPHAT) ...
-                    + VEL * dPSI * mT * sin(ALPHAT) - d * dPHI^2 * mS * cos(PHI) - d * dPSI^2 * mS * cos(PHI) + 2 * d*dPHI * dPSI * mS * cos(PHI);
+                    + VEL * dPSI * mT * sin(ALPHAT) - d * dPHI^2 * mS * cos(PHI) - d * dPSI^2 * mS * cos(PHI) + 2 * d * dPHI * dPSI * mS * cos(PHI);
             f2 = FyR + FyF * cos(deltaf) + FyM * cos(PHI) + FxF * sin(deltaf) - FxM * sin(PHI) - VEL * dPSI * mS * cos(ALPHAT) - VEL * dPSI * mT * cos(ALPHAT) + ...
-                 d * dPHI^2 * mS * sin(PHI) + d * dPSI^2 * mS * sin(PHI) - 2 * d*dPHI * dPSI * mS * sin(PHI);
-            f3 = a*(FyF * cos(deltaf) + FxF * sin(deltaf)) - FyR * b - (b + c)*(d * mS * sin(PHI)*dPHI^2 - 2 * d*mS * sin(PHI)*dPHI * dPSI + d * mS * sin(PHI)*dPSI^2 - ...
+                 d * dPHI^2 * mS * sin(PHI) + d * dPSI^2 * mS * sin(PHI) - 2 * d * dPHI * dPSI * mS * sin(PHI);
+            f3 = a*(FyF * cos(deltaf) + FxF * sin(deltaf)) - FyR * b - (b + c)*(d * mS * sin(PHI)*dPHI^2 - 2 * d * mS * sin(PHI)*dPHI * dPSI + d * mS * sin(PHI)*dPSI^2 - ...
                  VEL * mS * cos(ALPHAT)*dPSI + FyM * cos(PHI) - FxM * sin(PHI));
             f4 = d*(b * dPSI^2 * mS * sin(PHI) - FyM + c * dPSI^2 * mS * sin(PHI) + VEL * dPSI * mS * cos(ALPHAT + PHI)) - FyM * e;
             f5 = dPHI;
@@ -158,7 +158,7 @@ classdef VehicleArticulatedNonlinear4DOF < VehicleDynamicsLateral.VehicleArticul
             M33 = -d * mS * cos(PHI)*(b + c);
             M34 = -mS * sin(ALPHAT)*(b + c);
             M41 = IS + d * mS*(d + cos(PHI)*(b + c));
-            M42 = -VEL * d*mS * cos(ALPHAT + PHI);
+            M42 = -VEL * d * mS * cos(ALPHAT + PHI);
             M43 = - mS * d^2 - IS;
             M44 = -d * mS * sin(ALPHAT + PHI);
 

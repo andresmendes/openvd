@@ -61,7 +61,7 @@ classdef VehicleSimpleLinear2DOF < VehicleDynamicsLateral.VehicleSimple
 
             % Slip angles
             alphaf = - deltaf + (vy + lf * r) / vx;    % Front
-            alphar = (vy - lr*r)/vx;                   % Rear
+            alphar = (vy - lr * r)/vx;                   % Rear
 
             % Lateral force
             Fyf = nF * self.tire.Characteristic(alphaf, FzF / nF, muy);

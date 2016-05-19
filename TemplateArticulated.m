@@ -38,7 +38,7 @@ System = VehicleDynamicsLateral.VehicleArticulatedNonlinear4DOF;
 % Configuring integration options so that it takes into consideration the mass matrix
 options = odeset('Mass',@System.MassMatrix);
 
-[TOUT,XOUT] = ode45(@(t, estados) System.Model(t, estados),TSPAN,x0,options);
+[TOUT, XOUT] = ode45(@(t, estados) System.Model(t, estados),TSPAN, x0, options);
 
 %% Post integration
 %
@@ -62,13 +62,13 @@ G = VehicleDynamicsLateral.Graphics(System);
 % Trajectory
 %
 
-G.Frame([XT YT PSI dPSI VEL ALPHAT PHI dPHI],TOUT,0);
+G.Frame([XT YT PSI dPSI VEL ALPHAT PHI dPHI],TOUT, 0);
 
 %%
 % Animation
 %
 
-G.Animation([XT YT PSI dPSI VEL ALPHAT PHI dPHI],TOUT,0);
+G.Animation([XT YT PSI dPSI VEL ALPHAT PHI dPHI],TOUT, 0);
 
 %%
 %

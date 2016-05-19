@@ -36,7 +36,7 @@ classdef (Abstract) VehicleArticulated  < VehicleDynamicsLateral.VehicleSimple
         end
 
         function value = get.mS(self)
-            value = (self.A + self.mM*self.g)/self.g;
+            value = (self.A + self.mM * self.g)/self.g;
         end
 
         function value = get.d(self)

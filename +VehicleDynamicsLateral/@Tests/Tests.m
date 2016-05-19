@@ -1,6 +1,6 @@
 classdef Tests < matlab.unittest.TestCase
     % SolverTest tests solutions to the quadratic equation
-    % a*x^2 + b*x + c = 0
+    % a * x^2 + b * x + c = 0
 
     methods (Test)
         function testVehicleSimple(testCase)

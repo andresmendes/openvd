@@ -16,7 +16,7 @@ classdef Graphics
         %
         % *Sintax*
         %
-        % |_GraphicsClass_.Animation(XOUT,TOUT,saveit)|
+        % |_GraphicsClass_.Animation(XOUT, TOUT, saveit)|
         %
         % *Arguments*
         %
@@ -54,16 +54,16 @@ classdef Graphics
             lT = self.Simulator.Vehicle.wT / 2;  % Half width of the vehicle [m]
 
             % Slip angle @ front axle [rad]
-            ALPHAF = atan2((a*dPSI + VEL.*sin(ALPHAT)),(VEL.*cos(ALPHAT)));
+            ALPHAF = atan2((a * dPSI + VEL.*sin(ALPHAT)),(VEL.*cos(ALPHAT)));
             % OBS: No steering angle because it measures the angle between velocity vector and longitudinal axle of the vehicle
             % Slip angle @ rear axle [rad]
-            ALPHAR = atan2((-b*dPSI + VEL.*sin(ALPHAT)),(VEL.*cos(ALPHAT)));
+            ALPHAR = atan2((-b * dPSI + VEL.*sin(ALPHAT)),(VEL.*cos(ALPHAT)));
             % OBS: When using atan2 and the value reaches 180 degrees the vector becomes strange
 
             % Velocity @ front axle [m/s]
-            VF = sqrt((VEL.*cos(ALPHAT)).^2 + (a*dPSI + VEL.*sin(ALPHAT)).^2);
+            VF = sqrt((VEL.*cos(ALPHAT)).^2 + (a * dPSI + VEL.*sin(ALPHAT)).^2);
             % Velocity @ rear axle [m/s]
-            VR = sqrt((VEL.*cos(ALPHAT)).^2 + (-b*dPSI + VEL.*sin(ALPHAT)).^2);
+            VR = sqrt((VEL.*cos(ALPHAT)).^2 + (-b * dPSI + VEL.*sin(ALPHAT)).^2);
 
             % Position of the corners and axles relative to the CG
 
@@ -93,13 +93,13 @@ classdef Graphics
                 % Rotation matrix base (T t1 t2 t3) to (o i j k)
                 RTI=[cos(PSI(j)) -sin(PSI(j));sin(PSI(j)) cos(PSI(j))];
                 % Position vectors 1, 2, 3 e 4 relative to origin of the inertial reference base (T t1 t2 t3)
-                rt1i(j,1:2) = (RTI*rt1t)';
-                rt2i(j,1:2) = (RTI*rt2t)';
-                rt3i(j,1:2) = (RTI*rt3t)';
-                rt4i(j,1:2) = (RTI*rt4t)';
+                rt1i(j, 1:2) = (RTI * rt1t)';
+                rt2i(j, 1:2) = (RTI * rt2t)';
+                rt3i(j, 1:2) = (RTI * rt3t)';
+                rt4i(j, 1:2) = (RTI * rt4t)';
                 % Position of front and rear axle
-                eff(j,1:2) = (RTI*eif);     % Front
-                err(j,1:2) = (RTI*eir);     % Rear
+                eff(j, 1:2) = (RTI * eif);     % Front
+                err(j, 1:2) = (RTI * eir);     % Rear
             end
 
             % Absolute position of corners and axles
@@ -148,47 +148,47 @@ classdef Graphics
 
             for i=1:length(TEMPO)
                 % Position of corners and axles
-                rc1(i,1:2) = interp1(TOUT,rc1t,TEMPO(i));
-                rc2(i,1:2) = interp1(TOUT,rc2t,TEMPO(i));
-                rc3(i,1:2) = interp1(TOUT,rc3t,TEMPO(i));
-                rc4(i,1:2) = interp1(TOUT,rc4t,TEMPO(i));
+                rc1(i, 1:2) = interp1(TOUT, rc1t, TEMPO(i));
+                rc2(i, 1:2) = interp1(TOUT, rc2t, TEMPO(i));
+                rc3(i, 1:2) = interp1(TOUT, rc3t, TEMPO(i));
+                rc4(i, 1:2) = interp1(TOUT, rc4t, TEMPO(i));
 
-                efrente(i,1:2) = interp1(TOUT,ef,TEMPO(i));
-                etras(i,1:2) = interp1(TOUT,er,TEMPO(i));
+                efrente(i, 1:2) = interp1(TOUT, ef, TEMPO(i));
+                etras(i, 1:2) = interp1(TOUT, er, TEMPO(i));
 
                 % Position of CG
-                xxx(i,1:2) = interp1(TOUT,XT,TEMPO(i));
-                yyy(i,1:2) = interp1(TOUT,YT,TEMPO(i));
+                xxx(i, 1:2) = interp1(TOUT, XT, TEMPO(i));
+                yyy(i, 1:2) = interp1(TOUT, YT, TEMPO(i));
 
                 % States
-                alphat(i,1:2) = interp1(TOUT,ALPHAT,TEMPO(i));
-                psii(i,1:2) = interp1(TOUT,PSI,TEMPO(i));
+                alphat(i, 1:2) = interp1(TOUT, ALPHAT, TEMPO(i));
+                psii(i, 1:2) = interp1(TOUT, PSI, TEMPO(i));
 
                 % Slip angles
-                alphaf(i,1:2) = interp1(TOUT,ALPHAF,TEMPO(i));
-                alphar(i,1:2) = interp1(TOUT,ALPHAR,TEMPO(i));
+                alphaf(i, 1:2) = interp1(TOUT, ALPHAF, TEMPO(i));
+                alphar(i, 1:2) = interp1(TOUT, ALPHAR, TEMPO(i));
 
                 % Velocity
-                velf(i,1:2) = interp1(TOUT,VF,TEMPO(i));
-                velr(i,1:2) = interp1(TOUT,VR,TEMPO(i));
-                velt(i,1:2) = interp1(TOUT,VEL,TEMPO(i));
+                velf(i, 1:2) = interp1(TOUT, VF, TEMPO(i));
+                velr(i, 1:2) = interp1(TOUT, VR, TEMPO(i));
+                velt(i, 1:2) = interp1(TOUT, VEL, TEMPO(i));
             end
 
             % Defining figure
             f=figure(666);
-            set(f,'Units','centimeters')
-            set(f,'Position',[1 1 24 14])
+            set(f, 'Units', 'centimeters')
+            set(f, 'Position',[1 1 24 14])
             ax=gca();
             axis equal
-            set(ax,'NextPlot','add','Box','on','XGrid','on','YGrid','on','ZGrid','on')
-            set(ax,'XLim',[min(XT)-10 max(XT)+10])
-            set(ax,'XLimMode','manual')
-            set(ax,'YLim',[min(YT)-10 max(YT)+10])
-            set(ax,'YLimMode','manual')
+            set(ax, 'NextPlot', 'add', 'Box', 'on', 'XGrid', 'on', 'YGrid', 'on', 'ZGrid', 'on')
+            set(ax, 'XLim',[min(XT)-10 max(XT)+10])
+            set(ax, 'XLimMode', 'manual')
+            set(ax, 'YLim',[min(YT)-10 max(YT)+10])
+            set(ax, 'YLimMode', 'manual')
             % Description
-            title('Trajectory','Interpreter','Latex')
-            xlabel('Distance [m]','Interpreter','Latex');
-            ylabel('Distance [m]','Interpreter','Latex');
+            title('Trajectory', 'Interpreter', 'Latex')
+            xlabel('Distance [m]', 'Interpreter', 'Latex');
+            ylabel('Distance [m]', 'Interpreter', 'Latex');
 
             % First frame
 
@@ -201,7 +201,7 @@ classdef Graphics
             yc = [rc1(1,2) rc2(1,2) rc3(1,2) rc4(1,2)];
 
             % The vehicle
-            fill(xc,yc,'r')
+            fill(xc, yc, 'r')
 
             % Adding semitrailer
             if articulated
@@ -214,10 +214,10 @@ classdef Graphics
                 lS = self.Simulator.Vehicle.wS / 2; % Half width of the vehicle [m]
 
                 % Slip angle semitrailer axle [rad]
-                ALPHAM = atan2(((d + e)*(dPHI - dPSI) + VEL.*sin(ALPHAT + PHI) - b*dPSI.*cos(PHI) - c*dPSI.*cos(PHI)),(VEL.*cos(ALPHAT + PHI) + b*dPSI.*sin(PHI) + c*dPSI.*sin(PHI)));
+                ALPHAM = atan2(((d + e)*(dPHI - dPSI) + VEL.*sin(ALPHAT + PHI) - b * dPSI.*cos(PHI) - c * dPSI.*cos(PHI)),(VEL.*cos(ALPHAT + PHI) + b * dPSI.*sin(PHI) + c * dPSI.*sin(PHI)));
                 % Velocity semitrailer axle [m/s]
-                VM = sqrt((VEL.*cos(ALPHAT + PHI) + b*dPSI.*sin(PHI) + c*dPSI.*sin(PHI)).^2 + ((d + e)*(dPHI - dPSI) + VEL.*sin(ALPHAT + PHI) - b*dPSI.*cos(PHI) - c*dPSI.*cos(PHI)).^2);
-                RS = [XT-(b+c)*cos(PSI)-d*cos(PSI-PHI) YT-(b+c)*sin(PSI)-d*sin(PSI-PHI)];
+                VM = sqrt((VEL.*cos(ALPHAT + PHI) + b * dPSI.*sin(PHI) + c * dPSI.*sin(PHI)).^2 + ((d + e)*(dPHI - dPSI) + VEL.*sin(ALPHAT + PHI) - b * dPSI.*cos(PHI) - c * dPSI.*cos(PHI)).^2);
+                RS = [XT-(b+c)*cos(PSI)-d * cos(PSI-PHI) YT-(b+c)*sin(PSI)-d * sin(PSI-PHI)];
                 % Position vectors 1, 2, 3 e 4 relative to S base (S s1 s2 s3)
                 rs1s = [d;lS];              % Front left
                 rs2s = [d;-lS];             % Front right
@@ -237,13 +237,13 @@ classdef Graphics
                     % Rotation matrix base (S s1 s2 s3) to (o i j k)
                     RSI=[cos(PSI(j)-PHI(j)) -sin(PSI(j)-PHI(j));sin(PSI(j)-PHI(j)) cos(PSI(j)-PHI(j))];
                     % Position vectors 1, 2, 3 e 4 relative to O base (c c1 c2 c3)
-                    rn1i(j,1:2) = (RSI*rs1s)';
-                    rn2i(j,1:2) = (RSI*rs2s)';
-                    rn3i(j,1:2) = (RSI*rs3s)';
-                    rn4i(j,1:2) = (RSI*rs4s)';
+                    rn1i(j, 1:2) = (RSI * rs1s)';
+                    rn2i(j, 1:2) = (RSI * rs2s)';
+                    rn3i(j, 1:2) = (RSI * rs3s)';
+                    rn4i(j, 1:2) = (RSI * rs4s)';
 
                     % Position of semitrailer axle
-                    emm(j,1:2) = (RSI*eim);
+                    emm(j, 1:2) = (RSI * eim);
                 end
 
                 % Position vectors 1, 2, 3 e 4 relative to o base (o i j k)
@@ -260,30 +260,30 @@ classdef Graphics
                 emsemi = zeros(length(TEMPO),2);
 
                 for i=1:length(TEMPO)
-                    phii(i,1:2) = interp1(TOUT,PHI,TEMPO(i));
-                    alpham(i,1:2) = interp1(TOUT,ALPHAM,TEMPO(i));
-                    velm(i,1:2) = interp1(TOUT,VM,TEMPO(i));
+                    phii(i, 1:2) = interp1(TOUT, PHI, TEMPO(i));
+                    alpham(i, 1:2) = interp1(TOUT, ALPHAM, TEMPO(i));
+                    velm(i, 1:2) = interp1(TOUT, VM, TEMPO(i));
                     % Semitrailer
-                    rn1(i,1:2) = interp1(TOUT,rn1t,TEMPO(i));
-                    rn2(i,1:2) = interp1(TOUT,rn2t,TEMPO(i));
-                    rn3(i,1:2) = interp1(TOUT,rn3t,TEMPO(i));
-                    rn4(i,1:2) = interp1(TOUT,rn4t,TEMPO(i));
+                    rn1(i, 1:2) = interp1(TOUT, rn1t, TEMPO(i));
+                    rn2(i, 1:2) = interp1(TOUT, rn2t, TEMPO(i));
+                    rn3(i, 1:2) = interp1(TOUT, rn3t, TEMPO(i));
+                    rn4(i, 1:2) = interp1(TOUT, rn4t, TEMPO(i));
 
-                    emsemi(i,1:2) = interp1(TOUT,em,TEMPO(i));
+                    emsemi(i, 1:2) = interp1(TOUT, em, TEMPO(i));
                 end
 
                 self.Vector(emsemi(1,1:2),(alpham(1)+psii(1)-phii(1)),velm(1),'b');
                 xn = [rn1(1,1) rn2(1,1) rn3(1,1) rn4(1,1)];
                 yn = [rn1(1,2) rn2(1,2) rn3(1,2) rn4(1,2)];
-                fill(xn,yn,'g')
+                fill(xn, yn, 'g')
             end
 
             if saveit == 1
                 % Initializing gif
                 frame = getframe(666);
                 im = frame2im(frame);
-                [A,map] = rgb2ind(im,256,'nodither');
-                imwrite(A,map,'Animation.gif','LoopCount',Inf,'DelayTime',0.05);
+                [A, map] = rgb2ind(im, 256, 'nodither');
+                imwrite(A, map, 'Animation.gif', 'LoopCount', Inf, 'DelayTime', 0.05);
             end
 
             % Remaining frames
@@ -294,31 +294,31 @@ classdef Graphics
                 plot(etras(:,1),etras(:,2),'g')
 
                 % Coordinates of the corners
-                xc = [rc1(j,1) rc2(j,1) rc3(j,1) rc4(j,1)];
-                yc = [rc1(j,2) rc2(j,2) rc3(j,2) rc4(j,2)];
+                xc = [rc1(j, 1) rc2(j, 1) rc3(j, 1) rc4(j, 1)];
+                yc = [rc1(j, 2) rc2(j, 2) rc3(j, 2) rc4(j, 2)];
 
                 % Vehicle
-                fill(xc,yc,'r')
+                fill(xc, yc, 'r')
 
                 % Velocity vectors
                 % Different colors
-                self.Vector(efrente(j,1:2),(alphaf(j)+psii(j)),velf(j),'r');
-                self.Vector(etras(j,1:2),(alphar(j)+psii(j)),velr(j),'g');
+                self.Vector(efrente(j, 1:2),(alphaf(j)+psii(j)),velf(j),'r');
+                self.Vector(etras(j, 1:2),(alphar(j)+psii(j)),velr(j),'g');
 
                 if articulated
                     plot(emsemi(:,1),emsemi(:,2),'b')
-                    xn = [rn1(j,1) rn2(j,1) rn3(j,1) rn4(j,1)];
-                    yn = [rn1(j,2) rn2(j,2) rn3(j,2) rn4(j,2)];
-                    fill(xn,yn,'g')
-                    self.Vector(emsemi(j,1:2),(alpham(j)+psii(j)-phii(j)),velm(j),'b');
+                    xn = [rn1(j, 1) rn2(j, 1) rn3(j, 1) rn4(j, 1)];
+                    yn = [rn1(j, 2) rn2(j, 2) rn3(j, 2) rn4(j, 2)];
+                    fill(xn, yn, 'g')
+                    self.Vector(emsemi(j, 1:2),(alpham(j)+psii(j)-phii(j)),velm(j),'b');
                 end
 
                 if saveit == 1
                     % Adding the current frame to the initialized gif
                     frame = getframe(666);
                     im = frame2im(frame);
-                    [A,map] = rgb2ind(im,256,'nodither');
-                    imwrite(A,map,'Animation.gif','WriteMode','append','DelayTime',0.05);
+                    [A, map] = rgb2ind(im, 256, 'nodither');
+                    imwrite(A, map, 'Animation.gif', 'WriteMode', 'append', 'DelayTime', 0.05);
                 end
 
                 pause(0.05)                 % OBS: It has to be the same value of the time adjustment
@@ -334,22 +334,22 @@ classdef Graphics
             plot(etras(:,1),etras(:,2),'g')
 
             % Coordinates of the corners of the last frame
-            xc = [rc1(end,1) rc2(end,1) rc3(end,1) rc4(end,1)];
-            yc = [rc1(end,2) rc2(end,2) rc3(end,2) rc4(end,2)];
+            xc = [rc1(end, 1) rc2(end, 1) rc3(end, 1) rc4(end, 1)];
+            yc = [rc1(end, 2) rc2(end, 2) rc3(end, 2) rc4(end, 2)];
 
             % Vehicle
-            fill(xc,yc,'r')
+            fill(xc, yc, 'r')
 
-            self.Vector(efrente(end,1:2),(alphaf(end)+psii(end)),velf(end),'r');
-            self.Vector(etras(end,1:2),(alphar(end)+psii(end)),velr(end),'g');
+            self.Vector(efrente(end, 1:2),(alphaf(end)+psii(end)),velf(end),'r');
+            self.Vector(etras(end, 1:2),(alphar(end)+psii(end)),velr(end),'g');
 
             % Adding the semitrailer
             if articulated
                 plot(emsemi(:,1),emsemi(:,2),'b')
-                xn = [rn1(end,1) rn2(end,1) rn3(end,1) rn4(end,1)];
-                yn = [rn1(end,2) rn2(end,2) rn3(end,2) rn4(end,2)];
-                fill(xn,yn,'g')
-                self.Vector(emsemi(end,1:2),(alpham(end)+psii(end)-phii(end)),velm(end),'b');
+                xn = [rn1(end, 1) rn2(end, 1) rn3(end, 1) rn4(end, 1)];
+                yn = [rn1(end, 2) rn2(end, 2) rn3(end, 2) rn4(end, 2)];
+                fill(xn, yn, 'g')
+                self.Vector(emsemi(end, 1:2),(alpham(end)+psii(end)-phii(end)),velm(end),'b');
             end
         end
 
@@ -358,7 +358,7 @@ classdef Graphics
         %
         % *Sintax*
         %
-        % |_GraphicsClass_.Frame(XOUT,TOUT,saveit)|
+        % |_GraphicsClass_.Frame(XOUT, TOUT, saveit)|
         %
         % *Arguments*
         %
@@ -392,15 +392,15 @@ classdef Graphics
             lT = self.Simulator.Vehicle.wT / 2;  % Half width of the vehicle [m]
 
             % Slip angle @ front axle [rad]
-            ALPHAF = atan2((a*dPSI + VEL.*sin(ALPHAT)),(VEL.*cos(ALPHAT)));
+            ALPHAF = atan2((a * dPSI + VEL.*sin(ALPHAT)),(VEL.*cos(ALPHAT)));
             % OBS: No steering angle because it measures the angle between velocity vector and longitudinal axle of the vehicle
             % Slip angle @ rear axle [rad]
-            ALPHAR = atan2((-b*dPSI + VEL.*sin(ALPHAT)),(VEL.*cos(ALPHAT)));
+            ALPHAR = atan2((-b * dPSI + VEL.*sin(ALPHAT)),(VEL.*cos(ALPHAT)));
             % OBS: When using atan2 and the value reaches 180 degrees the vector becomes strange
 
             % Velocity
-            VF = sqrt((VEL.*cos(ALPHAT)).^2 + (a*dPSI + VEL.*sin(ALPHAT)).^2);
-            VR = sqrt((VEL.*cos(ALPHAT)).^2 + (-b*dPSI + VEL.*sin(ALPHAT)).^2);
+            VF = sqrt((VEL.*cos(ALPHAT)).^2 + (a * dPSI + VEL.*sin(ALPHAT)).^2);
+            VR = sqrt((VEL.*cos(ALPHAT)).^2 + (-b * dPSI + VEL.*sin(ALPHAT)).^2);
 
             % Position of the corners and axles relative to the CG
 
@@ -426,13 +426,13 @@ classdef Graphics
                 % Rotation matrix base (T t1 t2 t3) to (o i j k)
                 RTI=[cos(PSI(j)) -sin(PSI(j));sin(PSI(j)) cos(PSI(j))];
                 % Position vectors 1, 2, 3 e 4 relative to origin of the inertial reference base (T t1 t2 t3)
-                rt1i(j,1:2) = (RTI*rt1t)';
-                rt2i(j,1:2) = (RTI*rt2t)';
-                rt3i(j,1:2) = (RTI*rt3t)';
-                rt4i(j,1:2) = (RTI*rt4t)';
+                rt1i(j, 1:2) = (RTI * rt1t)';
+                rt2i(j, 1:2) = (RTI * rt2t)';
+                rt3i(j, 1:2) = (RTI * rt3t)';
+                rt4i(j, 1:2) = (RTI * rt4t)';
                 % Position of front and rear axle
-                eff(j,1:2) = (RTI*eif);     % Front
-                err(j,1:2) = (RTI*eir);     % Rear
+                eff(j, 1:2) = (RTI * eif);     % Front
+                err(j, 1:2) = (RTI * eir);     % Rear
             end
 
             % Absolute position of corners and axles
@@ -477,51 +477,51 @@ classdef Graphics
 
             for i=1:length(TEMPO)
                 % Position of corners and axles
-                rc1(i,1:2) = interp1(TOUT,rc1t,TEMPO(i));
-                rc2(i,1:2) = interp1(TOUT,rc2t,TEMPO(i));
-                rc3(i,1:2) = interp1(TOUT,rc3t,TEMPO(i));
-                rc4(i,1:2) = interp1(TOUT,rc4t,TEMPO(i));
+                rc1(i, 1:2) = interp1(TOUT, rc1t, TEMPO(i));
+                rc2(i, 1:2) = interp1(TOUT, rc2t, TEMPO(i));
+                rc3(i, 1:2) = interp1(TOUT, rc3t, TEMPO(i));
+                rc4(i, 1:2) = interp1(TOUT, rc4t, TEMPO(i));
 
-                xxx(i,1:2) = interp1(TOUT,XT,TEMPO(i));
-                yyy(i,1:2) = interp1(TOUT,YT,TEMPO(i));
+                xxx(i, 1:2) = interp1(TOUT, XT, TEMPO(i));
+                yyy(i, 1:2) = interp1(TOUT, YT, TEMPO(i));
 
                 % States
-                alphat(i,1:2) = interp1(TOUT,ALPHAT,TEMPO(i));
-                psii(i,1:2) = interp1(TOUT,PSI,TEMPO(i));
+                alphat(i, 1:2) = interp1(TOUT, ALPHAT, TEMPO(i));
+                psii(i, 1:2) = interp1(TOUT, PSI, TEMPO(i));
 
                 % Slip angles
-                alphaf(i,1:2) = interp1(TOUT,ALPHAF,TEMPO(i));
-                alphar(i,1:2) = interp1(TOUT,ALPHAR,TEMPO(i));
+                alphaf(i, 1:2) = interp1(TOUT, ALPHAF, TEMPO(i));
+                alphar(i, 1:2) = interp1(TOUT, ALPHAR, TEMPO(i));
 
                 % Velocity
-                velf(i,1:2) = interp1(TOUT,VF,TEMPO(i));
-                velr(i,1:2) = interp1(TOUT,VR,TEMPO(i));
-                velt(i,1:2) = interp1(TOUT,VEL,TEMPO(i));
+                velf(i, 1:2) = interp1(TOUT, VF, TEMPO(i));
+                velr(i, 1:2) = interp1(TOUT, VR, TEMPO(i));
+                velt(i, 1:2) = interp1(TOUT, VEL, TEMPO(i));
             end
 
             % Defining figure
             f999 = figure(999);
-            set(f999,'Units','centimeters')
-            set(f999,'Position',[1 1 24 14])
-            set(f999,'PaperUnits','centimeters')
-            set(f999,'PaperPosition',[5 0 16 12])
-            PaperPos = get(f999,'PaperPosition');
-            set(f999,'PaperSize',PaperPos(3:4))
+            set(f999, 'Units', 'centimeters')
+            set(f999, 'Position',[1 1 24 14])
+            set(f999, 'PaperUnits', 'centimeters')
+            set(f999, 'PaperPosition',[5 0 16 12])
+            PaperPos = get(f999, 'PaperPosition');
+            set(f999, 'PaperSize', PaperPos(3:4))
             ax999=gca();
-            set(ax999,'NextPlot','add','Box','on','XGrid','on','YGrid','on','ZGrid','on')
+            set(ax999, 'NextPlot', 'add', 'Box', 'on', 'XGrid', 'on', 'YGrid', 'on', 'ZGrid', 'on')
             axis equal
-            set(ax999,'XLim',[min(XT)-20 max(XT)+10])
-            set(ax999,'XLimMode','manual')
-            set(ax999,'YLim',[min(YT)-10 max(YT)+10])
-            set(ax999,'YLimMode','manual')
+            set(ax999, 'XLim',[min(XT)-20 max(XT)+10])
+            set(ax999, 'XLimMode', 'manual')
+            set(ax999, 'YLim',[min(YT)-10 max(YT)+10])
+            set(ax999, 'YLimMode', 'manual')
 
-            xlabel('Distance [m]','Interpreter','Latex')
-            ylabel('Distance [m]','Interpreter','Latex')
+            xlabel('Distance [m]', 'Interpreter', 'Latex')
+            ylabel('Distance [m]', 'Interpreter', 'Latex')
 
             TEMPOplot = 0:0.05:TOUT(end); % Time for the plots
             for i=1:length(TEMPOplot)
-                efrente(i,1:2) = interp1(TOUT,ef,TEMPOplot(i));
-                etras(i,1:2) = interp1(TOUT,er,TEMPOplot(i));
+                efrente(i, 1:2) = interp1(TOUT, ef, TEMPOplot(i));
+                etras(i, 1:2) = interp1(TOUT, er, TEMPOplot(i));
             end
 
             plot(ef(:,1),ef(:,2),'r')
@@ -529,10 +529,10 @@ classdef Graphics
 
             for j = 1:length(TEMPO)
                 % Coordinates of the corners
-                xc = [rc1(j,1) rc2(j,1) rc3(j,1) rc4(j,1)];
-                yc = [rc1(j,2) rc2(j,2) rc3(j,2) rc4(j,2)];
+                xc = [rc1(j, 1) rc2(j, 1) rc3(j, 1) rc4(j, 1)];
+                yc = [rc1(j, 2) rc2(j, 2) rc3(j, 2) rc4(j, 2)];
                 % Vehicle
-                fill(xc,yc,'r');
+                fill(xc, yc, 'r');
             end
 
             % Adding semitrailer
@@ -546,11 +546,11 @@ classdef Graphics
                 lS = self.Simulator.Vehicle.wS / 2; % Half width of the vehicle [m]
 
                 % Slip angle semitrailer axle [rad]
-                ALPHAM = atan2(((d + e)*(dPHI - dPSI) + VEL.*sin(ALPHAT + PHI) - b*dPSI.*cos(PHI) - c*dPSI.*cos(PHI)),(VEL.*cos(ALPHAT + PHI) + b*dPSI.*sin(PHI) + c*dPSI.*sin(PHI)));
+                ALPHAM = atan2(((d + e)*(dPHI - dPSI) + VEL.*sin(ALPHAT + PHI) - b * dPSI.*cos(PHI) - c * dPSI.*cos(PHI)),(VEL.*cos(ALPHAT + PHI) + b * dPSI.*sin(PHI) + c * dPSI.*sin(PHI)));
                 % Velocity semitrailer axle [m/s]
-                VM = sqrt((VEL.*cos(ALPHAT + PHI) + b*dPSI.*sin(PHI) + c*dPSI.*sin(PHI)).^2 + ((d + e)*(dPHI - dPSI) + VEL.*sin(ALPHAT + PHI) - b*dPSI.*cos(PHI) - c*dPSI.*cos(PHI)).^2);
+                VM = sqrt((VEL.*cos(ALPHAT + PHI) + b * dPSI.*sin(PHI) + c * dPSI.*sin(PHI)).^2 + ((d + e)*(dPHI - dPSI) + VEL.*sin(ALPHAT + PHI) - b * dPSI.*cos(PHI) - c * dPSI.*cos(PHI)).^2);
                 % CG position
-                RS = [XT-(b+c)*cos(PSI)-d*cos(PSI-PHI) YT-(b+c)*sin(PSI)-d*sin(PSI-PHI)];
+                RS = [XT-(b+c)*cos(PSI)-d * cos(PSI-PHI) YT-(b+c)*sin(PSI)-d * sin(PSI-PHI)];
                 % Position vectors 1, 2, 3 e 4 relative to S base (S s1 s2 s3)
                 rs1s = [d;lS];              % Front left
                 rs2s = [d;-lS];             % Front right
@@ -568,13 +568,13 @@ classdef Graphics
                     % Rotation matrix base (S s1 s2 s3) to (o i j k)
                     RSI=[cos(PSI(j)-PHI(j)) -sin(PSI(j)-PHI(j));sin(PSI(j)-PHI(j)) cos(PSI(j)-PHI(j))];
                     % Position vectors 1, 2, 3 e 4 relative to O base (c c1 c2 c3)
-                    rn1i(j,1:2) = (RSI*rs1s)';
-                    rn2i(j,1:2) = (RSI*rs2s)';
-                    rn3i(j,1:2) = (RSI*rs3s)';
-                    rn4i(j,1:2) = (RSI*rs4s)';
+                    rn1i(j, 1:2) = (RSI * rs1s)';
+                    rn2i(j, 1:2) = (RSI * rs2s)';
+                    rn3i(j, 1:2) = (RSI * rs3s)';
+                    rn4i(j, 1:2) = (RSI * rs4s)';
 
                     % Position of semitrailer axle
-                    emm(j,1:2) = (RSI*eim);
+                    emm(j, 1:2) = (RSI * eim);
                 end
 
                 % Position vectors 1, 2, 3 e 4 relative to o base (o i j k)
@@ -595,29 +595,29 @@ classdef Graphics
                 emsemi = zeros(length(TEMPO),2);
 
                 for i=1:length(TEMPO)
-                    phii(i,1:2) = interp1(TOUT,PHI,TEMPO(i));
-                    alpham(i,1:2) = interp1(TOUT,ALPHAM,TEMPO(i));
-                    velm(i,1:2) = interp1(TOUT,VM,TEMPO(i));
+                    phii(i, 1:2) = interp1(TOUT, PHI, TEMPO(i));
+                    alpham(i, 1:2) = interp1(TOUT, ALPHAM, TEMPO(i));
+                    velm(i, 1:2) = interp1(TOUT, VM, TEMPO(i));
 
-                    rn1(i,1:2) = interp1(TOUT,rn1t,TEMPO(i));
-                    rn2(i,1:2) = interp1(TOUT,rn2t,TEMPO(i));
-                    rn3(i,1:2) = interp1(TOUT,rn3t,TEMPO(i));
-                    rn4(i,1:2) = interp1(TOUT,rn4t,TEMPO(i));
+                    rn1(i, 1:2) = interp1(TOUT, rn1t, TEMPO(i));
+                    rn2(i, 1:2) = interp1(TOUT, rn2t, TEMPO(i));
+                    rn3(i, 1:2) = interp1(TOUT, rn3t, TEMPO(i));
+                    rn4(i, 1:2) = interp1(TOUT, rn4t, TEMPO(i));
                 end
                 for i=1:length(TEMPOplot)
-                    emsemi(i,1:2) = interp1(TOUT,em,TEMPOplot(i));
+                    emsemi(i, 1:2) = interp1(TOUT, em, TEMPOplot(i));
                 end
                 plot(em(:,1),em(:,2),'b')
 
                 for j = 1:length(TEMPO)
-                    xn = [rn1(j,1) rn2(j,1) rn3(j,1) rn4(j,1)];
-                    yn = [rn1(j,2) rn2(j,2) rn3(j,2) rn4(j,2)];
-                    fill(xn,yn,'g');
+                    xn = [rn1(j, 1) rn2(j, 1) rn3(j, 1) rn4(j, 1)];
+                    yn = [rn1(j, 2) rn2(j, 2) rn3(j, 2) rn4(j, 2)];
+                    fill(xn, yn, 'g');
                 end
             end
 
             if saveit == 1
-                print(f999,'-dpdf','Trajectory.pdf')
+                print(f999, '-dpdf', 'Trajectory.pdf')
             end
         end
     end
@@ -629,7 +629,7 @@ classdef Graphics
         %
         % *Sintax*
         %
-        % |_GraphicsClass_.Vector(inicio,angulo,modulo,cor)|
+        % |_GraphicsClass_.Vector(inicio, angulo, modulo, cor)|
         %
         % *Arguments*
         %
@@ -646,10 +646,10 @@ classdef Graphics
         %
         % TEXTO
 
-        function Vector(startCoord,angle,modulo,color)
+        function Vector(startCoord, angle, modulo, color)
             coord1 = startCoord;                                % Vector start coordinate
             theta = angle;
-            modulo = 0.7*modulo;                                % Size of the vector
+            modulo = 0.7 * modulo;                                % Size of the vector
             coord2 = modulo*[cos(theta) sin(theta)] + coord1;   % Vector end coordinate
 
             %theta = atan2((coord1(1)-coord2(1)),(coord1(2)-coord2(2))); % Orientatin angle of the triangle
@@ -657,8 +657,8 @@ classdef Graphics
             l = 0.5; % width relative to the triangle length (0-1)
 
             % Shape and orientation of the triangle
-            c1 = esc*l*[-sin(theta) +cos(theta)];   % corner 1 - bottom left
-            c2 = esc*l*[+sin(theta) -cos(theta)];   % corner 2 - bottom right
+            c1 = esc * l*[-sin(theta) +cos(theta)];   % corner 1 - bottom left
+            c2 = esc * l*[+sin(theta) -cos(theta)];   % corner 2 - bottom right
             c3 = esc*[+cos(theta) +sin(theta)];     % corner 3 - top central
 
             % Scale and positioning
@@ -666,12 +666,12 @@ classdef Graphics
             y = [c1(2)+coord2(2) c2(2)+coord2(2) c3(2)+coord2(2)];
 
             hold on
-            fill(x,y,color)
+            fill(x, y, color)
             p = plot([coord1(1) coord2(1)],[coord1(2) coord2(2)],color);
-            set(p,'LineWidth',2)
+            set(p, 'LineWidth', 2)
             % Idea of using a marker at the begining of the vector
-            % m = plot(coord1(1),coord1(2),strcat('*',cor));
-            % set(m,'MarkerSize',10)
+            % m = plot(coord1(1),coord1(2),strcat('*', cor));
+            % set(m, 'MarkerSize', 10)
         end
 
         %% changeMarker
@@ -679,7 +679,7 @@ classdef Graphics
         %
         % *Sintax*
         %
-        % |_GraphicsClass_.changeMarker(p,n)|
+        % |_GraphicsClass_.changeMarker(p, n)|
         %
         % *Arguments*
         %
@@ -694,22 +694,22 @@ classdef Graphics
         %
         % TEXTO
 
-        function changeMarker(p,n)
+        function changeMarker(p, n)
             % p - handle of plot
             % n - number of markers
 
             % Line info
-            line_color = get(p,'Color');
-            line_Style = get(p,'LineStyle');
-            line_LineWidth = get(p,'LineWidth');
+            line_color = get(p, 'Color');
+            line_Style = get(p, 'LineStyle');
+            line_LineWidth = get(p, 'LineWidth');
             % Marker info
-            marker_type = get(p,'Marker');
-            marker_size = get(p,'MarkerSize');
-            marker_EdgeColor = get(p,'MarkerEdgeColor');
-            marker_FaceColor = get(p,'MarkerFaceColor');
+            marker_type = get(p, 'Marker');
+            marker_size = get(p, 'MarkerSize');
+            marker_EdgeColor = get(p, 'MarkerEdgeColor');
+            marker_FaceColor = get(p, 'MarkerFaceColor');
             % Axis info
-            vec_XData = get(p,'XData');
-            vec_YData = get(p,'YData');
+            vec_XData = get(p, 'XData');
+            vec_YData = get(p, 'YData');
 
             size_XData = length(vec_XData);
 
@@ -717,20 +717,20 @@ classdef Graphics
 
             % Ploting the markers
             p_marker = plot(vec_XData(1:step:end),vec_YData(1:step:end));
-            set(p_marker,'LineStyle','none','Marker',marker_type,'MarkerSize',marker_size,...
-                'MarkerEdgeColor',marker_EdgeColor,'MarkerFaceColor',marker_FaceColor)
+            set(p_marker, 'LineStyle', 'none', 'Marker', marker_type, 'MarkerSize', marker_size,...
+                'MarkerEdgeColor', marker_EdgeColor, 'MarkerFaceColor', marker_FaceColor)
 
             % Removing the markers from the original plot
-            set(p,'Marker','none')
+            set(p, 'Marker', 'none')
             % Hiding the original plot
-            set(p,'HandleVisibility','off')
-            set(p_marker,'HandleVisibility','off')
+            set(p, 'HandleVisibility', 'off')
+            set(p_marker, 'HandleVisibility', 'off')
 
             % Dummy for legend
             p_dummy = plot(vec_XData(1),vec_YData(1));
-            set(p_dummy,'Color',line_color,'LineStyle',line_Style,'LineWidth',line_LineWidth,...
-                'Marker',marker_type,'MarkerSize',marker_size,...
-                'MarkerEdgeColor',marker_EdgeColor,'MarkerFaceColor',marker_FaceColor)
+            set(p_dummy, 'Color', line_color, 'LineStyle', line_Style, 'LineWidth', line_LineWidth,...
+                'Marker', marker_type, 'MarkerSize', marker_size,...
+                'MarkerEdgeColor', marker_EdgeColor, 'MarkerFaceColor', marker_FaceColor)
         end
 
     end

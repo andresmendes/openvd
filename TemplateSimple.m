@@ -51,7 +51,7 @@ TireModel = VehicleDynamicsLateral.TirePacejka1989(a0, a1, a2, a3, a4, a5, a6, a
 
 mF0 = 700;                  % mass over front axle [kg]
 mR0 = 600;                  % mass over rear axle [kg]
-IT = 10000;                 % moment of inertia [kg*m2]
+IT = 10000;                 % moment of inertia [kg * m2]
 deltaf = 0;                 % front axle steering [rad]
 lT = 3.550;                 % distance between axles [m]
 nF = 2;                     % number of tires in the front axle
@@ -61,7 +61,7 @@ muy = 0.8;                  % coefficient of operation friction
 System = VehicleDynamicsLateral.VehicleSimpleNonlinear3DOF(IT, mF0, mR0, deltaf, lT, nF, nR, wT, muy, TireModel);
 
 %% Integration
-[TOUT, XOUT] = ode45(@(t, estados) System.Model(t, estados),TSPAN,x0);
+[TOUT, XOUT] = ode45(@(t, estados) System.Model(t, estados),TSPAN, x0);
 
 %% Post integration
 %
@@ -83,63 +83,63 @@ VEL = XOUT(:,6);            % CG velocity [m/s]
 G = VehicleDynamicsLateral.Graphics(System);
 
 f1 = figure(1);
-set(f1,'Units','centimeters')
-set(f1,'Position',[5 0 16 16])
-set(f1,'PaperUnits','centimeters')
-set(f1,'PaperPosition',[0 0 16 16])
-PaperPos = get(f1,'PaperPosition');
-set(f1,'PaperSize',PaperPos(3:4))
+set(f1, 'Units', 'centimeters')
+set(f1, 'Position',[5 0 16 16])
+set(f1, 'PaperUnits', 'centimeters')
+set(f1, 'PaperPosition',[0 0 16 16])
+PaperPos = get(f1, 'PaperPosition');
+set(f1, 'PaperSize', PaperPos(3:4))
 % Subplot grid
 ax1 = subplot(2,2,1);
 ax2 = subplot(2,2,2);
 ax3 = subplot(2,2,3);
 ax4 = subplot(2,2,4);
     % Subplot (1)
-    set(ax1,'NextPlot','add','Box','on','XGrid','on','YGrid','on')
-    plot(ax1,TOUT,dPSI,'r')
-    xlabel(ax1,'$t$ [s]','Interpreter','Latex')
-    ylabel(ax1,'$\dot{\psi}$ [rad/s]','Interpreter','Latex')
-    title(ax1,'$\dot{\psi}$ x $t$','Interpreter','Latex')
+    set(ax1, 'NextPlot', 'add', 'Box', 'on', 'XGrid', 'on', 'YGrid', 'on')
+    plot(ax1, TOUT, dPSI, 'r')
+    xlabel(ax1, '$t$ [s]', 'Interpreter', 'Latex')
+    ylabel(ax1, '$\dot{\psi}$ [rad/s]', 'Interpreter', 'Latex')
+    title(ax1, '$\dot{\psi}$ x $t$', 'Interpreter', 'Latex')
     % Subplot (2)
-    set(ax2,'NextPlot','add','Box','on','XGrid','on','YGrid','on')
-    plot(ax2,TOUT,ALPHAT,'r')
-    xlabel(ax2,'$t$ [s]','Interpreter','Latex')
-    ylabel(ax2,'$\alpha_T$ [rad]','Interpreter','Latex')
-    title(ax2,'$\alpha_T$ x $t$','Interpreter','Latex')
+    set(ax2, 'NextPlot', 'add', 'Box', 'on', 'XGrid', 'on', 'YGrid', 'on')
+    plot(ax2, TOUT, ALPHAT, 'r')
+    xlabel(ax2, '$t$ [s]', 'Interpreter', 'Latex')
+    ylabel(ax2, '$\alpha_T$ [rad]', 'Interpreter', 'Latex')
+    title(ax2, '$\alpha_T$ x $t$', 'Interpreter', 'Latex')
     % Subplot (3)
-    set(ax3,'NextPlot','add','Box','on','XGrid','on','YGrid','on')
-    plot(ax3,TOUT,PSI,'r')
-    xlabel(ax3,'$t$ [s]','Interpreter','Latex')
-    ylabel(ax3,'$\psi$ [rad]','Interpreter','Latex')
-    title(ax3,'$\psi$ x $t$','Interpreter','Latex')
+    set(ax3, 'NextPlot', 'add', 'Box', 'on', 'XGrid', 'on', 'YGrid', 'on')
+    plot(ax3, TOUT, PSI, 'r')
+    xlabel(ax3, '$t$ [s]', 'Interpreter', 'Latex')
+    ylabel(ax3, '$\psi$ [rad]', 'Interpreter', 'Latex')
+    title(ax3, '$\psi$ x $t$', 'Interpreter', 'Latex')
     % Subplot (4)
-    set(ax4,'NextPlot','add','Box','on','XGrid','on','YGrid','on')
-    plot(ax4,TOUT,VEL,'r')
-    xlabel(ax4,'$t$ [s]','Interpreter','Latex')
-    ylabel(ax4,'$v$ [m/s]','Interpreter','Latex')
-    title(ax4,'$v$ x $t$','Interpreter','Latex')
+    set(ax4, 'NextPlot', 'add', 'Box', 'on', 'XGrid', 'on', 'YGrid', 'on')
+    plot(ax4, TOUT, VEL, 'r')
+    xlabel(ax4, '$t$ [s]', 'Interpreter', 'Latex')
+    ylabel(ax4, '$v$ [m/s]', 'Interpreter', 'Latex')
+    title(ax4, '$v$ x $t$', 'Interpreter', 'Latex')
 
 %%
 % Trajectory
 %
 
-G.Frame([XT YT PSI dPSI VEL ALPHAT],TOUT,0);
+G.Frame([XT YT PSI dPSI VEL ALPHAT],TOUT, 0);
 
 figFrame = gcf;
 % Setting Matlab figure
-set(figFrame,'Units','centimeters')
-set(figFrame,'Position',[0 0 16 7])
+set(figFrame, 'Units', 'centimeters')
+set(figFrame, 'Position',[0 0 16 7])
 % Setting PDF
-set(figFrame,'PaperUnits','centimeters')
-set(figFrame,'PaperPosition',[0 0 16 7])
-PaperPos = get(figFrame,'PaperPosition');
-set(figFrame,'PaperSize',PaperPos(3:4))
+set(figFrame, 'PaperUnits', 'centimeters')
+set(figFrame, 'PaperPosition',[0 0 16 7])
+PaperPos = get(figFrame, 'PaperPosition');
+set(figFrame, 'PaperSize', PaperPos(3:4))
 
 %%
 % Animation
 %
 
-G.Animation([XT YT PSI dPSI VEL ALPHAT],TOUT,0);
+G.Animation([XT YT PSI dPSI VEL ALPHAT],TOUT, 0);
 
 %%
 %

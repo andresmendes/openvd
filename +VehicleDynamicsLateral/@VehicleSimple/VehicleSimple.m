@@ -7,7 +7,7 @@ classdef (Abstract) VehicleSimple
     end
 
     properties
-        IT % Moment of inertia [kg*m2]
+        IT % Moment of inertia [kg * m2]
         mT % Vehicle total mass [kg]
         g % Gravity
         a % [m]

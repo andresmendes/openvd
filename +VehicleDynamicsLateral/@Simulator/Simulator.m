@@ -15,7 +15,7 @@ classdef Simulator<handle
             % if vehicle is articulated, adds mass matrix as an integration option
             if isa(self.Vehicle, 'VehicleDynamicsLateral.VehicleArticulated')
                 options = odeset('Mass', @self.Vehicle.MassMatrix);
-                [TOUT,XOUT] = ode45(@(t, estados) self.Vehicle.Model(t, estados), self.TSpan, self.Vehicle.getInitialState(), options);
+                [TOUT, XOUT] = ode45(@(t, estados) self.Vehicle.Model(t, estados), self.TSpan, self.Vehicle.getInitialState(), options);
 
                 % retrieve states exclusive to the articulated vehicle
                 self.XT = XOUT(:, 1);

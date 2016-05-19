@@ -19,9 +19,9 @@
 %
 % $$ k_1 = B C D $$
 %
-% $$ k_2 = (4 k_1^3)/(27 F_{y,Max}^2) $$
+% $$ k_2 = (4 k_1^3)/(27 F_{y, Max}^2) $$
 %
-% Onde $F_{y,Max}$ � a for�a lateral m�xima da curva caracter�stica de refer�ncia.
+% Onde $F_{y, Max}$ � a for�a lateral m�xima da curva caracter�stica de refer�ncia.
 %
 
 
@@ -56,25 +56,25 @@ a12= 0;
 a13 = 0;
 pPac = DinamicaVeicular.PneuPacejka1989([a0 a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13]);
 
-muy0 = a1*Fz/1000 + a2;
-D = muy0*Fz/1000;
-BCD = a3*sin(2*atan(Fz/1000/a4))*(1-a5*abs(camber));
+muy0 = a1 * Fz/1000 + a2;
+D = muy0 * Fz/1000;
+BCD = a3 * sin(2 * atan(Fz/1000/a4))*(1-a5 * abs(camber));
 
 % Pneu linear equivalente
 
-K = BCD*180/pi;
+K = BCD * 180/pi;
 
 pLin = DinamicaVeicular.PneuLinear(K);
 
 % Pneu polinomial equivalente
 
-k1 = BCD*180/pi;
-k2 = (4*k1^3)/(27*D^2);
+k1 = BCD * 180/pi;
+k2 = (4 * k1^3)/(27 * D^2);
 
 pPol = DinamicaVeicular.PneuPolinomial([k1 k2]);
 
 % Lateral force
-FyPac = pPac.Characteristic(deriva,Fz,muy0/1000);
+FyPac = pPac.Characteristic(deriva, Fz, muy0/1000);
 FyLin = pLin.Characteristic(deriva);
 FyPol = pPol.Characteristic(deriva);
 
@@ -84,17 +84,17 @@ g = DinamicaVeicular.Graficos;
 
 figure(1)
 ax = gca;
-set(ax,'NextPlot','add','Box','on','XGrid','on','YGrid','on')
-p = plot(deriva*180/pi,-FyLin,'Color','g','Marker','s','MarkerFaceColor','g','MarkeredgeColor','k','MarkerSize',7);
-g.changeMarker(p,10);
-p = plot(deriva*180/pi,-FyPol,'Color','b','Marker','^','MarkerFaceColor','b','MarkeredgeColor','k','MarkerSize',7);
-g.changeMarker(p,10);
-p = plot(deriva*180/pi,-FyPac,'Color','r','Marker','o','MarkerFaceColor','r','MarkeredgeColor','k','MarkerSize',7);
-g.changeMarker(p,10);
-xlabel('$\alpha$ [grau]','Interpreter','Latex')
-ylabel('$F_y$ [N]','Interpreter','Latex')
-l = legend('Linear','Polinomial','Pacejka');
-set(l,'Interpreter','Latex','Location','NorthWest')
+set(ax, 'NextPlot', 'add', 'Box', 'on', 'XGrid', 'on', 'YGrid', 'on')
+p = plot(deriva * 180/pi,-FyLin, 'Color', 'g', 'Marker', 's', 'MarkerFaceColor', 'g', 'MarkeredgeColor', 'k', 'MarkerSize', 7);
+g.changeMarker(p, 10);
+p = plot(deriva * 180/pi,-FyPol, 'Color', 'b', 'Marker', '^', 'MarkerFaceColor', 'b', 'MarkeredgeColor', 'k', 'MarkerSize', 7);
+g.changeMarker(p, 10);
+p = plot(deriva * 180/pi,-FyPac, 'Color', 'r', 'Marker', 'o', 'MarkerFaceColor', 'r', 'MarkeredgeColor', 'k', 'MarkerSize', 7);
+g.changeMarker(p, 10);
+xlabel('$\alpha$ [grau]', 'Interpreter', 'Latex')
+ylabel('$F_y$ [N]', 'Interpreter', 'Latex')
+l = legend('Linear', 'Polinomial', 'Pacejka');
+set(l, 'Interpreter', 'Latex', 'Location', 'NorthWest')
 
 %%
 % Na figura acima � poss�vel observar a curva caracter�stica dos tr�s modelos com propriedades equivalentes. Para pequenos �ngulos de deriva os tr�s modelos se comportam de maneira semelhante. For slip angles around 8 degrees (Angle with the maximal lateral force) the linear model presents large errors. Para �ngulos maiores que 8 graus o modelo polinomial come�a a n�o acompanhar a curva gerada pelo modelo Pacejka 1989.
@@ -105,34 +105,34 @@ set(l,'Interpreter','Latex','Location','NorthWest')
 deriva180 = (0:0.1:180)*pi/180;     % �ngulo de deriva de 0 � 180 graus [rad]
 
 % Sem tratamento
-ALPHA = deriva180*180/pi;
+ALPHA = deriva180 * 180/pi;
 C = a0;
 muy = muy0;
-E = a6*Fz/1000 + a7;
-B = BCD/(C*D);
-Sh = a8*camber + a9*Fz/1000 + a10;
-Sv = a11*Fz/1000*camber + a12*Fz/1000 + a13;
+E = a6 * Fz/1000 + a7;
+B = BCD/(C * D);
+Sh = a8 * camber + a9 * Fz/1000 + a10;
+Sv = a11 * Fz/1000 * camber + a12 * Fz/1000 + a13;
 ALPHAeq = muy0/muy*(ALPHA + Sh);
 % Reference characteristics
-fy = D*sin(C*atan(B*ALPHAeq - E*(B*ALPHAeq - atan(B*ALPHAeq))));
+fy = D * sin(C * atan(B * ALPHAeq - E*(B * ALPHAeq - atan(B * ALPHAeq))));
 % Lateral force
 FyPacSem180 = -muy/muy0*(fy + Sv);
 
 % Com tratamento
-FyPacCom180 = pPac.Characteristic(deriva180,Fz,muy0/1000);
+FyPacCom180 = pPac.Characteristic(deriva180, Fz, muy0/1000);
 
 figure(2)
 ax = gca;
-set(ax,'NextPlot','add','Box','on','XGrid','on','YGrid','on')
-p = plot(deriva180*180/pi,-FyPacSem180,'Color','m','Marker','d','MarkerFaceColor','m','MarkeredgeColor','k','MarkerSize',7);
-g.changeMarker(p,10);
-p = plot(deriva180*180/pi,-FyPacCom180,'Color','r','Marker','o','MarkerFaceColor','r','MarkeredgeColor','k','MarkerSize',7);
-g.changeMarker(p,10);
+set(ax, 'NextPlot', 'add', 'Box', 'on', 'XGrid', 'on', 'YGrid', 'on')
+p = plot(deriva180 * 180/pi,-FyPacSem180, 'Color', 'm', 'Marker', 'd', 'MarkerFaceColor', 'm', 'MarkeredgeColor', 'k', 'MarkerSize', 7);
+g.changeMarker(p, 10);
+p = plot(deriva180 * 180/pi,-FyPacCom180, 'Color', 'r', 'Marker', 'o', 'MarkerFaceColor', 'r', 'MarkeredgeColor', 'k', 'MarkerSize', 7);
+g.changeMarker(p, 10);
 plot([90 90],[0 3000],'--k')    % Linha vertical de simetria
-xlabel('$\alpha$ [grau]','Interpreter','Latex')
-ylabel('$F_y$ [N]','Interpreter','Latex')
-l = legend('Pacejka sem tratamento','Pacejka com tratamento');
-set(l,'Interpreter','Latex','Location','SouthEast')
+xlabel('$\alpha$ [grau]', 'Interpreter', 'Latex')
+ylabel('$F_y$ [N]', 'Interpreter', 'Latex')
+l = legend('Pacejka sem tratamento', 'Pacejka com tratamento');
+set(l, 'Interpreter', 'Latex', 'Location', 'SouthEast')
 
 %%
 % Na figura acima � poss�vel observar o efeito do tratamento do �ngulo de deriva na curva caracter�stica. The curve is symmetric to a vertical line positioned at $\alpha = 90 [graus]$.
