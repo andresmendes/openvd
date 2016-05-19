@@ -5,15 +5,10 @@
 %
 
 classdef Graphics
-	methods
+    methods
         % Constructor
-        function self = Graphics(varargin)
-            % v = VehicleDynamicsLateral.VehicleArticulatedNonlinear4DOF;
-            if nargin == 0
-                self.vehicle = v;%.params;
-            else
-                self.vehicle = varargin{1};%.params;
-            end
+        function self = Graphics(simulator)
+            self.Simulator = simulator;
         end
 
         %% Animation
@@ -37,36 +32,38 @@ classdef Graphics
         %
         % TEXT
 
-        function Animation(self,XOUT,TOUT,saveit)
+        function Animation(self, saveit)
             % Verifying number of columns of the state output matrix
             % col = 6 -> simples
             % col = 8 -> articulado
-            [col] = size(XOUT,2);
+
+            articulated = isa(self.Simulator.Vehicle, 'VehicleDynamicsLateral.VehicleArticulated')
 
             % States
-            XT = XOUT(:,1);                 % Horizontal position [m]
-            YT = XOUT(:,2);                 % Vertical position [m]
-            PSI = XOUT(:,3);                % Vehicle yaw angle [rad]
-            VT = XOUT(:,4);                 % Vehicle CG velocity [m/s]
-            ALPHAT = XOUT(:,5);             % Vehicle side slip angle [rad]
-            dPSI = XOUT(:,6);               % Yaw rate [rad/s]
+            TOUT = self.Simulator.TSpan;
+            XT = self.Simulator.XT;         % Horizontal position [m]
+            YT = self.Simulator.YT;         % Vertical position [m]
+            PSI = self.Simulator.PSI;       % Vehicle yaw angle [rad]
+            VEL = self.Simulator.VEL;         % Vehicle CG velocity [m/s]
+            ALPHAT = self.Simulator.ALPHAT; % Vehicle side slip angle [rad]
+            dPSI = self.Simulator.dPSI;     % Yaw rate [rad/s]
 
             % Distances
-            a = self.vehicle.a;        % Distance FT [m]
-            b = self.vehicle.b;        % Distance TR [m]
-            lT = self.vehicle.wT / 2;    % Half width of the vehicle [m]
+            a = self.Simulator.Vehicle.a;        % Distance FT [m]
+            b = self.Simulator.Vehicle.b;        % Distance TR [m]
+            lT = self.Simulator.Vehicle.wT / 2;  % Half width of the vehicle [m]
 
             % Slip angle @ front axle [rad]
-            ALPHAF = atan2((a*dPSI + VT.*sin(ALPHAT)),(VT.*cos(ALPHAT)));
+            ALPHAF = atan2((a*dPSI + VEL.*sin(ALPHAT)),(VEL.*cos(ALPHAT)));
             % OBS: No steering angle because it measures the angle between velocity vector and longitudinal axle of the vehicle
             % Slip angle @ rear axle [rad]
-            ALPHAR = atan2((-b*dPSI + VT.*sin(ALPHAT)),(VT.*cos(ALPHAT)));
+            ALPHAR = atan2((-b*dPSI + VEL.*sin(ALPHAT)),(VEL.*cos(ALPHAT)));
             % OBS: When using atan2 and the value reaches 180 degrees the vector becomes strange
 
             % Velocity @ front axle [m/s]
-            VF = sqrt((VT.*cos(ALPHAT)).^2 + (a*dPSI + VT.*sin(ALPHAT)).^2);
+            VF = sqrt((VEL.*cos(ALPHAT)).^2 + (a*dPSI + VEL.*sin(ALPHAT)).^2);
             % Velocity @ rear axle [m/s]
-            VR = sqrt((VT.*cos(ALPHAT)).^2 + (-b*dPSI + VT.*sin(ALPHAT)).^2);
+            VR = sqrt((VEL.*cos(ALPHAT)).^2 + (-b*dPSI + VEL.*sin(ALPHAT)).^2);
 
             % Position of the corners and axles relative to the CG
 
@@ -174,7 +171,7 @@ classdef Graphics
                 % Velocity
                 velf(i,1:2) = interp1(TOUT,VF,TEMPO(i));
                 velr(i,1:2) = interp1(TOUT,VR,TEMPO(i));
-                velt(i,1:2) = interp1(TOUT,VT,TEMPO(i));
+                velt(i,1:2) = interp1(TOUT,VEL,TEMPO(i));
             end
 
             % Defining figure
@@ -207,19 +204,19 @@ classdef Graphics
             fill(xc,yc,'r')
 
             % Adding semitrailer
-            if col == 8
-                PHI = XOUT(:,7);            % Relative yaw angle of the semitrailer [rad]
-                dPHI = XOUT(:,8);           % Relative yaw rate between the two units [rad/s]
+            if articulated
+                PHI = self.Simulator.PHI;           % Relative yaw angle of the semitrailer [rad]
+                dPHI = self.Simulator.dPHI;         % Relative yaw rate between the two units [rad/s]
 
-                c = self.vehicle.distRA;    % Distance from  [m]
-                d = self.vehicle.distAS;    % Distance from  [m]
-                e = self.vehicle.distSM;    % Distance from  [m]
-                lS = self.vehicle.widthSemi / 2; % Half width of the vehicle [m]
+                c = self.Simulator.Vehicle.c;       % Distance from  [m]
+                d = self.Simulator.Vehicle.d;       % Distance from  [m]
+                e = self.Simulator.Vehicle.e;       % Distance from  [m]
+                lS = self.Simulator.Vehicle.wS / 2; % Half width of the vehicle [m]
 
                 % Slip angle semitrailer axle [rad]
-                ALPHAM = atan2(((d + e)*(dPHI - dPSI) + VT.*sin(ALPHAT + PHI) - b*dPSI.*cos(PHI) - c*dPSI.*cos(PHI)),(VT.*cos(ALPHAT + PHI) + b*dPSI.*sin(PHI) + c*dPSI.*sin(PHI)));
+                ALPHAM = atan2(((d + e)*(dPHI - dPSI) + VEL.*sin(ALPHAT + PHI) - b*dPSI.*cos(PHI) - c*dPSI.*cos(PHI)),(VEL.*cos(ALPHAT + PHI) + b*dPSI.*sin(PHI) + c*dPSI.*sin(PHI)));
                 % Velocity semitrailer axle [m/s]
-                VM = sqrt((VT.*cos(ALPHAT + PHI) + b*dPSI.*sin(PHI) + c*dPSI.*sin(PHI)).^2 + ((d + e)*(dPHI - dPSI) + VT.*sin(ALPHAT + PHI) - b*dPSI.*cos(PHI) - c*dPSI.*cos(PHI)).^2);
+                VM = sqrt((VEL.*cos(ALPHAT + PHI) + b*dPSI.*sin(PHI) + c*dPSI.*sin(PHI)).^2 + ((d + e)*(dPHI - dPSI) + VEL.*sin(ALPHAT + PHI) - b*dPSI.*cos(PHI) - c*dPSI.*cos(PHI)).^2);
                 RS = [XT-(b+c)*cos(PSI)-d*cos(PSI-PHI) YT-(b+c)*sin(PSI)-d*sin(PSI-PHI)];
                 % Position vectors 1, 2, 3 e 4 relative to S base (S s1 s2 s3)
                 rs1s = [d;lS];              % Front left
@@ -308,7 +305,7 @@ classdef Graphics
                 self.Vector(efrente(j,1:2),(alphaf(j)+psii(j)),velf(j),'r');
                 self.Vector(etras(j,1:2),(alphar(j)+psii(j)),velr(j),'g');
 
-                if col == 8
+                if articulated
                     plot(emsemi(:,1),emsemi(:,2),'b')
                     xn = [rn1(j,1) rn2(j,1) rn3(j,1) rn4(j,1)];
                     yn = [rn1(j,2) rn2(j,2) rn3(j,2) rn4(j,2)];
@@ -347,7 +344,7 @@ classdef Graphics
             self.Vector(etras(end,1:2),(alphar(end)+psii(end)),velr(end),'g');
 
             % Adding the semitrailer
-            if col == 8
+            if articulated
                 plot(emsemi(:,1),emsemi(:,2),'b')
                 xn = [rn1(end,1) rn2(end,1) rn3(end,1) rn4(end,1)];
                 yn = [rn1(end,2) rn2(end,2) rn3(end,2) rn4(end,2)];
@@ -377,35 +374,33 @@ classdef Graphics
         %
 
 
-        function Frame(self,XOUT,TOUT,saveit)
-            % Verifying number of columns of the state output matrix
-            % col = 6 -> simples
-            % col = 8 -> articulado
-            [col] = size(XOUT,2);
+        function Frame(self, saveit)
+            articulated = isa(self.Simulator.Vehicle, 'VehicleDynamicsLateral.VehicleArticulated')
 
             % States
-            XT = XOUT(:,1);                 % Horizontal position [m]
-            YT = XOUT(:,2);                 % Vertical position [m]
-            PSI = XOUT(:,3);                % Vehicle yaw angle [rad]
-            VT = XOUT(:,4);                 % Vehicle CG velocity [m/s]
-            ALPHAT = XOUT(:,5);             % Vehicle side slip angle [rad]
-            dPSI = XOUT(:,6);               % Yaw rate [rad/s]
+            TOUT = self.Simulator.TSpan;
+            XT = self.Simulator.XT;         % Horizontal position [m]
+            YT = self.Simulator.YT;         % Vertical position [m]
+            PSI = self.Simulator.PSI;       % Vehicle yaw angle [rad]
+            VEL = self.Simulator.VEL;       % Vehicle CG velocity [m/s]
+            ALPHAT = self.Simulator.ALPHAT; % Vehicle side slip angle [rad]
+            dPSI = self.Simulator.dPSI;     % Yaw rate [rad/s]
 
             % Distances
-            a = self.vehicle.a;        % Distance FT [m]
-            b = self.vehicle.b;        % Distance TR [m]
-            lT = self.vehicle.wT / 2;    % Half width of the vehicle [m]
+            a = self.Simulator.Vehicle.a;        % Distance FT [m]
+            b = self.Simulator.Vehicle.b;        % Distance TR [m]
+            lT = self.Simulator.Vehicle.wT / 2;  % Half width of the vehicle [m]
 
             % Slip angle @ front axle [rad]
-            ALPHAF = atan2((a*dPSI + VT.*sin(ALPHAT)),(VT.*cos(ALPHAT)));
+            ALPHAF = atan2((a*dPSI + VEL.*sin(ALPHAT)),(VEL.*cos(ALPHAT)));
             % OBS: No steering angle because it measures the angle between velocity vector and longitudinal axle of the vehicle
             % Slip angle @ rear axle [rad]
-            ALPHAR = atan2((-b*dPSI + VT.*sin(ALPHAT)),(VT.*cos(ALPHAT)));
+            ALPHAR = atan2((-b*dPSI + VEL.*sin(ALPHAT)),(VEL.*cos(ALPHAT)));
             % OBS: When using atan2 and the value reaches 180 degrees the vector becomes strange
 
             % Velocity
-            VF = sqrt((VT.*cos(ALPHAT)).^2 + (a*dPSI + VT.*sin(ALPHAT)).^2);
-            VR = sqrt((VT.*cos(ALPHAT)).^2 + (-b*dPSI + VT.*sin(ALPHAT)).^2);
+            VF = sqrt((VEL.*cos(ALPHAT)).^2 + (a*dPSI + VEL.*sin(ALPHAT)).^2);
+            VR = sqrt((VEL.*cos(ALPHAT)).^2 + (-b*dPSI + VEL.*sin(ALPHAT)).^2);
 
             % Position of the corners and axles relative to the CG
 
@@ -501,7 +496,7 @@ classdef Graphics
                 % Velocity
                 velf(i,1:2) = interp1(TOUT,VF,TEMPO(i));
                 velr(i,1:2) = interp1(TOUT,VR,TEMPO(i));
-                velt(i,1:2) = interp1(TOUT,VT,TEMPO(i));
+                velt(i,1:2) = interp1(TOUT,VEL,TEMPO(i));
             end
 
             % Defining figure
@@ -541,18 +536,19 @@ classdef Graphics
             end
 
             % Adding semitrailer
-            if col == 8
-                PHI = XOUT(:,7);            % Relative yaw angle of the semitrailer [rad]
-                dPHI = XOUT(:,8);           % Relative yaw rate between the two units [rad/s]
+            if articulated
+                PHI = self.Simulator.PHI;           % Relative yaw angle of the semitrailer [rad]
+                dPHI = self.Simulator.dPHI;         % Relative yaw rate between the two units [rad/s]
 
-                c = self.vehicle.distRA;    % Distance from  [m]
-                d = self.vehicle.distAS;    % Distance from  [m]
-                e = self.vehicle.distSM;    % Distance from  [m]
-                lS = self.vehicle.widthSemi / 2; % Half width of the vehicle [m]
+                c = self.Simulator.Vehicle.c;       % Distance from  [m]
+                d = self.Simulator.Vehicle.d;       % Distance from  [m]
+                e = self.Simulator.Vehicle.e;       % Distance from  [m]
+                lS = self.Simulator.Vehicle.wS / 2; % Half width of the vehicle [m]
+
                 % Slip angle semitrailer axle [rad]
-                ALPHAM = atan2(((d + e)*(dPHI - dPSI) + VT.*sin(ALPHAT + PHI) - b*dPSI.*cos(PHI) - c*dPSI.*cos(PHI)),(VT.*cos(ALPHAT + PHI) + b*dPSI.*sin(PHI) + c*dPSI.*sin(PHI)));
+                ALPHAM = atan2(((d + e)*(dPHI - dPSI) + VEL.*sin(ALPHAT + PHI) - b*dPSI.*cos(PHI) - c*dPSI.*cos(PHI)),(VEL.*cos(ALPHAT + PHI) + b*dPSI.*sin(PHI) + c*dPSI.*sin(PHI)));
                 % Velocity semitrailer axle [m/s]
-                VM = sqrt((VT.*cos(ALPHAT + PHI) + b*dPSI.*sin(PHI) + c*dPSI.*sin(PHI)).^2 + ((d + e)*(dPHI - dPSI) + VT.*sin(ALPHAT + PHI) - b*dPSI.*cos(PHI) - c*dPSI.*cos(PHI)).^2);
+                VM = sqrt((VEL.*cos(ALPHAT + PHI) + b*dPSI.*sin(PHI) + c*dPSI.*sin(PHI)).^2 + ((d + e)*(dPHI - dPSI) + VEL.*sin(ALPHAT + PHI) - b*dPSI.*cos(PHI) - c*dPSI.*cos(PHI)).^2);
                 % CG position
                 RS = [XT-(b+c)*cos(PSI)-d*cos(PSI-PHI) YT-(b+c)*sin(PSI)-d*sin(PSI-PHI)];
                 % Position vectors 1, 2, 3 e 4 relative to S base (S s1 s2 s3)
@@ -722,7 +718,7 @@ classdef Graphics
             % Ploting the markers
             p_marker = plot(vec_XData(1:step:end),vec_YData(1:step:end));
             set(p_marker,'LineStyle','none','Marker',marker_type,'MarkerSize',marker_size,...
-            	'MarkerEdgeColor',marker_EdgeColor,'MarkerFaceColor',marker_FaceColor)
+                'MarkerEdgeColor',marker_EdgeColor,'MarkerFaceColor',marker_FaceColor)
 
             % Removing the markers from the original plot
             set(p,'Marker','none')
@@ -733,8 +729,8 @@ classdef Graphics
             % Dummy for legend
             p_dummy = plot(vec_XData(1),vec_YData(1));
             set(p_dummy,'Color',line_color,'LineStyle',line_Style,'LineWidth',line_LineWidth,...
-            	'Marker',marker_type,'MarkerSize',marker_size,...
-            	'MarkerEdgeColor',marker_EdgeColor,'MarkerFaceColor',marker_FaceColor)
+                'Marker',marker_type,'MarkerSize',marker_size,...
+                'MarkerEdgeColor',marker_EdgeColor,'MarkerFaceColor',marker_FaceColor)
         end
 
     end
@@ -743,7 +739,7 @@ classdef Graphics
     %
 
     properties
-        vehicle
+        Simulator
     end
 end
 
