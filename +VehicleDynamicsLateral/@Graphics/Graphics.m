@@ -8,7 +8,7 @@ classdef Graphics
 	methods
         % Constructor
         function self = Graphics(varargin)
-            v = VehicleDynamicsLateral.VehicleArticulatedNonlinear4DOF;
+            % v = VehicleDynamicsLateral.VehicleArticulatedNonlinear4DOF;
             if nargin == 0
                 self.vehicle = v;%.params;
             else
@@ -52,9 +52,9 @@ classdef Graphics
             ALPHAT = XOUT(:,6);             % Vehicle side slip angle [rad]
 
             % Distances
-            a = self.vehicle.distFT;        % Distance FT [m]
-            b = self.vehicle.distTR;        % Distance TR [m]
-            lT = self.vehicle.width / 2;    % Half width of the vehicle [m]
+            a = self.vehicle.a;        % Distance FT [m]
+            b = self.vehicle.b;        % Distance TR [m]
+            lT = self.vehicle.wT / 2;    % Half width of the vehicle [m]
 
             % Slip angle @ front axle [rad]
             ALPHAF = atan2((a*dPSI + VT.*sin(ALPHAT)),(VT.*cos(ALPHAT)));
@@ -392,9 +392,9 @@ classdef Graphics
             ALPHAT = XOUT(:,6);             % Vehicle side slip angle [rad]
 
             % Distances
-            a = self.vehicle.distFT;        % Distance FT [m]
-            b = self.vehicle.distTR;        % Distance TR [m]
-            lT = self.vehicle.width / 2;    % Half width of the vehicle [m]
+            a = self.vehicle.a;        % Distance FT [m]
+            b = self.vehicle.b;        % Distance TR [m]
+            lT = self.vehicle.wT / 2;    % Half width of the vehicle [m]
 
             % Slip angle @ front axle [rad]
             ALPHAF = atan2((a*dPSI + VT.*sin(ALPHAT)),(VT.*cos(ALPHAT)));

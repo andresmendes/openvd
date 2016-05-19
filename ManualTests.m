@@ -29,11 +29,14 @@ simulator = VehicleDynamicsLateral.Simulator(System, TSPAN);
 simulator.Simulate();
 
 % Retrieving states
-ALPHAT = simulator.ALPHAT
-PSI = simulator.PSI
-XT = simulator.XT
-YT = simulator.YT
-VEL = simulator.VEL
+XT = simulator.XT;
+YT = simulator.YT;
+PSI = simulator.PSI;
+VEL = simulator.VEL;
+ALPHAT = simulator.ALPHAT;
+dPSI = simulator.dPSI;
+
+
 
 % truck = VehicleDynamicsLateral.VehicleArticulatedNonlinear4DOF;
 % truck.dPSI0 = 0.25;               % Initial tractor yaw rate [rad/s]
