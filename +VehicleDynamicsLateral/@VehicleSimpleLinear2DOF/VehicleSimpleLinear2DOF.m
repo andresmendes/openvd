@@ -20,18 +20,18 @@
 %
 
 classdef VehicleSimpleLinear2DOF < VehicleDynamicsLateral.VehicleSimple
-	methods
+    methods
         function self = VehicleSimpleLinear2DOF()
-        	% Constructor for the vehicle
-	        self.mF0 = 700;
-	        self.mR0 = 600;
-	        self.IT = 10000;
-	        self.lT = 3.5;
-	        self.nF = 2;
-	        self.nR = 2;
-	        self.wT = 2;
-	        self.muy = .8;
-	        self.deltaf = 0;
+            % Constructor for the vehicle
+            self.mF0 = 700;
+            self.mR0 = 600;
+            self.IT = 10000;
+            self.lT = 3.5;
+            self.nF = 2;
+            self.nR = 2;
+            self.wT = 2;
+            self.muy = .8;
+            self.deltaf = 0;
         end
 
         %% Model
@@ -49,10 +49,10 @@ classdef VehicleSimpleLinear2DOF < VehicleDynamicsLateral.VehicleSimple
 
             g = 9.81;                 % Gravity [m/s^2]
 
-			FzF = self.mF0 * g;       % Vertical load @ F [N]
+            FzF = self.mF0 * g;       % Vertical load @ F [N]
             FzR = self.mR0 * g;       % Vertical load @ R [N]
 
-			vx = 20;                  % [m/s]
+            vx = 20;                  % [m/s]
 
             % States
             vy = estados(1);

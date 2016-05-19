@@ -20,24 +20,24 @@
 %
 
 classdef VehicleSimpleNonlinear3DOF < VehicleDynamicsLateral.VehicleSimple
-	methods
+    methods
         % Constructor
         function self = VehicleSimpleNonlinear3DOF()
-	        self.mF0 = 700;
-	        self.mR0 = 600;
-	        self.IT = 10000;
-	        self.lT = 3.5;
-	        self.nF = 2;
-	        self.nR = 2;
-	        self.wT = 2;
-	        self.muy = .8;
-	        self.deltaf = 0;
+            self.mF0 = 700;
+            self.mR0 = 600;
+            self.IT = 10000;
+            self.lT = 3.5;
+            self.nF = 2;
+            self.nR = 2;
+            self.wT = 2;
+            self.muy = .8;
+            self.deltaf = 0;
         end
 
         %% Model
         % Função com as equações de estado do modelo
         function dx = Model(self, ~, estados)
-			% Data
+            % Data
             m = self.mT;
             I = self.IT;
             a = self.a;
@@ -47,7 +47,7 @@ classdef VehicleSimpleNonlinear3DOF < VehicleDynamicsLateral.VehicleSimple
             muy = self.muy;
             DELTA = self.deltaf;
 
-			g = 9.81;                 % Acelera��o da gravidade [m/s^2]
+            g = 9.81;                 % Acelera��o da gravidade [m/s^2]
 
             FzF = self.mF0 * g;       % Vertical load @ F [N]
             FzR = self.mR0 * g;       % Vertical load @ R [N]
