@@ -18,30 +18,44 @@ classdef Simulator<handle
 				[TOUT,XOUT] = ode45(@(t, estados) self.Vehicle.Model(t, estados), self.TSpan, self.Vehicle.getInitialState(), options);
 
 				% retrieve states exclusive to the articulated vehicle
-				self.dPHI = XOUT(:, 7);
-				self.PHI = XOUT(:, 8);
+                self.XT = XOUT(:, 1);
+                self.YT = XOUT(:, 2);
+                self.PSI = XOUT(:, 3);
+				self.PHI = XOUT(:, 4);
+                self.VEL = XOUT(:, 5);
+                self.ALPHAT = XOUT(:, 6);
+                self.dPSI = XOUT(:, 7);
+				self.dPHI = XOUT(:, 8);
 			else
 				[TOUT, XOUT] = ode45(@(t, estados) self.Vehicle.Model(t, estados), self.TSpan, self.Vehicle.getInitialState());
+
+                % Retrieving states post integration
+    			self.XT = XOUT(:, 1);
+    			self.YT = XOUT(:, 2);
+    			self.PSI = XOUT(:, 3);
+    			self.VEL = XOUT(:, 4);
+    			self.ALPHAT = XOUT(:, 5);
+    			self.dPSI = XOUT(:, 6);
 			end
 
-			% Retrieving states post integration
-			self.dPSI = XOUT(:, 1);
-			self.ALPHAT = XOUT(:, 2);
-			self.PSI = XOUT(:, 3);
-			self.XT = XOUT(:, 4);
-			self.YT = XOUT(:, 5);
-			self.VEL = XOUT(:, 6);
+            % Graphics
+            G = VehicleDynamicsLateral.Graphics(self.Vehicle);
+            G.Frame([self.XT self.YT self.PSI self.VEL self.ALPHAT self.dPSI],TOUT,0);
+            G.Animation([self.XT self.YT self.PSI self.VEL self.ALPHAT self.dPSI],TOUT,0);
+
         end
 	end
 
     properties
 		Vehicle % Vehicle model to be used inthe simulation
 		TSpan % a vector indicating the intervals in which the simulation steps will be conducted
-        dPSI % Yaw rate [rad/s]
-        ALPHAT % Side slip angle [rad]
-        PSI % Yaw angle [rad]
         XT % CG horizontal position [m]
         YT % CG vertical position [m]
+        PSI % Yaw angle [rad]
+        PHI % Relative yaw angle [rad]
         VEL % CG velocity [m/s]
+        ALPHAT % Side slip angle [rad]
+        dPSI % Yaw rate [rad/s]
+        dPHI % Relative yaw rate [rad/s]
 	end
 end
