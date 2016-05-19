@@ -28,11 +28,11 @@ classdef (Abstract) VehicleSimple
 		V0 % Initial CG velocity [m/s]
 		tire % Tire model
 	end
-    
+
 	methods
 		function f = getInitialState(self)
 			% Transforms properties into a vector so it can be used by the integrator
-			f = [self.dPSI0 self.ALPHAT0 self.PSI0 self.X0 self.Y0 self.V0];
+			f = [self.X0 self.Y0 self.PSI0 self.V0 self.ALPHAT0 self.dPSI0];
 		end
 
 		function value = get.mT(self)

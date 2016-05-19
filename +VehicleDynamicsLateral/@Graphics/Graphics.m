@@ -47,9 +47,9 @@ classdef Graphics
             XT = XOUT(:,1);                 % Horizontal position [m]
             YT = XOUT(:,2);                 % Vertical position [m]
             PSI = XOUT(:,3);                % Vehicle yaw angle [rad]
-            dPSI = XOUT(:,4);               % Yaw rate [rad/s]
-            VT = XOUT(:,5);                 % Vehicle CG velocity [m/s]
-            ALPHAT = XOUT(:,6);             % Vehicle side slip angle [rad]
+            VT = XOUT(:,4);                 % Vehicle CG velocity [m/s]
+            ALPHAT = XOUT(:,5);             % Vehicle side slip angle [rad]
+            dPSI = XOUT(:,6);               % Yaw rate [rad/s]
 
             % Distances
             a = self.vehicle.a;        % Distance FT [m]
@@ -387,9 +387,9 @@ classdef Graphics
             XT = XOUT(:,1);                 % Horizontal position [m]
             YT = XOUT(:,2);                 % Vertical position [m]
             PSI = XOUT(:,3);                % Vehicle yaw angle [rad]
-            dPSI = XOUT(:,4);               % Yaw rate [rad/s]
-            VT = XOUT(:,5);                 % Vehicle CG velocity [m/s]
-            ALPHAT = XOUT(:,6);             % Vehicle side slip angle [rad]
+            VT = XOUT(:,4);                 % Vehicle CG velocity [m/s]
+            ALPHAT = XOUT(:,5);             % Vehicle side slip angle [rad]
+            dPSI = XOUT(:,6);               % Yaw rate [rad/s]
 
             % Distances
             a = self.vehicle.a;        % Distance FT [m]

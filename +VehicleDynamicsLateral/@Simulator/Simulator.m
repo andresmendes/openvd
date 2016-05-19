@@ -18,25 +18,30 @@ classdef Simulator<handle
 				[TOUT,XOUT] = ode45(@(t, estados) self.Vehicle.Model(t, estados), self.TSpan, self.Vehicle.getInitialState(), options);
 
 				% retrieve states exclusive to the articulated vehicle
-				self.dPHI = XOUT(:, 7);
-				self.PHI = XOUT(:, 8);
+                self.XT = XOUT(:, 1);
+                self.YT = XOUT(:, 2);
+                self.PSI = XOUT(:, 3);
+				self.PHI = XOUT(:, 4);
+                self.VEL = XOUT(:, 5);
+                self.ALPHAT = XOUT(:, 6);
+                self.dPSI = XOUT(:, 7);
+				self.dPHI = XOUT(:, 8);
 			else
 				[TOUT, XOUT] = ode45(@(t, estados) self.Vehicle.Model(t, estados), self.TSpan, self.Vehicle.getInitialState());
 
                 % Retrieving states post integration
-    			self.XT = XOUT(:, 4);
-    			self.YT = XOUT(:, 5);
+    			self.XT = XOUT(:, 1);
+    			self.YT = XOUT(:, 2);
     			self.PSI = XOUT(:, 3);
-    			self.VEL = XOUT(:, 6);
-    			self.ALPHAT = XOUT(:, 2);
-    			self.dPSI = XOUT(:, 1);
+    			self.VEL = XOUT(:, 4);
+    			self.ALPHAT = XOUT(:, 5);
+    			self.dPSI = XOUT(:, 6);
 			end
-
 
             % Graphics
             G = VehicleDynamicsLateral.Graphics(self.Vehicle);
-            G.Frame([self.XT self.YT self.PSI self.dPSI self.VEL self.ALPHAT],TOUT,0);
-            G.Animation([self.XT self.YT self.PSI self.dPSI self.VEL self.ALPHAT],TOUT,0);
+            G.Frame([self.XT self.YT self.PSI self.VEL self.ALPHAT self.dPSI],TOUT,0);
+            G.Animation([self.XT self.YT self.PSI self.VEL self.ALPHAT self.dPSI],TOUT,0);
 
         end
 	end
