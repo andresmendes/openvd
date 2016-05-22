@@ -14,7 +14,8 @@ classdef Simulator<handle
             % integration
             % if vehicle is articulated, adds mass matrix as an integration option
             if isa(self.Vehicle, 'VehicleDynamicsLateral.VehicleArticulated')
-                options = odeset('Mass', @self.Vehicle.MassMatrix);
+                fun = self.Vehicle;
+                options = odeset('Mass', @fun.MassMatrix);
                 [TOUT, XOUT] = ode45(@(t, estados) self.Vehicle.Model(t, estados), self.TSpan, self.Vehicle.getInitialState(), options);
 
                 % retrieve states exclusive to the articulated vehicle
@@ -39,7 +40,7 @@ classdef Simulator<handle
             end
 
             % TSpan and TOUT contain the same values, but the first is passed in columns, while the second is a vector
-            self.TSpan = TOUT
+            self.TSpan = TOUT;
         end
     end
 

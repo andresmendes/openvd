@@ -7,25 +7,25 @@ classdef (Abstract) VehicleSimple
     end
 
     properties
-        IT % Moment of inertia [kg * m2]
         mT % Vehicle total mass [kg]
-        g % Gravity
+        IT % Moment of inertia [kg * m2]
         a % [m]
         b % [m]
+        g % Gravity
         mF0 % Vehicle frontal mass [kg]
         mR0 % Vehicle rear mass [kg]
-        deltaf % Steering angle [rad]
         lT % [m]
         nF % Number of front tires
         nR % Number of rear tires
+        deltaf % Steering angle [rad]
         wT % Width [m]
         muy % Operational friction coefficient
-        dPSI0 % Initial yaw rate [rad/s]
-        ALPHAT0 % Initial side slip angle [rad]
-        PSI0 % Initial yaw angle [rad]
         X0 % Initial CG horizontal position [m]
         Y0 % Initial CG vertical position [m]
+        PSI0 % Initial yaw angle [rad]
         V0 % Initial CG velocity [m/s]
+        ALPHAT0 % Initial side slip angle [rad]
+        dPSI0 % Initial yaw rate [rad/s]
         tire % Tire model
     end
 

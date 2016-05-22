@@ -28,7 +28,7 @@ classdef (Abstract) VehicleArticulated  < VehicleDynamicsLateral.VehicleSimple
     methods
         function f = getInitialState(self)
             % Transforms properties into a vector so it can be used by the integrator
-            f = [self.dPSI0 self.ALPHAT0 self.PSI0 self.X0 self.Y0 self.V0 self.dPHI0 self.PHI0];
+            f = [self.X0 self.Y0 self.PSI0 self.PHI0 self.V0 self.ALPHAT0 self.dPSI0 self.dPHI0];
         end
 
         function value = get.A(self)

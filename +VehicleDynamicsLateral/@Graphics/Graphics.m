@@ -37,7 +37,7 @@ classdef Graphics
             % col = 6 -> simples
             % col = 8 -> articulado
 
-            articulated = isa(self.Simulator.Vehicle, 'VehicleDynamicsLateral.VehicleArticulated')
+            articulated = isa(self.Simulator.Vehicle, 'VehicleDynamicsLateral.VehicleArticulated');
 
             % States
             TOUT = self.Simulator.TSpan;

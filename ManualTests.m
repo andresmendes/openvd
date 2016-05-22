@@ -49,7 +49,21 @@ truck.PHI0 = 0;                   % Initial articulation angle [rad]
 truck.PSI0 = 0;                   % Initial tractor yaw angle [rad]
 truck.X0 = 0;                     % Initial tractor CG horizontal position [m]
 truck.Y0 = 0;                     % Initial tractor CG vertical position [m]
-truck.tire = VehicleDynamicsLateral.TirePolynomial;
-
+truck.tire = VehicleDynamicsLateral.TirePacejka1989;
+%
 simulator = VehicleDynamicsLateral.Simulator(truck, TSPAN);
 simulator.Simulate();
+
+% Retrieving states
+XT = simulator.XT;
+YT = simulator.YT;
+PSI = simulator.PSI;
+PHI = simulator.PHI;
+VEL = simulator.VEL;
+ALPHAT = simulator.ALPHAT;
+dPSI = simulator.dPSI;
+dPHI = simulator.dPHI;
+
+g = VehicleDynamicsLateral.Graphics(simulator);
+g.Frame(0);
+g.Animation(0);

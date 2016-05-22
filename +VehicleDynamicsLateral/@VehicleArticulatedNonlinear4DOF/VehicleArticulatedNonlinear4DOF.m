@@ -54,6 +54,8 @@ classdef VehicleArticulatedNonlinear4DOF < VehicleDynamicsLateral.VehicleArticul
             % Dados do ve�culo
             mT = self.mT;       % massa do veiculo [kg]
             mS = self.mS;       % massa do veiculo [kg]
+            IT = self.IT;       % massa do veiculo [kg]
+            IS = self.IS;       % massa do veiculo [kg]
             a = self.a;        % distancia do eixo dianteiro ao centro de massa do caminh�o-trator [m]
             b = self.b;        % distancia do eixo traseiro ao centro de massa do caminh�o-trator [m]
             c = self.c;         % distancia da articula��o ao centro de massa do caminh�o-trator [m]
@@ -70,18 +72,18 @@ classdef VehicleArticulatedNonlinear4DOF < VehicleDynamicsLateral.VehicleArticul
             muy = self.muy;      % Coeficiente de atrito de opera��o
 
             % Defini��o dos estados
-            dPSI = estados(1,1);        % Velocidade angular do caminh�o-trator [rad/s]
-            ALPHAT = estados(2,1);      % �ngulo de deriva do CG do caminh�o-trator [rad]
-            dPHI = estados(3,1);        % Velocidade angular relativa entre o semirreboque e o caminh�o-trator [rad/s]
-            VEL = estados(4,1);         % �ngulo relativo entre o semirreboque e o caminh�o-trator [rad]
-            PHI = estados(5,1);         % M�dulo do vetor velocidade do CG do caminh�o-trator [m/s]
-            PSI = estados(6,1);         % �ngulo de orienta��o do caminh�o-trator [rad]
+            PSI = estados(3,1);               % �ngulo de orienta��o do caminh�o-trator [rad]
+            PHI = estados(4,1);         % M�dulo do vetor velocidade do CG do caminh�o-trator [m/s]
+            VT = estados(5,1);         % �ngulo relativo entre o semirreboque e o caminh�o-trator [rad]
+            ALPHAT = estados(6,1);      % �ngulo de deriva do CG do caminh�o-trator [rad]
+            dPSI = estados(7,1);              % Velocidade angular do caminh�o-trator [rad/s]
+            dPHI = estados(8,1);              % Velocidade angular relativa entre o semirreboque e o caminh�o-trator [rad/s]
 
             % Angulos de deriva n�o linear
-            ALPHAF = atan2((a * dPSI + VEL * sin(ALPHAT)),(VEL * cos(ALPHAT))) - deltaf;
-            ALPHAR = atan2((-b * dPSI + VEL * sin(ALPHAT)),(VEL * cos(ALPHAT)));
-            ALPHAM = atan2(((d + e)*(dPHI - dPSI) + VEL * sin(ALPHAT + PHI) - b * dPSI * cos(PHI) - ...
-                     c * dPSI * cos(PHI)),(VEL * cos(ALPHAT + PHI) + b * dPSI * sin(PHI) + c * dPSI * sin(PHI)));
+            ALPHAF = atan2((a * dPSI + VT * sin(ALPHAT)),(VT * cos(ALPHAT))) - deltaf;
+            ALPHAR = atan2((-b * dPSI + VT * sin(ALPHAT)),(VT * cos(ALPHAT)));
+            ALPHAM = atan2(((d + e)*(dPHI - dPSI) + VT * sin(ALPHAT + PHI) - b * dPSI * cos(PHI) - ...
+                     c * dPSI * cos(PHI)),(VT * cos(ALPHAT + PHI) + b * dPSI * sin(PHI) + c * dPSI * sin(PHI)));
 
             % For�as longitudinais
             FxF = 0;
@@ -92,36 +94,27 @@ classdef VehicleArticulatedNonlinear4DOF < VehicleDynamicsLateral.VehicleArticul
             FyR = nR * self.tire.Characteristic(ALPHAR, FzR/nR, muy);
             FyM = nM * self.tire.Characteristic(ALPHAM, FzM/nM, muy);
 
-            % ddPSI, dALPHAT, ddPHI, dPHI, dVEL
-            f1 = FxR + FxF * cos(deltaf) + FxM * cos(PHI) - FyF * sin(deltaf) + FyM * sin(PHI) - b * dPSI^2 * mS - c * dPSI^2 * mS + VEL * dPSI * mS * sin(ALPHAT) ...
-                    + VEL * dPSI * mT * sin(ALPHAT) - d * dPHI^2 * mS * cos(PHI) - d * dPSI^2 * mS * cos(PHI) + 2 * d * dPHI * dPSI * mS * cos(PHI);
-            f2 = FyR + FyF * cos(deltaf) + FyM * cos(PHI) + FxF * sin(deltaf) - FxM * sin(PHI) - VEL * dPSI * mS * cos(ALPHAT) - VEL * dPSI * mT * cos(ALPHAT) + ...
-                 d * dPHI^2 * mS * sin(PHI) + d * dPSI^2 * mS * sin(PHI) - 2 * d * dPHI * dPSI * mS * sin(PHI);
-            f3 = a*(FyF * cos(deltaf) + FxF * sin(deltaf)) - FyR * b - (b + c)*(d * mS * sin(PHI)*dPHI^2 - 2 * d * mS * sin(PHI)*dPHI * dPSI + d * mS * sin(PHI)*dPSI^2 - ...
-                 VEL * mS * cos(ALPHAT)*dPSI + FyM * cos(PHI) - FxM * sin(PHI));
-            f4 = d*(b * dPSI^2 * mS * sin(PHI) - FyM + c * dPSI^2 * mS * sin(PHI) + VEL * dPSI * mS * cos(ALPHAT + PHI)) - FyM * e;
-            f5 = dPHI;
+            f = [...
+            VT*cos(PSI+ALPHAT);...
+            VT*sin(PSI+ALPHAT);...
+            dPSI;...
+            dPHI;...
+            - FyF*sin(PSI + deltaf) - FyR*sin(PSI) - FyM*sin(PSI - PHI) - mS*(b+c)*dPSI^2*cos(PSI) - mS*d*(dPSI - dPHI)^2*cos(PSI - PHI) + (mT + mS)*VT*sin(PSI+ALPHAT)*dPSI;...
+            FyF*cos(PSI + deltaf) + FyR*cos(PSI) + FyM*cos(PSI - PHI) - mS*(b+c)*dPSI^2*sin(PSI) - mS*d*(dPSI - dPHI)^2*sin(PSI - PHI) - (mT + mS)*VT*cos(PSI+ALPHAT)*dPSI;...
+            FyF*a*cos(deltaf) - FyR*b - FyM*((b+c)*cos(PHI) + (d+e)) - mS*(b+c)*d*(dPSI - dPHI)^2*sin(PHI) + mS*(b+c)*d*dPSI^2*sin(PHI) + mS*((b+c)*VT*cos(ALPHAT) + d*VT*cos(ALPHAT + PHI))*dPSI;...
+            FyM*(d + e) - mS*(b+c)*d*dPSI^2*sin(PHI) - mS*d*VT*cos(ALPHAT + PHI)*dPSI ];
 
-            f = [f1 ; f2 ; f3 ; f4 ; f5];
-
-            % Equa��es adicionais para o posicionamento (N�o necess�rias para a din�mica em guinada)
-            dx6 = dPSI;
-            dx7 = VEL * cos(ALPHAT + PSI); % X
-            dx8 = VEL * sin(ALPHAT + PSI); % Y
-
-            dx = [f;...
-                  dx6;...
-                  dx7;...
-                  dx8];
+            dx = f;
         end
 
         %% Matriz de massa
         %
-
         function M = MassMatrix(self,~,estados)
-            % Dados do ve�culo
+            % Vehicle Parameters
             mT = self.mT;       % massa do veiculo [kg]
             mS = self.mS;       % massa do veiculo [kg]
+            IT = self.IT;       % massa do veiculo [kg]
+            IS = self.IS;       % massa do veiculo [kg]
             a = self.a;        % distancia do eixo dianteiro ao centro de massa do caminh�o-trator [m]
             b = self.b;        % distancia do eixo traseiro ao centro de massa do caminh�o-trator [m]
             c = self.c;         % distancia da articula��o ao centro de massa do caminh�o-trator [m]
@@ -137,39 +130,40 @@ classdef VehicleArticulatedNonlinear4DOF < VehicleDynamicsLateral.VehicleArticul
             FzM = self.mM * g;   % Carga vertical no eixo do semirreboque [N]
             muy = self.muy;      % Coeficiente de atrito de opera��o
 
-            % Defini��o dos estados
-            % dPSI = estados(1,1);              % Velocidade angular do caminh�o-trator [rad/s]
-            ALPHAT = estados(2,1);      % �ngulo de deriva do CG do caminh�o-trator [rad]
-            % dPHI = estados(3,1);              % Velocidade angular relativa entre o semirreboque e o caminh�o-trator [rad/s]
-            VEL = estados(4,1);         % �ngulo relativo entre o semirreboque e o caminh�o-trator [rad]
-            PHI = estados(5,1);         % M�dulo do vetor velocidade do CG do caminh�o-trator [m/s]
-            % PSI = estados(6,1);               % �ngulo de orienta��o do caminh�o-trator [rad]
-            % Matriz de massa
-            M11 = -d * mS * sin(PHI);
-            M12 = -VEL * sin(ALPHAT)*(mS + mT);
-            M13 =  d * mS * sin(PHI);
-            M14 = cos(ALPHAT)*(mS + mT);
-            M21 = -mS*(b + c + d * cos(PHI));
-            M22 = VEL * cos(ALPHAT)*(mS + mT);
-            M23 = d * mS * cos(PHI);
-            M24 = sin(ALPHAT)*(mS + mT);
-            M31 = IT + mS*(b + c)*(b + c + d * cos(PHI));
-            M32 = -VEL * mS * cos(ALPHAT)*(b + c);
-            M33 = -d * mS * cos(PHI)*(b + c);
-            M34 = -mS * sin(ALPHAT)*(b + c);
-            M41 = IS + d * mS*(d + cos(PHI)*(b + c));
-            M42 = -VEL * d * mS * cos(ALPHAT + PHI);
-            M43 = - mS * d^2 - IS;
-            M44 = -d * mS * sin(ALPHAT + PHI);
+            % States
+            PSI = estados(3,1);               % �ngulo de orienta��o do caminh�o-trator [rad]
+            PHI = estados(4,1);         % M�dulo do vetor velocidade do CG do caminh�o-trator [m/s]
+            VT = estados(5,1);         % �ngulo relativo entre o semirreboque e o caminh�o-trator [rad]
+            ALPHAT = estados(6,1);      % �ngulo de deriva do CG do caminh�o-trator [rad]
+            dPSI = estados(7,1);              % Velocidade angular do caminh�o-trator [rad/s]
+            dPHI = estados(8,1);              % Velocidade angular relativa entre o semirreboque e o caminh�o-trator [rad/s]
 
-            M = [M11 M12 M13 M14 0 0 0 0;...
-                 M21 M22 M23 M24 0 0 0 0;...
-                 M31 M32 M33 M34 0 0 0 0;...
-                 M41 M42 M43 M44 0 0 0 0;...
-                  0   0   0   0  1 0 0 0;...
-                  0   0   0   0  0 1 0 0;...
-                  0   0   0   0  0 0 1 0;...
-                  0   0   0   0  0 0 0 1];
+            % Matriz de massa
+            M55 = (mT + mS)*cos(PSI + ALPHAT);
+            M56 = -(mT + mS)*VT*sin(PSI + ALPHAT);
+            M57 = mS*( (b+c)*sin(PSI) + d*sin(PSI - PHI) );
+            M58 = -mS*d*sin(PSI - PHI);
+            M65 = (mT + mS)*sin(PSI + ALPHAT);
+            M66 = (mT + mS)*VT*cos(PSI + ALPHAT);
+            M67 = -mS*( (b+c)*cos(PSI) + d*cos(PSI - PHI) );
+            M68 = mS*d*cos(PSI - PHI);
+            M75 = -mS*( (b+c)*sin(ALPHAT) + d*sin(ALPHAT + PHI) );
+            M76 = -mS*( (b+c)*VT*cos(ALPHAT) + d*VT*cos(ALPHAT + PHI) );
+            M77 = mS*( (b+c)^2 + 2*(b+c)*d*cos(PHI) + d^2 ) + IT + IS;
+            M78 = -( mS*( (b+c)*d*cos(PHI) + d^2 ) + IS);
+            M85 = mS*d*sin(ALPHAT + PHI);
+            M86 = mS*d*VT*cos(ALPHAT + PHI);
+            M87 = - (mS*(d^2 + (b+c)*d*cos(PHI)) + IS);
+            M88 = mS*d^2 + IS;
+
+            M = [   1 0 0 0  0   0   0   0 ;...
+                    0 1 0 0  0   0   0   0 ;...
+                    0 0 1 0  0   0   0   0 ;...
+                    0 0 0 1  0   0   0   0 ;...
+                    0 0 0 0 M55 M56 M57 M58 ;...
+                    0 0 0 0 M65 M66 M67 M68 ;...
+                    0 0 0 0 M75 M76 M77 M78 ;...
+                    0 0 0 0 M85 M86 M87 M88 ];
         end
     end
 end
