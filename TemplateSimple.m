@@ -27,7 +27,7 @@ V0 = 20;                    % Initial CG velocity [m/s]
 x0 = [dPSI0 ALPHAT0 PSI0 X0 Y0 V0];
 
 %% Tire parameters
-% Chosen tire: <TirePacejka1989.html TirePacejka1989.m>.
+% Chosen tire: <TirePacejka.html TirePacejka.m>.
 %
 
 a0 = 1.002806;
@@ -44,10 +44,10 @@ a10 = 0;
 a11 = 0;
 a12 = 0;
 a13 = 0;
-TireModel = VehicleDynamicsLateral.TirePacejka1989(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13);
+TireModel = VehicleDynamicsLateral.TirePacejka(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13);
 
 %% Vehicle parameters
-% Chosen Vehicle: <VehicleSimpleNonlinear3DOF.html VehicleSimpleNonlinear3DOF.m>.
+% Chosen Vehicle: <VehicleSimpleNonlinear.html VehicleSimpleNonlinear.m>.
 
 mF0 = 700;                  % mass over front axle [kg]
 mR0 = 600;                  % mass over rear axle [kg]
@@ -58,7 +58,7 @@ nF = 2;                     % number of tires in the front axle
 nR = 2;                     % number of tires in the rear axle
 wT = 2;                     % width [m]
 muy = 0.8;                  % coefficient of operation friction
-System = VehicleDynamicsLateral.VehicleSimpleNonlinear3DOF(IT, mF0, mR0, deltaf, lT, nF, nR, wT, muy, TireModel);
+System = VehicleDynamicsLateral.VehicleSimpleNonlinear(IT, mF0, mR0, deltaf, lT, nF, nR, wT, muy, TireModel);
 
 %% Integration
 [TOUT, XOUT] = ode45(@(t, estados) System.Model(t, estados),TSPAN, x0);

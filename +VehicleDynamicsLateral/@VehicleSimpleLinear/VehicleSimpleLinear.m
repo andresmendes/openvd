@@ -19,9 +19,9 @@
 %% Code
 %
 
-classdef VehicleSimpleLinear2DOF < VehicleDynamicsLateral.VehicleSimple
+classdef VehicleSimpleLinear < VehicleDynamicsLateral.VehicleSimple
     methods
-        function self = VehicleSimpleLinear2DOF()
+        function self = VehicleSimpleLinear()
             % Constructor for the vehicle
             self.mF0 = 700;
             self.mR0 = 600;
@@ -86,5 +86,5 @@ end
 
 %% See Also
 %
-% <index.html Index> | <VehicleArticulatedNonlinear4DOF.html VehicleArticulatedNonlinear4DOF>
+% <index.html Index> | <VehicleArticulatedNonlinear.html VehicleArticulatedNonlinear>
 %

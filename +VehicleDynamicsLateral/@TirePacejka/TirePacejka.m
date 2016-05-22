@@ -56,10 +56,10 @@
 %% Code
 %
 
-classdef TirePacejka1989 < VehicleDynamicsLateral.Tire
+classdef TirePacejka < VehicleDynamicsLateral.Tire
     methods
         % Constructor
-        function self = TirePacejka1989()
+        function self = TirePacejka()
             self.a0 = 1;
             self.a1 = 0;
             self.a2 = 700;

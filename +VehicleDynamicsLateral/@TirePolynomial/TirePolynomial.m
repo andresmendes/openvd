@@ -60,5 +60,5 @@ end
 %
 %% See Also
 %
-% <index.html Index> | <TireLinear.html Tire linear> | <TirePacejka1989.html Tire Pacejka 1989>
+% <index.html Index> | <TireLinear.html Tire linear> | <TirePacejka.html Tire Pacejka 1989>
 %

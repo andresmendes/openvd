@@ -30,7 +30,7 @@ x0 = [dPSI0 ALPHAT0 dPHI0 VEL0 PHI0 PSI0 X0 Y0];
 %% Default models and parameters
 % Defining the model of the vehicle without passing any argument the default parameters and models are used.
 
-System = VehicleDynamicsLateral.VehicleArticulatedNonlinear4DOF;
+System = VehicleDynamicsLateral.VehicleArticulatedNonlinear;
 
 %% Integration
 % Integration using mass matrix. Details: <http://www.mathworks.com/help/matlab/ref/ode45.html?searchHighlight=%22mass%20matrix%22 ode45 (Mass matrix)>

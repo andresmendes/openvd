@@ -32,7 +32,7 @@ import VehicleDynamicsLateral.*
 %
 % * <TireLinear.html Linear Tire>
 % * <TirePolynomial.html Polynomial Tire>
-% * <TirePacejka1989.html Pacejka 1989 Tire>
+% * <TirePacejka.html Pacejka 1989 Tire>
 %
 % Academic:
 %
@@ -45,10 +45,10 @@ import VehicleDynamicsLateral.*
 %
 % Vehicle model:
 %
-% * <VehicleSimpleLinear2DOF.html Vehicle Simple Linear 2 DOF>
-% * <VehicleSimpleNonlinear3DOF.html Vehicle Simple Nonlinear 3 DOF>
+% * <VehicleSimpleLinear.html Vehicle Simple Linear 2 DOF>
+% * <VehicleSimpleNonlinear.html Vehicle Simple Nonlinear 3 DOF>
 % * <VehicleArticulatedLinear4DOF.html Vehicle Articulated Linear 3 DOF> (Pendente)
-% * <VehicleArticulatedNonlinear4DOF.html Vehicle Articulated Nonlinear 4 DOF>
+% * <VehicleArticulatedNonlinear.html Vehicle Articulated Nonlinear 4 DOF>
 %
 % Other: <VehicleSimple.html Vehicle Simple (Abstract)> | <VehicleArticulated.html Vehicle Articulated (Abstract)>
 %

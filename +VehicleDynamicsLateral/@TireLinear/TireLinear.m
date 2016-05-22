@@ -46,5 +46,5 @@ end
 
 %% See Also
 %
-% <index.html Index> | <TirePolynomial.html Polynomial Tire> | <TirePacejka1989.html Pacejka 1989 Tire>
+% <index.html Index> | <TirePolynomial.html Polynomial Tire> | <TirePacejka.html Pacejka 1989 Tire>
 %

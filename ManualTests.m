@@ -7,15 +7,15 @@ resol = 50;                 % Resolution
 TSPAN = 0:T/resol:T;        % Time span [s]
 
 %% Tire parameters
-% Chosen tire: <TirePacejka1989.html TirePacejka1989.m>.
+% Chosen tire: <TirePacejka.html TirePacejka.m>.
 %
 
-TireModel = VehicleDynamicsLateral.TirePacejka1989();
+TireModel = VehicleDynamicsLateral.TirePacejka();
 
 %% Vehicle parameters
-% Chosen Vehicle: <VehicleSimpleNonlinear3DOF.html VehicleSimpleNonlinear3DOF.m>.
+% Chosen Vehicle: <VehicleSimpleNonlinear.html VehicleSimpleNonlinear.m>.
 
-System = VehicleDynamicsLateral.VehicleSimpleNonlinear3DOF();
+System = VehicleDynamicsLateral.VehicleSimpleNonlinear();
 System.tire = TireModel;
 % Initial conditions
 System.dPSI0 = 0.7;                % Initial yaw rate [rad/s]
@@ -40,7 +40,7 @@ dPSI = simulator.dPSI;
 % g.Frame(0);
 % g.Animation(0);
 
-truck = VehicleDynamicsLateral.VehicleArticulatedNonlinear4DOF;
+truck = VehicleDynamicsLateral.VehicleArticulatedNonlinear;
 truck.dPSI0 = 0.25;               % Initial tractor yaw rate [rad/s]
 truck.ALPHAT0 = 0.3;              % Initial tractor side slip angle [rad]
 truck.dPHI0 = truck.dPSI0;        % Initial articulation rate [rad/s]
@@ -49,7 +49,7 @@ truck.PHI0 = 0;                   % Initial articulation angle [rad]
 truck.PSI0 = 0;                   % Initial tractor yaw angle [rad]
 truck.X0 = 0;                     % Initial tractor CG horizontal position [m]
 truck.Y0 = 0;                     % Initial tractor CG vertical position [m]
-truck.tire = VehicleDynamicsLateral.TirePacejka1989;
+truck.tire = VehicleDynamicsLateral.TirePacejka;
 %
 simulator = VehicleDynamicsLateral.Simulator(truck, TSPAN);
 simulator.Simulate();

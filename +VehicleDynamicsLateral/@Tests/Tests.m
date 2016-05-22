@@ -10,15 +10,15 @@ classdef Tests < matlab.unittest.TestCase
             TSPAN = 0:T/resol:T;        % Time span [s]
 
             %% Tire parameters
-            % Chosen tire: <TirePacejka1989.html TirePacejka1989.m>.
+            % Chosen tire: <TirePacejka.html TirePacejka.m>.
             %
 
-            TireModel = VehicleDynamicsLateral.TirePacejka1989();
+            TireModel = VehicleDynamicsLateral.TirePacejka();
 
             %% Vehicle parameters
-            % Chosen Vehicle: <VehicleSimpleNonlinear3DOF.html VehicleSimpleNonlinear3DOF.m>.
+            % Chosen Vehicle: <VehicleSimpleNonlinear.html VehicleSimpleNonlinear.m>.
 
-            System = VehicleDynamicsLateral.VehicleSimpleNonlinear3DOF();
+            System = VehicleDynamicsLateral.VehicleSimpleNonlinear();
             System.tire = TireModel;
 
             % Initial conditions

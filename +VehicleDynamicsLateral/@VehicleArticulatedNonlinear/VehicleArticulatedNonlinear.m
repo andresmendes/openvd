@@ -24,10 +24,10 @@
 %% Code
 %
 
-classdef VehicleArticulatedNonlinear4DOF < VehicleDynamicsLateral.VehicleArticulated
+classdef VehicleArticulatedNonlinear < VehicleDynamicsLateral.VehicleArticulated
     methods
         % Constructor
-        function self = VehicleArticulatedNonlinear4DOF()
+        function self = VehicleArticulatedNonlinear()
             self.mF0 = 5200;
             self.mR0 = 2400;
             self.mF = 6000;
@@ -171,5 +171,5 @@ end
 
 %% See Also
 %
-% <index.html Index> | <VehicleSimpleNonlinear3DOF.html VehicleSimpleNonlinear3DOF>
+% <index.html Index> | <VehicleSimpleNonlinear.html VehicleSimpleNonlinear>
 %
