@@ -40,7 +40,7 @@ dPSI = simulator.dPSI;
 % g.Frame(0);
 % g.Animation(0);
 
-truck = VehicleDynamicsLateral.VehicleArticulatedNonlinear;
+truck = VehicleDynamicsLateral.VehicleArticulatedLinear;
 truck.dPSI0 = 0.25;               % Initial tractor yaw rate [rad/s]
 truck.ALPHAT0 = 0.3;              % Initial tractor side slip angle [rad]
 truck.dPHI0 = truck.dPSI0;        % Initial articulation rate [rad/s]
@@ -50,7 +50,7 @@ truck.PSI0 = 0;                   % Initial tractor yaw angle [rad]
 truck.X0 = 0;                     % Initial tractor CG horizontal position [m]
 truck.Y0 = 0;                     % Initial tractor CG vertical position [m]
 truck.tire = VehicleDynamicsLateral.TirePacejka;
-%
+
 simulator = VehicleDynamicsLateral.Simulator(truck, TSPAN);
 simulator.Simulate();
 
