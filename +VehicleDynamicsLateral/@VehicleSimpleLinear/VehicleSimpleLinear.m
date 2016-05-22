@@ -38,10 +38,10 @@ classdef VehicleSimpleLinear < VehicleDynamicsLateral.VehicleSimple
         % Function with the model
         function dx = Model(self, ~, estados)
             % Data
-            m = self.mT;
-            Iz = self.IT;
-            lf = self.a;
-            lr = self.b;
+            mT = self.mT;
+            IT = self.IT;
+            a = self.a;
+            b = self.b;
             nF = self.nF;
             nR = self.nR;
             muy = self.muy;
@@ -52,34 +52,37 @@ classdef VehicleSimpleLinear < VehicleDynamicsLateral.VehicleSimple
             FzF = self.mF0 * g;       % Vertical load @ F [N]
             FzR = self.mR0 * g;       % Vertical load @ R [N]
 
-            vx = 20;                  % [m/s]
+            v0 = 20;                  % [m/s]
 
-            % States
-            vy = estados(1);
-            r = estados(2);
-            PSI = estados(3);
+            % State variables
+            % X = estados(1,1);         % Not used
+            % Y = estados(2,1);         % Not used
+            PSI     = estados(3,1);
+            VT       = estados(4,1);
+            ALPHAT  = estados(5,1);
+            dPSI    = estados(6,1);
 
             % Slip angles
-            alphaf = - deltaf + (vy + lf * r) / vx;    % Front
-            alphar = (vy - lr * r)/vx;                   % Rear
+            ALPHAF = ALPHAT + a/v0*dPSI - deltaf;
+            ALPHAR = ALPHAT - b/v0*dPSI;
+
+            % Longitudinal forces
+            FxF = 0;
+            FxR = 0;
+            FxM = 0;
 
             % Lateral force
-            Fyf = nF * self.tire.Characteristic(alphaf, FzF / nF, muy);
-            Fyr = nR * self.tire.Characteristic(alphar, FzR / nR, muy);
+            FyF = nF * self.tire.Characteristic(ALPHAF, FzF / nF, muy);
+            FyR = nR * self.tire.Characteristic(ALPHAR, FzR / nR, muy);
 
             % State equations
-            dvy = (Fyf * cos(deltaf) + Fyr - m * vx * r) / m;
-            dr = (lf * Fyf * cos(deltaf) - lr * Fyr)/Iz;
+            dx(1,1) = VT;
+            dx(2,1) = v0*(PSI + ALPHAT);
+            dx(3,1) = dPSI;
+            dx(4,1) = (FxF + FxR)/mT;
+            dx(5,1) = (FyF + FyR)/(mT*v0) - dPSI;
+            dx(6,1) = (a*FyF - b*FyR)/IT;
 
-            % State derivative
-            dx(1,1) = dvy;
-            dx(2,1) = dr;
-
-            ALPHAT = asin(vy / vx);
-            % Additional states for trajectory
-            dx(3,1) = r; % dPSI
-            dx(4,1) = vx * cos(ALPHAT + PSI); % X
-            dx(5,1) = vx * sin(ALPHAT + PSI); % Y
         end
     end
 end

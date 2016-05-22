@@ -28,4 +28,4 @@ dPHI = simulator.dPHI;
 
 g = VehicleDynamicsLateral.Graphics(simulator);
 g.Frame(0);
-% g.Animation(0);
+g.Animation(0);
