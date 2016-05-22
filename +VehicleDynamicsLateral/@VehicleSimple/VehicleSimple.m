@@ -20,20 +20,10 @@ classdef (Abstract) VehicleSimple
         deltaf % Steering angle [rad]
         wT % Width [m]
         muy % Operational friction coefficient
-        X0 % Initial CG horizontal position [m]
-        Y0 % Initial CG vertical position [m]
-        PSI0 % Initial yaw angle [rad]
-        V0 % Initial CG velocity [m/s]
-        ALPHAT0 % Initial side slip angle [rad]
-        dPSI0 % Initial yaw rate [rad/s]
         tire % Tire model
     end
 
     methods
-        function f = getInitialState(self)
-            % Transforms properties into a vector so it can be used by the integrator
-            f = [self.X0 self.Y0 self.PSI0 self.V0 self.ALPHAT0 self.dPSI0];
-        end
 
         function value = get.mT(self)
             value = self.mF0 + self.mR0;
