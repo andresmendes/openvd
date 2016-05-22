@@ -375,7 +375,7 @@ classdef Graphics
 
 
         function Frame(self, saveit)
-            articulated = isa(self.Simulator.Vehicle, 'VehicleDynamicsLateral.VehicleArticulated')
+            articulated = isa(self.Simulator.Vehicle, 'VehicleDynamicsLateral.VehicleArticulated');
 
             % States
             TOUT = self.Simulator.TSpan;
