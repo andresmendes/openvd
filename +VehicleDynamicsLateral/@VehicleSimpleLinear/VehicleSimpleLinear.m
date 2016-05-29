@@ -1,25 +1,8 @@
-%% Nonlinear 2 DOF Simple Vehicle
-% Nonlinear bicycle model with 2 degrees of freedom.
-%
-%% Sintax
-% |dx = _VehicleModel_.Model(~,estados)|
-%
-%% Arguments
-% The following table describes the input arguments:
-%
-% <html> <table border=1 width="97%">
-% <tr> <td width="30%"><tt>estados</tt></td> <td width="70%">Estados do modelo: [dPSI ALPHAT PSI XT YT VEL]</td> </tr>
-% </table> </html>
-%
-%% Description
-% The center of gravity of the vehicle is located at the point $T$. The front and rear axles are located ate the points $F$ and $R$, respectively. The constant $a$ measures the distance of point $F$ to $T$ and $b$ the distance of point $T$ to $R$. The angles $\alpha_F$ e $\alpha_R$ are the front and rear slip angles, respectively. $\alpha_T$ is the vehicle side slip angle and $\psi$ is the vehicle yaw angle. $\delta$ is the steering angle.
-%
-% <<illustrations/modeloSimples.svg>>
-%
-%% Code
-%
-
 classdef VehicleSimpleLinear < VehicleDynamicsLateral.VehicleSimple
+    % VehicleSimpleLinear Linear simple vehicle model.
+    %
+    % It inherits properties from VehicleSimple.
+
     methods
         function self = VehicleSimpleLinear()
             % Constructor for the vehicle
@@ -69,7 +52,6 @@ classdef VehicleSimpleLinear < VehicleDynamicsLateral.VehicleSimple
             % Longitudinal forces
             FxF = 0;
             FxR = 0;
-            FxM = 0;
 
             % Lateral force
             FyF = nF * self.tire.Characteristic(ALPHAF, FzF / nF, muy);
@@ -86,8 +68,3 @@ classdef VehicleSimpleLinear < VehicleDynamicsLateral.VehicleSimple
         end
     end
 end
-
-%% See Also
-%
-% <index.html Index> | <VehicleArticulatedNonlinear.html VehicleArticulatedNonlinear>
-%

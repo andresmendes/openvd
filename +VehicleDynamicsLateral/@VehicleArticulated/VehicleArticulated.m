@@ -1,36 +1,37 @@
-%% Ve�culo articulado (Abstract)
-%
-
 classdef (Abstract) VehicleArticulated  < VehicleDynamicsLateral.VehicleSimple
-    % VehicleArticulated Articulated vehicle abstract class. It inherits properties from VehicleSimple and has additional properties related to the semitrailer.
+    % VehicleArticulated Articulated vehicle abstract class.
+    %
+    % Abstract class representing an articulated vehicle. It inherits properties from VehicleSimple and has additional properties related to the semitrailer.
+    %
+    % Extend this class in order to create a new vehicle model to be used with the simulator.
 
     methods(Abstract)
         % MassMatrix(self, t, estados)
     end
 
     properties
-        mF
-        mR
-        mM
-        IS
-        nM % Number of tires on semitrailer axle
-        wS % semitrailer width [m]
-        lS % Distance from joint to semitrailer axle [m]
-        c % Distance from joint to rear axle of the tractor (A-R) [m]
-        d
-        e
-        A
-        mS
+        mF % Mass over the front axle when the semitrailer is coupled [kg]
+        mR % Mass over the rear axle when the semitrailer is coupled [kg]
+        mM % Mass over the semitrailer axle when the semitrailer is coupled [kg]
+        mA % Mass over the articulation point when the semitrailer is coupled [kg]
+        mS % Mass of the semitrailer [kg]
+        IS % Moment of inertia of the semitrailer [kg.m2]
+        nM % Number of tires in semitrailer axle
+        wS % Track of the semitrailer [m]
+        lS % Distance from articulation to semitrailer axle (A-M) [m]
+        c % Distance from rear axle of the tractor to articulation (R-A) [m]
+        d % Distance from articulation to semitrailer center of mass (A-M) [m]
+        e % Distance from semitrailer center of mass to semitrailer axle (A-M) [m]
     end
 
     methods
 
-        function value = get.A(self)
+        function value = get.mA(self)
             value = self.mF * self.g + self.mR * self.g - self.mT * self.g;
         end
 
         function value = get.mS(self)
-            value = (self.A + self.mM * self.g)/self.g;
+            value = (self.mA + self.mM * self.g)/self.g;
         end
 
         function value = get.d(self)
@@ -42,8 +43,3 @@ classdef (Abstract) VehicleArticulated  < VehicleDynamicsLateral.VehicleSimple
         end
     end
 end
-
-%% See Also
-%
-% <index.html Index> | <VehicleSimple.html VehicleSimple>
-%

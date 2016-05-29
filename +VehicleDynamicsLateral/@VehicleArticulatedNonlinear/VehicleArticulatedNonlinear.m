@@ -1,30 +1,8 @@
-%%  Nonlinear 4 DOF articulated vehicle model
-%
-%% Sintax
-% |dx = _VehicleModel_.Model(~,estados)|
-%
-%% Arguments
-% The following table describes the input arguments:
-%
-% <html> <table border=1 width="97%">
-% <tr> <td width="30%"><tt>estados</tt></td> <td width="70%">Estados do modelo: [dPSI ALPHAT dPHI VEL PHI PSI XT YT]</td> </tr>
-% </table> </html>
-%
-%% Description
-% O �ngulo $\psi$ define a orienta��o do caminh�o-trator em rela��o ao referencial inercial. O estado $\phi$ � o �ngulo formado entre o caminh�o-trator e o semirreboque. O �ngulo $\alpha_T$ � o �ngulo de deriva do m�dulo dianteiro e � formado pelo vetor velocidade do centro de massa e a linha longitudinal do caminh�o-trator. Por fim, $v$ � o m�dulo do vetor velocidade do centro de massa do caminh�o-trator. Os pontos $T$ e $S$ s�o coincidentes com os centros de massa do caminh�o-trator e semirreboque, respectivamente. Os pontos F e R s�o coincidentes com os eixos dianteiro e traseiro do caminh�o-trator, respectivamente. M � o ponto que representa o eixo do semirreboque e A � o ponto de articula��o ente as duas unidades. As grandezas a, b e c da unidade motora s�o as dist�ncias entre os pontos F-T, T-R e R-A, respectivamente. Na unidade movida, d e e definem as dist�ncias entre os pontos A-S e S-M, respectivamente.
-%
-% <<illustrations/modeloArticulado.svg>>
-%
-% Este modelo � escrito na forma:
-%
-% $$ M(x) \dot{x} = f(x)$$
-%
-% Onde $x$ � o vetor de estados, $M(x)$ � a matriz de massa do sistema e $f(x)$ � uma fun��o vetorial n�o linear. Logo, � necess�ria uma fun��o que permita a integra��o do sistema com a matriz de massa escrita explicitamente. Uma op��o � utilizar a fun��o _ode45_. Details: <http://www.mathworks.com/help/matlab/ref/ode45.html?searchHighlight=%22mass%20matrix%22 ode45 (Mass matrix)>
-%
-%% Code
-%
-
 classdef VehicleArticulatedNonlinear < VehicleDynamicsLateral.VehicleArticulated
+    % VehicleArticulatedNonlinear Nonlinear articulated vehicle model.
+    %
+    % It inherits properties from VehicleArticulated.
+
     methods
         % Constructor
         function self = VehicleArticulatedNonlinear()
@@ -48,48 +26,46 @@ classdef VehicleArticulatedNonlinear < VehicleDynamicsLateral.VehicleArticulated
             self.g = 9.81;
         end
 
-        %% Model
-        % Fun��o com as equa��es de estado do modelo
         function dx = Model(self, ~, estados)
-            % Dados do ve�culo
-            mT = self.mT;       % massa do veiculo [kg]
-            mS = self.mS;       % massa do veiculo [kg]
-            IT = self.IT;       % massa do veiculo [kg]
-            IS = self.IS;       % massa do veiculo [kg]
-            a = self.a;        % distancia do eixo dianteiro ao centro de massa do caminh�o-trator [m]
-            b = self.b;        % distancia do eixo traseiro ao centro de massa do caminh�o-trator [m]
-            c = self.c;         % distancia da articula��o ao centro de massa do caminh�o-trator [m]
-            d = self.d;        % distancia do eixo traseiro ao centro de massa do caminh�o-trator [m]
-            e = self.e;        % distancia da articula��o ao centro de massa do caminh�o-trator [m]
-            deltaf = self.deltaf;     % Ester�amento [rad]
-            nF = self.nF;       % N�mero de tires no eixo dianteiro do caminh�o-trator
-            nR = self.nR;       % N�mero de tires no eixo traseiro do caminh�o-trator
-            nM = self.nM;       % N�mero de tires no eixo do semirreboque
-            g = self.g;                   % Gravity acceleration [m/s^2]
-            FzF = self.mF * g;   % Carga vertical no eixo dianteiro [N]
-            FzR = self.mR * g;   % Carga vertical no eixo traseiro [N]
-            FzM = self.mM * g;   % Carga vertical no eixo do semirreboque [N]
-            muy = self.muy;      % Coeficiente de atrito de opera��o
+            % Vehicle parameters
+            mT = self.mT;
+            mS = self.mS;
+            IT = self.IT;
+            IS = self.IS;
+            a = self.a;
+            b = self.b;
+            c = self.c;
+            d = self.d;
+            e = self.e;
+            deltaf = self.deltaf;
+            nF = self.nF;
+            nR = self.nR;
+            nM = self.nM;
+            g = self.g;
+            FzF = self.mF * g;
+            FzR = self.mR * g;
+            FzM = self.mM * g;
+            muy = self.muy;
 
-            % Defini��o dos estados
-            PSI = estados(3,1);               % �ngulo de orienta��o do caminh�o-trator [rad]
-            PHI = estados(4,1);         % M�dulo do vetor velocidade do CG do caminh�o-trator [m/s]
-            VT = estados(5,1);         % �ngulo relativo entre o semirreboque e o caminh�o-trator [rad]
-            ALPHAT = estados(6,1);      % �ngulo de deriva do CG do caminh�o-trator [rad]
-            dPSI = estados(7,1);              % Velocidade angular do caminh�o-trator [rad/s]
-            dPHI = estados(8,1);              % Velocidade angular relativa entre o semirreboque e o caminh�o-trator [rad/s]
+            % States
+            PSI = estados(3,1);
+            PHI = estados(4,1);
+            VT = estados(5,1);
+            ALPHAT = estados(6,1);
+            dPSI = estados(7,1);
+            dPHI = estados(8,1);
 
-            % Angulos de deriva n�o linear
+            % Slip angles
             ALPHAF = atan2((a * dPSI + VT * sin(ALPHAT)),(VT * cos(ALPHAT))) - deltaf;
             ALPHAR = atan2((-b * dPSI + VT * sin(ALPHAT)),(VT * cos(ALPHAT)));
             ALPHAM = atan2(((d + e)*(dPHI - dPSI) + VT * sin(ALPHAT + PHI) - b * dPSI * cos(PHI) - ...
                      c * dPSI * cos(PHI)),(VT * cos(ALPHAT + PHI) + b * dPSI * sin(PHI) + c * dPSI * sin(PHI)));
 
-            % For�as longitudinais
+            % Longitudinal forces
             FxF = 0;
             FxR = 0;
             FxM = 0;
-            % For�as laterais nos tires - Curva caracter�stica
+            % Lateral forces
             FyF = nF * self.tire.Characteristic(ALPHAF, FzF/nF, muy);
             FyR = nR * self.tire.Characteristic(ALPHAR, FzR/nR, muy);
             FyM = nM * self.tire.Characteristic(ALPHAM, FzM/nM, muy);
@@ -107,36 +83,34 @@ classdef VehicleArticulatedNonlinear < VehicleDynamicsLateral.VehicleArticulated
             dx = f;
         end
 
-        %% Matriz de massa
-        %
         function M = MassMatrix(self,~,estados)
             % Vehicle Parameters
-            mT = self.mT;       % massa do veiculo [kg]
-            mS = self.mS;       % massa do veiculo [kg]
-            IT = self.IT;       % massa do veiculo [kg]
-            IS = self.IS;       % massa do veiculo [kg]
-            a = self.a;        % distancia do eixo dianteiro ao centro de massa do caminh�o-trator [m]
-            b = self.b;        % distancia do eixo traseiro ao centro de massa do caminh�o-trator [m]
-            c = self.c;         % distancia da articula��o ao centro de massa do caminh�o-trator [m]
-            d = self.d;        % distancia do eixo traseiro ao centro de massa do caminh�o-trator [m]
-            e = self.e;        % distancia da articula��o ao centro de massa do caminh�o-trator [m]
-            deltaf = self.deltaf;     % Ester�amento [rad]
-            nF = self.nF;       % N�mero de tires no eixo dianteiro do caminh�o-trator
-            nR = self.nR;       % N�mero de tires no eixo traseiro do caminh�o-trator
-            nM = self.nM;       % N�mero de tires no eixo do semirreboque
-            g = self.g;                   % Gravity acceleration [m/s^2]
-            FzF = self.mF * g;   % Carga vertical no eixo dianteiro [N]
-            FzR = self.mR * g;   % Carga vertical no eixo traseiro [N]
-            FzM = self.mM * g;   % Carga vertical no eixo do semirreboque [N]
-            muy = self.muy;      % Coeficiente de atrito de opera��o
+            mT = self.mT;
+            mS = self.mS;
+            IT = self.IT;
+            IS = self.IS;
+            a = self.a;
+            b = self.b;
+            c = self.c;
+            d = self.d;
+            e = self.e;
+            deltaf = self.deltaf;
+            nF = self.nF;
+            nR = self.nR;
+            nM = self.nM;
+            g = self.g;
+            FzF = self.mF * g;
+            FzR = self.mR * g;
+            FzM = self.mM * g;
+            muy = self.muy;
 
             % States
-            PSI = estados(3,1);               % �ngulo de orienta��o do caminh�o-trator [rad]
-            PHI = estados(4,1);         % M�dulo do vetor velocidade do CG do caminh�o-trator [m/s]
-            VT = estados(5,1);         % �ngulo relativo entre o semirreboque e o caminh�o-trator [rad]
-            ALPHAT = estados(6,1);      % �ngulo de deriva do CG do caminh�o-trator [rad]
-            dPSI = estados(7,1);              % Velocidade angular do caminh�o-trator [rad/s]
-            dPHI = estados(8,1);              % Velocidade angular relativa entre o semirreboque e o caminh�o-trator [rad/s]
+            PSI = estados(3,1);
+            PHI = estados(4,1);
+            VT = estados(5,1);
+            ALPHAT = estados(6,1);
+            dPSI = estados(7,1);
+            dPHI = estados(8,1);
 
             % Matriz de massa
             M55 = (mT + mS)*cos(PSI + ALPHAT);
@@ -167,9 +141,3 @@ classdef VehicleArticulatedNonlinear < VehicleDynamicsLateral.VehicleArticulated
         end
     end
 end
-
-
-%% See Also
-%
-% <index.html Index> | <VehicleSimpleNonlinear.html VehicleSimpleNonlinear>
-%

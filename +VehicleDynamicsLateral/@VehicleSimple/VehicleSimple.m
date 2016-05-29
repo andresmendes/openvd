@@ -1,24 +1,27 @@
 classdef (Abstract) VehicleSimple
-    % VehicleSimple Tractor vehicle without semitrailer
-    % Abstract class representing a tractor vehicle without semitrailer. Extend this class in order to create a new vehicle model to be used with the simulator.
+    % VehicleSimple Simple vehicle abstract class.
+    %
+    % Abstract class representing a simple vehicle.
+    %
+    % Extend this class in order to create a new vehicle model to be used with the simulator.
 
     methods(Abstract)
         Model(self, t, estados)
     end
 
     properties
-        mT % Vehicle total mass [kg]
-        IT % Moment of inertia [kg * m2]
-        a % [m]
-        b % [m]
-        g % Gravity
-        mF0 % Vehicle frontal mass [kg]
-        mR0 % Vehicle rear mass [kg]
-        lT % [m]
+        mT % Mass of the car (tractor) [kg]
+        IT % Moment of inertia the car (tractor) [kg * m2]
+        a % Distance from front axle of the car (tractor) to the center of mass of the car (tractor) [m]
+        b % Distance from center of mass of the car (tractor) to the front axle of the car (tractor) [m]
+        g % Gravity [m/s2]
+        mF0 % Mass over the front axle [kg]
+        mR0 % Mass over the rear axle [kg]
+        lT % Wheelbase [m]
         nF % Number of front tires
         nR % Number of rear tires
         deltaf % Steering angle [rad]
-        wT % Width [m]
+        wT % Track of the car (tractor)  [m]
         muy % Operational friction coefficient
         tire % Tire model
     end
@@ -39,8 +42,3 @@ classdef (Abstract) VehicleSimple
     end
 
 end
-
-%% See Also
-%
-% <index.html Index> | <VehicleArticulated.html VehicleArticulated>
-%

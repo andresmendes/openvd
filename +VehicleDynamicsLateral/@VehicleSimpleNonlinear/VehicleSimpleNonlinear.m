@@ -1,25 +1,8 @@
-%% Nonlinear 3 DOF vehicle model
-% Bicycle model nonlinear with 3 degrees of freedom.
-%
-%% Sintax
-% |dx = _VehicleModel_.Model(~,estados)|
-%
-%% Arguments
-% The following table describes the input arguments:
-%
-% <html> <table border=1 width="97%">
-% <tr> <td width="30%"><tt>estados</tt></td> <td width="70%">Estados do modelo: [dPSI ALPHAT PSI XT YT VEL]</td> </tr>
-% </table> </html>
-%
-%% Description
-% O centro de massa do ve�culo � dado pelo ponto $T$ e os eixos dianteiro e traseiro s�o dados pelos pontos $F$ e $R$, respectivamente. A constante $a$ mede a dist�ncia do ponto $F$ ao $T$ e $b$ a dist�ncia do ponto $T$ ao $R$. Os �ngulos $\alpha_F$ e $\alpha_R$ s�o os �ngulos de deriva nos eixos dianteiro e traseiro. $\alpha_T$ is the vehicle side slip angle and $\psi$ is the vehicle yaw angle. Por fim, $\delta$ � o �ngulo de ester�amento.
-%
-% <<illustrations/modeloSimples.svg>>
-%
-%% Code
-%
-
 classdef VehicleSimpleNonlinear < VehicleDynamicsLateral.VehicleSimple
+    % VehicleSimpleNonlinear Nonlinear simple vehicle model.
+    %
+    % It inherits properties from VehicleSimple.
+
     methods
         % Constructor
         function self = VehicleSimpleNonlinear()
@@ -81,8 +64,3 @@ classdef VehicleSimpleNonlinear < VehicleDynamicsLateral.VehicleSimple
         end
     end
 end
-
-%% See Also
-%
-% <index.html Index> | <VehicleArticulatedNonlinear.html VehicleArticulatedNonlinear>
-%
