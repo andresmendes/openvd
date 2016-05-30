@@ -14,7 +14,6 @@ classdef (Abstract) VehicleSimple
         IT % Moment of inertia the car (tractor) [kg * m2]
         a % Distance from front axle of the car (tractor) to the center of mass of the car (tractor) [m]
         b % Distance from center of mass of the car (tractor) to the front axle of the car (tractor) [m]
-        g % Gravity [m/s2]
         mF0 % Mass over the front axle [kg]
         mR0 % Mass over the rear axle [kg]
         lT % Wheelbase [m]

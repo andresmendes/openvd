@@ -168,9 +168,9 @@ classdef Graphics
             set(ax666,'XLim',[min(XT)-20 max(XT)+10])
             set(ax666,'YLim',[min(YT)-10 max(YT)+10])
             % Description
-            title('Trajectory', 'Interpreter', 'Latex')
-            xlabel('Distance [m]', 'Interpreter', 'Latex');
-            ylabel('Distance [m]', 'Interpreter', 'Latex');
+            title('Trajectory')
+            xlabel('Distance [m]');
+            ylabel('Distance [m]');
 
             % First frame
 
@@ -478,8 +478,8 @@ classdef Graphics
             set(ax999,'XLim',[min(XT)-20 max(XT)+10])
             set(ax999,'YLim',[min(YT)-10 max(YT)+10])
 
-            xlabel('Distance [m]', 'Interpreter', 'Latex')
-            ylabel('Distance [m]', 'Interpreter', 'Latex')
+            xlabel('Distance [m]')
+            ylabel('Distance [m]')
 
             TEMPOplot = 0:0.05:TOUT(end); % Time for the plots
             for i=1:length(TEMPOplot)
