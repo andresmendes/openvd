@@ -24,13 +24,15 @@ clear all                   % Clear workspace
 close all                   % Closing figures
 clc                         % Clear command window
 
+import VehicleDynamicsLateral.*
+
 % Parâmetros da planta
 % Choosing plant tire
-TirePlant = VehicleDynamicsLateral.TirePacejka()
+TirePlant = TirePacejka()
 %%
 
 % Choosing plant vehicle
-VehiclePlant = VehicleDynamicsLateral.VehicleSimpleNonlinear();
+VehiclePlant = VehicleSimpleNonlinear();
 VehiclePlant.tire = TirePlant
 %%
 
@@ -38,7 +40,7 @@ VehiclePlant.tire = TirePlant
 T = 6;                      % Total simulation time [s]
 resol = 50;                 % Resolution
 TSPAN = 0:T/resol:T;        % Time span [s]
-simulatorPlant = VehicleDynamicsLateral.Simulator(VehiclePlant, TSPAN);
+simulatorPlant = Simulator(VehiclePlant, TSPAN);
 
 % Simulation
 simulatorPlant.Simulate()
@@ -56,7 +58,8 @@ dPSIPlant = simulatorPlant.dPSI;
 
 XOUTPlant = [XTPlant YTPlant PSIPlant VELPlant ALPHATPlant dPSIPlant];
 
-gPlant = VehicleDynamicsLateral.Graphics(simulatorPlant);
+gPlant = Graphics(simulatorPlant);
+gPlant.TractorColor = 'r';
 gPlant.Frame(0);
 
 
@@ -66,11 +69,11 @@ gPlant.Frame(0);
 close all                   % Closing figures
 % Parâmetros da planta
 % Choosing plant tire
-TireModel = VehicleDynamicsLateral.TireLinear()
+TireModel = TireLinear()
 %%
 
 % Choosing plant vehicle
-VehicleModel = VehicleDynamicsLateral.VehicleSimpleNonlinear();
+VehicleModel = VehicleSimpleNonlinear();
 VehicleModel.tire = TireModel
 %%
 
@@ -78,7 +81,7 @@ VehicleModel.tire = TireModel
 T = 6;                      % Total simulation time [s]
 resol = 50;                 % Resolution
 TSPAN = 0:T/resol:T;        % Time span [s]
-simulatorModel = VehicleDynamicsLateral.Simulator(VehicleModel, TSPAN);
+simulatorModel = Simulator(VehicleModel, TSPAN);
 
 % Simulation
 simulatorModel.Simulate()
@@ -96,7 +99,8 @@ ALPHATModel = simulatorModel.ALPHAT;
 dPSIModel = simulatorModel.dPSI;
 dPHIModel = simulatorModel.dPHI;
 
-gModel = VehicleDynamicsLateral.Graphics(simulatorModel);
+gModel = Graphics(simulatorModel);
+gModel.TractorColor = 'g';
 gModel.Frame(0);
 
 %%
@@ -203,8 +207,6 @@ pretty(C)
 
 %% Filtro estendido de Kalman
 
-
-
 Q = eye(6);
 R = eye(2);
 G = eye(6);
@@ -285,7 +287,7 @@ Pmatrix = [     Pout(1)  Pout(2)  Pout(3)  Pout(4)  Pout(5)  Pout(6);...
                 Pout(31) Pout(32) Pout(33) Pout(34) Pout(35) Pout(36)];
 
 
-simulatorKalman = VehicleDynamicsLateral.Simulator(VehicleModel, tspan);
+simulatorKalman = Simulator(VehicleModel, tspan);
 % Definindo as condições iniciais
 simulatorKalman.X0 = x0(1);
 simulatorKalman.Y0 = x0(2);
@@ -365,7 +367,7 @@ close all
 %% Trajetória da estimativa
 % Usando o simulatorPlant para inicializar o Graphics do Kalman
 
-gKalman = VehicleDynamicsLateral.Graphics(simulatorPlant);
+gKalman = Graphics(simulatorKalman);
 gKalman.Simulator.TSpan = t;
 gKalman.Simulator.XT = XOUTopt(1:end-1,1);
 gKalman.Simulator.YT = XOUTopt(1:end-1,2);
@@ -373,12 +375,14 @@ gKalman.Simulator.PSI = XOUTopt(1:end-1,3);
 gKalman.Simulator.VEL = XOUTopt(1:end-1,4);
 gKalman.Simulator.ALPHAT = XOUTopt(1:end-1,5);
 gKalman.Simulator.dPSI = XOUTopt(1:end-1,6);
+gKalman.TractorColor = 'b';
 gKalman.Frame(0)
 
 %%
 close all
 
 %%
+%
 gPlant.Frame(0);
 hold on
 gModel.Frame(0);

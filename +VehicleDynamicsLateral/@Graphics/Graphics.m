@@ -6,13 +6,14 @@ classdef Graphics
         % Constructor
         function self = Graphics(simulator)
             self.Simulator = simulator;
+            g.TractorColor = 'r';
+            g.SemitrailerColor = 'g';
         end
 
-        function Animation(self, saveit)
+        function Animation(self, saveit, varargin)
             % Verifying number of columns of the state output matrix
             % col = 6 -> simples
             % col = 8 -> articulado
-
             articulated = isa(self.Simulator.Vehicle, 'VehicleDynamicsLateral.VehicleArticulated');
 
             % States
@@ -183,7 +184,7 @@ classdef Graphics
             yc = [rc1(1,2) rc2(1,2) rc3(1,2) rc4(1,2)];
 
             % The vehicle
-            fill(xc, yc, 'r')
+            fill(xc, yc, self.TractorColor)
 
             % Adding semitrailer
             if articulated
@@ -257,7 +258,7 @@ classdef Graphics
                 self.Vector(emsemi(1,1:2),(alpham(1)+psii(1)-phii(1)),velm(1),'b');
                 xn = [rn1(1,1) rn2(1,1) rn3(1,1) rn4(1,1)];
                 yn = [rn1(1,2) rn2(1,2) rn3(1,2) rn4(1,2)];
-                fill(xn, yn, 'g')
+                fill(xn, yn, self.SemitrailerColor)
             end
 
             if saveit == 1
@@ -280,7 +281,7 @@ classdef Graphics
                 yc = [rc1(j, 2) rc2(j, 2) rc3(j, 2) rc4(j, 2)];
 
                 % Vehicle
-                fill(xc, yc, 'r')
+                fill(xc, yc, self.TractorColor)
 
                 % Velocity vectors
                 % Different colors
@@ -291,7 +292,7 @@ classdef Graphics
                     plot(emsemi(:,1),emsemi(:,2),'b')
                     xn = [rn1(j, 1) rn2(j, 1) rn3(j, 1) rn4(j, 1)];
                     yn = [rn1(j, 2) rn2(j, 2) rn3(j, 2) rn4(j, 2)];
-                    fill(xn, yn, 'g')
+                    fill(xn, yn, self.SemitrailerColor)
                     self.Vector(emsemi(j, 1:2),(alpham(j)+psii(j)-phii(j)),velm(j),'b');
                 end
 
@@ -320,7 +321,7 @@ classdef Graphics
             yc = [rc1(end, 2) rc2(end, 2) rc3(end, 2) rc4(end, 2)];
 
             % Vehicle
-            fill(xc, yc, 'r')
+            fill(xc, yc, self.TractorColor)
 
             self.Vector(efrente(end, 1:2),(alphaf(end)+psii(end)),velf(end),'r');
             self.Vector(etras(end, 1:2),(alphar(end)+psii(end)),velr(end),'g');
@@ -330,12 +331,12 @@ classdef Graphics
                 plot(emsemi(:,1),emsemi(:,2),'b')
                 xn = [rn1(end, 1) rn2(end, 1) rn3(end, 1) rn4(end, 1)];
                 yn = [rn1(end, 2) rn2(end, 2) rn3(end, 2) rn4(end, 2)];
-                fill(xn, yn, 'g')
+                fill(xn, yn, self.SemitrailerColor)
                 self.Vector(emsemi(end, 1:2),(alpham(end)+psii(end)-phii(end)),velm(end),'b');
             end
         end
 
-        function Frame(self, saveit)
+        function Frame(self, saveit, varargin)
             articulated = isa(self.Simulator.Vehicle, 'VehicleDynamicsLateral.VehicleArticulated');
 
             % States
@@ -495,7 +496,7 @@ classdef Graphics
                 xc = [rc1(j, 1) rc2(j, 1) rc3(j, 1) rc4(j, 1)];
                 yc = [rc1(j, 2) rc2(j, 2) rc3(j, 2) rc4(j, 2)];
                 % Vehicle
-                fill(xc, yc, 'r');
+                fill(xc, yc, self.TractorColor);
             end
 
             % Adding semitrailer
@@ -575,7 +576,7 @@ classdef Graphics
                 for j = 1:length(TEMPO)
                     xn = [rn1(j, 1) rn2(j, 1) rn3(j, 1) rn4(j, 1)];
                     yn = [rn1(j, 2) rn2(j, 2) rn3(j, 2) rn4(j, 2)];
-                    fill(xn, yn, 'g');
+                    fill(xn, yn, self.SemitrailerColor);
                 end
             end
 
@@ -703,6 +704,8 @@ classdef Graphics
 
     properties
         Simulator
+        TractorColor
+        SemitrailerColor
     end
 end
 

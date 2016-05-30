@@ -23,7 +23,6 @@ classdef VehicleArticulatedNonlinear < VehicleDynamicsLateral.VehicleArticulated
             self.wS = 2.4;
             self.muy = 0.3;
             self.deltaf = 0;
-            self.g = 9.81;
         end
 
         function dx = Model(self, ~, estados)
@@ -41,11 +40,14 @@ classdef VehicleArticulatedNonlinear < VehicleDynamicsLateral.VehicleArticulated
             nF = self.nF;
             nR = self.nR;
             nM = self.nM;
-            g = self.g;
+
+            g = 9.81;
+
             FzF = self.mF * g;
             FzR = self.mR * g;
             FzM = self.mM * g;
             muy = self.muy;
+
 
             % States
             PSI = estados(3,1);
@@ -98,11 +100,14 @@ classdef VehicleArticulatedNonlinear < VehicleDynamicsLateral.VehicleArticulated
             nF = self.nF;
             nR = self.nR;
             nM = self.nM;
-            g = self.g;
+
+            g = 9.81;
+            
             FzF = self.mF * g;
             FzR = self.mR * g;
             FzM = self.mM * g;
             muy = self.muy;
+
 
             % States
             PSI = estados(3,1);

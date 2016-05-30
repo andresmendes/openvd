@@ -5,7 +5,7 @@ clc                         % Clear command window
 % Choosing tire
 TireModel = VehicleDynamicsLateral.TirePacejka();
 % Choosing vehicle
-System = VehicleDynamicsLateral.VehicleArticulatedLinear();
+System = VehicleDynamicsLateral.VehicleArticulatedNonlinear();
 System.tire = TireModel;
 % Choosing simulation
 T = 6;                      % Total simulation time [s]
@@ -27,5 +27,7 @@ dPSI = simulator.dPSI;
 dPHI = simulator.dPHI;
 
 g = VehicleDynamicsLateral.Graphics(simulator);
+g.TractorColor = 'c';
+g.SemitrailerColor = 'm';
 g.Frame(0);
 g.Animation(0);
