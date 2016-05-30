@@ -2,12 +2,12 @@
 % Comparison between tire models: <PneuLinear.html linear>, <PneuPolinomial.html polinomial> e <PneuPacejka1989.html Pacejka 1989>.
 %
 %% Description
-% O modelo de pneu relaciona a for�a lateral com o �ngulo de deriva (�ngulo formado entre o vetor velocidade do centro do pneu com o plano longitudinal do pneu). The typical relation between these two variables can be observed in the figure below (Adapted from [1]). Besides, its possible to verify the definition of slip angle.
+% O modelo de pneu relaciona a fora lateral com o ngulo de deriva (ngulo formado entre o vetor velocidade do centro do pneu com o plano longitudinal do pneu). The typical relation between these two variables can be observed in the figure below (Adapted from [1]). Besides, its possible to verify the definition of slip angle.
 %
 % <<illustrations/CurvaCaracteristica.svg>>
 %
-%% Equival�ncia
-% Supondo um modelo de pneu <PneuPacejka1989.html Pacejka 1989> de refer�ncia � poss�vel obter um modelo <PneuLinear.html linear> e <PneuPolinomial.html polinomial> equivalente. Isto � feito igualando o coeficiente de rigidez lateral dos tr�s modelos e igualando a for�a lateral m�xima dos modelos <PneuPolinomial.html polinomial> e <PneuPacejka1989.html Pacejka 1989>.
+%% Equivalncia
+% Supondo um modelo de pneu <PneuPacejka1989.html Pacejka 1989> de referncia  possvel obter um modelo <PneuLinear.html linear> e <PneuPolinomial.html polinomial> equivalente. Isto  feito igualando o coeficiente de rigidez lateral dos trs modelos e igualando a fora lateral mxima dos modelos <PneuPolinomial.html polinomial> e <PneuPacejka1989.html Pacejka 1989>.
 %
 % The model <PneuPacejka1989.html Pacejka 1989> depends on the parameters $a_0$, $a_1$, $a_2$, $a_3$, $a_4$, $a_5$, $a_6$ e $a_7$ that defines the constants $B$, $C$, $D$ e $E$ wich can be used to define the constants of the equivalent models.
 %
@@ -21,7 +21,7 @@
 %
 % $$ k_2 = (4 k_1^3)/(27 F_{y, Max}^2) $$
 %
-% Onde $F_{y, Max}$ � a for�a lateral m�xima da curva caracter�stica de refer�ncia.
+% Onde $F_{y, Max}$  a fora lateral mxima da curva caracterstica de referncia.
 %
 
 
@@ -35,9 +35,9 @@ clc                         % Clear command window
 
 import DinamicaVeicular.*   % Importando o pacote Dinamica Veicular
 
-deriva = (0:0.1:15)*pi/180;         % �ngulo de deriva [rad]
+deriva = (0:0.1:15)*pi/180;         % ngulo de deriva [rad]
 
-% Pneu Pacejka de refer�ncia
+% Pneu Pacejka de referncia
 Fz = 4e+03;
 camber = 0;
 a0 = 1.3;
@@ -97,12 +97,12 @@ l = legend('Linear', 'Polinomial', 'Pacejka');
 set(l, 'Interpreter', 'Latex', 'Location', 'NorthWest')
 
 %%
-% Na figura acima � poss�vel observar a curva caracter�stica dos tr�s modelos com propriedades equivalentes. Para pequenos �ngulos de deriva os tr�s modelos se comportam de maneira semelhante. For slip angles around 8 degrees (Angle with the maximal lateral force) the linear model presents large errors. Para �ngulos maiores que 8 graus o modelo polinomial come�a a n�o acompanhar a curva gerada pelo modelo Pacejka 1989.
+% Na figura acima  possvel observar a curva caracterstica dos trs modelos com propriedades equivalentes. Para pequenos ngulos de deriva os trs modelos se comportam de maneira semelhante. For slip angles around 8 degrees (Angle with the maximal lateral force) the linear model presents large errors. Para ngulos maiores que 8 graus o modelo polinomial comea a no acompanhar a curva gerada pelo modelo Pacejka 1989.
 %
 
 %% Comparison treatment slip angle
 
-deriva180 = (0:0.1:180)*pi/180;     % �ngulo de deriva de 0 � 180 graus [rad]
+deriva180 = (0:0.1:180)*pi/180;     % ngulo de deriva de 0  180 graus [rad]
 
 % Sem tratamento
 ALPHA = deriva180 * 180/pi;
@@ -135,7 +135,7 @@ l = legend('Pacejka sem tratamento', 'Pacejka com tratamento');
 set(l, 'Interpreter', 'Latex', 'Location', 'SouthEast')
 
 %%
-% Na figura acima � poss�vel observar o efeito do tratamento do �ngulo de deriva na curva caracter�stica. The curve is symmetric to a vertical line positioned at $\alpha = 90 [graus]$.
+% Na figura acima  possvel observar o efeito do tratamento do ngulo de deriva na curva caracterstica. The curve is symmetric to a vertical line positioned at $\alpha = 90 [graus]$.
 %
 %% References
 % [1] GILLESPIE, T. D. Fundamentals of vehicle dynamics. [S.l.]: Society of Automotive Engineers Warrendale, PA, 1992.

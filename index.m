@@ -1,4 +1,4 @@
-%% Vehicle Dynamics - Lateral
+%% Vehicle Dynamics - Lateral: Open Source Simulation Package for MATLAB
 % This repository provides a collection of functions destinated to lateral dynamics simulations of ground vehicles.
 %
 %% Instructions
@@ -19,50 +19,36 @@ import VehicleDynamicsLateral.*
 %
 % <<illustrations/fluxograma.svg>>
 %
-%% Templates
+%% Examples
 % The templates simulate vehicle systems according to the flowchart above.
 %
-% * Simple vehicle simulation: <TemplateSimple.html TemplateSimple.m>
-% * Articulated vehicle simulation: <TemplateArticulated.html TemplateArticulated.m>
+% * <TemplateSimple.html Template Simple> - Simple vehicle simulation.
+% * <TemplateArticulated.html Template Articulated> - Articulated vehicle simulation.
+% * <TireComparison.html Tire Comparison> - Comparison of tire models.
+% * <KalmanFilter.html Kalman Filter> - Kalman Filter application
 %
 %% Tire model
-% Relationship between lateral force and slip angle.
 %
-% Tire models:
-%
-% * <TireLinear.html Linear Tire>
-% * <TirePolynomial.html Polynomial Tire>
-% * <TirePacejka.html Pacejka 1989 Tire>
-%
-% Academic:
-%
-% * <TireComparison.html TireComparison>
-%
-% Other: <Tire.html Tire (Abstract)>
+% * <DocTireLinear.html Tire linear>
+% * <DocTirePolynomial.html Tire polynomial>
+% * <DocTirePacejka.html Tire Pacejka>
 %
 %% Vehicle model
-% Function with the state equations of the model.
 %
-% Vehicle model:
-%
-% * <VehicleSimpleLinear.html Vehicle Simple Linear 2 DOF>
-% * <VehicleSimpleNonlinear.html Vehicle Simple Nonlinear 3 DOF>
-% * <VehicleArticulatedLinear4DOF.html Vehicle Articulated Linear 3 DOF> (Pendente)
-% * <VehicleArticulatedNonlinear.html Vehicle Articulated Nonlinear 4 DOF>
-%
-% Other: <VehicleSimple.html Vehicle Simple (Abstract)> | <VehicleArticulated.html Vehicle Articulated (Abstract)>
+% * <DocVehicleSimpleLinear.html Vehicle Simple Linear>
+% * <DocVehicleSimpleNonlinear.html Vehicle Simple Nonlinear>
+% * <DocVehicleArticulatedLinear.html Vehicle Articulated Linear>
+% * <DocVehicleArticulatedNonlinear.html Vehicle Articulated Nonlinear>
 %
 %% Graphics
-% Functions for graphics generation: <Graphics.html Graphics>.
+% <DocGraphics.html Graphics> - Functions for graphics generation.
 %
-%% Documentation
+%% Abstract classes
+% To see the documentation of the abstract classes, install the package and run the command:
 %
-% Documentation Generator: <DocGen.html DocGen>.
-%
-%% Contribution
-%
-% Instructions for contribution can be found here:
-%
+
+doc VehicleDynamicsLateral
+
 %% See Also
 %
 % <https://github.com/andresmendes/Vehicle-Dynamics-Lateral https://github.com/andresmendes/Vehicle-Dynamics-Lateral>

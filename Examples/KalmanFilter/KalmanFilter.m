@@ -1,5 +1,8 @@
 %% FILTRO DE KALMAN
 %
+% VERIFICAR A NORMA DE P - PARECE ERRADA
+% FAZER NORMA DO GANHO DE KALMAN
+% RESIDO? OU ALGO PARECIDO COM O GRAFICO QUE COMPARA P- e P+
 %
 %%
 % Média e matriz de covariância dos erros, condicionadas à história das observações

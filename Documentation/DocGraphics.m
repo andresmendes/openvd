@@ -1,3 +1,5 @@
+%% Graphics
+%
 %% Animation
 % Animates the manoever.
 %
@@ -17,9 +19,6 @@
 %
 % *Description*
 %
-% TEXT
-
-
 %% Frame
 % Plots the sequence of frames of the vehicle manoever.
 %

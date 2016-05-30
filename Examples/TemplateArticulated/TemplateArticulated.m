@@ -1,33 +1,45 @@
+%% Template Articulated
+% This template show how to simulate an articulated vehicle and plot the results.
+%
+%%
+%
+
 clear all                   % Clear workspace
 close all                   % Closing figures
 clc                         % Clear command window
 
+%%
+%
+import VehicleDynamicsLateral.*
+
 % Choosing tire
-TireModel = VehicleDynamicsLateral.TirePacejka();
+TireModel = TirePacejka();
 % Choosing vehicle
-System = VehicleDynamicsLateral.VehicleArticulatedNonlinear();
+System = VehicleArticulatedNonlinear();
 System.tire = TireModel;
 % Choosing simulation
 T = 6;                      % Total simulation time [s]
 resol = 50;                 % Resolution
 TSPAN = 0:T/resol:T;        % Time span [s]
-simulator = VehicleDynamicsLateral.Simulator(System, TSPAN);
+simulator = Simulator(System, TSPAN);
 
 % Simulation
 simulator.Simulate();
 
-% Retrieving states
-XT = simulator.XT;
-YT = simulator.YT;
-PSI = simulator.PSI;
-PHI = simulator.PHI;
-VEL = simulator.VEL;
-ALPHAT = simulator.ALPHAT;
-dPSI = simulator.dPSI;
-dPHI = simulator.dPHI;
+%% Results
+%
 
-g = VehicleDynamicsLateral.Graphics(simulator);
+g = Graphics(simulator);
 g.TractorColor = 'c';
 g.SemitrailerColor = 'm';
 g.Frame(0);
 g.Animation(0);
+
+%%
+%
+% <<illustrations/AnimationArticulated.gif>>
+%
+%% See Also
+%
+% <index.html Index> | <TemplateSimple.html TemplateSimple>
+%
