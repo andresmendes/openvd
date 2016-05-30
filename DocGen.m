@@ -17,7 +17,7 @@ clc                         % Clear command window
 %% Doc generation
 
 % exKalman
-publish('ExKalman', 'outputDir', '../Vehicle-Dynamics-Lateral-Documentation/', 'evalCode', true);
+publish('ExKalmanFilter', 'outputDir', '../Vehicle-Dynamics-Lateral-Documentation/', 'evalCode', true);
 
 % % DocGen
 % publish('DocGen', 'outputDir', '../Vehicle-Dynamics-Lateral-Documentation/', 'evalCode', false);
