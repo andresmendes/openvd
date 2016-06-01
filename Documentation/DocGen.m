@@ -10,26 +10,46 @@
 %
 %% Code start
 
-clear all                   % Clear workspace
-close all                   % Closing figures
-clc                         % Clear command window
+docPath = '../../Vehicle-Dynamics-Lateral-Documentation/'
+apiDocPath = strcat(docPath, 'api/')
 
 %% Index
-publish('../index.m', 'outputDir', '../../Vehicle-Dynamics-Lateral-Documentation/', 'evalCode', false);
+publish('../index.m', 'outputDir', docPath, 'evalCode', false);
+publish('../api.m', 'outputDir', apiDocPath, 'evalCode', false);
 
 %% Tire models
-publish('DocTireLinear.m', 'outputDir', '../../Vehicle-Dynamics-Lateral-Documentation/', 'evalCode', false);
-publish('DocTirePolynomial.m', 'outputDir', '../../Vehicle-Dynamics-Lateral-Documentation/', 'evalCode', false);
-publish('DocTirePacejka.m', 'outputDir', '../../Vehicle-Dynamics-Lateral-Documentation/', 'evalCode', false);
+publish('DocTireLinear.m', 'outputDir', docPath, 'evalCode', false);
+publish('DocTirePolynomial.m', 'outputDir', docPath, 'evalCode', false);
+publish('DocTirePacejka.m', 'outputDir', docPath, 'evalCode', false);
 
 %% Vehicle models
-publish('DocVehicleSimpleLinear.m', 'outputDir', '../../Vehicle-Dynamics-Lateral-Documentation/', 'evalCode', false);
-publish('DocVehicleSimpleNonlinear.m', 'outputDir', '../../Vehicle-Dynamics-Lateral-Documentation/', 'evalCode', false);
-publish('DocVehicleArticulatedLinear.m', 'outputDir', '../../Vehicle-Dynamics-Lateral-Documentation/', 'evalCode', false);
-publish('DocVehicleArticulatedNonlinear.m', 'outputDir', '../../Vehicle-Dynamics-Lateral-Documentation/', 'evalCode', false);
+publish('DocVehicleSimpleLinear.m', 'outputDir', docPath, 'evalCode', false);
+publish('DocVehicleSimpleNonlinear.m', 'outputDir', docPath, 'evalCode', false);
+publish('DocVehicleArticulatedLinear.m', 'outputDir', docPath, 'evalCode', false);
+publish('DocVehicleArticulatedNonlinear.m', 'outputDir', docPath, 'evalCode', false);
 
 %% Graphics
-publish('DocGraphics.m', 'outputDir', '../../Vehicle-Dynamics-Lateral-Documentation/', 'evalCode', false);
+publish('DocGraphics.m', 'outputDir', docPath, 'evalCode', false);
+
+cd ../+VehicleDynamicsLateral/
+
+% API
+publish('@VehicleSimple/VehicleSimple.m', 'outputDir', apiDocPath, 'evalCode', false);
+publish('@VehicleArticulated/VehicleArticulated.m', 'outputDir', apiDocPath, 'evalCode', false);
+
+publish('@VehicleSimpleLinear/VehicleSimpleLinear.m', 'outputDir', apiDocPath, 'evalCode', false);
+publish('@VehicleSimpleNonlinear/VehicleSimpleNonlinear.m', 'outputDir', apiDocPath, 'evalCode', false);
+publish('@VehicleArticulatedLinear/VehicleArticulatedLinear.m', 'outputDir', apiDocPath, 'evalCode', false);
+publish('@VehicleArticulatedNonlinear/VehicleArticulatedNonlinear.m', 'outputDir', apiDocPath, 'evalCode', false);
+
+publish('@Tire/Tire.m', 'outputDir', apiDocPath, 'evalCode', false);
+publish('@TireLinear/TireLinear.m', 'outputDir', apiDocPath, 'evalCode', false);
+publish('@TirePolynomial/TirePolynomial.m', 'outputDir', apiDocPath, 'evalCode', false);
+publish('@TirePacejka/TirePacejka.m', 'outputDir', apiDocPath, 'evalCode', false);
+
+publish('@Simulator/Simulator.m', 'outputDir', apiDocPath, 'evalCode', false);
+
+publish('@Graphics/Graphics.m', 'outputDir', apiDocPath, 'evalCode', false);
 
 cd ../Examples/TemplateSimple
 %% Examples
@@ -52,7 +72,7 @@ cd ../TireComparison
 publish('TireComparison/TireComparison.m', 'outputDir', '../../../Vehicle-Dynamics-Lateral-Documentation/', 'evalCode', false);
 
 % % DocGen
-% publish('DocGen', 'outputDir', '../../Vehicle-Dynamics-Lateral-Documentation/', 'evalCode', false);
+% publish('DocGen', 'outputDir', docPath, 'evalCode', false);
 
 cd ../../Documentation
 
