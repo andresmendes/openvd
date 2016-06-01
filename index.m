@@ -43,13 +43,9 @@ import VehicleDynamicsLateral.*
 %% Graphics
 % <DocGraphics.html Graphics> - Functions for graphics generation.
 %
-%% Abstract classes
-% To see the documentation of the abstract classes, install the package and run the command:
+%% API Documentation
+% API Documentation is <api/api.html here>. Help and documentation on-the-fly are available through the "doc" and "help" commands, as usual.
 %
-
-doc VehicleDynamicsLateral
-
 %% See Also
 %
-% <https://github.com/andresmendes/Vehicle-Dynamics-Lateral https://github.com/andresmendes/Vehicle-Dynamics-Lateral>
-%
+% <https://github.com/andresmendes/Vehicle-Dynamics-Lateral GitHub Page>
