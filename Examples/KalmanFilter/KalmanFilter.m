@@ -1,12 +1,6 @@
 %% KALMAN FILTER
 % Kalman filter application.
 %
-% VERIFICAR A NORMA DE P - PARECE ERRADA
-%
-% FAZER NORMA DO GANHO DE KALMAN
-%
-% RESIDO? OU ALGO PARECIDO COM O GRAFICO QUE COMPARA P- e P+
-%
 %% System
 % Supondo um sistema não linear descrito por uma equação diferencial estocástica vetorial dada por:
 %
@@ -69,6 +63,7 @@ TSPAN = 0:T/resol:T;        % Time span [s]
 %
 
 simulatorPlant = Simulator(VehiclePlant, TSPAN);
+simulatorPlant.dPSI0 = 0.35;
 simulatorPlant.Simulate
 
 %%
@@ -98,7 +93,6 @@ XOUTPlant = [XTPlant YTPlant PSIPlant vTPlant ALPHATPlant dPSIPlant];
 gPlant = Graphics(simulatorPlant);
 gPlant.TractorColor = 'r';
 gPlant.Frame(0);
-legend('Plant');
 
 %%
 %
@@ -127,6 +121,7 @@ disp(VehicleModel)
 %
 
 simulatorModel = Simulator(VehicleModel, TSPAN);
+simulatorModel.dPSI0 = 0.35;
 simulatorModel.Simulate;
 
 disp(simulatorModel)
@@ -138,11 +133,9 @@ disp(simulatorModel)
 XTModel = simulatorModel.XT;
 YTModel = simulatorModel.YT;
 PSIModel = simulatorModel.PSI;
-PHIModel = simulatorModel.PHI;
-VELModel = simulatorModel.VEL;
+vTModel = simulatorModel.VEL;
 ALPHATModel = simulatorModel.ALPHAT;
 dPSIModel = simulatorModel.dPSI;
-dPHIModel = simulatorModel.dPHI;
 
 %%
 % A manobra gerada pelo modelo escolhido pelo projetista a partir da mesma condição inicial é ilustrada na figura a seguir
@@ -151,7 +144,6 @@ dPHIModel = simulatorModel.dPHI;
 gModel = Graphics(simulatorModel);
 gModel.TractorColor = 'g';
 gModel.Frame(0);
-legend('Model');
 
 %%
 %
@@ -159,14 +151,208 @@ legend('Model');
 close all                   % Closing figures
 
 %% Plant and model comparison
+% Comparando o modelo de pneu
+%
+
+g = 9.81;
+FzF = VehiclePlant.mF0*g;
+FzR = VehiclePlant.mR0*g;
+muy = VehiclePlant.muy;
+nF = VehiclePlant.nF;
+nR = VehiclePlant.nR;
+
+alpha= 0:0.5:15;
+alpha = alpha*pi/180;
+FyLin = - TireModel.Characteristic(alpha);
+FyFPac = - TirePlant.Characteristic(alpha, FzF, muy);
+FyRPac = - TirePlant.Characteristic(alpha, FzR, muy);
+
+figure
+ax = gca;
+set(ax,'NextPlot','add','Box','on','XGrid','on','YGrid','on')
+plot(alpha(1:floor(end/2))*180/pi,FyLin(1:floor(end/2)),'r')
+plot(alpha*180/pi,FyFPac,'g')
+plot(alpha*180/pi,FyRPac,'g--')
+xlabel('alpha [deg]')
+ylabel('Fy [N]')
+l = legend('Linear','Pacejka F','Pacejka R');
+set(l,'Location','SouthEast')
+
+%%
+% Comparando os estados
+
+figure
+ax = gca;
+set(ax,'NextPlot','add','Box','on','XGrid','on','YGrid','on')
+plot(TSPAN,XTPlant,'r')
+plot(TSPAN,XTModel,'r--')
+xlabel('Time [s]')
+ylabel('Distance X [m]')
+
+figure
+ax = gca;
+set(ax,'NextPlot','add','Box','on','XGrid','on','YGrid','on')
+plot(TSPAN,YTPlant,'g')
+plot(TSPAN,YTModel,'g--')
+xlabel('Time [s]')
+ylabel('Distance Y [m]')
+
+figure
+ax = gca;
+set(ax,'NextPlot','add','Box','on','XGrid','on','YGrid','on')
+plot(TSPAN,PSIPlant,'b')
+plot(TSPAN,PSIModel,'b--')
+xlabel('Time [s]')
+ylabel('PSI [rad]')
+
+figure
+ax = gca;
+set(ax,'NextPlot','add','Box','on','XGrid','on','YGrid','on')
+plot(TSPAN,vTPlant,'c')
+plot(TSPAN,vTModel,'c--')
+xlabel('Time [s]')
+ylabel('vT [m/s]')
+
+figure
+ax = gca;
+set(ax,'NextPlot','add','Box','on','XGrid','on','YGrid','on')
+plot(TSPAN,ALPHATPlant,'m'),
+plot(TSPAN,ALPHATModel,'m--'),
+xlabel('Time [s]')
+ylabel('ALPHAT [rad/s]')
+
+figure
+ax = gca;
+set(ax,'NextPlot','add','Box','on','XGrid','on','YGrid','on')
+plot(TSPAN,dPSIPlant,'k')
+plot(TSPAN,dPSIModel,'k--')
+xlabel('Time [s]')
+ylabel('dPSI [rad/s]')
+
+%%
+% Comparando a aceleração longitudinal e transversal
+
+saidasPlant = [XTPlant YTPlant PSIPlant vTPlant ALPHATPlant dPSIPlant];
+matDerivEstadosPlant = zeros(size(saidasPlant));
+for i = 1:size(saidasPlant,1)
+    auxil = VehiclePlant.Model(0,saidasPlant(i,:));
+    matDerivEstadosPlant(i,:) = auxil';
+end
+
+dXTPlant = matDerivEstadosPlant(:,1);
+dYTPlant = matDerivEstadosPlant(:,2);
+dPSIPlant = matDerivEstadosPlant(:,3);
+dvTPlant = matDerivEstadosPlant(:,4);
+dALPHATPlant = matDerivEstadosPlant(:,5);
+ddPSIPlant = matDerivEstadosPlant(:,6);
+
+ddXPlant = dvTPlant.*cos(PSIPlant + ALPHATPlant) - vTPlant.*(dPSIPlant + dALPHATPlant).*sin(PSIPlant + ALPHATPlant);
+ddYPlant = dvTPlant.*sin(PSIPlant + ALPHATPlant) + vTPlant.*(dPSIPlant + dALPHATPlant).*cos(PSIPlant + ALPHATPlant);
+
+ACELNumPlant = [(ddXPlant.*cos(PSIPlant) - ddYPlant.*sin(PSIPlant))  (-ddXPlant.*sin(PSIPlant) + ddYPlant.*cos(PSIPlant))];
+
+saidasModel = [XTModel YTModel PSIModel vTModel ALPHATModel dPSIModel];
+matDerivEstadosModel = zeros(size(saidasModel));
+for i = 1:size(saidasModel,1)
+    auxil = VehicleModel.Model(0,saidasModel(i,:));
+    matDerivEstadosModel(i,:) = auxil';
+end
+
+dXTModel = matDerivEstadosModel(:,1);
+dYTModel = matDerivEstadosModel(:,2);
+dPSIModel = matDerivEstadosModel(:,3);
+dvTModel = matDerivEstadosModel(:,4);
+dALPHATModel = matDerivEstadosModel(:,5);
+ddPSIModel = matDerivEstadosModel(:,6);
+
+ddXModel = dvTModel.*cos(PSIModel + ALPHATModel) - vTModel.*(dPSIModel + dALPHATModel).*sin(PSIModel + ALPHATModel);
+ddYModel = dvTModel.*sin(PSIModel + ALPHATModel) + vTModel.*(dPSIModel + dALPHATModel).*cos(PSIModel + ALPHATModel);
+
+ACELNumModel = [(ddXModel.*cos(PSIModel) - ddYModel.*sin(PSIModel))  (-ddXModel.*sin(PSIModel) + ddYModel.*cos(PSIModel))];
+
+figure
+ax = gca;
+set(ax,'NextPlot','add','Box','on','XGrid','on','YGrid','on')
+plot(TSPAN,ACELNumPlant(:,1),'r')
+plot(TSPAN,ACELNumPlant(:,2),'g')
+plot(TSPAN,ACELNumModel(:,1),'r--')
+plot(TSPAN,ACELNumModel(:,2),'g--')
+xlabel('time [s]')
+ylabel('acc. [m/s]')
+l = legend('AX Plant','AY Plant','AX Model','AY Model');
+set(l,'Location','NorthEast')
+
+%%
+% Comparando as derivadas dos estados
+
+% figure
+% ax = gca;
+% set(ax,'NextPlot','add','Box','on','XGrid','on','YGrid','on')
+% plot(TSPAN,dXTPlant,'r')
+% plot(TSPAN,dXTModel,'r--')
+% xlabel('Time [s]')
+% ylabel('dX [m/s]')
+% l = legend('Plant','Model');
+% set(l,'Location','SouthWest')
+%
+% figure
+% ax = gca;
+% set(ax,'NextPlot','add','Box','on','XGrid','on','YGrid','on')
+% plot(TSPAN,dYTPlant,'r')
+% plot(TSPAN,dYTModel,'r--')
+% xlabel('Time [s]')
+% ylabel('dY [m/s]')
+% l = legend('Plant','Model');
+% set(l,'Location','NorthWest')
+%
+% figure
+% ax = gca;
+% set(ax,'NextPlot','add','Box','on','XGrid','on','YGrid','on')
+% plot(TSPAN,dPSIPlant,'r')
+% plot(TSPAN,dPSIModel,'r--')
+% xlabel('Time [s]')
+% ylabel('dPSI [rad/s]')
+% l = legend('Plant','Model');
+% set(l,'Location','NorthEast')
+%
+% figure
+% ax = gca;
+% set(ax,'NextPlot','add','Box','on','XGrid','on','YGrid','on')
+% plot(TSPAN,dvTPlant,'r')
+% plot(TSPAN,dvTModel,'r--')
+% xlabel('Time [s]')
+% ylabel('dvT [m/s]')
+% l = legend('Plant','Model');
+% set(l,'Location','SouthEast')
+%
+% figure
+% ax = gca;
+% set(ax,'NextPlot','add','Box','on','XGrid','on','YGrid','on')
+% plot(TSPAN,dALPHATPlant,'r'),
+% plot(TSPAN,dALPHATModel,'r--'),
+% xlabel('Time [s]')
+% ylabel('dALPHAT [rad/s]')
+% l = legend('Plant','Model');
+% set(l,'Location','NorthEast')
+%
+% figure
+% ax = gca;
+% set(ax,'NextPlot','add','Box','on','XGrid','on','YGrid','on')
+% plot(TSPAN,ddPSIPlant,'r')
+% plot(TSPAN,ddPSIModel,'r--')
+% xlabel('Time [s]')
+% ylabel('ddPSI [rad/s2]')
+% l = legend('Plant','Model');
+% set(l,'Location','SouthEast')
+
+%%
 % Comparação - Diferença de 10 m na direção X no momento da curva.
 %
 
-gPlant.Frame(0);
-hold on
 gModel.Frame(0);
-l = legend('Plant','Model');
-set(l,'Location','NorthWest')
+hold on
+gPlant.Frame(0);
+gModel.Frame(0);
 
 %%
 %
@@ -264,7 +450,13 @@ F = simplify(F);
 pretty(F)
 
 %% Medição
-% Continuando simbolicamente, as grandezas medidas são: aceleração longitudinal e aceleração transversal do veículo.
+% Continuando simbolicamente, as grandezas medidas são:
+%
+% * Posição X
+% * Posição Y
+% * Aceleração angular
+% * aceleração longitudinal
+% * aceleração transversal
 %
 % Para isso, utiliza-se as relações:
 %
@@ -322,8 +514,15 @@ pretty(ACEL)
 % Implementando
 %
 
-H = jacobian(ACEL,States);
+medNonlinear = [XT ; YT ; f6 ; ACEL];
+
+H = jacobian(medNonlinear,States);
 H = simplify(H);
+
+%%
+%
+
+pretty(H)
 
 %% Verificação da linearização
 % Para verificar o procedimento de linearização, um ponto de operação referente à movimentação do veículo em linha reta com uma velocidade prescrita $v_0$ é utilizado. Esta escolha é típica e pode ser verificada facilmente na literatura.
@@ -366,8 +565,8 @@ G = eye(6); % Matriz identidade (6 x 6)
 % Matrizes de covariância
 %
 
-Q = eye(6); % Matriz identidade (6 x 6)
-R = eye(2); % Matriz identidade (2 x 2)
+Q = eye(6);
+R = eye(5);
 
 %%
 % Matriz
@@ -404,35 +603,6 @@ parameters = [mTNum ITNum aNum bNum KNum];
 % Obtendo e verificando a aceleração que vai ser medida.
 %
 
-
-saidas = [XTPlant YTPlant PSIPlant vTPlant ALPHATPlant dPSIPlant];
-matDerivEstados = zeros(size(saidas));
-for i = 1:size(saidas,1)
-    auxil = VehiclePlant.Model(0,saidas(i,:));
-    matDerivEstados(i,:) = auxil';
-end
-
-dXTPlant = matDerivEstados(:,1);
-dYTPlant = matDerivEstados(:,2);
-dPSIPlant = matDerivEstados(:,3);
-dvTPlant = matDerivEstados(:,4);
-dALPHATPlant = matDerivEstados(:,5);
-ddPSIPlant = matDerivEstados(:,6);
-
-ddXPlant = dvTPlant.*cos(PSIPlant + ALPHATPlant) - vTPlant.*(dPSIPlant + dALPHATPlant).*sin(PSIPlant + ALPHATPlant);
-ddYPlant = dvTPlant.*sin(PSIPlant + ALPHATPlant) + vTPlant.*(dPSIPlant + dALPHATPlant).*cos(PSIPlant + ALPHATPlant);
-
-ACELNum = [(ddXPlant.*cos(PSIPlant) - ddYPlant.*sin(PSIPlant))  (-ddXPlant.*sin(PSIPlant) + ddYPlant.*cos(PSIPlant))];
-
-figure(1)
-ax = gca;
-set(ax,'NextPlot','add','Box','on','XGrid','on','YGrid','on')
-plot(TSPAN,ACELNum(:,1),'r')
-plot(TSPAN,ACELNum(:,2),'g')
-xlabel('time [s]')
-ylabel('acc. [m/s]')
-legend('X','Y')
-
 %%
 % Inicializando o tempo de intervalo entre uma observação e outra.
 %
@@ -440,20 +610,28 @@ legend('X','Y')
 intervalo = 0.1;
 
 %%
+%
+
+t = 0:intervalo:T;                  % Vetor com os instantes de observação
+
+%%
 % Prealocando
 %
 
-z = zeros(2,1);                     % Vetor de observações
-t = 0:intervalo:T;                  % Vetor com os instantes de observação
 XOUTopt = zeros(length(t) + 1,length(States)); % Estimativa dos estados após atualização
 Popt = zeros(length(t) + 1,1);                 % Matriz de covariância após atualização
+Pantes = zeros(length(t) + 1,1);                 % Matriz de covariância antes da atualização
+KKalmanopt = ones(length(t) + 1,1);                 % Ganho de Kalman
 
 %%
 % Atribuindo os primeiros valores
 %
 
 XOUTopt(1,:) = x0';
+XOUTantes(1,:) = x0';
+Pantes(1,1) = norm(P0);
 Popt(1,1) = norm(P0);
+
 
 %%
 % Iteração
@@ -467,8 +645,7 @@ for j = 1:length(t)
     tspan = t(j):intervalo/100:t(j)+intervalo;
 
     % Obtendo as medidas da iteração
-    z(1) = interp1(TSPAN,ACELNum(:,1),t(j));
-    z(2) = interp1(TSPAN,ACELNum(:,2),t(j));
+    z = [interp1(TSPAN,XTPlant(:,1),t(j)) ; interp1(TSPAN,YTPlant(:,1),t(j)) ; interp1(TSPAN,ddPSIPlant(:,1),t(j)) ; interp1(TSPAN,ACELNumPlant(:,1),t(j)) ; interp1(TSPAN,ACELNumPlant(:,2),t(j))];
 
     Fnum = subs(F,[States.' mT IT a b K],[x0.' parameters]);
     Fnum = double(Fnum);
@@ -476,19 +653,14 @@ for j = 1:length(t)
     Hnum = double(Hnum);
 
     % Ciclo de propagação
-    %%
     % Transformando a matriz PMat0 $(6 \times 6)$ em um vetor P0 $(1 \times 36)$
-    %
-
-    P0 = reshape(P0,[1 size(P0,1)*size(P0,2)]);
+    P0 = reshape(P0',[1 36]);
 
     [TOUT,Pout] = ode45(@(t,P) IntCov(t,P,Fnum,G,Q),tspan,P0);
 
     Pmatrix = reshape(Pout(end,:),[6 6])';
 
-
     simulatorKalman = Simulator(VehicleModel, tspan);
-    simulatorKalman.TSpan = tspan;
     % Definindo as condições iniciais
     simulatorKalman.X0 = x0(1);
     simulatorKalman.Y0 = x0(2);
@@ -510,8 +682,7 @@ for j = 1:length(t)
 
     % Ciclo de atualização
 
-
-    ACELKalman = subs(ACEL,[States.' mT IT a b K],[XOUTKalman(end,:) parameters]);
+    ACELKalman = subs(medNonlinear,[States.' mT IT a b K],[XOUTKalman(end,:) parameters]);
     ACELKalman = double(ACELKalman);
 
     KKalman = Pmatrix*Hnum' / (Hnum*Pmatrix*Hnum' + R);
@@ -523,44 +694,106 @@ for j = 1:length(t)
     P0 = PKalman;
 
     XOUTopt(j+1,:) = XKalman';
+    XOUTantes(j+1,:) = XOUTKalman(end,:);
     Popt(j+1) = norm(PKalman);
+    Pantes(j+1) = norm(Pmatrix);
+    KKalmanopt(j+1) = norm(KKalman);
 
 end
 
 %% Comparação
-figure(1)
-hold on
+figure
+ax = gca;
+set(ax,'NextPlot','add','Box','on','XGrid','on','YGrid','on')
 plot(TSPAN,XOUTPlant(:,1),'r')
-plot(t,XOUTopt(1:end-1,1),'r--')
+p = plot(t(2:end),XOUTopt(2:end-1,1),'r--');
+set(p,'Marker','*')
+l = legend('Plant','Estim');
+set(l,'Location','SouthEast')
+xlabel('tempo [s]')
+ylabel('x [m]')
 
-figure(2)
-hold on
+figure
+ax = gca;
+set(ax,'NextPlot','add','Box','on','XGrid','on','YGrid','on')
 plot(TSPAN,XOUTPlant(:,2),'g')
-plot(t,XOUTopt(1:end-1,2),'g--')
+p = plot(t(2:end),XOUTopt(2:end-1,2),'g--');
+set(p,'Marker','*')
+l = legend('Plant','Estim');
+set(l,'Location','SouthEast')
+xlabel('tempo [s]')
+ylabel('y [m]')
 
-figure(3)
-hold on
+figure
+ax = gca;
+set(ax,'NextPlot','add','Box','on','XGrid','on','YGrid','on')
 plot(TSPAN,XOUTPlant(:,3),'b')
-plot(t,XOUTopt(1:end-1,3),'b--')
+p = plot(t(2:end),XOUTopt(2:end-1,3),'b--');
+set(p,'Marker','*')
+l = legend('Plant','Estim');
+set(l,'Location','SouthEast')
+xlabel('tempo [s]')
+ylabel('PSI [rad]')
 
-figure(4)
-hold on
+figure
+ax = gca;
+set(ax,'NextPlot','add','Box','on','XGrid','on','YGrid','on')
 plot(TSPAN,XOUTPlant(:,4),'c')
-plot(t,XOUTopt(1:end-1,4),'c--')
+p = plot(t(2:end),XOUTopt(2:end-1,4),'c--');
+set(p,'Marker','*')
+l = legend('Plant','Estim');
+set(l,'Location','SouthEast')
+xlabel('tempo [s]')
+ylabel('vT [m/s]')
 
-figure(5)
-hold on
+figure
+ax = gca;
+set(ax,'NextPlot','add','Box','on','XGrid','on','YGrid','on')
 plot(TSPAN,XOUTPlant(:,5),'m')
-plot(t,XOUTopt(1:end-1,5),'m--')
+p = plot(t(2:end),XOUTopt(2:end-1,5),'m--');
+set(p,'Marker','*')
+l = legend('Plant','Estim');
+set(l,'Location','SouthEast')
+xlabel('tempo [s]')
+ylabel('ALPHAT [rad/s]')
 
-figure(6)
-hold on
+figure
+ax = gca;
+set(ax,'NextPlot','add','Box','on','XGrid','on','YGrid','on')
 plot(TSPAN,XOUTPlant(:,6),'k')
-plot(t,XOUTopt(1:end-1,6),'k--')
+p = plot(t(2:end),XOUTopt(2:end-1,6),'k--');
+set(p,'Marker','*')
+l = legend('Plant','Estim');
+set(l,'Location','SouthEast')
+xlabel('tempo [s]')
+ylabel('dPSI [rad/s]')
+
+%%
+% Cov. do erro
+
+figure
+ax = gca;
+set(ax,'NextPlot','add','Box','on','XGrid','on','YGrid','on')
+p = plot(t(2:end),KKalmanopt(2:end-1),'r');
+set(p,'Marker','*')
+ylabel('ganho de kalman')
+xlabel('tempo [s]')
 
 
-figure(7)
-plot(t,Popt(1:end-1))
+%%
+%
+
+figure
+ax = gca;
+set(ax,'NextPlot','add','Box','on','XGrid','on','YGrid','on')
+p = plot(t(2:end),Popt(2:end-1),'r');
+set(p,'Marker','*')
+p = plot(t(2:end),Pantes(2:end-1),'g');
+set(p,'Marker','*')
+l = legend('+','-');
+set(l,'Location','NorthEast')
+ylabel('cov. erro')
+xlabel('tempo [s]')
 
 %%
 %
