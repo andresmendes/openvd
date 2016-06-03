@@ -10,8 +10,8 @@
 %
 %% Code start
 
-docPath = '../../Vehicle-Dynamics-Lateral-Documentation/'
-apiDocPath = strcat(docPath, 'api/')
+docPath = '../../Vehicle-Dynamics-Lateral-Documentation/';
+apiDocPath = strcat(docPath, 'api/');
 
 %% Index
 publish('../index.m', 'outputDir', docPath, 'evalCode', false);
