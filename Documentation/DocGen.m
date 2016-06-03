@@ -10,8 +10,8 @@
 %
 %% Code start
 
-docPath = '../../Vehicle-Dynamics-Lateral-Documentation/'
-apiDocPath = strcat(docPath, 'api/')
+docPath = '../../Vehicle-Dynamics-Lateral-Documentation/';
+apiDocPath = strcat(docPath, 'api/');
 
 %% Index
 publish('../index.m', 'outputDir', docPath, 'evalCode', false);
@@ -64,7 +64,7 @@ publish('TemplateArticulated/TemplateArticulated.m', 'outputDir', '../../../Vehi
 cd ../KalmanFilter
 %%
 % Kalman Filter
-publish('KalmanFilter/KalmanFilter.m', 'outputDir', '../../../Vehicle-Dynamics-Lateral-Documentation/', 'evalCode', false);
+publish('KalmanFilter/KalmanFilter.m', 'outputDir', '../../../Vehicle-Dynamics-Lateral-Documentation/', 'evalCode', true);
 
 cd ../TireComparison
 %%

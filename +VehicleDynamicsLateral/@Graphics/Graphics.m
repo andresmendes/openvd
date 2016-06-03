@@ -6,8 +6,8 @@ classdef Graphics
         % Constructor
         function self = Graphics(simulator)
             self.Simulator = simulator;
-            g.TractorColor = 'r';
-            g.SemitrailerColor = 'g';
+            self.TractorColor = 'r';
+            self.SemitrailerColor = 'g';
         end
 
         function Animation(self, saveit, varargin)

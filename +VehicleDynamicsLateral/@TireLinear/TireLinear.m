@@ -6,7 +6,7 @@ classdef TireLinear < VehicleDynamicsLateral.Tire
     methods
         % Constructor
         function self = TireLinear()
-            self.k = 2300;
+            self.k = 40000;
         end
 
         function Fy = Characteristic(self, alpha, varargin)

@@ -8,7 +8,7 @@ classdef TirePacejka < VehicleDynamicsLateral.Tire
         function self = TirePacejka()
             self.a0 = 1;
             self.a1 = 0;
-            self.a2 = 700;
+            self.a2 = 800;
             self.a3 = 3000;
             self.a4 = 50;
             self.a5 = 0;
