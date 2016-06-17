@@ -10,7 +10,7 @@ classdef Graphics
             self.SemitrailerColor = 'g';
         end
 
-        function Animation(self, saveit, varargin)
+        function Animation(self, varargin)
             % Verifying number of columns of the state output matrix
             % col = 6 -> simples
             % col = 8 -> articulado
@@ -261,12 +261,18 @@ classdef Graphics
                 fill(xn, yn, self.SemitrailerColor)
             end
 
-            if saveit == 1
+            if nargin == 2
+                [pathstr, name, ext] = fileparts(varargin{1});
+
+                if not(exist(pathstr, 'file') == 7)
+                    mkdir(pathstr);
+                end
+
                 % Initializing gif
                 frame = getframe(666);
                 im = frame2im(frame);
                 [A, map] = rgb2ind(im, 256, 'nodither');
-                imwrite(A, map, 'Animation.gif', 'LoopCount', Inf, 'DelayTime', 0.05);
+                imwrite(A, map, strcat(pathstr, '/', name, '.gif'), 'LoopCount', Inf, 'DelayTime', 0.05);
             end
 
             % Remaining frames
@@ -296,12 +302,14 @@ classdef Graphics
                     self.Vector(emsemi(j, 1:2),(alpham(j)+psii(j)-phii(j)),velm(j),'b');
                 end
 
-                if saveit == 1
+                if nargin == 2
+                    [pathstr, name, ext] = fileparts(varargin{1});
+
                     % Adding the current frame to the initialized gif
                     frame = getframe(666);
                     im = frame2im(frame);
                     [A, map] = rgb2ind(im, 256, 'nodither');
-                    imwrite(A, map, 'Animation.gif', 'WriteMode', 'append', 'DelayTime', 0.05);
+                    imwrite(A, map, strcat(pathstr, '/', name, '.gif'), 'WriteMode', 'append', 'DelayTime', 0.05);
                 end
 
                 pause(0.05)                 % OBS: It has to be the same value of the time adjustment
@@ -336,7 +344,7 @@ classdef Graphics
             end
         end
 
-        function Frame(self, saveit, varargin)
+        function Frame(self, varargin)
             articulated = isa(self.Simulator.Vehicle, 'VehicleDynamicsLateral.VehicleArticulated');
 
             % States
@@ -580,8 +588,14 @@ classdef Graphics
                 end
             end
 
-            if saveit == 1
-                print(f999, '-dpdf', 'Trajectory.pdf')
+            if nargin == 2
+                [pathstr, name, ext] = fileparts(varargin{1});
+
+                if not(exist(pathstr, 'file') == 7)
+                    mkdir(pathstr);
+                end
+
+                print(f999, '-dpdf', strcat(strcat(pathstr, '/', name), '.pdf'))
             end
         end
     end

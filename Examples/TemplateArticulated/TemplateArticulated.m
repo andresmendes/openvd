@@ -32,8 +32,8 @@ simulator.Simulate();
 g = Graphics(simulator);
 g.TractorColor = 'c';
 g.SemitrailerColor = 'm';
-g.Frame(0);
-g.Animation(0);
+g.Frame('~/Desktop/plot/trajectory');
+g.Animation('~/Desktop/animation/animated_trajectory');
 
 %%
 %
