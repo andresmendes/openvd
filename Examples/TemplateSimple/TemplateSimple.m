@@ -6,14 +6,13 @@
 
 clear all                   % Clear workspace
 close all                   % Closing figures
-clc                         % Clear command window
 
 %%
 %
 import VehicleDynamicsLateral.*
 
 % Choosing tire
-TireModel = TirePacejka();
+TireModel = TirePolynomial();
 % Choosing vehicle
 System = VehicleSimpleNonlinear();
 System.tire = TireModel;
@@ -73,8 +72,8 @@ g = Graphics(simulator);
 g.TractorColor = 'c';
 g.SemitrailerColor = 'm';
 
-g.Frame(0);
-g.Animation(0);
+g.Frame('~/Desktop/plot/trajectory');
+g.Animation('~/Desktop/animation/animated_trajectory');
 
 %%
 % <<illustrations/AnimationSimple.gif>>
