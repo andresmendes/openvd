@@ -16,7 +16,7 @@
 %% Plant
 % Neste exemplo, a planta é representada por um modelo dinâmico não linear baseado no modelo físico ilustrado na seguinte figura
 %
-% <<../illustrations/modelSimple.svg>>
+% <<illustrations/modelSimple.svg>>
 %
 % O modelo da planta é composto pelos modelos não lineares de maior complexidade disponível no pacote, ou seja, o modelo de veículo <../DocVehicleSimpleNonlinear.html Vehicle Simple Nonlinear> com o modelo de pneu <../DocTirePacejka.html Tire Pacejka>. A descrição das equações de movimento podem ser encontradas em <../theory/vehicleSimple.pdf Simple equations of motion>
 %
@@ -586,6 +586,8 @@ ALPHAT0Num = simulatorModel.ALPHAT0;
 dPSI0Num = simulatorModel.dPSI0;
 
 x0 = [ X0Num ; Y0Num ; PSI0Num ; VEL0Num ; ALPHAT0Num ; dPSI0Num ];
+x0 = zeros(6,1);
+x0(4)=20;
 
 %%
 % Recuperando os parâmetros do veículo
@@ -632,11 +634,13 @@ XOUTantes(1,:) = x0';
 Pantes(1,1) = norm(P0);
 Popt(1,1) = norm(P0);
 
+% Distribuição dos erros
+
+pesos = [5; 5; 0.1; 0.5; 0.5];
 
 %%
 % Iteração
 %
-
 
 for j = 1:length(t)
     % Índice variando por todos os instantes de observação
@@ -646,6 +650,8 @@ for j = 1:length(t)
 
     % Obtendo as medidas da iteração
     z = [interp1(TSPAN,XTPlant(:,1),t(j)) ; interp1(TSPAN,YTPlant(:,1),t(j)) ; interp1(TSPAN,ddPSIPlant(:,1),t(j)) ; interp1(TSPAN,ACELNumPlant(:,1),t(j)) ; interp1(TSPAN,ACELNumPlant(:,2),t(j))];
+
+    z = z + pesos.*(rand(5,1)-0.5);
 
     Fnum = subs(F,[States.' mT IT a b K],[x0.' parameters]);
     Fnum = double(Fnum);
