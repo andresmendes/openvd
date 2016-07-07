@@ -85,6 +85,14 @@ classdef VehicleArticulatedNonlinear < VehicleDynamicsLateral.VehicleArticulated
             dx = f;
         end
 
+        function [value,isterminal,direction] = velocity(~,~,estados)
+            % If the velocity is less than 0.1m/s the integrator stops.
+            % The MassMatrix is singular when the velocity is 0 m/s.
+            value = estados(5,1) - 0.1;
+            isterminal = 1;
+            direction = -1;
+        end
+
         function M = MassMatrix(self,~,estados)
             % Vehicle Parameters
             mT = self.mT;
@@ -102,7 +110,7 @@ classdef VehicleArticulatedNonlinear < VehicleDynamicsLateral.VehicleArticulated
             nM = self.nM;
 
             g = 9.81;
-            
+
             FzF = self.mF * g;
             FzR = self.mR * g;
             FzM = self.mM * g;
