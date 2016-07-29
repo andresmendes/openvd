@@ -18,7 +18,7 @@ TireModel = TirePacejka();
 System = VehicleArticulatedNonlinear();
 System.tire = TireModel;
 % Choosing simulation
-T = 6;                      % Total simulation time [s]
+T = 7;                      % Total simulation time [s]
 resol = 50;                 % Resolution
 TSPAN = 0:T/resol:T;        % Time span [s]
 simulator = Simulator(System, TSPAN);
@@ -30,8 +30,8 @@ simulator.Simulate();
 %
 
 g = Graphics(simulator);
-g.TractorColor = 'c';
-g.SemitrailerColor = 'm';
+g.TractorColor = 'r';
+g.SemitrailerColor = 'g';
 g.Frame('~/Desktop/plot/trajectory');
 g.Animation('~/Desktop/animation/animated_trajectory');
 

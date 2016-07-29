@@ -12,9 +12,20 @@ close all                   % Closing figures
 import VehicleDynamicsLateral.*
 
 % Choosing tire
-TireModel = TirePolynomial();
+TireModel = TirePacejka();
 % Choosing vehicle
 System = VehicleSimpleNonlinear();
+% Defining vehicle parameters
+System.mF0 = 700;
+System.mR0 = 600;
+System.IT = 10000;
+System.lT = 3.5;
+System.nF = 2;
+System.nR = 2;
+System.wT = 2;
+System.muy = .8;
+System.deltaf = 0;
+
 System.tire = TireModel;
 % Choosing simulation
 T = 6;                      % Total simulation time [s]
@@ -69,11 +80,10 @@ ylabel('Yaw rate [rad/s]')
 % Frame and animation
 
 g = Graphics(simulator);
-g.TractorColor = 'c';
-g.SemitrailerColor = 'm';
+g.TractorColor = 'r';
 
 g.Frame('~/Desktop/plot/trajectory');
-g.Animation('~/Desktop/animation/animated_trajectory');
+% g.Animation('~/Desktop/animation/animated_trajectory');
 
 %%
 % <<illustrations/AnimationSimple.gif>>
