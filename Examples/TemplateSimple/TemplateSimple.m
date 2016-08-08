@@ -6,6 +6,7 @@
 
 clear all                   % Clear workspace
 close all                   % Closing figures
+clc                         % Clear command window
 
 %%
 %
@@ -32,6 +33,11 @@ T = 6;                      % Total simulation time [s]
 resol = 50;                 % Resolution
 TSPAN = 0:T/resol:T;        % Time span [s]
 simulator = Simulator(System, TSPAN);
+
+% Changing initial conditions
+simulator.ALPHAT0 = -0.2;             % Initial side slip angle [rad]
+simulator.dPSI0 = 0.7;                % Initial yaw rate [rad/s]
+
 
 % Simulation
 simulator.Simulate();
@@ -82,8 +88,8 @@ ylabel('Yaw rate [rad/s]')
 g = Graphics(simulator);
 g.TractorColor = 'r';
 
-g.Frame('~/Desktop/plot/trajectory');
-% g.Animation('~/Desktop/animation/animated_trajectory');
+g.Frame();
+g.Animation();
 
 %%
 % <<illustrations/AnimationSimple.gif>>

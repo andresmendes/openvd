@@ -25,7 +25,7 @@ classdef VehicleArticulatedLinear < VehicleDynamicsLateral.VehicleArticulated
             self.deltaf = 0;
         end
 
-        function dx = Model(self,~,estados)
+        function dx = Model(self,t,estados,tspan)
             % Vehicle parameters
             mT = self.mT;
             mS = self.mS;
@@ -36,17 +36,19 @@ classdef VehicleArticulatedLinear < VehicleDynamicsLateral.VehicleArticulated
             c = self.c;
             d = self.d;
             e = self.e;
-            deltaf = self.deltaf;
             nF = self.nF;
             nR = self.nR;
             nM = self.nM;
             g = 9.81;
-            
+
+            % Steering angle
+            deltaf = interp1(tspan,self.deltaf,t);
+
+            % Vertical forces
             FzF = self.mF * g;
             FzR = self.mR * g;
             FzM = self.mM * g;
             muy = self.muy;
-
 
             v0 = 20;
 

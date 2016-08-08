@@ -25,7 +25,7 @@ classdef VehicleArticulatedNonlinear < VehicleDynamicsLateral.VehicleArticulated
             self.deltaf = 0;
         end
 
-        function dx = Model(self, ~, estados)
+        function dx = Model(self,t, estados,tspan)
             % Vehicle parameters
             mT = self.mT;
             mS = self.mS;
@@ -36,10 +36,11 @@ classdef VehicleArticulatedNonlinear < VehicleDynamicsLateral.VehicleArticulated
             c = self.c;
             d = self.d;
             e = self.e;
-            deltaf = self.deltaf;
             nF = self.nF;
             nR = self.nR;
             nM = self.nM;
+
+            deltaf = interp1(tspan,self.deltaf,t);
 
             g = 9.81;
 

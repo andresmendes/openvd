@@ -92,7 +92,7 @@ XOUTPlant = [XTPlant YTPlant PSIPlant vTPlant ALPHATPlant dPSIPlant];
 
 gPlant = Graphics(simulatorPlant);
 gPlant.TractorColor = 'r';
-gPlant.Frame(0);
+gPlant.Frame();
 
 %%
 %
@@ -143,7 +143,7 @@ dPSIModel = simulatorModel.dPSI;
 
 gModel = Graphics(simulatorModel);
 gModel.TractorColor = 'g';
-gModel.Frame(0);
+gModel.Frame();
 
 %%
 %
@@ -235,7 +235,7 @@ ylabel('dPSI [rad/s]')
 saidasPlant = [XTPlant YTPlant PSIPlant vTPlant ALPHATPlant dPSIPlant];
 matDerivEstadosPlant = zeros(size(saidasPlant));
 for i = 1:size(saidasPlant,1)
-    auxil = VehiclePlant.Model(0,saidasPlant(i,:));
+    auxil = simulatorPlant.Vehicle.Model(1,saidasPlant(i,:),TSPAN);
     matDerivEstadosPlant(i,:) = auxil';
 end
 
@@ -254,7 +254,7 @@ ACELNumPlant = [(ddXPlant.*cos(PSIPlant) - ddYPlant.*sin(PSIPlant))  (-ddXPlant.
 saidasModel = [XTModel YTModel PSIModel vTModel ALPHATModel dPSIModel];
 matDerivEstadosModel = zeros(size(saidasModel));
 for i = 1:size(saidasModel,1)
-    auxil = VehicleModel.Model(0,saidasModel(i,:));
+    auxil = simulatorModel.Vehicle.Model(1,saidasModel(i,:),TSPAN);
     matDerivEstadosModel(i,:) = auxil';
 end
 
@@ -349,10 +349,10 @@ set(l,'Location','NorthEast')
 % Comparação - Diferença de 10 m na direção X no momento da curva.
 %
 
-gModel.Frame(0);
+gModel.Frame();
 hold on
-gPlant.Frame(0);
-gModel.Frame(0);
+gPlant.Frame();
+gModel.Frame();
 
 %%
 %
@@ -817,14 +817,19 @@ gKalman.Simulator.VEL = XOUTopt(1:end-1,4);
 gKalman.Simulator.ALPHAT = XOUTopt(1:end-1,5);
 gKalman.Simulator.dPSI = XOUTopt(1:end-1,6);
 gKalman.TractorColor = 'b';
-gKalman.Frame(0)
+gKalman.Frame()
 
 %%
 close all
 
 %%
 %
-gPlant.Frame(0);
+gPlant.Frame();
 hold on
-gModel.Frame(0);
-gKalman.Frame(0);
+gModel.Frame();
+gKalman.Frame();
+
+%% See Also
+%
+% <index.html Index>
+%

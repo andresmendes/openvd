@@ -22,6 +22,12 @@ classdef TirePacejka < VehicleDynamicsLateral.Tire
             self.a13 = 0;
         end
 
+        function PlotTire(self, Fz, muy)
+            alpha = (0:0.1:15)*pi/180;
+            Fy = - self.Characteristic(alpha, Fz, muy);
+            plot(alpha*180/pi,Fy)
+        end
+
         function Fy = Characteristic(self, alpha, Fz, muy)
             % Input
             % alpha - slip angle [rad]

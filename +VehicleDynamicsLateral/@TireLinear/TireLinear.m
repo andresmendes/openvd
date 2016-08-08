@@ -10,7 +10,7 @@ classdef TireLinear < VehicleDynamicsLateral.Tire
         end
 
         function Fy = Characteristic(self, alpha, varargin)
-            Fy = -self.k * alpha;
+            Fy = - self.k * alpha;
         end
     end
 

@@ -33,13 +33,8 @@ clear all                   % Clear workspace
 close all                   % Closing figures
 clc                         % Clear command window
 
-import DinamicaVeicular.*   % Importando o pacote Dinamica Veicular
-
 deriva = (0:0.1:15)*pi/180;         % ngulo de deriva [rad]
 
-% Pneu Pacejka de referncia
-Fz = 4e+03;
-camber = 0;
 a0 = 1.3;
 a1 = 2.014156;
 a2 = 710.5013;
@@ -54,33 +49,55 @@ a10 = 0;
 a11 = 0;
 a12= 0;
 a13 = 0;
-pPac = DinamicaVeicular.PneuPacejka1989([a0 a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13]);
 
-muy0 = a1 * Fz/1000 + a2;
+TirePac = VehicleDynamicsLateral.TirePacejka();
+
+Fz = 4e+03;
+camber = 0;
+TirePac.a0 = a0;
+TirePac.a1 = a1;
+TirePac.a2 = a2;
+TirePac.a3 = a3;
+TirePac.a4 = a4;
+TirePac.a5 = a5;
+TirePac.a6 = a6;
+TirePac.a7 = a7;
+TirePac.a8 = a8;
+TirePac.a9 = a9;
+TirePac.a10 = a10;
+TirePac.a11 = a11;
+TirePac.a12= a12;
+TirePac.a13 = a13;
+
+
+
+muy0 = TirePac.a1 * Fz/1000 + TirePac.a2;
 D = muy0 * Fz/1000;
-BCD = a3 * sin(2 * atan(Fz/1000/a4))*(1-a5 * abs(camber));
+BCD = TirePac.a3 * sin(2 * atan(Fz/1000/TirePac.a4))*(1-TirePac.a5 * abs(camber));
 
 % Pneu linear equivalente
 
 K = BCD * 180/pi;
 
-pLin = DinamicaVeicular.PneuLinear(K);
+TireLin = VehicleDynamicsLateral.TireLinear();
+TireLin.k = K;
 
 % Pneu polinomial equivalente
 
 k1 = BCD * 180/pi;
 k2 = (4 * k1^3)/(27 * D^2);
 
-pPol = DinamicaVeicular.PneuPolinomial([k1 k2]);
+TirePol = VehicleDynamicsLateral.TirePolynomial();
+TirePol.k1 = k1;
+TirePol.k2 = k2;
 
 % Lateral force
-FyPac = pPac.Characteristic(deriva, Fz, muy0/1000);
-FyLin = pLin.Characteristic(deriva);
-FyPol = pPol.Characteristic(deriva);
+FyPac = TirePac.Characteristic(deriva, Fz, muy0/1000);
+FyLin = TireLin.Characteristic(deriva);
+FyPol = TirePol.Characteristic(deriva);
 
 % Graphics
-
-g = DinamicaVeicular.Graficos;
+g = VehicleDynamicsLateral.Graphics(TirePac);
 
 figure(1)
 ax = gca;
@@ -119,7 +136,7 @@ fy = D * sin(C * atan(B * ALPHAeq - E*(B * ALPHAeq - atan(B * ALPHAeq))));
 FyPacSem180 = -muy/muy0*(fy + Sv);
 
 % Com tratamento
-FyPacCom180 = pPac.Characteristic(deriva180, Fz, muy0/1000);
+FyPacCom180 = TirePac.Characteristic(deriva180, Fz, muy0/1000);
 
 figure(2)
 ax = gca;

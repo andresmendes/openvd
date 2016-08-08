@@ -55,11 +55,22 @@ cd ../Examples/TemplateSimple
 %% Examples
 % TemplateSimple
 publish('TemplateSimple.m', 'outputDir', '../../../Vehicle-Dynamics-Lateral-Documentation/', 'evalCode', true);
+close all
+g.Animation('../../../Vehicle-Dynamics-Lateral-Documentation/illustrations/AnimationSimple');
 
 cd ../TemplateArticulated
 %%
 % TemplateArticulated
 publish('TemplateArticulated/TemplateArticulated.m', 'outputDir', '../../../Vehicle-Dynamics-Lateral-Documentation/', 'evalCode', true);
+close all
+g.Animation('../../../Vehicle-Dynamics-Lateral-Documentation/illustrations/AnimationArticulated');
+
+cd ../SinusoidalSteering
+%%
+% Sinusoidal Steering
+publish('SinusoidalSteering/SinusoidalSteering.m', 'outputDir', '../../../Vehicle-Dynamics-Lateral-Documentation/', 'evalCode', true);
+close all
+g.Animation('../../../Vehicle-Dynamics-Lateral-Documentation/illustrations/AnimationSinusoidal');
 
 cd ../KalmanFilter
 %%
@@ -69,7 +80,12 @@ publish('KalmanFilter/KalmanFilter.m', 'outputDir', '../../../Vehicle-Dynamics-L
 cd ../TireComparison
 %%
 % TireComparison
-publish('TireComparison/TireComparison.m', 'outputDir', '../../../Vehicle-Dynamics-Lateral-Documentation/', 'evalCode', false);
+publish('TireComparison/TireComparison.m', 'outputDir', '../../../Vehicle-Dynamics-Lateral-Documentation/', 'evalCode', true);
+
+cd ../SteeringControl
+%%
+% SteeringControl
+publish('SteeringControl/SteeringControl.m', 'outputDir', '../../../Vehicle-Dynamics-Lateral-Documentation/', 'evalCode', true,'showCode',false);
 
 % % DocGen
 % publish('DocGen', 'outputDir', docPath, 'evalCode', false);

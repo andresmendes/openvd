@@ -19,7 +19,7 @@ classdef VehicleSimpleLinear < VehicleDynamicsLateral.VehicleSimple
 
         %% Model
         % Function with the model
-        function dx = Model(self, ~, estados)
+        function dx = Model(self, t, estados,tspan)
             % Data
             mT = self.mT;
             IT = self.IT;
@@ -28,7 +28,8 @@ classdef VehicleSimpleLinear < VehicleDynamicsLateral.VehicleSimple
             nF = self.nF;
             nR = self.nR;
             muy = self.muy;
-            deltaf = self.deltaf;
+
+
 
             g = 9.81;                 % Gravity [m/s^2]
 
@@ -38,12 +39,18 @@ classdef VehicleSimpleLinear < VehicleDynamicsLateral.VehicleSimple
             v0 = 20;                  % [m/s]
 
             % State variables
-            % X = estados(1,1);         % Not used
-            % Y = estados(2,1);         % Not used
+            X = estados(1,1);         % Not used
+            Y = estados(2,1);         % Not used
             PSI     = estados(3,1);
             VT       = estados(4,1);
             ALPHAT  = estados(5,1);
             dPSI    = estados(6,1);
+
+            if isa(self.deltaf,'function_handle')
+                deltaf = self.deltaf([X;Y;PSI;VT;ALPHAT;dPSI],t);
+            else
+                deltaf = interp1(tspan,self.deltaf,t);
+            end
 
             % Slip angles
             ALPHAF = ALPHAT + a/v0*dPSI - deltaf;

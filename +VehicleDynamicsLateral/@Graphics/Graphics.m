@@ -152,13 +152,14 @@ classdef Graphics
             end
 
 
-            figWidth = 25 ;                             % Defining the width of the figure [centimeters]
+            figWidth = 20 ;                             % Defining the width of the figure [centimeters]
             % Margins added to Position to include text labels [left bottom right top] Property - TightInset (read only)
-            tight = [1.3 1.3 0.1 0.1];
+            tight = [1.3 1.3 0.2 0.2];
             PosAxX = figWidth - tight(1) - tight(3);     % Width of the axes (axes position x)
             XLim = [min(XT)-20 max(XT)+10];              % Limits of x
             rangeX = XLim(2) - XLim(1);                  % Range of x
-            YLim = [min(YT)-10 max(YT)+10];              % Limits of y
+            YLim = [min(YT)-5 max(YT)+5];              % Limits of y
+            % YLim = [min(YT)-10 max(YT)+10];              % Limits of y
             rangeY = YLim(2) - YLim(1);                  % Range of y
             PosAxY = PosAxX*rangeY/rangeX;               % Height of the axes (axes position y) - Equivalent to axis equal
 
@@ -169,7 +170,6 @@ classdef Graphics
             set(ax666,'NextPlot','add')                 % hold on
 
             % Description
-            title('Trajectory')
             xlabel('Distance [m]');
             ylabel('Distance [m]');
 
@@ -319,25 +319,24 @@ classdef Graphics
                     self.Vector(emsemi(j, 1:2),(alpham(j)+psii(j)-phii(j)),velm(j),'b');
                 end
 
+                % Setting figure
+                set(f666,'Units','centimeters')         % Changing units of the figure to centimeters
+                set(f666,'PaperUnits','centimeters')    % Changing units of the paper to centimeters
+                % Position and size of the figure window
+                set(f666,'Position',[0 0 PosAxX+tight(1)+tight(3) PosAxY+tight(2)+tight(4)])
+                % Position and size of the figure on the printed page
+                set(f666,'PaperPosition',[0 0 PosAxX+tight(1)+tight(3) PosAxY+tight(2)+tight(4)])
+                % % Size of the paper
+                set(f666,'PaperSize',[PosAxX+tight(1)+tight(3) PosAxY+tight(2)+tight(4)])
+                set(ax666,'Units','centimeters')        % Changing units of the axes to centimeters
+
+                % Setting axes
+                set(ax666,'XLim',XLim)
+                set(ax666,'YLim',YLim)
+                set(ax666,'Position',[tight(1:2) PosAxX PosAxY])
+                set(ax666,'Box','on','XGrid','on','YGrid','on','ZGrid','on')
                 if nargin == 2
                     [pathstr, name, ext] = fileparts(varargin{1});
-
-                    % Setting figure
-                    set(f666,'Units','centimeters')         % Changing units of the figure to centimeters
-                    set(f666,'PaperUnits','centimeters')    % Changing units of the paper to centimeters
-                    % Position and size of the figure window
-                    set(f666,'Position',[0 0 PosAxX+tight(1)+tight(3) PosAxY+tight(2)+tight(4)])
-                    % Position and size of the figure on the printed page
-                    set(f666,'PaperPosition',[0 0 PosAxX+tight(1)+tight(3) PosAxY+tight(2)+tight(4)])
-                    % % Size of the paper
-                    set(f666,'PaperSize',[PosAxX+tight(1)+tight(3) PosAxY+tight(2)+tight(4)])
-                    set(ax666,'Units','centimeters')        % Changing units of the axes to centimeters
-
-                    % Setting axes
-                    set(ax666,'XLim',XLim)
-                    set(ax666,'YLim',YLim)
-                    set(ax666,'Position',[tight(1:2) PosAxX PosAxY])
-                    set(ax666,'Box','on','XGrid','on','YGrid','on','ZGrid','on')
 
                     % Adding the current frame to the initialized gif
                     frame = getframe(666);
@@ -503,9 +502,9 @@ classdef Graphics
                 velt(i, 1:2) = interp1(TOUT, VEL, TEMPO(i));
             end
 
-            figWidth = 25 ;                             % Defining the width of the figure [centimeters]
+            figWidth = 20 ;                             % Defining the width of the figure [centimeters]
             % Margins added to Position to include text labels [left bottom right top] Property - TightInset (read only)
-            tight = [1.3 1.3 0.1 0.1];
+            tight = [1.3 1.3 0.2 0.2];
             PosAxX = figWidth - tight(1) - tight(3);     % Width of the axes (axes position x)
             XLim = [min(XT)-20 max(XT)+10];              % Limits of x
             rangeX = XLim(2) - XLim(1);                  % Range of x
@@ -620,6 +619,23 @@ classdef Graphics
                 end
             end
 
+            % Setting figure
+            set(f999,'Units','centimeters')         % Changing units of the figure to centimeters
+            set(f999,'PaperUnits','centimeters')    % Changing units of the paper to centimeters
+            % Position and size of the figure window
+            set(f999,'Position',[0 0 PosAxX+tight(1)+tight(3) PosAxY+tight(2)+tight(4)])
+            % Position and size of the figure on the printed page
+            set(f999,'PaperPosition',[0 0 PosAxX+tight(1)+tight(3) PosAxY+tight(2)+tight(4)])
+            % % Size of the paper
+            set(f999,'PaperSize',[PosAxX+tight(1)+tight(3) PosAxY+tight(2)+tight(4)])
+            set(ax999,'Units','centimeters')        % Changing units of the axes to centimeters
+
+            % Setting axes
+            set(ax999,'XLim',XLim)
+            set(ax999,'YLim',YLim)
+            set(ax999,'Position',[tight(1:2) PosAxX PosAxY])
+            set(ax999,'Box','on','XGrid','on','YGrid','on','ZGrid','on')
+
             if nargin == 2
                 [pathstr, name, ext] = fileparts(varargin{1});
 
@@ -627,22 +643,6 @@ classdef Graphics
                     mkdir(pathstr);
                 end
 
-                % Setting figure
-                set(f999,'Units','centimeters')         % Changing units of the figure to centimeters
-                set(f999,'PaperUnits','centimeters')    % Changing units of the paper to centimeters
-                % Position and size of the figure window
-                set(f999,'Position',[0 0 PosAxX+tight(1)+tight(3) PosAxY+tight(2)+tight(4)])
-                % Position and size of the figure on the printed page
-                set(f999,'PaperPosition',[0 0 PosAxX+tight(1)+tight(3) PosAxY+tight(2)+tight(4)])
-                % % Size of the paper
-                set(f999,'PaperSize',[PosAxX+tight(1)+tight(3) PosAxY+tight(2)+tight(4)])
-                set(ax999,'Units','centimeters')        % Changing units of the axes to centimeters
-
-                % Setting axes
-                set(ax999,'XLim',XLim)
-                set(ax999,'YLim',YLim)
-                set(ax999,'Position',[tight(1:2) PosAxX PosAxY])
-                set(ax999,'Box','on','XGrid','on','YGrid','on','ZGrid','on')
                 print(f999, '-dpdf', strcat(strcat(pathstr, '/', name), '.pdf'))
             end
         end
