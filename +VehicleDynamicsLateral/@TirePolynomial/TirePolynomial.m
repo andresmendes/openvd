@@ -10,6 +10,16 @@ classdef TirePolynomial < VehicleDynamicsLateral.Tire
             self.k2 = 560000;
         end
 
+        function p = PlotTire(self)
+            % Returns the handle of the curve
+            alpha = (0:0.1:15)*pi/180;
+            Fy = - self.Characteristic(alpha);
+            p = plot(alpha*180/pi,Fy);
+            grid on; box on;
+            xlabel('Slip angle [deg]')
+            ylabel('Lateral force [N]')
+        end
+
         function Fy = Characteristic(self, alpha, varargin)
             % Lateral force
             Fy = - (self.k1 * alpha - self.k2 * alpha.^3);
