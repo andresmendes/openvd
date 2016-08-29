@@ -153,6 +153,7 @@ classdef Graphics
 
 
             figWidth = 20 ;                             % Defining the width of the figure [centimeters]
+            Scale = 1; % Adjust the scale of y in relation to x
             % Margins added to Position to include text labels [left bottom right top] Property - TightInset (read only)
             tight = [1.3 1.3 0.2 0.2];
             PosAxX = figWidth - tight(1) - tight(3);     % Width of the axes (axes position x)
@@ -161,8 +162,7 @@ classdef Graphics
             YLim = [min(YT)-5 max(YT)+5];              % Limits of y
             % YLim = [min(YT)-10 max(YT)+10];              % Limits of y
             rangeY = YLim(2) - YLim(1);                  % Range of y
-            PosAxY = PosAxX*rangeY/rangeX;               % Height of the axes (axes position y) - Equivalent to axis equal
-
+            PosAxY = Scale*PosAxX*rangeY/rangeX;         % Height of the axes (axes position y) - Equivalent to axis
             % Defining figure
             f666 = figure(666);
             % Defining axes
@@ -503,6 +503,7 @@ classdef Graphics
             end
 
             figWidth = 20 ;                             % Defining the width of the figure [centimeters]
+            Scale = 1; % Adjust the scale of y in relation to x
             % Margins added to Position to include text labels [left bottom right top] Property - TightInset (read only)
             tight = [1.3 1.3 0.2 0.2];
             PosAxX = figWidth - tight(1) - tight(3);     % Width of the axes (axes position x)
@@ -510,7 +511,7 @@ classdef Graphics
             rangeX = XLim(2) - XLim(1);                  % Range of x
             YLim = [min(YT)-10 max(YT)+10];              % Limits of y
             rangeY = YLim(2) - YLim(1);                  % Range of y
-            PosAxY = PosAxX*rangeY/rangeX;               % Height of the axes (axes position y) - Equivalent to axis equal
+            PosAxY = Scale*PosAxX*rangeY/rangeX;         % Height of the axes (axes position y) - Equivalent to axis
 
             % Defining figure
             f999 = figure(999);
