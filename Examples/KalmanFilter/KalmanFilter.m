@@ -826,7 +826,7 @@ close all
 %
 gPlant.Frame();
 hold on
-gModel.Frame();
+% gModel.Frame();
 gKalman.Frame();
 
 %% See Also

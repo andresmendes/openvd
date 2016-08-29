@@ -9,7 +9,7 @@ close all                   % Closing figures
 clc                         % Clear command window
 
 % Adding package path
-addpath('/home/andre/Repos/Vehicle-Dynamics/Vehicle-Dynamics-Lateral/')
+addpath('../../../Vehicle-Dynamics-Lateral/')
 
 %% Vehicle model
 % *Bicycle model*
@@ -85,19 +85,20 @@ addpath('/home/andre/Repos/Vehicle-Dynamics/Vehicle-Dynamics-Lateral/')
 
 deriva = (0:0.1:15)*pi/180;         % ngulo de deriva [rad]
 
-a0 = 1.3;
-a1 = 2.014156;
-a2 = 710.5013;
-a3 = 5226.341;
-a4 = 78.87699;
-a5 = 0.01078379;
-a6 = -0.004759443;
-a7 = -1.8572;
+% Pacejka tire parameters
+a0 = 1;
+a1 = 0;
+a2 = 800;
+a3 = 10000;
+a4 = 50;
+a5 = 0;
+a6 = 0;
+a7 = -1;
 a8 = 0;
 a9 = 0;
 a10 = 0;
 a11 = 0;
-a12= 0;
+a12 = 0;
 a13 = 0;
 
 TirePac = VehicleDynamicsLateral.TirePacejka();
@@ -119,18 +120,16 @@ TirePac.a11 = a11;
 TirePac.a12= a12;
 TirePac.a13 = a13;
 
-
-
 muy0 = TirePac.a1 * Fz/1000 + TirePac.a2;
 D = muy0 * Fz/1000;
 BCD = TirePac.a3 * sin(2 * atan(Fz/1000/TirePac.a4))*(1-TirePac.a5 * abs(camber));
 
 % Pneu linear equivalente
 
-K = BCD * 180/pi;
+Ktire = BCD * 180/pi;
 
 TireLin = VehicleDynamicsLateral.TireLinear();
-TireLin.k = K;
+TireLin.k = Ktire;
 
 % Lateral force
 FyPac = TirePac.Characteristic(deriva, Fz, muy0/1000);
@@ -158,11 +157,6 @@ set(l, 'Interpreter', 'Latex', 'Location', 'NorthWest')
 %% Plant model
 % Nonlinear vehicle + Pacejka tire
 
-% TireModel = VehicleDynamicsLateral.TireLinear();
-TirePlant = VehicleDynamicsLateral.TirePacejka();
-
-disp(TirePlant)
-
 % Choosing vehicle
 % System = VehicleDynamicsLateral.VehicleSimpleLinear();
 VehiclePlant = VehicleDynamicsLateral.VehicleSimpleNonlinear();
@@ -173,41 +167,30 @@ VehiclePlant.IT = 10000;
 VehiclePlant.lT = 3.5;
 VehiclePlant.nF = 1;
 VehiclePlant.nR = 1;
-VehiclePlant.wT = 2;
-VehiclePlant.muy = .8;
-VehiclePlant.tire = TirePlant;
+VehiclePlant.wT = 1.8;
+VehiclePlant.muy = 1;
+VehiclePlant.tire = TirePac;
+VehiclePlant.deltaf = @ControlLaw;
 
 disp(VehiclePlant)
 
 % Choosing simulation
-T = 5;                      % Total simulation time [s]
+T = 12;                      % Total simulation time [s]
 resol = 500;                 % Resolution
 TSPAN = 0:T/resol:T;        % Time span [s]
 simulator = VehicleDynamicsLateral.Simulator(VehiclePlant, TSPAN);
+simulator.V0 = 16.7;
 
-% Changing initial conditions
-simulator.ALPHAT0 = -0.2;             % Initial side slip angle [rad]
-simulator.dPSI0 = 0.7;                % Initial yaw rate [rad/s]
-
-% Simulation
-simulator.Simulate();
-
-% g = VehicleDynamicsLateral.Graphics(simulator);
-% g.Animation('animations/plantAnimation');
-%
-%%
-% <<../Vehicle-Dynamics-Lateral/Examples/SteeringControl/animations/plantAnimation.gif>>
-%
-%% Reference model
+%% Controller design
 %
 % *Vehicle parameters*
 mT = 1300;
 IT = 10000;
 a = 1.6154;
 b = 1.8846;
-vT0 = 20;
-KF = 40000;
-KR = 40000;
+vT0 = 16.7;
+KF = Ktire;
+KR = Ktire;
 
 %%
 % *Linear system*
@@ -240,7 +223,7 @@ disp(C)
 % *LQR design*
 %
 
-Q = [   1 0 0 0 ;...
+Q = [   3 0 0 0 ;...
         0 1 0 0 ;...
         0 0 1 0 ;...
         0 0 0 1 ];
@@ -257,136 +240,84 @@ R = 1;
 
 disp(R)
 
-K = lqr(A,B,Q,R);
+Klqr = lqr(A,B,Q,R);
 
 %%
-% K
+% Klqr
 
-disp(K)
+disp(Klqr)
+
+%%
+% *Pole placement design*
+%
+
+polos = [-6 -6.3 -6.7 -7];
+
+Kplace = place(A,B,polos);
+
+%%
+% Kplace
+
+disp(Kplace)
 
 %%
 % Control law
 %
 % $$\delta = - {\bf K} {\bf z} + K_1 r$$
 %
-%% Simulation 1 - Lane change maneuver
+%% Double Lane Change Maneuver
 % *Control - Step y*
 %
 % Reference - r = 2 m
 %
 % $$ \delta_{max} = \pm 70 deg $$
 
-% Choosing tire
-TireModel = VehicleDynamicsLateral.TirePacejka();
-% Choosing vehicle
-System = VehicleDynamicsLateral.VehicleSimpleNonlinear();
-% Defining vehicle parameters
-System.mF0 = 700;
-System.mR0 = 600;
-System.IT = 10000;
-System.lT = 3.5;
-System.nF = 1;
-System.nR = 1;
-System.wT = 2;
-System.muy = .8;
-System.deltaf = @ControlLaw1;
-
-System.tire = TireModel;
-% Choosing simulation
-T = 3.5;                      % Total simulation time [s]
-resol = 500;                 % Resolution
-TSPAN = 0:T/resol:T;        % Time span [s]
-simulator = VehicleDynamicsLateral.Simulator(System, TSPAN);
-
 % Simulation
 simulator.Simulate();
 
-% Retrieving states
-% XT = simulator.XT;
-YT = simulator.YT;
-PSI = simulator.PSI;
-% VEL = simulator.VEL;
-ALPHAT = simulator.ALPHAT;
-dPSI = simulator.dPSI;
+g = VehicleDynamicsLateral.Graphics(simulator);
+g.Frame();
 
-x = [YT PSI ALPHAT dPSI];
+    % Adding the double lane change track to the frame figure
+    carWidth = 2;
+    LaneOffset = 3.5;
 
-r = 2;
-% Control gain
-K = [1.0000    8.3851    4.1971    0.6460];
+    section1width = 1.1*carWidth + 0.25;
+    section3width = 1.2*carWidth + 0.25;
+    section5width = 1.3*carWidth + 0.25;
 
-u = zeros(length(TSPAN),1);
-output = zeros(length(TSPAN),1);
-for ii = 1:length(TSPAN)
-    u(ii) = - K*x(ii,:)' + K(1)*r;
-    % Saturation at 70 deg
-    if abs(u(ii)) < 70*pi/180
-        output(ii) = u(ii);
-    else
-        output(ii) = sign(u(ii))*70*pi/180;
-    end
-end
+    section1Inf = -section1width/2;
+    section1Sup = section1width/2;
 
-f1 = figure;
-set(f1,'PaperUnits','centimeters')
-set(f1,'PaperPosition',[0 0 8.9 5])
-PaperPos = get(f1,'PaperPosition');
-set(f1,'PaperSize',PaperPos(3:4))
-hold on; box on; grid on
-plot(TSPAN,YT,'r')
-plot(TSPAN,PSI,'g')
-plot(TSPAN,ALPHAT,'b')
-plot(TSPAN,dPSI,'c')
-xlabel('Time [s]')
-ylabel('States')
-l = legend('$y$','$\psi$','$\alpha_T$','$\dot{\psi}$');
-set(l,'Interpreter','Latex','Location','East')
-print(gcf,'-dpdf','animations/controlStates1.pdf')
+    section3Inf = section1Inf+LaneOffset;
+    section3Sup = section3Inf+section3width;
+    section3Center = (section3Inf+section3Sup)/2;
 
+    section5Inf = -section5width/2;
+    section5Sup = section5width/2;
 
-% g = VehicleDynamicsLateral.Graphics(simulator);
-% g.Animation('animations/controlAnimation1');
-% g.Frame('animations/controlFrame1');
+    % Section 1
+    plot([0 15],[section1Inf section1Inf],'k')            % linha inferior
+    plot([0 15],[section1Sup section1Sup],'k')            % linha superior
+    plot([0 15],[0 0],'k--')                % linha central
+    % Section 2
+    plot([15 45],[0 section3Center],'k--')  % linha central
+    % Section 3
+    plot([45 70],[section3Inf section3Inf],'k')        % linha inferior
+    plot([45 70],[section3Sup section3Sup],'k')        % linha superior
+    plot([45 70],[section3Center section3Center],'k--')               % linha central
+    % Section 4
+    plot([70 95],[section3Center 0],'k--')
+    % Section 5
+    plot([95 130],[section5Inf section5Inf],'k')
+    plot([95 130],[section5Sup section5Sup],'k')
+    plot([95 130],[0 0],'k--')
+
+g.Animation();
 
 %%
-% <<../Vehicle-Dynamics-Lateral/Examples/SteeringControl/animations/controlAnimation1.gif>>
-
+% <<illustrations/SteeringControlAnimation.gif>>
 %
-f1 = figure;
-set(f1,'PaperUnits','centimeters')
-set(f1,'PaperPosition',[0 0 8.9 3.5])
-PaperPos = get(f1,'PaperPosition');
-set(f1,'PaperSize',PaperPos(3:4))
-hold on; box on; grid on
-plot(TSPAN,output*180/pi,'k')
-xlabel('Time [s]')
-y = ylabel('$\delta [deg]$');
-set(y,'Interpreter','Latex')
-print(gcf,'-dpdf','animations/controlInput1.pdf')
-
-%% Simulation 2 - Double lane change maneuver
-% *Control - Step y*
-%
-% if t<= 3
-%     r = 2;
-% else
-%     r = 0;
-% end
-%
-
-System.muy = 0.4;
-System.deltaf = @ControlLaw2;
-
-T = 7;                      % Total simulation time [s]
-resol = 500;                 % Resolution
-TSPAN = 0:T/resol:T;        % Time span [s]
-
-
-% Choosing simulation
-simulator = VehicleDynamicsLateral.Simulator(System, TSPAN);
-
-% Simulation
-simulator.Simulate();
 
 % Retrieving states
 XT = simulator.XT;
@@ -400,31 +331,36 @@ x = [YT PSI ALPHAT dPSI];
 
 u = zeros(length(TSPAN),1);
 output = zeros(length(TSPAN),1);
+
+LateralDisp = 3.6;
+
 for ii = 1:length(TSPAN)
-    t = TSPAN(ii);
-    if t <= 3
-        r = 2;
-    else
+    if XT(ii) <= 15
+        r = 0;
+    end
+    if XT(ii) > 15 && XT(ii) <= 70
+        r = LateralDisp;
+    end
+    if XT(ii) > 70
         r = 0;
     end
 
-    u(ii) = - K*x(ii,:)' + K(1)*r;
-    % Saturation at 70 deg
-    if abs(u(ii)) < 70*pi/180
+    u(ii) = - Kplace*x(ii,:)' + Kplace(1)*r;
+
+    % Saturation at 42 deg
+    if abs(u(ii)) < 42*pi/180
         output(ii) = u(ii);
     else
-        output(ii) = sign(u(ii))*70*pi/180;
+        output(ii) = sign(u(ii))*42*pi/180;
     end
 end
 
-
-
-
-f1 = figure;
-set(f1,'PaperUnits','centimeters')
-set(f1,'PaperPosition',[0 0 8.9 5])
-PaperPos = get(f1,'PaperPosition');
-set(f1,'PaperSize',PaperPos(3:4))
+% States
+f = figure;
+set(f,'PaperUnits','centimeters')
+set(f,'PaperPosition',[0 0 8.9 5])
+PaperPos = get(f,'PaperPosition');
+set(f,'PaperSize',PaperPos(3:4))
 hold on; box on; grid on
 plot(TSPAN,YT,'r')
 plot(TSPAN,PSI,'g')
@@ -435,31 +371,17 @@ ylabel('States')
 l = legend('$y$','$\psi$','$\alpha_T$','$\dot{\psi}$');
 set(l,'Interpreter','Latex','Location','NorthEast')
 
-print(gcf,'-dpdf','animations/controlStates2.pdf')
-
-%%
-%
-close all
-% g = VehicleDynamicsLateral.Graphics(simulator);
-% g.Animation('animations/controlAnimation2');
-% g.Frame('animations/controlFrame2');
-
-%%
-% <<../Vehicle-Dynamics-Lateral/Examples/SteeringControl/animations/controlAnimation2.gif>>
-%
-
-f1 = figure;
-set(f1,'PaperUnits','centimeters')
-set(f1,'PaperPosition',[0 0 8.9 3.5])
-PaperPos = get(f1,'PaperPosition');
-set(f1,'PaperSize',PaperPos(3:4))
+% Steering input
+f = figure;
+set(f,'PaperUnits','centimeters')
+set(f,'PaperPosition',[0 0 8.9 3.5])
+PaperPos = get(f,'PaperPosition');
+set(f,'PaperSize',PaperPos(3:4))
 hold on; box on; grid on
 plot(TSPAN,output*180/pi,'k')
 xlabel('Time [s]')
 y = ylabel('$\delta [deg]$');
 set(y,'Interpreter','Latex')
-print(gcf,'-dpdf','animations/controlInput2.pdf')
-
 
 %% See Also
 %

@@ -86,6 +86,8 @@ cd ../SteeringControl
 %%
 % SteeringControl
 publish('SteeringControl/SteeringControl.m', 'outputDir', '../../../Vehicle-Dynamics-Lateral-Documentation/', 'evalCode', true,'showCode',false);
+close all
+g.Animation('../../../Vehicle-Dynamics-Lateral-Documentation/illustrations/SteeringControlAnimation');
 
 % % DocGen
 % publish('DocGen', 'outputDir', docPath, 'evalCode', false);
