@@ -26,7 +26,7 @@ import VehicleDynamicsLateral.*
 % * <TemplateArticulated.html Template Articulated> - Articulated vehicle simulation.
 % * <TireComparison.html Tire Comparison> - Comparison of tire models.
 % * <SinusoidalSteering.html Sinusoidal Steering> - Maneuver with sinusoidal steering angle input.
-% * <SteeringControl.html Steering Control> - Maneuver with sinusoidal steering angle input.
+% * <SteeringControl.html Steering Control> - Double lane change maneuver.
 % * <KalmanFilter.html Kalman Filter> - Kalman Filter application
 %
 %% Tire model
