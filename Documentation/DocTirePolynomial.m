@@ -1,6 +1,10 @@
 %% Polynomial tire model
 % Nonlinear relation between tire lateral force and slip angle expressed by a third order polinomial equation. This model is used by several authors [1] [2] [3].
 %
+% <html>
+% <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+% </html>
+%
 %% Sintax
 % |Fy = _TireModel_.Characteristic(alpha)|
 %
@@ -15,9 +19,9 @@
 %
 % Model equation:
 %
-% $$ F_y = k_1 \alpha  - k_2\alpha^3 $$
+% \[ F_y = k_1 \alpha  - k_2\alpha^3 \]
 %
-% where $F_y$ is the lateral force and $\alpha$ is the tire slip angle. $k_1$ and $k_2$ are the model coefficients.
+% where \(F_y\) is the lateral force and \(\alpha\) is the tire slip angle. \(k_1\) and \(k_2\) are the model coefficients.
 %
 % *Hypothesis*
 %

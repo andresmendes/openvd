@@ -1,17 +1,21 @@
 %% KALMAN FILTER
 % Kalman filter application.
 %
+% <html>
+% <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+% </html>
+%
 %% System
 % Supondo um sistema não linear descrito por uma equação diferencial estocástica vetorial dada por:
 %
-% $$ \dot{{\bf x}} = {\bf f} ( {\bf x}(t) , t ) + {\bf G} (t) {\bf w} (t) $$
+% \[ \dot{{\bf x}} = {\bf f} ( {\bf x}(t) , t ) + {\bf G} (t) {\bf w} (t) \]
 %
 % onde
 %
-% * ${\bf w}$ é de processo branco gaussiano. ${\bf w}(t)$ ~ $N ( {\bf 0} , {\bf Q}(t) )$
-% * ${\bf f} ( {\bf x}(t) , t )$ é uma função vetorial de dimensão $n$
-% * ${\bf x}(t)$ é o vetor de estados $(n \times 1)$
-% * ${\bf G}$ é uma matriz conhecida $(n \times s)$
+% * \({\bf w}\) é de processo branco gaussiano. \({\bf w}(t)\) ~ \(N ( {\bf 0} , {\bf Q}(t) )\)
+% * \({\bf f} ( {\bf x}(t) , t )\) é uma função vetorial de dimensão \(n\)
+% * \({\bf x}(t)\) é o vetor de estados \((n \times 1)\)
+% * \({\bf G}\) é uma matriz conhecida \((n \times s)\)
 %
 %% Plant
 % Neste exemplo, a planta é representada por um modelo dinâmico não linear baseado no modelo físico ilustrado na seguinte figura
@@ -432,13 +436,13 @@ pretty(States)
 %%
 % O sistema linearizado é escrito na forma
 %
-% $$ \dot{\bf x} = {\bf F} {\bf x}$$
+% \[ \dot{\bf x} = {\bf F} {\bf x} \]
 %
-% onde ${\bf F}$ é a matriz dinâmica do modelo linear que é calculada a partir da equação não linear expandida em série de Taylor e truncada nos termos de primeira ordem. Logo, a matriz ${\bf F}$ é dada por
+% onde \({\bf F}\) é a matriz dinâmica do modelo linear que é calculada a partir da equação não linear expandida em série de Taylor e truncada nos termos de primeira ordem. Logo, a matriz \({\bf F}\) é dada por
 %
-% $${\bf F} = \left[ \frac{\partial f_i}{\partial x_j} \right]_{n \times n}$$
+% \[ {\bf F} = \left[ \frac{\partial f_i}{\partial x_j} \right]_{n \times n} \]
 %
-% onde $i$ e $j$ indicam as equações e variáveis de estado utilizadas no cálculo correpondente à posição $(i,j)$ da matriz jacobiana.
+% onde \(i\) e \(j\) indicam as equações e variáveis de estado utilizadas no cálculo correpondente à posição \((i,j)\) da matriz jacobiana.
 %
 
 F = jacobian(f,States);
@@ -460,15 +464,15 @@ pretty(F)
 %
 % Para isso, utiliza-se as relações:
 %
-% $$ \dot{x} = v_{\rm T} \cos \left( \psi + \alpha_{\rm T} \right) $$
+% \[ \dot{x} = v_{\rm T} \cos \left( \psi + \alpha_{\rm T} \right) \]
 %
-% $$ \dot{y} = v_{\rm T} \sin \left( \psi + \alpha_{\rm T} \right) $$
+% \[ \dot{y} = v_{\rm T} \sin \left( \psi + \alpha_{\rm T} \right) \]
 %
 % Aceleração
 %
-% $$ \ddot{x} = \dot{v}_{\rm T} \cos \left( \psi + \alpha_{\rm T} \right) - v_{\rm T} \left( \dot{\psi} + \dot{\alpha}_{\rm T} \right) \sin \left( \psi + \alpha_{\rm T} \right) $$
+% \[ \ddot{x} = \dot{v}_{\rm T} \cos \left( \psi + \alpha_{\rm T} \right) - v_{\rm T} \left( \dot{\psi} + \dot{\alpha}_{\rm T} \right) \sin \left( \psi + \alpha_{\rm T} \right) \]
 %
-% $$ \ddot{y} = \dot{v}_{\rm T} \sin \left( \psi + \alpha_{\rm T} \right) + v_{\rm T} \left( \dot{\psi} + \dot{\alpha}_{\rm T} \right) \cos \left( \psi + \alpha_{\rm T} \right) $$
+% \[ \ddot{y} = \dot{v}_{\rm T} \sin \left( \psi + \alpha_{\rm T} \right) + v_{\rm T} \left( \dot{\psi} + \dot{\alpha}_{\rm T} \right) \cos \left( \psi + \alpha_{\rm T} \right) \]
 %
 % Implementando
 %
@@ -477,9 +481,9 @@ ddX = f4*cos(PSI + ALPHAT) - vT*(dPSI + f5)*sin(PSI + ALPHAT);
 ddY = f4*sin(PSI + ALPHAT) + vT*(dPSI + f5)*cos(PSI + ALPHAT);
 
 %%
-% Estes valores obtidos são as acelerações escritas na base fixa $\{ O {\bf i} {\bf j} {\bf k} \}$. A projeção destas grandezas na base móvel $\{ O {\bf t}_x {\bf t}_y {\bf t}_z \}$ é feita através da equação
+% Estes valores obtidos são as acelerações escritas na base fixa \(\{ O {\bf i} {\bf j} {\bf k} \}\). A projeção destas grandezas na base móvel \(\{ O {\bf t}_x {\bf t}_y {\bf t}_z \}\) é feita através da equação
 %
-% $$ {\bf a} = \left( \ddot{x} \cos \psi - \ddot{y} \sin \psi \right) {\bf t}_x + \left( - \ddot{x} \sin \psi + \ddot{y} \sin \psi \right) {\bf t}_y$$
+% \[ {\bf a} = \left( \ddot{x} \cos \psi - \ddot{y} \sin \psi \right) {\bf t}_x + \left( - \ddot{x} \sin \psi + \ddot{y} \sin \psi \right) {\bf t}_y \]
 %
 % Implementando
 %
@@ -495,19 +499,19 @@ pretty(ACEL)
 %%
 % A equação de observações não linear é dada por
 %
-% $$ {\bf z}_k = {\bf h} ({\bf x}_k) + {\bf v}_k $$
+% \[ {\bf z}_k = {\bf h} ({\bf x}_k) + {\bf v}_k \]
 %
 % com
 %
-% ${\bf v}_k$ ~ $N ( {\bf 0} , {\bf R}_k )$
+% \({\bf v}_k\) ~ \(N ( {\bf 0} , {\bf R}_k )\)
 %
 % Linearizando termos
 %
-% $$ {\bf z}_k = {\bf H} {\bf x}_k + {\bf v}_k $$
+% \[ {\bf z}_k = {\bf H} {\bf x}_k + {\bf v}_k \]
 %
 % onde
 %
-% $${\bf H} = \left[ \frac{\partial h_i}{\partial x_j} \right]_{m \times n}$$
+% \[ {\bf H} = \left[ \frac{\partial h_i}{\partial x_j} \right]_{m \times n} \]
 %
 % ou seja, a matriz de saídas {\bf H} é a matriz jacobiana da equação de ACEL em relação aos estados.
 %
@@ -525,9 +529,9 @@ H = simplify(H);
 pretty(H)
 
 %% Verificação da linearização
-% Para verificar o procedimento de linearização, um ponto de operação referente à movimentação do veículo em linha reta com uma velocidade prescrita $v_0$ é utilizado. Esta escolha é típica e pode ser verificada facilmente na literatura.
+% Para verificar o procedimento de linearização, um ponto de operação referente à movimentação do veículo em linha reta com uma velocidade prescrita \(v_0\) é utilizado. Esta escolha é típica e pode ser verificada facilmente na literatura.
 %
-% Definindo $v_0$
+% Definindo \(v_0\)
 %
 
 syms v0
@@ -659,7 +663,7 @@ for j = 1:length(t)
     Hnum = double(Hnum);
 
     % Ciclo de propagação
-    % Transformando a matriz PMat0 $(6 \times 6)$ em um vetor P0 $(1 \times 36)$
+    % Transformando a matriz PMat0 \((6 \times 6)\) em um vetor P0 \((1 \times 36)\)
     P0 = reshape(P0',[1 36]);
 
     [TOUT,Pout] = ode45(@(t,P) IntCov(t,P,Fnum,G,Q),tspan,P0);

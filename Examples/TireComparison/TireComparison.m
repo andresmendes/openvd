@@ -1,5 +1,9 @@
 %% Tire comparison
 % Comparison between tire models: <PneuLinear.html linear>, <PneuPolinomial.html polinomial> e <PneuPacejka1989.html Pacejka 1989>.
+% 
+% <html>
+% <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+% </html>
 %
 %% Description
 % O modelo de pneu relaciona a fora lateral com o ngulo de deriva (ngulo formado entre o vetor velocidade do centro do pneu com o plano longitudinal do pneu). The typical relation between these two variables can be observed in the figure below (Adapted from [1]). Besides, its possible to verify the definition of slip angle.
@@ -9,19 +13,19 @@
 %% Equivalncia
 % Supondo um modelo de pneu <PneuPacejka1989.html Pacejka 1989> de referncia  possvel obter um modelo <PneuLinear.html linear> e <PneuPolinomial.html polinomial> equivalente. Isto  feito igualando o coeficiente de rigidez lateral dos trs modelos e igualando a fora lateral mxima dos modelos <PneuPolinomial.html polinomial> e <PneuPacejka1989.html Pacejka 1989>.
 %
-% The model <PneuPacejka1989.html Pacejka 1989> depends on the parameters $a_0$, $a_1$, $a_2$, $a_3$, $a_4$, $a_5$, $a_6$ e $a_7$ that defines the constants $B$, $C$, $D$ e $E$ wich can be used to define the constants of the equivalent models.
+% The model <PneuPacejka1989.html Pacejka 1989> depends on the parameters \(a_0\), \(a_1\), \(a_2\), \(a_3\), \(a_4\), \(a_5\), \(a_6\) e \(a_7\) that defines the constants \(B\), \(C\), \(D\) e \(E\) wich can be used to define the constants of the equivalent models.
 %
-% O modelo <PneuLinear.html linear> equivalente possui cornering stiffness $K$ dado por:
+% O modelo <PneuLinear.html linear> equivalente possui cornering stiffness \(K\) dado por:
 %
-% $$ K = B C D$$
+% \[ K = B C D \]
 %
-% O modelo <PneuPolinomial.html polinomial> equivalente possui coeficientes $k_1$ e $k_2$ dados por:
+% O modelo <PneuPolinomial.html polinomial> equivalente possui coeficientes \(k_1\) e \(k_2\) dados por:
 %
-% $$ k_1 = B C D $$
+% \[ k_1 = B C D \]
 %
-% $$ k_2 = (4 k_1^3)/(27 F_{y, Max}^2) $$
+% \[ k_2 = (4 k_1^3)/(27 F_{y, Max}^2) \]
 %
-% Onde $F_{y, Max}$  a fora lateral mxima da curva caracterstica de referncia.
+% Onde \(F_{y, Max}\)  a fora lateral mxima da curva caracterstica de referncia.
 %
 
 
@@ -108,8 +112,8 @@ p = plot(deriva * 180/pi,-FyPol, 'Color', 'b', 'Marker', '^', 'MarkerFaceColor',
 g.changeMarker(p, 10);
 p = plot(deriva * 180/pi,-FyPac, 'Color', 'r', 'Marker', 'o', 'MarkerFaceColor', 'r', 'MarkeredgeColor', 'k', 'MarkerSize', 7);
 g.changeMarker(p, 10);
-xlabel('$\alpha$ [grau]', 'Interpreter', 'Latex')
-ylabel('$F_y$ [N]', 'Interpreter', 'Latex')
+xlabel('\(\alpha\) [grau]', 'Interpreter', 'Latex')
+ylabel('\(F_y\) [N]', 'Interpreter', 'Latex')
 l = legend('Linear', 'Polinomial', 'Pacejka');
 set(l, 'Interpreter', 'Latex', 'Location', 'NorthWest')
 
@@ -146,13 +150,13 @@ g.changeMarker(p, 10);
 p = plot(deriva180 * 180/pi,-FyPacCom180, 'Color', 'r', 'Marker', 'o', 'MarkerFaceColor', 'r', 'MarkeredgeColor', 'k', 'MarkerSize', 7);
 g.changeMarker(p, 10);
 plot([90 90],[0 3000],'--k')    % Linha vertical de simetria
-xlabel('$\alpha$ [grau]', 'Interpreter', 'Latex')
-ylabel('$F_y$ [N]', 'Interpreter', 'Latex')
+xlabel('\(\alpha\) [grau]', 'Interpreter', 'Latex')
+ylabel('\(F_y\) [N]', 'Interpreter', 'Latex')
 l = legend('Pacejka sem tratamento', 'Pacejka com tratamento');
 set(l, 'Interpreter', 'Latex', 'Location', 'SouthEast')
 
 %%
-% Na figura acima  possvel observar o efeito do tratamento do ngulo de deriva na curva caracterstica. The curve is symmetric to a vertical line positioned at $\alpha = 90 [graus]$.
+% Na figura acima  possvel observar o efeito do tratamento do ngulo de deriva na curva caracterstica. The curve is symmetric to a vertical line positioned at \(\alpha = 90 [graus]\).
 %
 %% References
 % [1] GILLESPIE, T. D. Fundamentals of vehicle dynamics. [S.l.]: Society of Automotive Engineers Warrendale, PA, 1992.

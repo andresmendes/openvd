@@ -1,6 +1,10 @@
 %% Linear tire model
 % Linear relationship between tire lateral force and slip angle.
 %
+% <html>
+% <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+% </html>
+%
 %% Sintax
 % |Fy = _TireModel_.Characteristic(alpha)|
 %
@@ -15,9 +19,9 @@
 %
 % The lateral force of the tire can be calculated as
 %
-% $$ F_y = K \alpha $$
+% \[ F_y = K \alpha \]
 %
-% where $F_y$ is the lateral force, $K$ is the cornering stiffness and $\alpha$ is the tire slip angle.
+% where \(F_y\) is the lateral force, \(K\) is the cornering stiffness and \(\alpha\) is the tire slip angle.
 %
 % *Hypothesis*
 %

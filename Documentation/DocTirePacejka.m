@@ -1,6 +1,10 @@
 %% Pacejka tire model
 % Nonlinear relationship between tire lateral force and slip angle expressed by a semi-empirical model with experimental coefficients [1].
 %
+% <html>
+% <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+% </html>
+%
 %% Sintax
 % |Fy = _TireModel_.Characteristic(alpha, Fz, muy)|
 %
@@ -16,31 +20,31 @@
 %% Description
 % The lateral force can be written as
 %
-% $$ F_y = - \frac{\mu_y}{\mu_{y, n}} (F_{y, n}(\alpha_{eq}) + S_v)$$
+% \[ F_y = - \frac{\mu_y}{\mu_{y, n}} (F_{y, n}(\alpha_{eq}) + S_v) \]
 %
-% where $\alpha_{eq}$ is the equivalent slip angle
+% where \(\alpha_{eq}\) is the equivalent slip angle
 %
-% $$ \alpha_{eq} = \frac{\mu_{y0}}{\mu_y} \frac{F_{z0}}{F_z} (\alpha + S_h)$$
+% \[ \alpha_{eq} = \frac{\mu_{y0}}{\mu_y} \frac{F_{z0}}{F_z} (\alpha + S_h) \]
 %
-% and $F_{y, n}$ is the reference function of the lateral force
+% and \(F_{y, n}\) is the reference function of the lateral force
 %
-% $$ F_{y, n} = D \sin(C \arctan(B \alpha - E (B \alpha - \arctan(B \alpha)))) $$
+% \[ F_{y, n} = D \sin(C \arctan(B \alpha - E (B \alpha - \arctan(B \alpha)))) \]
 %
-% The coefficients $B$, $C$, $D$ and $E$ can be written as
+% The coefficients \(B\), \(C\), \(D\) and \(E\) can be written as
 %
-% $$ C = a_0 $$
+% \[ C = a_0 \]
 %
-% $$ D = \mu_{y, n} F_z = (a_1 F_z + a_2) F_z $$
+% \[ D = \mu_{y, n} F_z = (a_1 F_z + a_2) F_z \]
 %
-% $$ B = \frac{B C D}{C D} = a_3 \sin \left\{ 2 \arctan \left( \frac{F_z}{a_4} \right) \right\} (1 - a_5 |\gamma|)$$
+% \[ B = \frac{B C D}{C D} = a_3 \sin \left\{ 2 \arctan \left( \frac{F_z}{a_4} \right) \right\} (1 - a_5 |\gamma|) \]
 %
-% $$ E = a_6 F_z + a_7$$
+% \[ E = a_6 F_z + a_7 \]
 %
 % The horizontal and vertical shifts of the curve are calculated as
 %
-% $$ S_h = a_8 \gamma + a_9 F_z + a_{10} $$
+% \[ S_h = a_8 \gamma + a_9 F_z + a_{10} \]
 %
-% $$ S_v = a_{11} F_z \gamma + a_{12} F_z + a_{13} $$
+% \[ S_v = a_{11} F_z \gamma + a_{12} F_z + a_{13} \]
 %
 % The model implemented here converts the slip angle using the following equation
 %
