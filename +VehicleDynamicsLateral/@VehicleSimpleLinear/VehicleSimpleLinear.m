@@ -15,6 +15,8 @@ classdef VehicleSimpleLinear < VehicleDynamicsLateral.VehicleSimple
             self.wT = 2;
             self.muy = .8;
             self.deltaf = 0;
+            self.Fxf = 0;
+            self.Fxr = 0;
         end
 
         %% Model
@@ -57,8 +59,21 @@ classdef VehicleSimpleLinear < VehicleDynamicsLateral.VehicleSimple
             ALPHAR = ALPHAT - b/v0*dPSI;
 
             % Longitudinal forces
-            FxF = 0;
-            FxR = 0;
+            if isa(self.Fxf,'function_handle')
+                FxF = self.Fxf([X;Y;PSI;VT;ALPHAT;dPSI],t);
+            elseif length(self.Fxf)>1
+                FxF = interp1(tspan,self.Fxf,t);
+            else
+                FxF = self.Fxf;
+            end
+
+            if isa(self.Fxr,'function_handle')
+                FxR = self.Fxr([X;Y;PSI;VT;ALPHAT;dPSI],t);
+            elseif length(self.Fxr)>1
+                FxR = interp1(tspan,self.Fxr,t);
+            else
+                FxR = self.Fxr;
+            end
 
             % Lateral force
             FyF = nF * self.tire.Characteristic(ALPHAF, FzF / nF, muy);

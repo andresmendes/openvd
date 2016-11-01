@@ -23,6 +23,9 @@ classdef VehicleArticulatedLinear < VehicleDynamicsLateral.VehicleArticulated
             self.wS = 2.4;
             self.muy = 0.3;
             self.deltaf = 0;
+            self.Fxf = 0;
+            self.Fxr = 0;
+            self.Fxm = 0;
         end
 
         function dx = Model(self,t,estados,tspan)
@@ -68,9 +71,30 @@ classdef VehicleArticulatedLinear < VehicleDynamicsLateral.VehicleArticulated
             ALPHAM = ALPHAT + PHI - (dPSI*(b + c + d + e))/v0 + (dPHI*(d + e))/v0;
 
             % Longitudinal forces
-            FxF = 0;
-            FxR = 0;
-            FxM = 0;
+            if isa(self.Fxf,'function_handle')
+                FxF = self.Fxf([X;Y;PSI;PHI;V;ALPHAT;dPSI;dPHI],t);
+            elseif length(self.Fxf)>1
+                FxF = interp1(tspan,self.Fxf,t);
+            else
+                FxF = self.Fxf;
+            end
+
+            if isa(self.Fxr,'function_handle')
+                FxR = self.Fxr([X;Y;PSI;PHI;V;ALPHAT;dPSI;dPHI],t);
+            elseif length(self.Fxr)>1
+                FxR = interp1(tspan,self.Fxr,t);
+            else
+                FxR = self.Fxr;
+            end
+
+            if isa(self.Fxm,'function_handle')
+                FxM = self.Fxm([X;Y;PSI;PHI;V;ALPHAT;dPSI;dPHI],t);
+            elseif length(self.Fxm)>1
+                FxM = interp1(tspan,self.Fxm,t);
+            else
+                FxM = self.Fxm;
+            end
+
 
             % Lateral forces - Characteristic curve
             FyF = nF*self.tire.Characteristic(ALPHAF,FzF/nF,muy);
@@ -100,6 +124,14 @@ classdef VehicleArticulatedLinear < VehicleDynamicsLateral.VehicleArticulated
 
             % Integrator output
             dx = A*vetEst + B*vetEnt;
+        end
+
+        function [value,isterminal,direction] = velocity(~,~,estados)
+            % If the velocity is less than 0.1m/s the integrator stops.
+            % The MassMatrix is singular when the velocity is 0 m/s.
+            value = estados(5,1) - 0.1;
+            isterminal = 1;
+            direction = -1;
         end
 
         function E = MassMatrix(self,~,~)

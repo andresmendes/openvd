@@ -23,6 +23,9 @@ classdef VehicleArticulatedNonlinear < VehicleDynamicsLateral.VehicleArticulated
             self.wS = 2.4;
             self.muy = 0.3;
             self.deltaf = 0;
+            self.Fxf = 0;
+            self.Fxr = 0;
+            self.Fxm = 0;
         end
 
         function dx = Model(self,t, estados,tspan)
@@ -51,6 +54,8 @@ classdef VehicleArticulatedNonlinear < VehicleDynamicsLateral.VehicleArticulated
 
 
             % States
+            X = estados(1,1);
+            Y = estados(2,1);
             PSI = estados(3,1);
             PHI = estados(4,1);
             VT = estados(5,1);
@@ -65,9 +70,30 @@ classdef VehicleArticulatedNonlinear < VehicleDynamicsLateral.VehicleArticulated
                      c * dPSI * cos(PHI)),(VT * cos(ALPHAT + PHI) + b * dPSI * sin(PHI) + c * dPSI * sin(PHI)));
 
             % Longitudinal forces
-            FxF = 0;
-            FxR = 0;
-            FxM = 0;
+            if isa(self.Fxf,'function_handle')
+                FxF = self.Fxf([X;Y;PSI;PHI;VT;ALPHAT;dPSI;dPHI],t);
+            elseif length(self.Fxf)>1
+                FxF = interp1(tspan,self.Fxf,t);
+            else
+                FxF = self.Fxf;
+            end
+
+            if isa(self.Fxr,'function_handle')
+                FxR = self.Fxr([X;Y;PSI;PHI;VT;ALPHAT;dPSI;dPHI],t);
+            elseif length(self.Fxr)>1
+                FxR = interp1(tspan,self.Fxr,t);
+            else
+                FxR = self.Fxr;
+            end
+
+            if isa(self.Fxm,'function_handle')
+                FxM = self.Fxm([X;Y;PSI;PHI;VT;ALPHAT;dPSI;dPHI],t);
+            elseif length(self.Fxm)>1
+                FxM = interp1(tspan,self.Fxm,t);
+            else
+                FxM = self.Fxm;
+            end
+
             % Lateral forces
             FyF = nF * self.tire.Characteristic(ALPHAF, FzF/nF, muy);
             FyR = nR * self.tire.Characteristic(ALPHAR, FzR/nR, muy);

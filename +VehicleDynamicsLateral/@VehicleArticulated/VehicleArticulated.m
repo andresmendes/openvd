@@ -10,18 +10,19 @@ classdef (Abstract) VehicleArticulated  < VehicleDynamicsLateral.VehicleSimple
     end
 
     properties
-        mF % Mass over the front axle when the semitrailer is coupled [kg]
-        mR % Mass over the rear axle when the semitrailer is coupled [kg]
-        mM % Mass over the semitrailer axle when the semitrailer is coupled [kg]
-        mA % Mass over the articulation point when the semitrailer is coupled [kg]
-        mS % Mass of the semitrailer [kg]
-        IS % Moment of inertia of the semitrailer [kg.m2]
-        nM % Number of tires in semitrailer axle
-        wS % Track of the semitrailer [m]
-        lS % Distance from articulation to semitrailer axle (A-M) [m]
-        c % Distance from rear axle of the tractor to articulation (R-A) [m]
-        d % Distance from articulation to semitrailer center of mass (A-M) [m]
-        e % Distance from semitrailer center of mass to semitrailer axle (A-M) [m]
+        mF  % Mass over the front axle when the semitrailer is coupled [kg]
+        mR  % Mass over the rear axle when the semitrailer is coupled [kg]
+        mM  % Mass over the semitrailer axle when the semitrailer is coupled [kg]
+        mA  % Mass over the articulation point when the semitrailer is coupled [kg]
+        mS  % Mass of the semitrailer [kg]
+        IS  % Moment of inertia of the semitrailer [kg.m2]
+        nM  % Number of tires in semitrailer axle
+        wS  % Track of the semitrailer [m]
+        lS  % Distance from articulation to semitrailer axle (A-M) [m]
+        c   % Distance from rear axle of the tractor to articulation (R-A) [m]
+        d   % Distance from articulation to semitrailer center of mass (A-M) [m]
+        e   % Distance from semitrailer center of mass to semitrailer axle (A-M) [m]
+        Fxm % Longitudinal force at M [rad]
     end
 
     methods
