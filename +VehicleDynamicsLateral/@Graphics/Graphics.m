@@ -629,9 +629,9 @@ classdef Graphics
             set(f999,'PaperPosition',[0 0 PosAxX+tight(1)+tight(3) PosAxY+tight(2)+tight(4)])
             % % Size of the paper
             set(f999,'PaperSize',[PosAxX+tight(1)+tight(3) PosAxY+tight(2)+tight(4)])
-            set(ax999,'Units','centimeters')        % Changing units of the axes to centimeters
 
             % Setting axes
+            set(ax999,'Units','centimeters')        % Changing units of the axes to centimeters
             set(ax999,'XLim',XLim)
             set(ax999,'YLim',YLim)
             set(ax999,'Position',[tight(1:2) PosAxX PosAxY])
