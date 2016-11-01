@@ -30,6 +30,7 @@ File | Description
 [SinusoidalSteering.m](http://andresmendes.github.io/Vehicle-Dynamics-Lateral/SinusoidalSteering.html) | Maneuver with sinusoidal steering angle input.
 [SteeringControl.m](http://andresmendes.github.io/Vehicle-Dynamics-Lateral/SteeringControl.html) | Double lane change maneuver.
 [KalmanFilter.m](http://andresmendes.github.io/Vehicle-Dynamics-Lateral/KalmanFilter.html) | Kalman Filter application.
+[SkidPad.m](http://andresmendes.github.io/Vehicle-Dynamics-Lateral/SkidPad.html) | Simple vehicle moving in circle.
 
 ## Tire model
 

@@ -28,6 +28,7 @@ import VehicleDynamicsLateral.*
 % * <SinusoidalSteering.html Sinusoidal Steering> - Maneuver with sinusoidal steering angle input.
 % * <SteeringControl.html Steering Control> - Double lane change maneuver.
 % * <KalmanFilter.html Kalman Filter> - Kalman Filter application
+% * <SkidPad.html Skid Pad> - Simple vehicle moving in circle
 %
 %% Tire model
 %

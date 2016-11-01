@@ -531,12 +531,15 @@ classdef Graphics
             plot(ef(:,1),ef(:,2),'r')
             plot(er(:,1),er(:,2),'g')
 
+
             for j = 1:length(TEMPO)
                 % Coordinates of the corners
                 xc = [rc1(j, 1) rc2(j, 1) rc3(j, 1) rc4(j, 1)];
                 yc = [rc1(j, 2) rc2(j, 2) rc3(j, 2) rc4(j, 2)];
                 % Vehicle
                 fill(xc, yc, self.TractorColor);
+                p = plot(xxx(j),yyy(j),'ko');
+                set(p,'MarkerFaceColor','k','MarkerEdgeColor','k','MarkerSize',6)
             end
 
             % Adding semitrailer

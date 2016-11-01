@@ -61,33 +61,41 @@ g.Animation('../../../Vehicle-Dynamics-Lateral-Documentation/illustrations/Anima
 cd ../TemplateArticulated
 %%
 % TemplateArticulated
-publish('TemplateArticulated/TemplateArticulated.m', 'outputDir', '../../../Vehicle-Dynamics-Lateral-Documentation/', 'evalCode', true);
+publish('TemplateArticulated.m', 'outputDir', '../../../Vehicle-Dynamics-Lateral-Documentation/', 'evalCode', true);
 close all
 g.Animation('../../../Vehicle-Dynamics-Lateral-Documentation/illustrations/AnimationArticulated');
 
 cd ../SinusoidalSteering
 %%
 % Sinusoidal Steering
-publish('SinusoidalSteering/SinusoidalSteering.m', 'outputDir', '../../../Vehicle-Dynamics-Lateral-Documentation/', 'evalCode', true);
+publish('SinusoidalSteering.m', 'outputDir', '../../../Vehicle-Dynamics-Lateral-Documentation/', 'evalCode', true);
 close all
 g.Animation('../../../Vehicle-Dynamics-Lateral-Documentation/illustrations/AnimationSinusoidal');
 
 cd ../KalmanFilter
 %%
 % Kalman Filter
-publish('KalmanFilter/KalmanFilter.m', 'outputDir', '../../../Vehicle-Dynamics-Lateral-Documentation/', 'evalCode', true);
+publish('KalmanFilter.m', 'outputDir', '../../../Vehicle-Dynamics-Lateral-Documentation/', 'evalCode', true);
 
 cd ../TireComparison
 %%
 % TireComparison
-publish('TireComparison/TireComparison.m', 'outputDir', '../../../Vehicle-Dynamics-Lateral-Documentation/', 'evalCode', true);
+publish('TireComparison.m', 'outputDir', '../../../Vehicle-Dynamics-Lateral-Documentation/', 'evalCode', true);
 
 cd ../SteeringControl
 %%
 % SteeringControl
-publish('SteeringControl/SteeringControl.m', 'outputDir', '../../../Vehicle-Dynamics-Lateral-Documentation/', 'evalCode', true,'showCode',false);
+publish('SteeringControl.m', 'outputDir', '../../../Vehicle-Dynamics-Lateral-Documentation/', 'evalCode', true,'showCode',false);
 close all
 g.Animation('../../../Vehicle-Dynamics-Lateral-Documentation/illustrations/SteeringControlAnimation');
+
+cd ../SkidPad
+%%
+% Skid Pad
+publish('SkidPad.m', 'outputDir', '../../../Vehicle-Dynamics-Lateral-Documentation/', 'evalCode', true,'showCode',true);
+close all
+g.Animation('../../../Vehicle-Dynamics-Lateral-Documentation/illustrations/AnimationSkidPad');
+
 
 % % DocGen
 % publish('DocGen', 'outputDir', docPath, 'evalCode', false);
