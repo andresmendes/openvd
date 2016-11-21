@@ -29,6 +29,7 @@ import VehicleDynamicsLateral.*
 % * <SteeringControl.html Steering Control> - Double lane change maneuver.
 % * <KalmanFilter.html Kalman Filter> - Kalman Filter application
 % * <SkidPad.html Skid Pad> - Simple vehicle moving in circle
+% * <SkidPad4DOF.html Skid Pad 4DOF> - Simple vehicle with roll dynamics moving in circle
 %
 %% Tire model
 %
