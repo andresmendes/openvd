@@ -4,12 +4,6 @@
 %%
 %
 
-clear all                   % Clear workspace
-close all                   % Closing figures
-clc                         % Clear command window
-
-%%
-%
 import VehicleDynamicsLateral.*
 
 % Choosing tire
@@ -51,9 +45,9 @@ g.Animation();
 
 %%
 %
-% <<illustrations/AnimationArticulated.gif>>
+% <<../illustrations/AnimationArticulated.gif>>
 %
 %% See Also
 %
-% <index.html Index> | <TemplateSimple.html TemplateSimple>
+% <../../index.html index> | <TemplateSimple.html TemplateSimple>
 %

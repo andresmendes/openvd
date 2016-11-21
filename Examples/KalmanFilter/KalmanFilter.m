@@ -20,18 +20,11 @@
 %% Plant
 % Neste exemplo, a planta é representada por um modelo dinâmico não linear baseado no modelo físico ilustrado na seguinte figura
 %
-% <<illustrations/modelSimple.svg>>
+% <<../illustrations/modelSimple.svg>>
 %
 % O modelo da planta é composto pelos modelos não lineares de maior complexidade disponível no pacote, ou seja, o modelo de veículo <../DocVehicleSimpleNonlinear.html Vehicle Simple Nonlinear> com o modelo de pneu <../DocTirePacejka.html Tire Pacejka>. A descrição das equações de movimento podem ser encontradas em <../theory/vehicleSimple.pdf Simple equations of motion>
 %
-% Iniciando o código:
-%
 
-clear all                   % Clear workspace
-close all                   % Closing figures
-clc                         % Clear command window
-
-%%
 % O pacote é importado com o comando:
 %
 
@@ -835,5 +828,5 @@ gKalman.Frame();
 
 %% See Also
 %
-% <index.html Index>
+% <../../index.html index>
 %

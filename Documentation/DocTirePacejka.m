@@ -62,5 +62,5 @@
 %
 %% See Also
 %
-% <index.html Index> | <TireLinear.html Linear Tire> | <TirePolynomial.html Polynomial Tire>
+% <../../index.html index> | <TireLinear.html Linear Tire> | <TirePolynomial.html Polynomial Tire>
 %

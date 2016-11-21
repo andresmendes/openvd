@@ -30,5 +30,5 @@
 %
 %% See Also
 %
-% <index.html Index>
+% <../../index.html index>
 %

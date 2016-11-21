@@ -31,3 +31,8 @@ classdef TirePolynomial < VehicleDynamicsLateral.Tire
         k2 % 2nd polynomial coefficient [N/rad^3]
     end
 end
+
+%% See Also
+%
+% <../../../index.html index>
+%

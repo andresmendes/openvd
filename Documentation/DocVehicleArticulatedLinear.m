@@ -2,9 +2,9 @@
 %
 %
 %% Theory
-% <theory/vehicleArticulated.pdf Articulated equations of motion>
+% <../theory/vehicleArticulated.pdf Articulated equations of motion>
 %
 %% See Also
 %
-% <index.html Index>
+% <../../index.html index>
 %

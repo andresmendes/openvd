@@ -4,13 +4,6 @@
 %% Code start
 %
 
-clear all                   % Clear workspace
-close all                   % Closing figures
-clc                         % Clear command window
-
-%%
-%
-
 import VehicleDynamicsLateral.*
 
 %% Model and parameters
@@ -121,9 +114,9 @@ g.Animation();
 disp(num2str(R))
 
 %%
-% <<illustrations/AnimationSkidPad.gif>>
+% <<../illustrations/AnimationSkidPad.gif>>
 %
 %% See Also
 %
-% <index.html Index>
+% <../../index.html index>
 %

@@ -4,9 +4,6 @@
 %%
 %
 
-clear all                   % Clear workspace
-close all                   % Closing figures
-
 %%
 %
 import VehicleDynamicsLateral.*
@@ -58,9 +55,9 @@ g.Frame();
 g.Animation();
 
 %%
-% <<illustrations/AnimationSinusoidal.gif>>
+% <<../illustrations/AnimationSinusoidal.gif>>
 %
 %% See Also
 %
-% <index.html Index>
+% <../../index.html index>
 %

@@ -1,6 +1,6 @@
 %% Tire comparison
 % Comparison between tire models: <PneuLinear.html linear>, <PneuPolinomial.html polinomial> e <PneuPacejka1989.html Pacejka 1989>.
-% 
+%
 % <html>
 % <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 % </html>
@@ -8,7 +8,7 @@
 %% Description
 % O modelo de pneu relaciona a fora lateral com o ngulo de deriva (ngulo formado entre o vetor velocidade do centro do pneu com o plano longitudinal do pneu). The typical relation between these two variables can be observed in the figure below (Adapted from [1]). Besides, its possible to verify the definition of slip angle.
 %
-% <<illustrations/CurvaCaracteristica.svg>>
+% <<../illustrations/CurvaCaracteristica.svg>>
 %
 %% Equivalncia
 % Supondo um modelo de pneu <PneuPacejka1989.html Pacejka 1989> de referncia  possvel obter um modelo <PneuLinear.html linear> e <PneuPolinomial.html polinomial> equivalente. Isto  feito igualando o coeficiente de rigidez lateral dos trs modelos e igualando a fora lateral mxima dos modelos <PneuPolinomial.html polinomial> e <PneuPacejka1989.html Pacejka 1989>.
@@ -32,10 +32,6 @@
 %% Model comparison
 
 % Code start
-
-clear all                   % Clear workspace
-close all                   % Closing figures
-clc                         % Clear command window
 
 deriva = (0:0.1:15)*pi/180;         % ngulo de deriva [rad]
 
@@ -163,5 +159,5 @@ set(l, 'Interpreter', 'Latex', 'Location', 'SouthEast')
 %
 %% See Also
 %
-% <index.html Index>
+% <../../index.html index>
 %

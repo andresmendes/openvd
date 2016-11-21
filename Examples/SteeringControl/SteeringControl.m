@@ -6,17 +6,13 @@
 % </html>
 %
 
-clear all                   % Clear workspace
-close all                   % Closing figures
-clc                         % Clear command window
-
 % Adding package path
 addpath('../../../Vehicle-Dynamics-Lateral/')
 
 %% Vehicle model
 % *Bicycle model*
 %
-% <<illustrations/modelSimple.svg>>
+% <<../illustrations/modelSimple.svg>>
 %
 % *Nonlinear model*
 %
@@ -74,7 +70,7 @@ addpath('../../../Vehicle-Dynamics-Lateral/')
 %
 % Typical characteristic curve and slip angle definition
 %
-% <<illustrations/CurvaCaracteristica.svg>>
+% <<../illustrations/CurvaCaracteristica.svg>>
 %
 % *Pacejka*
 %
@@ -318,7 +314,7 @@ g.Frame();
 g.Animation();
 
 %%
-% <<illustrations/SteeringControlAnimation.gif>>
+% <<../illustrations/SteeringControlAnimation.gif>>
 %
 
 % Retrieving states
@@ -387,5 +383,5 @@ set(y,'Interpreter','Latex')
 
 %% See Also
 %
-% <index.html Index>
+% <../../index.html index>
 %

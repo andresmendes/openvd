@@ -25,8 +25,8 @@ System.muy = 1;
 System.deltaf = 10*pi/180;
 System.FXFRONTLEFT = 0;    % Longitudinal force at F [rad]
 System.FXFRONTRIGHT = 0;    % Longitudinal force at R [rad]
-System.FXREARLEFT = @VelControl;
-System.FXREARRIGHT = @VelControl;    % Longitudinal force at R [rad]
+System.FXREARLEFT = @VelControl4DOF;
+System.FXREARRIGHT = @VelControl4DOF;    % Longitudinal force at R [rad]
 System.K = 50000000; % Rigidez torcional da massa suspensa
 System.C = 5000000;
 
@@ -194,9 +194,9 @@ g.Animation();
 disp(num2str(R))
 
 %%
-% <<illustrations/AnimationSkidPad4DOF.gif>>
+% <<../illustrations/AnimationSkidPad4DOF.gif>>
 %
 %% See Also
 %
-% <index.html Index>
+% <../../index.html index>
 %
