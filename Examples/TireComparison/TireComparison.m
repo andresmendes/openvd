@@ -159,5 +159,5 @@ set(l, 'Interpreter', 'Latex', 'Location', 'SouthEast')
 %
 %% See Also
 %
-% <../../index.html index>
+% <../index.html index>
 %

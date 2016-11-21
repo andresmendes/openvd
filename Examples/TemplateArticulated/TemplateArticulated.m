@@ -49,5 +49,5 @@ g.Animation();
 %
 %% See Also
 %
-% <../../index.html index> | <TemplateSimple.html TemplateSimple>
+% <../index.html index> | <TemplateSimple.html TemplateSimple>
 %

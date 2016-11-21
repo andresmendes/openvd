@@ -90,5 +90,5 @@ g.Animation();
 %
 %% See Also
 %
-% <../../index.html index>
+% <../index.html index>
 %

@@ -1,0 +1,128 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Vehicle Dynamics - Lateral: Open Source Simulation Package for MATLAB</title><meta name="generator" content="MATLAB 8.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-11-21"><meta name="DC.source" content="index.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Vehicle Dynamics - Lateral: Open Source Simulation Package for MATLAB</h1><!--introduction--><p>This repository provides a collection of functions destinated to lateral dynamics simulations of ground vehicles.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Instructions</a></li><li><a href="#2">Getting started</a></li><li><a href="#3">Description</a></li><li><a href="#4">Examples</a></li><li><a href="#5">Tire model</a></li><li><a href="#6">Vehicle model</a></li><li><a href="#7">Graphics</a></li><li><a href="#8">API Documentation</a></li><li><a href="#9">See Also</a></li></ul></div><h2>Instructions<a name="1"></a></h2><p>Installation steps:</p><div><ul><li>Download the Vehicle Dynamics - Lateral repository by clicking <a href="https://github.com/andresmendes/Vehicle-Dynamics-Lateral/archive/master.zip">here</a></li><li>Save the package (folder "+VehicleDynamicsLateral") in the MATLAB&reg; <i>path</i> or add your current path to the <i>paths list</i>. More details in <a href="http://www.mathworks.com/help/matlab/ref/path.html">help path</a>.</li><li>Import the entire package with the command:</li></ul></div><pre class="codeinput">import <span class="string">VehicleDynamicsLateral.*</span>
+</pre><h2>Getting started<a name="2"></a></h2><p>Run and explore the files <a href="html/TemplateSimple.html">TemplateSimple.m</a> and <a href="html/TemplateArticulated.html">TemplateArticulated.m</a>.</p><h2>Description<a name="3"></a></h2><p><img vspace="5" hspace="5" src="illustrations/fluxograma.svg" alt=""> </p><h2>Examples<a name="4"></a></h2><p>The templates simulate vehicle systems according to the flowchart above.</p><div><ul><li><a href="html/TemplateSimple.html">Template Simple</a> - Simple vehicle simulation.</li><li><a href="html/TemplateArticulated.html">Template Articulated</a> - Articulated vehicle simulation.</li><li><a href="html/TireComparison.html">Tire Comparison</a> - Comparison of tire models.</li><li><a href="html/SinusoidalSteering.html">Sinusoidal Steering</a> - Maneuver with sinusoidal steering angle input.</li><li><a href="html/SteeringControl.html">Steering Control</a> - Double lane change maneuver.</li><li><a href="html/KalmanFilter.html">Kalman Filter</a> - Kalman Filter application</li><li><a href="html/SkidPad.html">Skid Pad</a> - Simple vehicle moving in circle</li><li><a href="html/SkidPad4DOF.html">Skid Pad 4DOF</a> - Simple vehicle with roll dynamics moving in circle</li></ul></div><h2>Tire model<a name="5"></a></h2><div><ul><li><a href="html/DocTireLinear.html">Tire linear</a></li><li><a href="html/DocTirePolynomial.html">Tire polynomial</a></li><li><a href="html/DocTirePacejka.html">Tire Pacejka</a></li></ul></div><h2>Vehicle model<a name="6"></a></h2><div><ul><li><a href="html/DocVehicleSimpleLinear.html">Vehicle Simple Linear</a></li><li><a href="html/DocVehicleSimpleNonlinear.html">Vehicle Simple Nonlinear</a></li><li><a href="html/DocVehicleArticulatedLinear.html">Vehicle Articulated Linear</a></li><li><a href="html/DocVehicleArticulatedNonlinear.html">Vehicle Articulated Nonlinear</a></li></ul></div><h2>Graphics<a name="7"></a></h2><p><a href="html/DocGraphics.html">Graphics</a> - Functions for graphics generation.</p><h2>API Documentation<a name="8"></a></h2><p>API Documentation is <a href="html/api/api.html">here</a>. Help and documentation on-the-fly are available through the "doc" and "help" commands, as usual.</p><h2>See Also<a name="9"></a></h2><p><a href="https://github.com/andresmendes/Vehicle-Dynamics-Lateral">GitHub Page</a></p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Vehicle Dynamics - Lateral: Open Source Simulation Package for MATLAB
+% This repository provides a collection of functions destinated to lateral dynamics simulations of ground vehicles.
+%
+%% Instructions
+% Installation steps:
+%
+% * Download the Vehicle Dynamics - Lateral repository by clicking <https://github.com/andresmendes/Vehicle-Dynamics-Lateral/archive/master.zip here>
+% * Save the package (folder "+VehicleDynamicsLateral") in the MATLAB(R) _path_ or add your current path to the _paths list_. More details in <http://www.mathworks.com/help/matlab/ref/path.html  help path>.
+% * Import the entire package with the command:
+%
+
+import VehicleDynamicsLateral.*
+
+%% Getting started
+%
+% Run and explore the files <html/TemplateSimple.html TemplateSimple.m> and <html/TemplateArticulated.html TemplateArticulated.m>.
+%
+%% Description
+%
+% <<illustrations/fluxograma.svg>>
+%
+%% Examples
+% The templates simulate vehicle systems according to the flowchart above.
+%
+% * <html/TemplateSimple.html Template Simple> - Simple vehicle simulation.
+% * <html/TemplateArticulated.html Template Articulated> - Articulated vehicle simulation.
+% * <html/TireComparison.html Tire Comparison> - Comparison of tire models.
+% * <html/SinusoidalSteering.html Sinusoidal Steering> - Maneuver with sinusoidal steering angle input.
+% * <html/SteeringControl.html Steering Control> - Double lane change maneuver.
+% * <html/KalmanFilter.html Kalman Filter> - Kalman Filter application
+% * <html/SkidPad.html Skid Pad> - Simple vehicle moving in circle
+% * <html/SkidPad4DOF.html Skid Pad 4DOF> - Simple vehicle with roll dynamics moving in circle
+%
+%% Tire model
+%
+% * <html/DocTireLinear.html Tire linear>
+% * <html/DocTirePolynomial.html Tire polynomial>
+% * <html/DocTirePacejka.html Tire Pacejka>
+%
+%% Vehicle model
+%
+% * <html/DocVehicleSimpleLinear.html Vehicle Simple Linear>
+% * <html/DocVehicleSimpleNonlinear.html Vehicle Simple Nonlinear>
+% * <html/DocVehicleArticulatedLinear.html Vehicle Articulated Linear>
+% * <html/DocVehicleArticulatedNonlinear.html Vehicle Articulated Nonlinear>
+%
+%% Graphics
+% <html/DocGraphics.html Graphics> - Functions for graphics generation.
+%
+%% API Documentation
+% API Documentation is <html/api/api.html here>. Help and documentation on-the-fly are available through the "doc" and "help" commands, as usual.
+%
+%% See Also
+%
+% <https://github.com/andresmendes/Vehicle-Dynamics-Lateral GitHub Page>
+
+##### SOURCE END #####
+--></body></html>
