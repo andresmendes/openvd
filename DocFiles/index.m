@@ -41,6 +41,7 @@ import VehicleDynamicsLateral.*
 %
 % * <html/DocVehicleSimpleLinear.html Vehicle Simple Linear>
 % * <html/DocVehicleSimpleNonlinear.html Vehicle Simple Nonlinear>
+% * <html/DocVehicleSimpleNonlinear4DOF.html Vehicle Simple Nonlinear 4DOF>
 % * <html/DocVehicleArticulatedLinear.html Vehicle Articulated Linear>
 % * <html/DocVehicleArticulatedNonlinear.html Vehicle Articulated Nonlinear>
 %
@@ -49,6 +50,16 @@ import VehicleDynamicsLateral.*
 %
 %% API Documentation
 % API Documentation is <html/api/api.html here>. Help and documentation on-the-fly are available through the "doc" and "help" commands, as usual.
+%
+%% Contributing
+% Steps:
+%
+% * Add and/or improve Matlab files (package or examples) with codes and publishable comments.
+% * Add the publish command of the new files to <html/makeDoc.html DocFiles/makeDoc.m>.
+% * Create the apropriate links between the documentation pages. Ex: "See Also", "Examples", ...
+% * Run <html/makeDoc.html makeDoc.m>.
+% * Copy the files from directory "Documentation" to the gh-pages branch of the repository. One easy way is using <https://github.com/davisp/ghp-import ghp-import>.
+% * Commit and push.
 %
 %% See Also
 %
