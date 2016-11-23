@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>VehicleArticulatedLinear</title><meta name="generator" content="MATLAB 8.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-11-21"><meta name="DC.source" content="VehicleArticulatedLinear.m"><style type="text/css">
+      --><title>VehicleArticulatedLinear</title><meta name="generator" content="MATLAB 8.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-11-23"><meta name="DC.source" content="VehicleArticulatedLinear.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -99,8 +99,8 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
             <span class="comment">% Vehicle parameters</span>
             mT = self.mT;
             mS = self.mS;
-            IT = self.IT;
-            IS = self.IS;
+            <span class="comment">% IT = self.IT;</span>
+            <span class="comment">% IS = self.IS;</span>
             a = self.a;
             b = self.b;
             c = self.c;
@@ -111,8 +111,6 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
             nM = self.nM;
             g = 9.81;
 
-            <span class="comment">% Steering angle</span>
-            deltaf = interp1(tspan,self.deltaf,t);
 
             <span class="comment">% Vertical forces</span>
             FzF = self.mF * g;
@@ -131,6 +129,14 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
             ALPHAT  = estados(6,1);
             dPSI    = estados(7,1);
             dPHI    = estados(8,1);
+
+            <span class="keyword">if</span> isa(self.deltaf,<span class="string">'function_handle'</span>)
+                deltaf = self.deltaf([X;Y;PSI;PHI;V;ALPHAT;dPSI;dPHI],t);
+            <span class="keyword">elseif</span> length(self.deltaf)&gt;1
+                deltaf = interp1(tspan,self.deltaf,t);
+            <span class="keyword">else</span>
+                deltaf = self.deltaf;
+            <span class="keyword">end</span>
 
             <span class="comment">% Slip angles - linear</span>
             ALPHAF = ALPHAT + a/v0*dPSI - deltaf;
@@ -207,17 +213,17 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
             mS = self.mS;
             IT = self.IT;
             IS = self.IS;
-            a = self.a;
+            <span class="comment">% a = self.a;</span>
             b = self.b;
             c = self.c;
             d = self.d;
-            e = self.e;
-            deltaf = self.deltaf;
-            nF = self.nF;
-            nR = self.nR;
-            nM = self.nM;
+            <span class="comment">% e = self.e;</span>
+            <span class="comment">% deltaf = self.deltaf;</span>
+            <span class="comment">% nF = self.nF;</span>
+            <span class="comment">% nR = self.nR;</span>
+            <span class="comment">% nM = self.nM;</span>
 
-            g = 9.81;
+            <span class="comment">% g = 9.81;</span>
 
             v0 = 20;
 
@@ -270,8 +276,8 @@ classdef VehicleArticulatedLinear < VehicleDynamicsLateral.VehicleArticulated
             % Vehicle parameters
             mT = self.mT;
             mS = self.mS;
-            IT = self.IT;
-            IS = self.IS;
+            % IT = self.IT;
+            % IS = self.IS;
             a = self.a;
             b = self.b;
             c = self.c;
@@ -282,8 +288,6 @@ classdef VehicleArticulatedLinear < VehicleDynamicsLateral.VehicleArticulated
             nM = self.nM;
             g = 9.81;
 
-            % Steering angle
-            deltaf = interp1(tspan,self.deltaf,t);
 
             % Vertical forces
             FzF = self.mF * g;
@@ -302,6 +306,14 @@ classdef VehicleArticulatedLinear < VehicleDynamicsLateral.VehicleArticulated
             ALPHAT  = estados(6,1);
             dPSI    = estados(7,1);
             dPHI    = estados(8,1);
+
+            if isa(self.deltaf,'function_handle')
+                deltaf = self.deltaf([X;Y;PSI;PHI;V;ALPHAT;dPSI;dPHI],t);
+            elseif length(self.deltaf)>1
+                deltaf = interp1(tspan,self.deltaf,t);
+            else
+                deltaf = self.deltaf;
+            end
 
             % Slip angles - linear
             ALPHAF = ALPHAT + a/v0*dPSI - deltaf;
@@ -378,17 +390,17 @@ classdef VehicleArticulatedLinear < VehicleDynamicsLateral.VehicleArticulated
             mS = self.mS;
             IT = self.IT;
             IS = self.IS;
-            a = self.a;
+            % a = self.a;
             b = self.b;
             c = self.c;
             d = self.d;
-            e = self.e;
-            deltaf = self.deltaf;
-            nF = self.nF;
-            nR = self.nR;
-            nM = self.nM;
+            % e = self.e;
+            % deltaf = self.deltaf;
+            % nF = self.nF;
+            % nR = self.nR;
+            % nM = self.nM;
 
-            g = 9.81;
+            % g = 9.81;
 
             v0 = 20;
 

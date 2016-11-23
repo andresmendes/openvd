@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>SkidPad 4DOF</title><meta name="generator" content="MATLAB 8.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-11-21"><meta name="DC.source" content="SkidPad4DOF.m"><style type="text/css">
+      --><title>SkidPad 4DOF</title><meta name="generator" content="MATLAB 8.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-11-23"><meta name="DC.source" content="SkidPad4DOF.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -65,8 +65,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>SkidPad 4DOF</h1><!--introduction--><p>This template show how to simulate a simple vehicle and plot the results.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Results</a></li><li><a href="#10">See Also</a></li></ul></div><pre class="codeinput">addpath(<span class="string">'/home/andre/Repos/Vehicle-Dynamics/Vehicle-Dynamics-Lateral'</span>)
-</pre><pre class="codeinput">import <span class="string">VehicleDynamicsLateral.*</span>
+  </style></head><body><div class="content"><h1>SkidPad 4DOF</h1><!--introduction--><p>This template show how to simulate a simple vehicle and plot the results.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Results</a></li><li><a href="#10">See Also</a></li></ul></div><pre class="codeinput">import <span class="string">VehicleDynamicsLateral.*</span>
 
 <span class="comment">% Choosing tire</span>
 TireModel = TirePacejka();
@@ -227,7 +226,7 @@ plot(XX,YY,<span class="string">'k'</span>)
 
 g.Animation();
 </pre><img vspace="5" hspace="5" src="SkidPad4DOF_12.png" alt=""> <img vspace="5" hspace="5" src="SkidPad4DOF_13.png" alt=""> <p>Maneuver radius</p><pre class="codeinput">disp(num2str(R))
-</pre><pre class="codeoutput">20.0943
+</pre><pre class="codeoutput">20.0944
 </pre><p><img vspace="5" hspace="5" src="../illustrations/AnimationSkidPad4DOF.gif" alt=""> </p><h2>See Also<a name="10"></a></h2><p><a href="../index.html">index</a></p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% SkidPad 4DOF
@@ -235,9 +234,6 @@ g.Animation();
 %
 %%
 %
-
-addpath('/home/andre/Repos/Vehicle-Dynamics/Vehicle-Dynamics-Lateral')
-
 %%
 %
 import VehicleDynamicsLateral.*

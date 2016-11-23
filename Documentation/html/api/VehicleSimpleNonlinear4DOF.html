@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>VehicleSimpleNonlinear4DOF</title><meta name="generator" content="MATLAB 8.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-11-21"><meta name="DC.source" content="VehicleSimpleNonlinear4DOF.m"><style type="text/css">
+      --><title>VehicleSimpleNonlinear4DOF</title><meta name="generator" content="MATLAB 8.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-11-23"><meta name="DC.source" content="VehicleSimpleNonlinear4DOF.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -150,9 +150,11 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
             FzRearLeft = FzLeft*a/(a+b);
 
             <span class="keyword">if</span> isa(self.deltaf,<span class="string">'function_handle'</span>)
-                DELTA = self.deltaf([X;Y;PSI;THETA;v;ALPHAT;dPSI;dTHETA],t);
-            <span class="keyword">else</span>
+                DELTA = self.deltaf([X;Y;PSI;v;ALPHAT;dPSI],t);
+            <span class="keyword">elseif</span> length(self.deltaf)&gt;1
                 DELTA = interp1(tspan,self.deltaf,t);
+            <span class="keyword">else</span>
+                DELTA = self.deltaf;
             <span class="keyword">end</span>
 
             <span class="comment">% Slip angles</span>
@@ -340,9 +342,11 @@ classdef VehicleSimpleNonlinear4DOF < VehicleDynamicsLateral.VehicleSimple
             FzRearLeft = FzLeft*a/(a+b);
 
             if isa(self.deltaf,'function_handle')
-                DELTA = self.deltaf([X;Y;PSI;THETA;v;ALPHAT;dPSI;dTHETA],t);
-            else
+                DELTA = self.deltaf([X;Y;PSI;v;ALPHAT;dPSI],t);
+            elseif length(self.deltaf)>1
                 DELTA = interp1(tspan,self.deltaf,t);
+            else
+                DELTA = self.deltaf;
             end
 
             % Slip angles

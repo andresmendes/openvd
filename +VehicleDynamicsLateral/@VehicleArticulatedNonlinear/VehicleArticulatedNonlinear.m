@@ -32,8 +32,8 @@ classdef VehicleArticulatedNonlinear < VehicleDynamicsLateral.VehicleArticulated
             % Vehicle parameters
             mT = self.mT;
             mS = self.mS;
-            IT = self.IT;
-            IS = self.IS;
+            % IT = self.IT;
+            % IS = self.IS;
             a = self.a;
             b = self.b;
             c = self.c;
@@ -42,8 +42,6 @@ classdef VehicleArticulatedNonlinear < VehicleDynamicsLateral.VehicleArticulated
             nF = self.nF;
             nR = self.nR;
             nM = self.nM;
-
-            deltaf = interp1(tspan,self.deltaf,t);
 
             g = 9.81;
 
@@ -62,6 +60,14 @@ classdef VehicleArticulatedNonlinear < VehicleDynamicsLateral.VehicleArticulated
             ALPHAT = estados(6,1);
             dPSI = estados(7,1);
             dPHI = estados(8,1);
+
+            if isa(self.deltaf,'function_handle')
+                deltaf = self.deltaf([X;Y;PSI;PHI;VT;ALPHAT;dPSI;dPHI],t);
+            elseif length(self.deltaf)>1
+                deltaf = interp1(tspan,self.deltaf,t);
+            else
+                deltaf = self.deltaf;
+            end
 
             % Slip angles
             ALPHAF = atan2((a * dPSI + VT * sin(ALPHAT)),(VT * cos(ALPHAT))) - deltaf;
@@ -126,22 +132,22 @@ classdef VehicleArticulatedNonlinear < VehicleDynamicsLateral.VehicleArticulated
             mS = self.mS;
             IT = self.IT;
             IS = self.IS;
-            a = self.a;
+            % a = self.a;
             b = self.b;
             c = self.c;
             d = self.d;
-            e = self.e;
-            deltaf = self.deltaf;
-            nF = self.nF;
-            nR = self.nR;
-            nM = self.nM;
+            % e = self.e;
+            % deltaf = self.deltaf;
+            % nF = self.nF;
+            % nR = self.nR;
+            % nM = self.nM;
 
-            g = 9.81;
+            % g = 9.81;
 
-            FzF = self.mF * g;
-            FzR = self.mR * g;
-            FzM = self.mM * g;
-            muy = self.muy;
+            % FzF = self.mF * g;
+            % FzR = self.mR * g;
+            % FzM = self.mM * g;
+            % muy = self.muy;
 
 
             % States
@@ -149,8 +155,8 @@ classdef VehicleArticulatedNonlinear < VehicleDynamicsLateral.VehicleArticulated
             PHI = estados(4,1);
             VT = estados(5,1);
             ALPHAT = estados(6,1);
-            dPSI = estados(7,1);
-            dPHI = estados(8,1);
+            % dPSI = estados(7,1);
+            % dPHI = estados(8,1);
 
             % Matriz de massa
             M55 = (mT + mS)*cos(PSI + ALPHAT);

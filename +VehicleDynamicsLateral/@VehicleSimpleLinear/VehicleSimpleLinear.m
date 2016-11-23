@@ -50,8 +50,10 @@ classdef VehicleSimpleLinear < VehicleDynamicsLateral.VehicleSimple
 
             if isa(self.deltaf,'function_handle')
                 deltaf = self.deltaf([X;Y;PSI;VT;ALPHAT;dPSI],t);
-            else
+            elseif length(self.deltaf)>1
                 deltaf = interp1(tspan,self.deltaf,t);
+            else
+                deltaf = self.deltaf;
             end
 
             % Slip angles

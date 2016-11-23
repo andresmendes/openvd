@@ -48,8 +48,10 @@ classdef VehicleSimpleNonlinear < VehicleDynamicsLateral.VehicleSimple
 
             if isa(self.deltaf,'function_handle')
                 DELTA = self.deltaf([X;Y;PSI;v;ALPHAT;dPSI],t);
-            else
+            elseif length(self.deltaf)>1
                 DELTA = interp1(tspan,self.deltaf,t);
+            else
+                DELTA = self.deltaf;
             end
 
 

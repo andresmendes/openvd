@@ -32,8 +32,8 @@ classdef VehicleArticulatedLinear < VehicleDynamicsLateral.VehicleArticulated
             % Vehicle parameters
             mT = self.mT;
             mS = self.mS;
-            IT = self.IT;
-            IS = self.IS;
+            % IT = self.IT;
+            % IS = self.IS;
             a = self.a;
             b = self.b;
             c = self.c;
@@ -44,8 +44,6 @@ classdef VehicleArticulatedLinear < VehicleDynamicsLateral.VehicleArticulated
             nM = self.nM;
             g = 9.81;
 
-            % Steering angle
-            deltaf = interp1(tspan,self.deltaf,t);
 
             % Vertical forces
             FzF = self.mF * g;
@@ -64,6 +62,14 @@ classdef VehicleArticulatedLinear < VehicleDynamicsLateral.VehicleArticulated
             ALPHAT  = estados(6,1);
             dPSI    = estados(7,1);
             dPHI    = estados(8,1);
+
+            if isa(self.deltaf,'function_handle')
+                deltaf = self.deltaf([X;Y;PSI;PHI;V;ALPHAT;dPSI;dPHI],t);
+            elseif length(self.deltaf)>1
+                deltaf = interp1(tspan,self.deltaf,t);
+            else
+                deltaf = self.deltaf;
+            end
 
             % Slip angles - linear
             ALPHAF = ALPHAT + a/v0*dPSI - deltaf;
@@ -140,17 +146,17 @@ classdef VehicleArticulatedLinear < VehicleDynamicsLateral.VehicleArticulated
             mS = self.mS;
             IT = self.IT;
             IS = self.IS;
-            a = self.a;
+            % a = self.a;
             b = self.b;
             c = self.c;
             d = self.d;
-            e = self.e;
-            deltaf = self.deltaf;
-            nF = self.nF;
-            nR = self.nR;
-            nM = self.nM;
+            % e = self.e;
+            % deltaf = self.deltaf;
+            % nF = self.nF;
+            % nR = self.nR;
+            % nM = self.nM;
 
-            g = 9.81;
+            % g = 9.81;
 
             v0 = 20;
 

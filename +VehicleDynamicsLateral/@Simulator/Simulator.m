@@ -54,19 +54,6 @@ classdef Simulator<handle
         function Simulate(self)
             % TODO: gravity can be passed to the simulator so vertical load and other forces are calculated here
 
-
-            if isa(self.Vehicle.deltaf,'function_handle')
-                self.Vehicle.deltaf = self.Vehicle.deltaf;
-            else
-                % The length of deltaf and tspan must be the same
-                % If not, the last value of delta is repeated in the remaining array positions
-                ldeltaf = length(self.Vehicle.deltaf);
-                lTSpan = length(self.TSpan);
-                if ldeltaf < lTSpan
-                    self.Vehicle.deltaf = [self.Vehicle.deltaf self.Vehicle.deltaf(end)*ones(1,lTSpan-ldeltaf)];
-                end
-            end
-
             % integration
             % if vehicle is articulated, adds mass matrix as an integration option
             if isa(self.Vehicle, 'VehicleDynamicsLateral.VehicleArticulated')
