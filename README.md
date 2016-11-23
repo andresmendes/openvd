@@ -27,6 +27,7 @@ File | Description
 [TemplateSimple.m](http://andresmendes.github.io/Vehicle-Dynamics-Lateral/html/TemplateSimple.html) | Simple vehicle simulation.
 [TemplateArticulated.m](http://andresmendes.github.io/Vehicle-Dynamics-Lateral/html/TemplateArticulated.html) | Articulated vehicle simulation.
 [TireComparison.m](http://andresmendes.github.io/Vehicle-Dynamics-Lateral/html/TireComparison.html) | Comparison of tire models.
+[SimulinkApplication.m](http://andresmendes.github.io/Vehicle-Dynamics-Lateral/html/SimulinkApplication.html) | Simulate the vehicle models in Simulink..
 [SinusoidalSteering.m](http://andresmendes.github.io/Vehicle-Dynamics-Lateral/html/SinusoidalSteering.html) | Maneuver with sinusoidal steering angle input.
 [SteeringControl.m](http://andresmendes.github.io/Vehicle-Dynamics-Lateral/html/SteeringControl.html) | Double lane change maneuver.
 [KalmanFilter.m](http://andresmendes.github.io/Vehicle-Dynamics-Lateral/html/KalmanFilter.html) | Kalman Filter application.

@@ -14,8 +14,6 @@ clear all                   % Clear workspace
 close all                   % Closing figures
 clc
 
-addpath('/home/andre/Repos/Vehicle-Dynamics/Vehicle-Dynamics-Lateral')
-
 docPath = '../Documentation/html/';                      % Folder where html doc files are saved
 apiDocPath = strcat(docPath, 'api/');
 
@@ -25,6 +23,7 @@ apiDocPath = strcat(docPath, 'api/');
 
 % Examples
 addpath('../Examples/KalmanFilter/')
+addpath('../Examples/SimulinkApplication/')
 addpath('../Examples/SinusoidalSteering/')
 addpath('../Examples/SkidPad/')
 addpath('../Examples/SkidPad4DOF/')
@@ -79,19 +78,26 @@ publish('../+VehicleDynamicsLateral/@Graphics/Graphics.m', 'outputDir', apiDocPa
 % Examples
 % TemplateSimple
 publish('TemplateSimple.m', 'outputDir', docPath, 'evalCode', true);
-g.Animation('illustrations/AnimationSimple');
+g.Animation('../Documentation/illustrations/AnimationSimple');
 close all
 clearvars -except docPath apiDocPath
 
 % TemplateArticulated
 publish('TemplateArticulated.m', 'outputDir', docPath, 'evalCode', true);
-g.Animation('illustrations/AnimationArticulated');
+g.Animation('../Documentation/illustrations/AnimationArticulated');
+close all
+clearvars -except docPath apiDocPath
+
+% Simulink Application
+publish('VehicleSystem.m', 'outputDir', docPath, 'evalCode', false);
+publish('SimulinkApplication.m', 'outputDir', docPath, 'evalCode', true);
+g.Animation('../Documentation/illustrations/AnimationSimulinkApplication');
 close all
 clearvars -except docPath apiDocPath
 
 % Sinusoidal Steering
 publish('SinusoidalSteering.m', 'outputDir', docPath, 'evalCode', true);
-g.Animation('illustrations/AnimationSinusoidal');
+g.Animation('../Documentation/illustrations/AnimationSinusoidal');
 close all
 clearvars -except docPath apiDocPath
 
@@ -107,19 +113,19 @@ clearvars -except docPath apiDocPath
 
 % SteeringControl
 publish('SteeringControl.m', 'outputDir', docPath, 'evalCode', true,'showCode',false);
-g.Animation('illustrations/SteeringControlAnimation');
+g.Animation('../Documentation/illustrations/SteeringControlAnimation');
 close all
 clearvars -except docPath apiDocPath
 
 % Skid Pad
 publish('SkidPad.m', 'outputDir', docPath, 'evalCode', true,'showCode',true);
-g.Animation('illustrations/AnimationSkidPad');
+g.Animation('../Documentation/illustrations/AnimationSkidPad');
 close all
 clearvars -except docPath apiDocPath
 
 % Skid Pad 4DOF
 publish('SkidPad4DOF.m', 'outputDir', docPath, 'evalCode', true,'showCode',true);
-g.Animation('illustrations/AnimationSkidPad4DOF');
+g.Animation('../Documentation/illustrations/AnimationSkidPad4DOF');
 close all
 clearvars -except docPath apiDocPath
 
