@@ -3,9 +3,6 @@
 %
 %%
 %
-
-addpath('/home/andre/Repos/Vehicle-Dynamics/Vehicle-Dynamics-Lateral')
-
 %%
 %
 import VehicleDynamicsLateral.*

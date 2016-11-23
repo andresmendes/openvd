@@ -5,6 +5,6 @@ function output = VelControl4DOF(input,~)
     velRef = 8;
 
     % Control gain
-    K = 100000;
+    K = 300000;
 
     output = K * (velRef - vel);
