@@ -1,15 +1,41 @@
 %% Vehicle Dynamics - Lateral: Open Source Simulation Package for MATLAB
 % This repository provides a collection of functions destinated to lateral dynamics simulations of ground vehicles.
 %
-%% Instructions
-% Installation steps:
+%% Installation
+% The first thing you have to do is install the package according to the following steps:
 %
 % * Download the Vehicle Dynamics - Lateral repository by clicking <https://github.com/andresmendes/Vehicle-Dynamics-Lateral/archive/master.zip here>
 % * Save the package (folder "+VehicleDynamicsLateral") in the MATLAB(R) _path_ or add your current path to the _paths list_. More details in <http://www.mathworks.com/help/matlab/ref/path.html  help path>.
-% * Import the entire package with the command:
+%
+%% Dependencies
+% Dependencies of the package (Only the files in "+VehicleDynamicsLateral"):
 %
 
-import VehicleDynamicsLateral.*
+packageFilesList = getAllFiles('../+VehicleDynamicsLateral');
+[packageFilesDep,packageProductDep] = matlab.codetools.requiredFilesAndProducts(packageFilesList);
+
+packageDepNumber = length(packageProductDep);
+
+for i = 1:packageDepNumber
+
+    disp(strcat(packageProductDep(i).Name,', v',packageProductDep(i).Version));
+
+end
+
+%%
+% Dependencies of the examples (Only the files in "Examples"):
+%
+
+examplesFilesList = getAllFiles('../Examples');
+[examplesFilesDep,examplesProductDep] = matlab.codetools.requiredFilesAndProducts(examplesFilesList);
+
+examplesDepNumber = length(examplesProductDep);
+
+for i = 1:examplesDepNumber
+
+    disp(strcat(examplesProductDep(i).Name,', v',examplesProductDep(i).Version));
+
+end
 
 %% Getting started
 %

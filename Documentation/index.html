@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>Vehicle Dynamics - Lateral: Open Source Simulation Package for MATLAB</title><meta name="generator" content="MATLAB 8.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-11-23"><meta name="DC.source" content="index.m"><style type="text/css">
+      --><title>Vehicle Dynamics - Lateral: Open Source Simulation Package for MATLAB</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-12-07"><meta name="DC.source" content="index.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -23,7 +23,7 @@ a:visited { color:#004aa0; text-decoration:none; }
 
 p { padding:0px; margin:0px 0px 20px; }
 img { padding:0px; margin:0px 0px 20px; border:none; }
-p img, pre img, tt img, li img { margin-bottom:0px; } 
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
 
 ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
 ul li { padding:0px; margin:0px 0px 7px 0px; }
@@ -38,11 +38,12 @@ ol li ul li { list-style:square; }
 
 .content { font-size:1.2em; line-height:140%; padding: 20px; }
 
-pre, tt, code { font-size:12px; }
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
 pre { margin:0px 0px 20px; }
-pre.error { color:red; }
 pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
 pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
 
 @media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
 
@@ -65,21 +66,55 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>Vehicle Dynamics - Lateral: Open Source Simulation Package for MATLAB</h1><!--introduction--><p>This repository provides a collection of functions destinated to lateral dynamics simulations of ground vehicles.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Instructions</a></li><li><a href="#2">Getting started</a></li><li><a href="#3">Description</a></li><li><a href="#4">Examples</a></li><li><a href="#5">Tire model</a></li><li><a href="#6">Vehicle model</a></li><li><a href="#7">Graphics</a></li><li><a href="#8">API Documentation</a></li><li><a href="#9">Contributing</a></li><li><a href="#10">See Also</a></li></ul></div><h2>Instructions<a name="1"></a></h2><p>Installation steps:</p><div><ul><li>Download the Vehicle Dynamics - Lateral repository by clicking <a href="https://github.com/andresmendes/Vehicle-Dynamics-Lateral/archive/master.zip">here</a></li><li>Save the package (folder "+VehicleDynamicsLateral") in the MATLAB&reg; <i>path</i> or add your current path to the <i>paths list</i>. More details in <a href="http://www.mathworks.com/help/matlab/ref/path.html">help path</a>.</li><li>Import the entire package with the command:</li></ul></div><pre class="codeinput">import <span class="string">VehicleDynamicsLateral.*</span>
-</pre><h2>Getting started<a name="2"></a></h2><p>Run and explore the files <a href="html/TemplateSimple.html">TemplateSimple.m</a> and <a href="html/TemplateArticulated.html">TemplateArticulated.m</a>.</p><h2>Description<a name="3"></a></h2><p><img vspace="5" hspace="5" src="illustrations/fluxograma.svg" alt=""> </p><h2>Examples<a name="4"></a></h2><p>The templates simulate vehicle systems according to the flowchart above.</p><div><ul><li><a href="html/TemplateSimple.html">Template Simple</a> - Simple vehicle simulation.</li><li><a href="html/TemplateArticulated.html">Template Articulated</a> - Articulated vehicle simulation.</li><li><a href="html/TireComparison.html">Tire Comparison</a> - Comparison of tire models.</li><li><a href="html/SimulinkApplication.html">Simulink Application</a> - Simulate the vehicle models in Simulink.</li><li><a href="html/SinusoidalSteering.html">Sinusoidal Steering</a> - Maneuver with sinusoidal steering angle input.</li><li><a href="html/SteeringControl.html">Steering Control</a> - Double lane change maneuver.</li><li><a href="html/KalmanFilter.html">Kalman Filter</a> - Kalman Filter application</li><li><a href="html/SkidPad.html">Skid Pad</a> - Simple vehicle moving in circle</li><li><a href="html/SkidPad4DOF.html">Skid Pad 4DOF</a> - Simple vehicle with roll dynamics moving in circle</li></ul></div><h2>Tire model<a name="5"></a></h2><div><ul><li><a href="html/DocTireLinear.html">Tire linear</a></li><li><a href="html/DocTirePolynomial.html">Tire polynomial</a></li><li><a href="html/DocTirePacejka.html">Tire Pacejka</a></li></ul></div><h2>Vehicle model<a name="6"></a></h2><div><ul><li><a href="html/DocVehicleSimpleLinear.html">Vehicle Simple Linear</a></li><li><a href="html/DocVehicleSimpleNonlinear.html">Vehicle Simple Nonlinear</a></li><li><a href="html/DocVehicleSimpleNonlinear4DOF.html">Vehicle Simple Nonlinear 4DOF</a></li><li><a href="html/DocVehicleArticulatedLinear.html">Vehicle Articulated Linear</a></li><li><a href="html/DocVehicleArticulatedNonlinear.html">Vehicle Articulated Nonlinear</a></li></ul></div><h2>Graphics<a name="7"></a></h2><p><a href="html/DocGraphics.html">Graphics</a> - Functions for graphics generation.</p><h2>API Documentation<a name="8"></a></h2><p>API Documentation is <a href="html/api/api.html">here</a>. Help and documentation on-the-fly are available through the "doc" and "help" commands, as usual.</p><h2>Contributing<a name="9"></a></h2><p>Steps:</p><div><ul><li>Add and/or improve Matlab files (package or examples) with codes and publishable comments.</li><li>Add the publish command of the new files to <a href="html/makeDoc.html">DocFiles/makeDoc.m</a>.</li><li>Create the apropriate links between the documentation pages. Ex: "See Also", "Examples", ...</li><li>Update index.m and README.md.</li><li>Run <a href="html/makeDoc.html">makeDoc.m</a>.</li><li>Copy the files from directory "Documentation" to the gh-pages branch of the repository. One easy way is using <a href="https://github.com/davisp/ghp-import">ghp-import</a>.</li><li>Commit and push.</li></ul></div><h2>See Also<a name="10"></a></h2><p><a href="https://github.com/andresmendes/Vehicle-Dynamics-Lateral">GitHub Page</a></p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>Vehicle Dynamics - Lateral: Open Source Simulation Package for MATLAB</h1><!--introduction--><p>This repository provides a collection of functions destinated to lateral dynamics simulations of ground vehicles.</p><p><img vspace="5" hspace="5" src="http://andresmendes.github.io/Vehicle-Dynamics-Lateral/illustrations/AnimationArticulated.gif" alt=""> </p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Installation</a></li><li><a href="#2">Dependencies</a></li><li><a href="#4">Getting started</a></li><li><a href="#5">Description</a></li><li><a href="#6">Examples</a></li><li><a href="#7">Tire model</a></li><li><a href="#8">Vehicle model</a></li><li><a href="#9">Graphics</a></li><li><a href="#10">API Documentation</a></li><li><a href="#11">Contributing</a></li><li><a href="#12">See Also</a></li></ul></div><h2>Installation<a name="1"></a></h2><p>The first thing you have to do is install the package according to the following steps:</p><div><ul><li>Download the Vehicle Dynamics - Lateral repository by clicking <a href="https://github.com/andresmendes/Vehicle-Dynamics-Lateral/archive/master.zip">here</a></li><li>Save the package (folder "+VehicleDynamicsLateral") in the MATLAB&reg; <i>path</i> or add your current path to the <i>paths list</i>. More details in <a href="http://www.mathworks.com/help/matlab/ref/path.html">help path</a>.</li></ul></div><h2>Dependencies<a name="2"></a></h2><p>Dependencies of the package (Only the files in "+VehicleDynamicsLateral"):</p><pre class="codeoutput">MATLAB, v8.5
+</pre><p>Dependencies of the examples (Only the files in "Examples"):</p><pre class="codeoutput">Control System Toolbox, v9.9
+MATLAB, v8.5
+Robust Control Toolbox, v5.3
+Symbolic Math Toolbox, v6.2
+Simulink, v8.5
+SystemTest, v2.6.9
+</pre><h2>Getting started<a name="4"></a></h2><p>Run and explore the files <a href="html/TemplateSimple.html">TemplateSimple.m</a> and <a href="html/TemplateArticulated.html">TemplateArticulated.m</a>.</p><h2>Description<a name="5"></a></h2><p><img vspace="5" hspace="5" src="illustrations/fluxograma.svg" alt=""> </p><h2>Examples<a name="6"></a></h2><p>The templates simulate vehicle systems according to the flowchart above.</p><div><ul><li><a href="html/TemplateSimple.html">Template Simple</a> - Simple vehicle simulation.</li><li><a href="html/TemplateArticulated.html">Template Articulated</a> - Articulated vehicle simulation.</li><li><a href="html/TireComparison.html">Tire Comparison</a> - Comparison of tire models.</li><li><a href="html/SimulinkApplication.html">Simulink Application</a> - Simulate the vehicle models in Simulink.</li><li><a href="html/SinusoidalSteering.html">Sinusoidal Steering</a> - Maneuver with sinusoidal steering angle input.</li><li><a href="html/SteeringControl.html">Steering Control</a> - Double lane change maneuver.</li><li><a href="html/KalmanFilter.html">Kalman Filter</a> - Kalman Filter application</li><li><a href="html/SkidPad.html">Skid Pad</a> - Simple vehicle moving in circle</li><li><a href="html/SkidPad4DOF.html">Skid Pad 4DOF</a> - Simple vehicle with roll dynamics moving in circle</li></ul></div><h2>Tire model<a name="7"></a></h2><div><ul><li><a href="html/DocTireLinear.html">Tire linear</a></li><li><a href="html/DocTirePolynomial.html">Tire polynomial</a></li><li><a href="html/DocTirePacejka.html">Tire Pacejka</a></li></ul></div><h2>Vehicle model<a name="8"></a></h2><div><ul><li><a href="html/DocVehicleSimpleLinear.html">Vehicle Simple Linear</a></li><li><a href="html/DocVehicleSimpleNonlinear.html">Vehicle Simple Nonlinear</a></li><li><a href="html/DocVehicleSimpleNonlinear4DOF.html">Vehicle Simple Nonlinear 4DOF</a></li><li><a href="html/DocVehicleArticulatedLinear.html">Vehicle Articulated Linear</a></li><li><a href="html/DocVehicleArticulatedNonlinear.html">Vehicle Articulated Nonlinear</a></li></ul></div><h2>Graphics<a name="9"></a></h2><p><a href="html/DocGraphics.html">Graphics</a> - Functions for graphics generation.</p><h2>API Documentation<a name="10"></a></h2><p>API Documentation is <a href="html/api/api.html">here</a>. Help and documentation on-the-fly are available through the "doc" and "help" commands, as usual.</p><h2>Contributing<a name="11"></a></h2><p>Steps:</p><div><ul><li>Add and/or improve Matlab files (package or examples) with codes and publishable comments.</li><li>Add the publish command of the new files to <a href="html/makeDoc.html">DocFiles/makeDoc.m</a>.</li><li>Create the apropriate links between the documentation pages. Ex: "See Also", "Examples", ...</li><li>Update index.m and README.md.</li><li>Run <a href="html/makeDoc.html">makeDoc.m</a>.</li><li>Copy the files from directory "Documentation" to the gh-pages branch of the repository. One easy way is using <a href="https://github.com/davisp/ghp-import">ghp-import</a>.</li><li>Commit and push.</li></ul></div><h2>See Also<a name="12"></a></h2><p><a href="https://github.com/andresmendes/Vehicle-Dynamics-Lateral">GitHub Page</a></p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% Vehicle Dynamics - Lateral: Open Source Simulation Package for MATLAB
 % This repository provides a collection of functions destinated to lateral dynamics simulations of ground vehicles.
 %
-%% Instructions
-% Installation steps:
+% <<http://andresmendes.github.io/Vehicle-Dynamics-Lateral/illustrations/AnimationArticulated.gif>>
+%
+%% Installation
+% The first thing you have to do is install the package according to the following steps:
 %
 % * Download the Vehicle Dynamics - Lateral repository by clicking <https://github.com/andresmendes/Vehicle-Dynamics-Lateral/archive/master.zip here>
 % * Save the package (folder "+VehicleDynamicsLateral") in the MATLAB(R) _path_ or add your current path to the _paths list_. More details in <http://www.mathworks.com/help/matlab/ref/path.html  help path>.
-% * Import the entire package with the command:
+%
+%% Dependencies
+% Dependencies of the package (Only the files in "+VehicleDynamicsLateral"):
 %
 
-import VehicleDynamicsLateral.*
+packageFilesList = getAllFiles('../+VehicleDynamicsLateral');
+[packageFilesDep,packageProductDep] = matlab.codetools.requiredFilesAndProducts(packageFilesList);
+
+packageDepNumber = length(packageProductDep);
+
+for i = 1:packageDepNumber
+
+    disp(strcat(packageProductDep(i).Name,', v',packageProductDep(i).Version));
+
+end
+
+%%
+% Dependencies of the examples (Only the files in "Examples"):
+%
+
+examplesFilesList = getAllFiles('../Examples');
+[examplesFilesDep,examplesProductDep] = matlab.codetools.requiredFilesAndProducts(examplesFilesList);
+
+examplesDepNumber = length(examplesProductDep);
+
+for i = 1:examplesDepNumber
+
+    disp(strcat(examplesProductDep(i).Name,', v',examplesProductDep(i).Version));
+
+end
 
 %% Getting started
 %

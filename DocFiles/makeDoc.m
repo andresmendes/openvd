@@ -36,7 +36,7 @@ addpath('../Examples/TireComparison/')
 %
 
 % Index
-publish('../DocFiles/index.m', 'outputDir', '../Documentation', 'evalCode', false);
+publish('../DocFiles/index.m', 'outputDir', '../Documentation', 'evalCode', true,'showCode',false);
 
 % API
 publish('../DocFiles/api.m', 'outputDir', apiDocPath,'evalCode', false);
