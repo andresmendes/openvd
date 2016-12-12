@@ -36,25 +36,25 @@ addpath('../Examples/TireComparison/')
 %
 
 % Index
-publish('../DocFiles/index.m', 'outputDir', '../Documentation', 'evalCode', true,'showCode',false);
+publish('index.m', 'outputDir', '../Documentation', 'evalCode', true,'showCode',false);
 
 % API
-publish('../DocFiles/api.m', 'outputDir', apiDocPath,'evalCode', false);
+publish('api.m', 'outputDir', apiDocPath,'evalCode', false);
 
 % Tire models
-publish('../DocFiles/DocTireLinear.m', 'outputDir', docPath, 'evalCode', false);
-publish('../DocFiles/DocTirePolynomial.m', 'outputDir', docPath, 'evalCode', false);
-publish('../DocFiles/DocTirePacejka.m', 'outputDir', docPath, 'evalCode', false);
+publish('DocTireLinear.m', 'outputDir', docPath, 'evalCode', false);
+publish('DocTirePolynomial.m', 'outputDir', docPath, 'evalCode', false);
+publish('DocTirePacejka.m', 'outputDir', docPath, 'evalCode', false);
 
 % Vehicle models
-publish('../DocFiles/DocVehicleSimpleLinear.m', 'outputDir', docPath, 'evalCode', false);
-publish('../DocFiles/DocVehicleSimpleNonlinear.m', 'outputDir', docPath, 'evalCode', false);
-publish('../DocFiles/DocVehicleSimpleNonlinear4DOF.m', 'outputDir', docPath, 'evalCode', false);
-publish('../DocFiles/DocVehicleArticulatedLinear.m', 'outputDir', docPath, 'evalCode', false);
-publish('../DocFiles/DocVehicleArticulatedNonlinear.m', 'outputDir', docPath, 'evalCode', false);
+publish('DocVehicleSimpleLinear.m', 'outputDir', docPath, 'evalCode', false);
+publish('DocVehicleSimpleNonlinear.m', 'outputDir', docPath, 'evalCode', false);
+publish('DocVehicleSimpleNonlinear4DOF.m', 'outputDir', docPath, 'evalCode', false);
+publish('DocVehicleArticulatedLinear.m', 'outputDir', docPath, 'evalCode', false);
+publish('DocVehicleArticulatedNonlinear.m', 'outputDir', docPath, 'evalCode', false);
 
 % Graphics
-publish('../DocFiles/DocGraphics.m', 'outputDir', docPath, 'evalCode', false);
+publish('DocGraphics.m', 'outputDir', docPath, 'evalCode', false);
 
 % API
 publish('../+VehicleDynamicsLateral/@VehicleSimple/VehicleSimple.m', 'outputDir', apiDocPath, 'evalCode', false);
@@ -139,5 +139,5 @@ clc                         % Clear command window
 
 %% See Also
 %
-% <../index.html index>
+% <../index.html Home>
 %

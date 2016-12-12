@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>KALMAN FILTER</title><meta name="generator" content="MATLAB 8.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-11-23"><meta name="DC.source" content="KalmanFilter.m"><style type="text/css">
+      --><title>KALMAN FILTER</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-12-11"><meta name="DC.source" content="KalmanFilter.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -23,7 +23,7 @@ a:visited { color:#004aa0; text-decoration:none; }
 
 p { padding:0px; margin:0px 0px 20px; }
 img { padding:0px; margin:0px 0px 20px; border:none; }
-p img, pre img, tt img, li img { margin-bottom:0px; } 
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
 
 ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
 ul li { padding:0px; margin:0px 0px 7px 0px; }
@@ -38,11 +38,12 @@ ol li ul li { list-style:square; }
 
 .content { font-size:1.2em; line-height:140%; padding: 20px; }
 
-pre, tt, code { font-size:12px; }
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
 pre { margin:0px 0px 20px; }
-pre.error { color:red; }
 pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
 pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
 
 @media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
 
@@ -410,27 +411,27 @@ gModel.Frame();
 </pre><p>Slip angles</p><pre class="codeinput">ALPHAF = atan((vT * sin(ALPHAT) + a * dPSI)/(vT * cos(ALPHAT))); <span class="comment">% Dianteiro</span>
 ALPHAR = atan((vT * sin(ALPHAT) - b * dPSI)/(vT * cos(ALPHAT))); <span class="comment">% Traseiro</span>
 </pre><pre class="codeinput">pretty(ALPHAF)
-</pre><pre class="codeoutput">
-      / a dPSI + vT sin(ALPHAT) \
-  atan| ----------------------- |
-      \     vT cos(ALPHAT)      /
+</pre><pre class="codeoutput">    / a dPSI + vT sin(ALPHAT) \
+atan| ----------------------- |
+    \      vT cos(ALPHAT)     /
+
 </pre><pre class="codeinput">pretty(ALPHAR)
-</pre><pre class="codeoutput">
-        / b dPSI - vT sin(ALPHAT) \
-  - atan| ----------------------- |
-        \     vT cos(ALPHAT)      /
+</pre><pre class="codeoutput">     / b dPSI - vT sin(ALPHAT) \
+-atan| ----------------------- |
+     \      vT cos(ALPHAT)     /
+
 </pre><p>Lateral forces</p><pre class="codeinput">FyF = -K*ALPHAF;
 FyR = -K*ALPHAR;
 </pre><pre class="codeinput">pretty(FyF)
-</pre><pre class="codeoutput">
-          / a dPSI + vT sin(ALPHAT) \
-  - K atan| ----------------------- |
-          \     vT cos(ALPHAT)      /
+</pre><pre class="codeoutput">       / a dPSI + vT sin(ALPHAT) \
+-K atan| ----------------------- |
+       \      vT cos(ALPHAT)     /
+
 </pre><pre class="codeinput">pretty(FyR)
-</pre><pre class="codeoutput">
-        / b dPSI - vT sin(ALPHAT) \
-  K atan| ----------------------- |
-        \     vT cos(ALPHAT)      /
+</pre><pre class="codeoutput">      / b dPSI - vT sin(ALPHAT) \
+K atan| ----------------------- |
+      \      vT cos(ALPHAT)     /
+
 </pre><p>State equations</p><pre class="codeinput">f1 = vT * cos(ALPHAT + PSI);
 f2 = vT * sin(ALPHAT + PSI);
 f3 = dPSI;
@@ -440,235 +441,292 @@ f6 = (FyF * a - FyR * b) / IT;
 
 f = [f1 ; f2 ; f3 ; f4 ; f5 ; f6];
 </pre><pre class="codeinput">pretty(f)
-</pre><pre class="codeoutput">
-  +-                                                    -+
-  |                 vT cos(ALPHAT + PSI)                 |
-  |                                                      |
-  |                 vT sin(ALPHAT + PSI)                 |
-  |                                                      |
-  |                         dPSI                         |
-  |                                                      |
-  |           K #2 sin(ALPHAT) - K #1 sin(ALPHAT)        |
-  |         - -----------------------------------        |
-  |                           mT                         |
-  |                                                      |
-  |    dPSI mT vT + K cos(ALPHAT) #2 - K cos(ALPHAT) #1  |
-  |  - ------------------------------------------------  |
-  |                         mT vT                        |
-  |                                                      |
-  |                     K a #2 + K b #1                  |
-  |                   - ---------------                  |
-  |                           IT                         |
-  +-                                                    -+
-  
-  where
-  
-               / b dPSI - vT sin(ALPHAT) \
-     #1 == atan| ----------------------- |
-               \     vT cos(ALPHAT)      /
-  
-               / a dPSI + vT sin(ALPHAT) \
-     #2 == atan| ----------------------- |
-               \     vT cos(ALPHAT)      /
+</pre><pre class="codeoutput">/                vT cos(ALPHAT + PSI)                \
+|                                                    |
+|                vT sin(ALPHAT + PSI)                |
+|                                                    |
+|                        dPSI                        |
+|                                                    |
+|          K #2 sin(ALPHAT) - K #1 sin(ALPHAT)       |
+|        - -----------------------------------       |
+|                           mT                       |
+|                                                    |
+|   dPSI mT vT + K cos(ALPHAT) #2 - K cos(ALPHAT) #1 |
+| - ------------------------------------------------ |
+|                         mT vT                      |
+|                                                    |
+|                    K a #2 + K b #1                 |
+|                  - ---------------                 |
+\                           IT                       /
+
+where
+
+             / b dPSI - vT sin(ALPHAT) \
+   #1 == atan| ----------------------- |
+             \      vT cos(ALPHAT)     /
+
+             / a dPSI + vT sin(ALPHAT) \
+   #2 == atan| ----------------------- |
+             \      vT cos(ALPHAT)     /
+
+
 </pre><p>Vetor de estados</p><pre class="codeinput">States = [XT ; YT ; PSI ; vT ; ALPHAT ; dPSI];
 </pre><pre class="codeinput">pretty(States)
-</pre><pre class="codeoutput">
-  +-        -+
-  |    XT    |
-  |          |
-  |    YT    |
-  |          |
-  |    PSI   |
-  |          |
-  |    vT    |
-  |          |
-  |  ALPHAT  |
-  |          |
-  |   dPSI   |
-  +-        -+
+</pre><pre class="codeoutput">/   XT   \
+|        |
+|   YT   |
+|        |
+|   PSI  |
+|        |
+|   vT   |
+|        |
+| ALPHAT |
+|        |
+\  dPSI  /
+
 </pre><p>O sistema linearizado &eacute; escrito na forma</p><p>\[ \dot{\bf x} = {\bf F} {\bf x} \]</p><p>onde \({\bf F}\) &eacute; a matriz din&acirc;mica do modelo linear que &eacute; calculada a partir da equa&ccedil;&atilde;o n&atilde;o linear expandida em s&eacute;rie de Taylor e truncada nos termos de primeira ordem. Logo, a matriz \({\bf F}\) &eacute; dada por</p><p>\[ {\bf F} = \left[ \frac{\partial f_i}{\partial x_j} \right]_{n \times n} \]</p><p>onde \(i\) e \(j\) indicam as equa&ccedil;&otilde;es e vari&aacute;veis de estado utilizadas no c&aacute;lculo correpondente &agrave; posi&ccedil;&atilde;o \((i,j)\) da matriz jacobiana.</p><pre class="codeinput">F = jacobian(f,States);
 F = simplify(F);
 </pre><pre class="codeinput">pretty(F)
-</pre><pre class="codeoutput">
-  +-                                                                                                                                                                                                                                                              -+
-  |  0, 0, #6,                                                cos(ALPHAT + PSI),                                                                                        #6,                                                               0                        |
-  |                                                                                                                                                                                                                                                                |
-  |  0, 0, #7,                                                sin(ALPHAT + PSI),                                                                                        #7,                                                               0                        |
-  |                                                                                                                                                                                                                                                                |
-  |  0, 0,  0,                                                        0,                                                                                                0,                                                                1                        |
-  |                                                                                                                                                                                                                                                                |
-  |                                                                                                                                                       K vT sin(ALPHAT) #4   K vT sin(ALPHAT) #3                   K a vT sin(2 ALPHAT)   K b vT sin(2 ALPHAT)  |
-  |                                              2       2      2     2                                   2       2                             #9 - #8 + ------------------- + -------------------                   -------------------- - --------------------  |
-  |                       K dPSI sin(2 ALPHAT) (a  b dPSI  - a b  dPSI  + 4 sin(ALPHAT) a b dPSI vT - a vT  + b vT )                                              #2                    #1                                    2 #2                   2 #1          |
-  |  0, 0,  0,          - ------------------------------------------------------------------------------------------,                         - ---------------------------------------------------,                - -------------------------------------------  |
-  |                                                               2 mT #2 #1                                                                                            mT                                                                mT                       |
-  |                                                                                                                                                                                                                                                                |
-  |                                                                                                                                                                      K vT cos(ALPHAT) #4   K vT cos(ALPHAT) #3                   K a vT #5   K b vT #5         |
-  |                                                                                                                              K #10 sin(ALPHAT) - K #11 sin(ALPHAT) + ------------------- + -------------------           mT vT - --------- + ---------         |
-  |                                                #9       #8     K a dPSI #5   K b dPSI #5                                                                                     #2                    #1                               #2          #1             |
-  |  0, 0,  0,                                   ------ - ------ - ----------- + -----------,                                  - ---------------------------------------------------------------------------------,        - -----------------------------         |
-  |                                                   2        2    mT vT #2      mT vT #1                                                                             mT vT                                                             mT vT                     |
-  |                                              mT vT    mT vT                                                                                                                                                                                                    |
-  |                                                                                                                                                                                                                                                                |
-  |                                                                                                                                                                                                                       2                     2                  |
-  |                                                                                                                                                            K a vT #4   K b vT #3                                   K a  vT cos(ALPHAT)   K b  vT cos(ALPHAT)   |
-  |                                   2  2     2                  2              2   2                    2            2   2                                   --------- - ---------                                   ------------------- + -------------------   |
-  |            K dPSI cos(ALPHAT) (2 a  b  dPSI  - 2 sin(ALPHAT) a  b dPSI vT + a  vT  + 2 sin(ALPHAT) a b  dPSI vT + b  vT )                                     #2          #1                                               #2                    #1            |
-  |  0, 0,  0, --------------------------------------------------------------------------------------------------------------,                               - ---------------------,                                - -----------------------------------------   |
-  |                                                               IT #2 #1                                                                                              IT                                                                IT                       |
-  +-                                                                                                                                                                                                                                                              -+
-  
-  where
-  
-            2     2                               2
-     #1 == b  dPSI  - 2 sin(ALPHAT) b dPSI vT + vT
-  
-            2     2                               2
-     #2 == a  dPSI  + 2 sin(ALPHAT) a dPSI vT + vT
-  
-     #3 == vT - b dPSI sin(ALPHAT)
-  
-     #4 == vT + a dPSI sin(ALPHAT)
-  
-                      2
-     #5 == sin(ALPHAT)  - 1
-  
-     #6 == -vT sin(ALPHAT + PSI)
-  
-     #7 == vT cos(ALPHAT + PSI)
-  
-     #8 == K cos(ALPHAT) #10
-  
-     #9 == K cos(ALPHAT) #11
-  
-                / b dPSI - vT sin(ALPHAT) \
-     #10 == atan| ----------------------- |
-                \     vT cos(ALPHAT)      /
-  
-                / a dPSI + vT sin(ALPHAT) \
-     #11 == atan| ----------------------- |
-                \     vT cos(ALPHAT)      /
+</pre><pre class="codeoutput">--
+|
+|
+|
+|  [0, 0, #6, cos(ALPHAT + PSI), #6, 0],
+|
+--
+
+  [0, 0, #7, sin(ALPHAT + PSI), #7, 0], [0, 0, 0, 0, 0, 1],
+
+  --
+  |
+  |                                    2       2      2     2
+  |  0, 0, 0, -(K dPSI sin(2 ALPHAT) (a  b dPSI  - a b  dPSI
+  --
+
+                                     2       2
+   + sin(ALPHAT) a b dPSI vT 4 - a vT  + b vT ))/(mT #2 #1 2),
+
+         K vT sin(ALPHAT) #5   K vT sin(ALPHAT) #4
+    #8 + ------------------- + -------------------
+                  #2                    #1
+  - ----------------------------------------------,
+                          mT
+
+    K a vT sin(2 ALPHAT)   K b vT sin(2 ALPHAT) --
+    -------------------- - --------------------  |
+            2 #2                   2 #1          |
+  - -------------------------------------------  |,
+                         mT                     --
+
+  --
+  |
+  |             #8     K a dPSI #3   K b dPSI #3
+  |  0, 0, 0, ------ - ----------- + -----------,
+  |                2     mT vT #2      mT vT #1
+  --          mT vT
+
+    K vT cos(ALPHAT) #5                      K vT cos(ALPHAT) #4
+    ------------------- - K sin(ALPHAT) #9 + -------------------
+             #2                                       #1
+  - ------------------------------------------------------------,
+                                mT vT
+
+            K a vT #3   K b vT #3 --
+    mT vT - --------- + ---------  |
+                #2          #1     |
+  - -----------------------------  |,
+                mT vT              |
+                                  --
+
+  --
+  |
+  |
+  |                                   2  2     2                2
+  |  0, 0, 0, (K dPSI cos(ALPHAT) (2 a  b  dPSI  - sin(ALPHAT) a  b dPSI vT
+  --
+
+        2   2                  2              2   2
+   2 + a  vT  + sin(ALPHAT) a b  dPSI vT 2 + b  vT ))/(IT #2 #1),
+
+                                2                     2                -- --
+    K a vT #5   K b vT #4    K a  vT cos(ALPHAT)   K b  vT cos(ALPHAT)  |  |
+    --------- - ---------    ------------------- + -------------------  |  |
+        #2          #1                #2                    #1          |  |
+  - ---------------------, - -----------------------------------------  |  |
+              IT                                 IT                    --  |
+                                                                          --
+
+where
+
+          2     2                               2
+   #1 == b  dPSI  - sin(ALPHAT) b dPSI vT 2 + vT
+
+          2     2                               2
+   #2 == a  dPSI  + sin(ALPHAT) a dPSI vT 2 + vT
+
+                    2
+   #3 == sin(ALPHAT)  - 1
+
+   #4 == vT - b dPSI sin(ALPHAT)
+
+   #5 == vT + a dPSI sin(ALPHAT)
+
+   #6 == -vT sin(ALPHAT + PSI)
+
+   #7 == vT cos(ALPHAT + PSI)
+
+   #8 == K cos(ALPHAT) #9
+
+             / a dPSI + vT sin(ALPHAT) \       / b dPSI - vT sin(ALPHAT) \
+   #9 == atan| ----------------------- | - atan| ----------------------- |
+             \      vT cos(ALPHAT)     /       \      vT cos(ALPHAT)     /
+
+
 </pre><h2>Medi&ccedil;&atilde;o<a name="36"></a></h2><p>Continuando simbolicamente, as grandezas medidas s&atilde;o:</p><div><ul><li>Posi&ccedil;&atilde;o X</li><li>Posi&ccedil;&atilde;o Y</li><li>Acelera&ccedil;&atilde;o angular</li><li>acelera&ccedil;&atilde;o longitudinal</li><li>acelera&ccedil;&atilde;o transversal</li></ul></div><p>Para isso, utiliza-se as rela&ccedil;&otilde;es:</p><p>\[ \dot{x} = v_{\rm T} \cos \left( \psi + \alpha_{\rm T} \right) \]</p><p>\[ \dot{y} = v_{\rm T} \sin \left( \psi + \alpha_{\rm T} \right) \]</p><p>Acelera&ccedil;&atilde;o</p><p>\[ \ddot{x} = \dot{v}_{\rm T} \cos \left( \psi + \alpha_{\rm T} \right) - v_{\rm T} \left( \dot{\psi} + \dot{\alpha}_{\rm T} \right) \sin \left( \psi + \alpha_{\rm T} \right) \]</p><p>\[ \ddot{y} = \dot{v}_{\rm T} \sin \left( \psi + \alpha_{\rm T} \right) + v_{\rm T} \left( \dot{\psi} + \dot{\alpha}_{\rm T} \right) \cos \left( \psi + \alpha_{\rm T} \right) \]</p><p>Implementando</p><pre class="codeinput">ddX = f4*cos(PSI + ALPHAT) - vT*(dPSI + f5)*sin(PSI + ALPHAT);
 ddY = f4*sin(PSI + ALPHAT) + vT*(dPSI + f5)*cos(PSI + ALPHAT);
 </pre><p>Estes valores obtidos s&atilde;o as acelera&ccedil;&otilde;es escritas na base fixa \(\{ O {\bf i} {\bf j} {\bf k} \}\). A proje&ccedil;&atilde;o destas grandezas na base m&oacute;vel \(\{ O {\bf t}_x {\bf t}_y {\bf t}_z \}\) &eacute; feita atrav&eacute;s da equa&ccedil;&atilde;o</p><p>\[ {\bf a} = \left( \ddot{x} \cos \psi - \ddot{y} \sin \psi \right) {\bf t}_x + \left( - \ddot{x} \sin \psi + \ddot{y} \sin \psi \right) {\bf t}_y \]</p><p>Implementando</p><pre class="codeinput">ACEL = [ddX*cos(PSI) - ddY*sin(PSI) ; -ddX*sin(PSI) + ddY*cos(PSI)];
 ACEL = simplify(ACEL);
 </pre><pre class="codeinput">pretty(ACEL)
-</pre><pre class="codeoutput">
-  +-                 -+
-  |  K sin(2 PSI) #1  |
-  |  ---------------  |
-  |        mT         |
-  |                   |
-  |         K #1      |
-  |       - ----      |
-  |          mT       |
-  +-                 -+
-  
-  where
-  
-               / a dPSI + vT sin(ALPHAT) \       / b dPSI - vT sin(ALPHAT) \
-     #1 == atan| ----------------------- | - atan| ----------------------- |
-               \     vT cos(ALPHAT)      /       \     vT cos(ALPHAT)      /
+</pre><pre class="codeoutput">/ K sin(2 PSI) #1 \
+| --------------- |
+|        mT       |
+|                 |
+|        K #1     |
+|      - ----     |
+\         mT      /
+
+where
+
+             / a dPSI + vT sin(ALPHAT) \       / b dPSI - vT sin(ALPHAT) \
+   #1 == atan| ----------------------- | - atan| ----------------------- |
+             \      vT cos(ALPHAT)     /       \      vT cos(ALPHAT)     /
+
+
 </pre><p>A equa&ccedil;&atilde;o de observa&ccedil;&otilde;es n&atilde;o linear &eacute; dada por</p><p>\[ {\bf z}_k = {\bf h} ({\bf x}_k) + {\bf v}_k \]</p><p>com</p><p>\({\bf v}_k\) ~ \(N ( {\bf 0} , {\bf R}_k )\)</p><p>Linearizando termos</p><p>\[ {\bf z}_k = {\bf H} {\bf x}_k + {\bf v}_k \]</p><p>onde</p><p>\[ {\bf H} = \left[ \frac{\partial h_i}{\partial x_j} \right]_{m \times n} \]</p><p>ou seja, a matriz de sa&iacute;das {\bf H} &eacute; a matriz jacobiana da equa&ccedil;&atilde;o de ACEL em rela&ccedil;&atilde;o aos estados.</p><p>Implementando</p><pre class="codeinput">medNonlinear = [XT ; YT ; f6 ; ACEL];
 
 H = jacobian(medNonlinear,States);
 H = simplify(H);
 </pre><pre class="codeinput">pretty(H)
-</pre><pre class="codeoutput">
-  +-                                                                                                                                                                                                                                                                                  -+
-  |  1, 0,                                           0,                                                                                                 0,                                                                  0,                                 0                       |
-  |                                                                                                                                                                                                                                                                                    |
-  |  0, 1,                                           0,                                                                                                 0,                                                                  0,                                 0                       |
-  |                                                                                                                                                                                                                                                                                    |
-  |                                                                                                                                                                                                                                            2                     2                 |
-  |                                                                                                                                                                                                                K a vT #5   K b vT #4    K a  vT cos(ALPHAT)   K b  vT cos(ALPHAT)  |
-  |                                                                                                                     2  2     2                  2              2   2                    2            2   2     --------- - ---------    ------------------- + -------------------  |
-  |                                                                                              K dPSI cos(ALPHAT) (2 a  b  dPSI  - 2 sin(ALPHAT) a  b dPSI vT + a  vT  + 2 sin(ALPHAT) a b  dPSI vT + b  vT )       #7          #6                #7                    #6           |
-  |  0, 0,                                           0,                                          --------------------------------------------------------------------------------------------------------------, - ---------------------, - -----------------------------------------  |
-  |                                                                                                                                                 IT #7 #6                                                                IT                                 IT                      |
-  |                                                                                                                                                                                                                                                                                    |
-  |                       /     / a dPSI + vT sin(ALPHAT) \       / b dPSI - vT sin(ALPHAT) \ \                                                                                                                                                                                        |
-  |        2 K cos(2 PSI) | atan| ----------------------- | - atan| ----------------------- | |                                                                                                                                                                                        |
-  |                       \     \     vT cos(ALPHAT)      /       \     vT cos(ALPHAT)      / /                                         K dPSI sin(2 PSI) cos(ALPHAT) #1                                             K sin(2 PSI) #2                    K sin(2 PSI) #3                |
-  |  0, 0, ------------------------------------------------------------------------------------,                                        --------------------------------,                                            ---------------,                   ---------------                |
-  |                                                 mT                                                                                              mT #7 #6                                                               mT                                 mT                       |
-  |                                                                                                                                                                                                                                                                                    |
-  |                                                                                                                                            K dPSI cos(ALPHAT) #1                                                        K #2                               K #3                    |
-  |  0, 0,                                           0,                                                                                      - ---------------------,                                                     - ----,                            - ----                    |
-  |                                                                                                                                                  mT #7 #6                                                                mT                                 mT                     |
-  +-                                                                                                                                                                                                                                                                                  -+
-  
-  where
-  
-            2       2      2     2                                   2       2
-     #1 == a  b dPSI  - a b  dPSI  + 4 sin(ALPHAT) a b dPSI vT - a vT  + b vT
-  
-           vT #5   vT #4
-     #2 == ----- + -----
-            #7      #6
-  
-           a vT cos(ALPHAT)   b vT cos(ALPHAT)
-     #3 == ---------------- - ----------------
-                  #7                 #6
-  
-     #4 == vT - b dPSI sin(ALPHAT)
-  
-     #5 == vT + a dPSI sin(ALPHAT)
-  
-            2     2                               2
-     #6 == b  dPSI  - 2 sin(ALPHAT) b dPSI vT + vT
-  
-            2     2                               2
-     #7 == a  dPSI  + 2 sin(ALPHAT) a dPSI vT + vT
+</pre><pre class="codeoutput">--
+|
+|
+|
+|  [1, 0, 0, 0, 0, 0], [0, 1, 0, 0, 0, 0],
+--
+
+  --
+  |
+  |
+  |                                   2  2     2                2
+  |  0, 0, 0, (K dPSI cos(ALPHAT) (2 a  b  dPSI  - sin(ALPHAT) a  b dPSI vT
+  --
+
+        2   2                  2              2   2
+   2 + a  vT  + sin(ALPHAT) a b  dPSI vT 2 + b  vT ))/(IT #7 #6),
+
+                                2                     2                --
+    K a vT #5   K b vT #4    K a  vT cos(ALPHAT)   K b  vT cos(ALPHAT)  |
+    --------- - ---------    ------------------- + -------------------  |
+        #7          #6                #7                    #6          |
+  - ---------------------, - -----------------------------------------  |,
+              IT                                 IT                    --
+
+  --
+  |  0, 0,
+  --
+
+  /
+  | K cos(2
+  \
+
+        /     / a dPSI + vT sin(ALPHAT) \
+   PSI) | atan| ----------------------- |
+        \     \      vT cos(ALPHAT)     /
+
+         / b dPSI - vT sin(ALPHAT) \ \   \
+   - atan| ----------------------- | | 2 |/mT,
+         \      vT cos(ALPHAT)     / /   /
+
+  K dPSI sin(2 PSI) cos(ALPHAT) #1  K sin(2 PSI) #2  K sin(2 PSI) #3 --
+  --------------------------------, ---------------, ---------------  |,
+              mT #7 #6                     mT               mT       --
+
+                                                         --
+                                                          |
+                                                          |
+  --            K dPSI cos(ALPHAT) #1    K #2    K #3 --  |
+  |  0, 0, 0, - ---------------------, - ----, - ----  |  |
+  --                   mT #7 #6           mT      mT  -- --
+
+where
+
+          2       2      2     2                                   2       2
+   #1 == a  b dPSI  - a b  dPSI  + sin(ALPHAT) a b dPSI vT 4 - a vT  + b vT
+
+         vT #5   vT #4
+   #2 == ----- + -----
+           #7      #6
+
+         a vT cos(ALPHAT)   b vT cos(ALPHAT)
+   #3 == ---------------- - ----------------
+                #7                 #6
+
+   #4 == vT - b dPSI sin(ALPHAT)
+
+   #5 == vT + a dPSI sin(ALPHAT)
+
+          2     2                               2
+   #6 == b  dPSI  - sin(ALPHAT) b dPSI vT 2 + vT
+
+          2     2                               2
+   #7 == a  dPSI  + sin(ALPHAT) a dPSI vT 2 + vT
+
+
 </pre><h2>Verifica&ccedil;&atilde;o da lineariza&ccedil;&atilde;o<a name="41"></a></h2><p>Para verificar o procedimento de lineariza&ccedil;&atilde;o, um ponto de opera&ccedil;&atilde;o referente &agrave; movimenta&ccedil;&atilde;o do ve&iacute;culo em linha reta com uma velocidade prescrita \(v_0\) &eacute; utilizado. Esta escolha &eacute; t&iacute;pica e pode ser verificada facilmente na literatura.</p><p>Definindo \(v_0\)</p><pre class="codeinput">syms <span class="string">v0</span>
 </pre><p>Obtendo a matriz din&acirc;mica</p><pre class="codeinput">A = subs(F,States,[0 ; 0 ; 0 ; v0 ; 0 ; 0]);
 </pre><pre class="codeinput">pretty(A)
-</pre><pre class="codeoutput">
-  +-                                               -+
-  |  0, 0,  0, 1,      0,               0           |
-  |                                                 |
-  |  0, 0, v0, 0,      v0,              0           |
-  |                                                 |
-  |  0, 0,  0, 0,      0,               1           |
-  |                                                 |
-  |  0, 0,  0, 0,      0,               0           |
-  |                                                 |
-  |                                      K a   K b  |
-  |                              mT v0 + --- - ---  |
-  |                    2 K               v0    v0   |
-  |  0, 0,  0, 0,   - -----,   - -----------------  |
-  |                   mT v0            mT v0        |
-  |                                                 |
-  |                                    2      2     |
-  |                                 K a    K b      |
-  |                                 ---- + ----     |
-  |                 K a - K b        v0     v0      |
-  |  0, 0,  0, 0, - ---------,    - -----------     |
-  |                    IT               IT          |
-  +-                                               -+
+</pre><pre class="codeoutput">/ 0, 0,  0, 1,      0,               0          \
+|                                               |
+| 0, 0, v0, 0,      v0,              0          |
+|                                               |
+| 0, 0,  0, 0,      0,               1          |
+|                                               |
+| 0, 0,  0, 0,      0,               0          |
+|                                               |
+|                                     K a   K b |
+|                             mT v0 + --- - --- |
+|                   2 K                v0    v0 |
+| 0, 0,  0, 0,   - -----,   - ----------------- |
+|                  mT v0            mT v0       |
+|                                               |
+|                                   2      2    |
+|                                K a    K b     |
+|                                ---- + ----    |
+|                K a - K b        v0     v0     |
+| 0, 0,  0, 0, - ---------,    - -----------    |
+\                    IT               IT        /
+
 </pre><p>Obtendo a matriz de sa&iacute;das</p><pre class="codeinput">C = subs(H,States,[0 ; 0 ; 0 ; v0 ; 0 ; 0]);
 </pre><pre class="codeinput">pretty(C)
-</pre><pre class="codeoutput">
-  +-                                          -+
-  |  1, 0, 0, 0,      0,             0         |
-  |                                            |
-  |  0, 1, 0, 0,      0,             0         |
-  |                                            |
-  |                                 2      2   |
-  |                              K a    K b    |
-  |                              ---- + ----   |
-  |                K a - K b      v0     v0    |
-  |  0, 0, 0, 0, - ---------,  - -----------   |
-  |                   IT             IT        |
-  |                                            |
-  |  0, 0, 0, 0,      0,             0         |
-  |                                            |
-  |                               / a    b  \  |
-  |                             K | -- - -- |  |
-  |                   2 K         \ v0   v0 /  |
-  |  0, 0, 0, 0,    - ---,    - -------------  |
-  |                   mT             mT        |
-  +-                                          -+
+</pre><pre class="codeoutput">/ 1, 0, 0, 0,      0,             0        \
+|                                          |
+| 0, 1, 0, 0,      0,             0        |
+|                                          |
+|                                2      2  |
+|                             K a    K b   |
+|                             ---- + ----  |
+|               K a - K b      v0     v0   |
+| 0, 0, 0, 0, - ---------,  - -----------  |
+|                   IT             IT      |
+|                                          |
+| 0, 0, 0, 0,      0,             0        |
+|                                          |
+|                              /  a    b \ |
+|                            K | -- - -- | |
+|                  2 K         \ v0   v0 / |
+| 0, 0, 0, 0,    - ---,    - ------------- |
+\                   mT             mT      /
+
 </pre><h2>Filtro estendido de Kalman<a name="46"></a></h2><p>Implementa&ccedil;&atilde;o do algoritmo</p><p>Matriz que distribui o ru&iacute;do na equa&ccedil;&atilde;o do estado constante</p><pre class="codeinput">G = eye(6); <span class="comment">% Matriz identidade (6 x 6)</span>
 </pre><p>Matrizes de covari&acirc;ncia</p><pre class="codeinput">Q = eye(6);
 R = eye(5);
@@ -867,7 +925,7 @@ gKalman.Frame()
 hold <span class="string">on</span>
 <span class="comment">% gModel.Frame();</span>
 gKalman.Frame();
-</pre><img vspace="5" hspace="5" src="KalmanFilter_21.png" alt=""> <h2>See Also<a name="64"></a></h2><p><a href="../index.html">index</a></p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br></p></div><!--
+</pre><img vspace="5" hspace="5" src="KalmanFilter_21.png" alt=""> <h2>See Also<a name="64"></a></h2><p><a href="../index.html">Home</a></p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% KALMAN FILTER
 % Kalman filter application.
@@ -1699,7 +1757,7 @@ gKalman.Frame();
 
 %% See Also
 %
-% <../index.html index>
+% <../index.html Home>
 %
 
 ##### SOURCE END #####

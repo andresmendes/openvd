@@ -828,5 +828,5 @@ gKalman.Frame();
 
 %% See Also
 %
-% <../index.html index>
+% <../index.html Home>
 %

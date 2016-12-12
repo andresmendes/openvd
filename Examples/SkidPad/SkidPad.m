@@ -118,5 +118,5 @@ disp(num2str(R))
 %
 %% See Also
 %
-% <../index.html index>
+% <../index.html Home>
 %

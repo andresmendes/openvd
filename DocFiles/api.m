@@ -16,11 +16,11 @@
 % * <TirePolynomial.html TirePolynomial>
 % * <TirePacejka.html TirePacejka>
 %
-%% Simulator
-% * <Simulator.html Simulator>
-%
 %% Graphics
 % * <Graphics.html Graphics>
+%
+%% Simulator
+% * <Simulator.html Simulator>
 %
 %% See Also
 %

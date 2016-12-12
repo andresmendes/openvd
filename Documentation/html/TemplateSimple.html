@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>Template Simple</title><meta name="generator" content="MATLAB 8.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-11-23"><meta name="DC.source" content="TemplateSimple.m"><style type="text/css">
+      --><title>Template Simple</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-12-11"><meta name="DC.source" content="TemplateSimple.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -23,7 +23,7 @@ a:visited { color:#004aa0; text-decoration:none; }
 
 p { padding:0px; margin:0px 0px 20px; }
 img { padding:0px; margin:0px 0px 20px; border:none; }
-p img, pre img, tt img, li img { margin-bottom:0px; } 
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
 
 ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
 ul li { padding:0px; margin:0px 0px 7px 0px; }
@@ -38,11 +38,12 @@ ol li ul li { list-style:square; }
 
 .content { font-size:1.2em; line-height:140%; padding: 20px; }
 
-pre, tt, code { font-size:12px; }
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
 pre { margin:0px 0px 20px; }
-pre.error { color:red; }
 pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
 pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
 
 @media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
 
@@ -65,71 +66,57 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>Template Simple</h1><!--introduction--><p>This template show how to simulate a simple vehicle and plot the results.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#2">Results</a></li><li><a href="#5">See Also</a></li></ul></div><pre class="codeinput">import <span class="string">VehicleDynamicsLateral.*</span>
-
-<span class="comment">% Choosing tire</span>
+  </style></head><body><div class="content"><h1>Template Simple</h1><!--introduction--><p>This template shows how to simulate a simple vehicle and plot the results.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Simulation models and parameters</a></li><li><a href="#7">Run simulation</a></li><li><a href="#8">Results</a></li><li><a href="#12">See Also</a></li></ul></div><h2>Simulation models and parameters<a name="1"></a></h2><p>First, all classes of the package are imported with</p><pre class="codeinput">import <span class="string">VehicleDynamicsLateral.*</span>
+</pre><p>Choosing tire and vehicle model.</p><pre class="codeinput"><span class="comment">% Choosing tire</span>
 TireModel = TirePacejka();
 <span class="comment">% Choosing vehicle</span>
-System = VehicleSimpleNonlinear();
-<span class="comment">% Defining vehicle parameters</span>
-System.mF0 = 700;
-System.mR0 = 600;
-System.IT = 10000;
-System.lT = 3.5;
-System.nF = 2;
-System.nR = 2;
-System.wT = 2;
-System.muy = .8;
-System.deltaf = 0;
-
-System.tire = TireModel;
-<span class="comment">% Choosing simulation</span>
-T = 6;                      <span class="comment">% Total simulation time [s]</span>
-resol = 50;                 <span class="comment">% Resolution</span>
-TSPAN = 0:T/resol:T;        <span class="comment">% Time span [s]</span>
-simulator = Simulator(System, TSPAN);
-
-<span class="comment">% Changing initial conditions</span>
-simulator.ALPHAT0 = -0.2;             <span class="comment">% Initial side slip angle [rad]</span>
-simulator.dPSI0 = 0.7;                <span class="comment">% Initial yaw rate [rad/s]</span>
-
-
-<span class="comment">% Simulation</span>
-simulator.Simulate();
-</pre><h2>Results<a name="2"></a></h2><pre class="codeinput"><span class="comment">% Retrieving states</span>
-XT = simulator.XT;
+VehicleModel = VehicleSimpleNonlinear();
+</pre><p>In this case, no parameter is defined. So the default values are used. The default parameters of the vehicle and tire can be seen in <a href="api/VehicleSimpleNonlinear.html">VehicleSimpleNonlinear</a> and <a href="api/TirePacejka.html">TirePacejka</a>, respectively.</p><p>The System is completely defined once we atribute the chosen tire model to the vehicle object.</p><pre class="codeinput">VehicleModel.tire = TireModel;
+</pre><p>Choosing simulation time span</p><pre class="codeinput">T = 6;                              <span class="comment">% Total simulation time [s]</span>
+resol = 50;                         <span class="comment">% Resolution</span>
+TSPAN = 0:T/resol:T;                <span class="comment">% Time span [s]</span>
+</pre><p>To define a simulation object (simulator) the arguments must be the vehicle object and the time span. The default parameters of the simulation object can be found in <a href="api/Simulator.html">Simulator</a>.</p><pre class="codeinput">simulator = Simulator(VehicleModel, TSPAN);
+</pre><p>Changing initial conditions of the simulation object</p><pre class="codeinput">simulator.ALPHAT0 = -0.2;           <span class="comment">% Initial side slip angle [rad]</span>
+simulator.dPSI0 = 0.7;              <span class="comment">% Initial yaw rate [rad/s]</span>
+</pre><h2>Run simulation<a name="7"></a></h2><p>To simulate the system we run the Simulate method of the simulation object.</p><pre class="codeinput">simulator.Simulate();
+</pre><h2>Results<a name="8"></a></h2><p>The time history of each state is stored in separate variables. Retrieving states</p><pre class="codeinput">XT = simulator.XT;
 YT = simulator.YT;
 PSI = simulator.PSI;
 VEL = simulator.VEL;
 ALPHAT = simulator.ALPHAT;
 dPSI = simulator.dPSI;
-
-figure(1)
+</pre><p>Plotting the states</p><pre class="codeinput">figure(1)
+hold <span class="string">on</span> ; grid <span class="string">on</span> ; box <span class="string">on</span>
 plot(TSPAN,XT)
 xlabel(<span class="string">'time [s]'</span>)
 ylabel(<span class="string">'Distance in the x direction [m]'</span>)
 
 figure(2)
+hold <span class="string">on</span> ; grid <span class="string">on</span> ; box <span class="string">on</span>
 plot(TSPAN,YT)
 xlabel(<span class="string">'time [s]'</span>)
 ylabel(<span class="string">'Distance in the y direction [m]'</span>)
 
 figure(3)
+hold <span class="string">on</span> ; grid <span class="string">on</span> ; box <span class="string">on</span>
 plot(TSPAN,PSI)
 xlabel(<span class="string">'time [s]'</span>)
 ylabel(<span class="string">'Yaw angle [rad]'</span>)
 
 figure(4)
+hold <span class="string">on</span> ; grid <span class="string">on</span> ; box <span class="string">on</span>
 plot(TSPAN,VEL)
 xlabel(<span class="string">'time [s]'</span>)
 ylabel(<span class="string">'Velocity [m/s]'</span>)
 
 figure(5)
+hold <span class="string">on</span> ; grid <span class="string">on</span> ; box <span class="string">on</span>
 plot(TSPAN,ALPHAT)
 xlabel(<span class="string">'time [s]'</span>)
 ylabel(<span class="string">'Vehicle slip angle [rad/s]'</span>)
 
 figure(6)
+hold <span class="string">on</span> ; grid <span class="string">on</span> ; box <span class="string">on</span>
 plot(TSPAN,dPSI)
 xlabel(<span class="string">'time [s]'</span>)
 ylabel(<span class="string">'Yaw rate [rad/s]'</span>)
@@ -138,49 +125,57 @@ g.TractorColor = <span class="string">'r'</span>;
 
 g.Frame();
 g.Animation();
-</pre><img vspace="5" hspace="5" src="TemplateSimple_07.png" alt=""> <img vspace="5" hspace="5" src="TemplateSimple_08.png" alt=""> <p><img vspace="5" hspace="5" src="../illustrations/AnimationSimple.gif" alt=""> </p><h2>See Also<a name="5"></a></h2><p><a href="../index.html">index</a></p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br></p></div><!--
+</pre><img vspace="5" hspace="5" src="TemplateSimple_07.png" alt=""> <img vspace="5" hspace="5" src="TemplateSimple_08.png" alt=""> <p><img vspace="5" hspace="5" src="../illustrations/AnimationSimple.gif" alt=""> </p><h2>See Also<a name="12"></a></h2><p><a href="../index.html">Home</a> | <a href="TemplateArticulated.html">Template Articulated</a></p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% Template Simple
-% This template show how to simulate a simple vehicle and plot the results.
+% This template shows how to simulate a simple vehicle and plot the results.
 %
-%%
-%
+%% Simulation models and parameters
+% First, all classes of the package are imported with
 
 import VehicleDynamicsLateral.*
+
+%%
+% Choosing tire and vehicle model.
 
 % Choosing tire
 TireModel = TirePacejka();
 % Choosing vehicle
-System = VehicleSimpleNonlinear();
-% Defining vehicle parameters
-System.mF0 = 700;
-System.mR0 = 600;
-System.IT = 10000;
-System.lT = 3.5;
-System.nF = 2;
-System.nR = 2;
-System.wT = 2;
-System.muy = .8;
-System.deltaf = 0;
+VehicleModel = VehicleSimpleNonlinear();
 
-System.tire = TireModel;
-% Choosing simulation
-T = 6;                      % Total simulation time [s]
-resol = 50;                 % Resolution
-TSPAN = 0:T/resol:T;        % Time span [s]
-simulator = Simulator(System, TSPAN);
+%%
+% In this case, no parameter is defined. So the default values are used. The default parameters of the vehicle and tire can be seen in <api/VehicleSimpleNonlinear.html VehicleSimpleNonlinear> and <api/TirePacejka.html TirePacejka>, respectively.
+%
+% The System is completely defined once we atribute the chosen tire model to the vehicle object.
 
-% Changing initial conditions
-simulator.ALPHAT0 = -0.2;             % Initial side slip angle [rad]
-simulator.dPSI0 = 0.7;                % Initial yaw rate [rad/s]
+VehicleModel.tire = TireModel;
 
+%%
+% Choosing simulation time span
 
-% Simulation
+T = 6;                              % Total simulation time [s]
+resol = 50;                         % Resolution
+TSPAN = 0:T/resol:T;                % Time span [s]
+
+%%
+% To define a simulation object (simulator) the arguments must be the vehicle object and the time span. The default parameters of the simulation object can be found in <api/Simulator.html Simulator>.
+
+simulator = Simulator(VehicleModel, TSPAN);
+
+%%
+% Changing initial conditions of the simulation object
+
+simulator.ALPHAT0 = -0.2;           % Initial side slip angle [rad]
+simulator.dPSI0 = 0.7;              % Initial yaw rate [rad/s]
+
+%% Run simulation
+% To simulate the system we run the Simulate method of the simulation object.
+
 simulator.Simulate();
 
 %% Results
+% The time history of each state is stored in separate variables. Retrieving states
 
-% Retrieving states
 XT = simulator.XT;
 YT = simulator.YT;
 PSI = simulator.PSI;
@@ -188,32 +183,41 @@ VEL = simulator.VEL;
 ALPHAT = simulator.ALPHAT;
 dPSI = simulator.dPSI;
 
+%%
+% Plotting the states
+
 figure(1)
+hold on ; grid on ; box on
 plot(TSPAN,XT)
 xlabel('time [s]')
 ylabel('Distance in the x direction [m]')
 
 figure(2)
+hold on ; grid on ; box on
 plot(TSPAN,YT)
 xlabel('time [s]')
 ylabel('Distance in the y direction [m]')
 
 figure(3)
+hold on ; grid on ; box on
 plot(TSPAN,PSI)
 xlabel('time [s]')
 ylabel('Yaw angle [rad]')
 
 figure(4)
+hold on ; grid on ; box on
 plot(TSPAN,VEL)
 xlabel('time [s]')
 ylabel('Velocity [m/s]')
 
 figure(5)
+hold on ; grid on ; box on
 plot(TSPAN,ALPHAT)
 xlabel('time [s]')
 ylabel('Vehicle slip angle [rad/s]')
 
 figure(6)
+hold on ; grid on ; box on
 plot(TSPAN,dPSI)
 xlabel('time [s]')
 ylabel('Yaw rate [rad/s]')
@@ -232,7 +236,7 @@ g.Animation();
 %
 %% See Also
 %
-% <../index.html index>
+% <../index.html Home> | <TemplateArticulated.html Template Articulated>
 %
 
 ##### SOURCE END #####

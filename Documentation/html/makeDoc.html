@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>Documentation Generator</title><meta name="generator" content="MATLAB 8.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-11-23"><meta name="DC.source" content="makeDoc.m"><style type="text/css">
+      --><title>Documentation Generator</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-12-11"><meta name="DC.source" content="makeDoc.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -23,7 +23,7 @@ a:visited { color:#004aa0; text-decoration:none; }
 
 p { padding:0px; margin:0px 0px 20px; }
 img { padding:0px; margin:0px 0px 20px; border:none; }
-p img, pre img, tt img, li img { margin-bottom:0px; } 
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
 
 ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
 ul li { padding:0px; margin:0px 0px 7px 0px; }
@@ -38,11 +38,12 @@ ol li ul li { list-style:square; }
 
 .content { font-size:1.2em; line-height:140%; padding: 20px; }
 
-pre, tt, code { font-size:12px; }
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
 pre { margin:0px 0px 20px; }
-pre.error { color:red; }
 pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
 pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
 
 @media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
 
@@ -82,25 +83,25 @@ addpath(<span class="string">'../Examples/TemplateArticulated/'</span>)
 addpath(<span class="string">'../Examples/TemplateSimple/'</span>)
 addpath(<span class="string">'../Examples/TireComparison/'</span>)
 </pre><h2>Publishing documentation<a name="4"></a></h2><pre class="codeinput"><span class="comment">% Index</span>
-publish(<span class="string">'../DocFiles/index.m'</span>, <span class="string">'outputDir'</span>, <span class="string">'../Documentation'</span>, <span class="string">'evalCode'</span>, false);
+publish(<span class="string">'index.m'</span>, <span class="string">'outputDir'</span>, <span class="string">'../Documentation'</span>, <span class="string">'evalCode'</span>, true,<span class="string">'showCode'</span>,false);
 
 <span class="comment">% API</span>
-publish(<span class="string">'../DocFiles/api.m'</span>, <span class="string">'outputDir'</span>, apiDocPath,<span class="string">'evalCode'</span>, false);
+publish(<span class="string">'api.m'</span>, <span class="string">'outputDir'</span>, apiDocPath,<span class="string">'evalCode'</span>, false);
 
 <span class="comment">% Tire models</span>
-publish(<span class="string">'../DocFiles/DocTireLinear.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, false);
-publish(<span class="string">'../DocFiles/DocTirePolynomial.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, false);
-publish(<span class="string">'../DocFiles/DocTirePacejka.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, false);
+publish(<span class="string">'DocTireLinear.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, false);
+publish(<span class="string">'DocTirePolynomial.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, false);
+publish(<span class="string">'DocTirePacejka.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, false);
 
 <span class="comment">% Vehicle models</span>
-publish(<span class="string">'../DocFiles/DocVehicleSimpleLinear.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, false);
-publish(<span class="string">'../DocFiles/DocVehicleSimpleNonlinear.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, false);
-publish(<span class="string">'../DocFiles/DocVehicleSimpleNonlinear4DOF.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, false);
-publish(<span class="string">'../DocFiles/DocVehicleArticulatedLinear.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, false);
-publish(<span class="string">'../DocFiles/DocVehicleArticulatedNonlinear.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, false);
+publish(<span class="string">'DocVehicleSimpleLinear.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, false);
+publish(<span class="string">'DocVehicleSimpleNonlinear.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, false);
+publish(<span class="string">'DocVehicleSimpleNonlinear4DOF.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, false);
+publish(<span class="string">'DocVehicleArticulatedLinear.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, false);
+publish(<span class="string">'DocVehicleArticulatedNonlinear.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, false);
 
 <span class="comment">% Graphics</span>
-publish(<span class="string">'../DocFiles/DocGraphics.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, false);
+publish(<span class="string">'DocGraphics.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, false);
 
 <span class="comment">% API</span>
 publish(<span class="string">'../+VehicleDynamicsLateral/@VehicleSimple/VehicleSimple.m'</span>, <span class="string">'outputDir'</span>, apiDocPath, <span class="string">'evalCode'</span>, false);
@@ -180,7 +181,7 @@ publish(<span class="string">'makeDoc'</span>, <span class="string">'outputDir'<
 </pre><h2>Code end<a name="5"></a></h2><pre class="codeinput">clear <span class="string">all</span>                   <span class="comment">% Clear workspace</span>
 close <span class="string">all</span>                   <span class="comment">% Closing figures</span>
 clc                         <span class="comment">% Clear command window</span>
-</pre><h2>See Also<a name="6"></a></h2><p><a href="../index.html">index</a></p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br></p></div><!--
+</pre><h2>See Also<a name="6"></a></h2><p><a href="../index.html">Home</a></p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% Documentation Generator
 %
@@ -220,25 +221,25 @@ addpath('../Examples/TireComparison/')
 %
 
 % Index
-publish('../DocFiles/index.m', 'outputDir', '../Documentation', 'evalCode', false);
+publish('index.m', 'outputDir', '../Documentation', 'evalCode', true,'showCode',false);
 
 % API
-publish('../DocFiles/api.m', 'outputDir', apiDocPath,'evalCode', false);
+publish('api.m', 'outputDir', apiDocPath,'evalCode', false);
 
 % Tire models
-publish('../DocFiles/DocTireLinear.m', 'outputDir', docPath, 'evalCode', false);
-publish('../DocFiles/DocTirePolynomial.m', 'outputDir', docPath, 'evalCode', false);
-publish('../DocFiles/DocTirePacejka.m', 'outputDir', docPath, 'evalCode', false);
+publish('DocTireLinear.m', 'outputDir', docPath, 'evalCode', false);
+publish('DocTirePolynomial.m', 'outputDir', docPath, 'evalCode', false);
+publish('DocTirePacejka.m', 'outputDir', docPath, 'evalCode', false);
 
 % Vehicle models
-publish('../DocFiles/DocVehicleSimpleLinear.m', 'outputDir', docPath, 'evalCode', false);
-publish('../DocFiles/DocVehicleSimpleNonlinear.m', 'outputDir', docPath, 'evalCode', false);
-publish('../DocFiles/DocVehicleSimpleNonlinear4DOF.m', 'outputDir', docPath, 'evalCode', false);
-publish('../DocFiles/DocVehicleArticulatedLinear.m', 'outputDir', docPath, 'evalCode', false);
-publish('../DocFiles/DocVehicleArticulatedNonlinear.m', 'outputDir', docPath, 'evalCode', false);
+publish('DocVehicleSimpleLinear.m', 'outputDir', docPath, 'evalCode', false);
+publish('DocVehicleSimpleNonlinear.m', 'outputDir', docPath, 'evalCode', false);
+publish('DocVehicleSimpleNonlinear4DOF.m', 'outputDir', docPath, 'evalCode', false);
+publish('DocVehicleArticulatedLinear.m', 'outputDir', docPath, 'evalCode', false);
+publish('DocVehicleArticulatedNonlinear.m', 'outputDir', docPath, 'evalCode', false);
 
 % Graphics
-publish('../DocFiles/DocGraphics.m', 'outputDir', docPath, 'evalCode', false);
+publish('DocGraphics.m', 'outputDir', docPath, 'evalCode', false);
 
 % API
 publish('../+VehicleDynamicsLateral/@VehicleSimple/VehicleSimple.m', 'outputDir', apiDocPath, 'evalCode', false);
@@ -323,7 +324,7 @@ clc                         % Clear command window
 
 %% See Also
 %
-% <../index.html index>
+% <../index.html Home>
 %
 
 ##### SOURCE END #####

@@ -191,5 +191,5 @@ end
 
 %% See Also
 %
-% <../../index.html index>
+% <../../index.html Home>
 %

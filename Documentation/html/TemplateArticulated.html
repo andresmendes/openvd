@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>Template Articulated</title><meta name="generator" content="MATLAB 8.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-11-23"><meta name="DC.source" content="TemplateArticulated.m"><style type="text/css">
+      --><title>Template Articulated</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-12-11"><meta name="DC.source" content="TemplateArticulated.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -23,7 +23,7 @@ a:visited { color:#004aa0; text-decoration:none; }
 
 p { padding:0px; margin:0px 0px 20px; }
 img { padding:0px; margin:0px 0px 20px; border:none; }
-p img, pre img, tt img, li img { margin-bottom:0px; } 
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
 
 ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
 ul li { padding:0px; margin:0px 0px 7px 0px; }
@@ -38,11 +38,12 @@ ol li ul li { list-style:square; }
 
 .content { font-size:1.2em; line-height:140%; padding: 20px; }
 
-pre, tt, code { font-size:12px; }
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
 pre { margin:0px 0px 20px; }
-pre.error { color:red; }
 pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
 pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
 
 @media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
 
@@ -65,9 +66,8 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>Template Articulated</h1><!--introduction--><p>This template show how to simulate an articulated vehicle and plot the results.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#2">Results</a></li><li><a href="#4">See Also</a></li></ul></div><pre class="codeinput">import <span class="string">VehicleDynamicsLateral.*</span>
-
-<span class="comment">% Choosing tire</span>
+  </style></head><body><div class="content"><h1>Template Articulated</h1><!--introduction--><p>This template shows how to simulate an articulated vehicle and plot the results.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Simulation models and parameters</a></li><li><a href="#6">Run simulation</a></li><li><a href="#7">Results</a></li><li><a href="#9">See Also</a></li></ul></div><h2>Simulation models and parameters<a name="1"></a></h2><p>First, all classes of the package are imported with</p><pre class="codeinput">import <span class="string">VehicleDynamicsLateral.*</span>
+</pre><p>Choosing tire and vehicle model. In this case, the parameters are defined by the user.</p><pre class="codeinput"><span class="comment">% Choosing tire</span>
 TireModel = TirePacejka();
 TireModel.a0 = 1;
 TireModel.a1 = 2;
@@ -79,35 +79,56 @@ TireModel.a6 = 0;
 TireModel.a7 = 0.6;
 
 <span class="comment">% Choosing vehicle</span>
-System = VehicleArticulatedNonlinear();
-System.tire = TireModel;
-<span class="comment">% Choosing simulation</span>
-T = 7;                      <span class="comment">% Total simulation time [s]</span>
+VehicleModel = VehicleArticulatedNonlinear();
+VehicleModel.mF0 = 5200;
+VehicleModel.mR0 = 2400;
+VehicleModel.mF = 6000;
+VehicleModel.mR = 10000;
+VehicleModel.mM = 17000;
+VehicleModel.IT = 46000;
+VehicleModel.IS = 450000;
+VehicleModel.lT = 3.5;
+VehicleModel.lS = 7.7;
+VehicleModel.c = -0.3;
+VehicleModel.nF = 2;
+VehicleModel.nR = 4;
+VehicleModel.nM = 8;
+VehicleModel.wT = 2.6;
+VehicleModel.wS = 2.4;
+VehicleModel.muy = 0.3;
+VehicleModel.deltaf = 0;
+VehicleModel.Fxf = 0;
+VehicleModel.Fxr = 0;
+VehicleModel.Fxm = 0;
+
+<span class="comment">% The System is completely defined once we atribute the chosen tire model to the vehicle object.</span>
+
+VehicleModel.tire = TireModel;
+</pre><p>Choosing simulation time span</p><pre class="codeinput">T = 7;                      <span class="comment">% Total simulation time [s]</span>
 resol = 50;                 <span class="comment">% Resolution</span>
 TSPAN = 0:T/resol:T;        <span class="comment">% Time span [s]</span>
-simulator = Simulator(System, TSPAN);
-
-simulator.ALPHAT0 = 0.3;              <span class="comment">% Initial tractor side slip angle [rad]</span>
+</pre><p>To define a simulation object (simulator) the arguments must be the vehicle object and the time span. The default parameters of the simulation object can be found in <a href="api/Simulator.html">Simulator</a>.</p><pre class="codeinput">simulator = Simulator(VehicleModel, TSPAN);
+</pre><p>Changing initial conditions of the simulation object</p><pre class="codeinput">simulator.ALPHAT0 = 0.3;              <span class="comment">% Initial tractor side slip angle [rad]</span>
 simulator.dPSI0 = 0.25;               <span class="comment">% Initial tractor yaw rate [rad/s]</span>
 simulator.dPHI0 = 0.25;        <span class="comment">% Initial articulation rate [rad/s]</span>
-
-
-<span class="comment">% Simulation</span>
-simulator.Simulate();
-</pre><h2>Results<a name="2"></a></h2><pre class="codeinput">g = Graphics(simulator);
+</pre><h2>Run simulation<a name="6"></a></h2><p>To simulate the system we run the Simulate method of the simulation object.</p><pre class="codeinput">simulator.Simulate();
+</pre><h2>Results<a name="7"></a></h2><pre class="codeinput">g = Graphics(simulator);
 g.TractorColor = <span class="string">'r'</span>;
 g.SemitrailerColor = <span class="string">'g'</span>;
 g.Frame();
 g.Animation();
-</pre><img vspace="5" hspace="5" src="TemplateArticulated_01.png" alt=""> <img vspace="5" hspace="5" src="TemplateArticulated_02.png" alt=""> <p><img vspace="5" hspace="5" src="../illustrations/AnimationArticulated.gif" alt=""> </p><h2>See Also<a name="4"></a></h2><p><a href="../index.html">index</a> | <a href="TemplateSimple.html">TemplateSimple</a></p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br></p></div><!--
+</pre><img vspace="5" hspace="5" src="TemplateArticulated_01.png" alt=""> <img vspace="5" hspace="5" src="TemplateArticulated_02.png" alt=""> <p><img vspace="5" hspace="5" src="../illustrations/AnimationArticulated.gif" alt=""> </p><h2>See Also<a name="9"></a></h2><p><a href="../index.html">Home</a> | <a href="TemplateSimple.html">TemplateSimple</a></p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% Template Articulated
-% This template show how to simulate an articulated vehicle and plot the results.
+% This template shows how to simulate an articulated vehicle and plot the results.
 %
-%%
-%
+%% Simulation models and parameters
+% First, all classes of the package are imported with
 
 import VehicleDynamicsLateral.*
+
+%%
+% Choosing tire and vehicle model. In this case, the parameters are defined by the user.
 
 % Choosing tire
 TireModel = TirePacejka();
@@ -121,20 +142,54 @@ TireModel.a6 = 0;
 TireModel.a7 = 0.6;
 
 % Choosing vehicle
-System = VehicleArticulatedNonlinear();
-System.tire = TireModel;
-% Choosing simulation
+VehicleModel = VehicleArticulatedNonlinear();
+VehicleModel.mF0 = 5200;
+VehicleModel.mR0 = 2400;
+VehicleModel.mF = 6000;
+VehicleModel.mR = 10000;
+VehicleModel.mM = 17000;
+VehicleModel.IT = 46000;
+VehicleModel.IS = 450000;
+VehicleModel.lT = 3.5;
+VehicleModel.lS = 7.7;
+VehicleModel.c = -0.3;
+VehicleModel.nF = 2;
+VehicleModel.nR = 4;
+VehicleModel.nM = 8;
+VehicleModel.wT = 2.6;
+VehicleModel.wS = 2.4;
+VehicleModel.muy = 0.3;
+VehicleModel.deltaf = 0;
+VehicleModel.Fxf = 0;
+VehicleModel.Fxr = 0;
+VehicleModel.Fxm = 0;
+
+% The System is completely defined once we atribute the chosen tire model to the vehicle object.
+
+VehicleModel.tire = TireModel;
+
+%%
+% Choosing simulation time span
+
 T = 7;                      % Total simulation time [s]
 resol = 50;                 % Resolution
 TSPAN = 0:T/resol:T;        % Time span [s]
-simulator = Simulator(System, TSPAN);
+
+%%
+% To define a simulation object (simulator) the arguments must be the vehicle object and the time span. The default parameters of the simulation object can be found in <api/Simulator.html Simulator>.
+
+simulator = Simulator(VehicleModel, TSPAN);
+
+%%
+% Changing initial conditions of the simulation object
 
 simulator.ALPHAT0 = 0.3;              % Initial tractor side slip angle [rad]
 simulator.dPSI0 = 0.25;               % Initial tractor yaw rate [rad/s]
 simulator.dPHI0 = 0.25;        % Initial articulation rate [rad/s]
 
+%% Run simulation
+% To simulate the system we run the Simulate method of the simulation object.
 
-% Simulation
 simulator.Simulate();
 
 %% Results
@@ -152,7 +207,7 @@ g.Animation();
 %
 %% See Also
 %
-% <../index.html index> | <TemplateSimple.html TemplateSimple>
+% <../index.html Home> | <TemplateSimple.html TemplateSimple>
 %
 
 ##### SOURCE END #####

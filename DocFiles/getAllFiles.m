@@ -2,7 +2,11 @@ function fileList = getAllFiles(dirName)
 
     dirData = dir(dirName);      %# Get the data for the current directory
     dirIndex = [dirData.isdir];  %# Find the index for directories
-    fileList = {dirData(~dirIndex).name}';  %'# Get a list of the files
+
+    dirMatData = dir(strcat(dirName,'/*.m')); % Check for matlab files
+
+    fileList = {dirMatData.name}';  %'# Get a list of the files
+    % fileList = {dirData(~dirIndex).name}';  %'# Get a list of the files
     if ~isempty(fileList)
         fileList = cellfun(@(x) fullfile(dirName,x),...  %# Prepend path to files
         fileList,'UniformOutput',false);

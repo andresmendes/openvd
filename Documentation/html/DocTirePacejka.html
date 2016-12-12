@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>Pacejka tire model</title><meta name="generator" content="MATLAB 8.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-11-23"><meta name="DC.source" content="DocTirePacejka.m"><style type="text/css">
+      --><title>Pacejka tire model</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-12-11"><meta name="DC.source" content="DocTirePacejka.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -23,7 +23,7 @@ a:visited { color:#004aa0; text-decoration:none; }
 
 p { padding:0px; margin:0px 0px 20px; }
 img { padding:0px; margin:0px 0px 20px; border:none; }
-p img, pre img, tt img, li img { margin-bottom:0px; } 
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
 
 ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
 ul li { padding:0px; margin:0px 0px 7px 0px; }
@@ -38,11 +38,12 @@ ol li ul li { list-style:square; }
 
 .content { font-size:1.2em; line-height:140%; padding: 20px; }
 
-pre, tt, code { font-size:12px; }
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
 pre { margin:0px 0px 20px; }
-pre.error { color:red; }
 pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
 pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
 
 @media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
 
@@ -71,7 +72,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 <tr> <td width="30%"><tt>alpha</tt></td> <td width="70%">Tire slip angle [rad]</td> </tr>
 <tr> <td width="30%"><tt>Fz</tt></td> <td width="70%">Vertical force [N]</td> </tr>
 <tr> <td width="30%"><tt>muy</tt></td> <td width="70%">Friction coefficient [-]</td> </tr>
-</table> </p><h2>Description<a name="3"></a></h2><p>The lateral force can be written as</p><p>\[ F_y = - \frac{\mu_y}{\mu_{y, n}} (F_{y, n}(\alpha_{eq}) + S_v) \]</p><p>where \(\alpha_{eq}\) is the equivalent slip angle</p><p>\[ \alpha_{eq} = \frac{\mu_{y0}}{\mu_y} \frac{F_{z0}}{F_z} (\alpha + S_h) \]</p><p>and \(F_{y, n}\) is the reference function of the lateral force</p><p>\[ F_{y, n} = D \sin(C \arctan(B \alpha - E (B \alpha - \arctan(B \alpha)))) \]</p><p>The coefficients \(B\), \(C\), \(D\) and \(E\) can be written as</p><p>\[ C = a_0 \]</p><p>\[ D = \mu_{y, n} F_z = (a_1 F_z + a_2) F_z \]</p><p>\[ B = \frac{B C D}{C D} = a_3 \sin \left\{ 2 \arctan \left( \frac{F_z}{a_4} \right) \right\} (1 - a_5 <tt>\gamma</tt>) \]</p><p>\[ E = a_6 F_z + a_7 \]</p><p>The horizontal and vertical shifts of the curve are calculated as</p><p>\[ S_h = a_8 \gamma + a_9 F_z + a_{10} \]</p><p>\[ S_v = a_{11} F_z \gamma + a_{12} F_z + a_{13} \]</p><p>The model implemented here converts the slip angle using the following equation</p><p><i>ALPHA = asin(sin(alpha));</i></p><p>This equation alters the slip angle in such way that the characteristic equation becames symmetric in relation to the vertical line at 90 degrees and the lateral force becomes zero at 180 degrees. The same analogy can be made with negative values of the slip angle</p><p><b>Hypothesis</b></p><div><ul><li>Nonlinear tire model</li><li>Covers the whole range of slip angles (-180 to 180 degrees)</li></ul></div><h2>References<a name="4"></a></h2><p>[1] BAKKER, E.; PACEJKA, H. B.; LIDNER, L. A new tire model with an application in vehicle dynamics studies. [S.l.], 1989</p><h2>See Also<a name="5"></a></h2><p><a href="../index.html">index</a> | <a href="TireLinear.html">Linear Tire</a> | <a href="TirePolynomial.html">Polynomial Tire</a></p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br></p></div><!--
+</table> </p><h2>Description<a name="3"></a></h2><p>The lateral force can be written as</p><p>\[ F_y = - \frac{\mu_y}{\mu_{y, n}} (F_{y, n}(\alpha_{eq}) + S_v) \]</p><p>where \(\alpha_{eq}\) is the equivalent slip angle</p><p>\[ \alpha_{eq} = \frac{\mu_{y0}}{\mu_y} \frac{F_{z0}}{F_z} (\alpha + S_h) \]</p><p>and \(F_{y, n}\) is the reference function of the lateral force</p><p>\[ F_{y, n} = D \sin(C \arctan(B \alpha - E (B \alpha - \arctan(B \alpha)))) \]</p><p>The coefficients \(B\), \(C\), \(D\) and \(E\) can be written as</p><p>\[ C = a_0 \]</p><p>\[ D = \mu_{y, n} F_z = (a_1 F_z + a_2) F_z \]</p><p>\[ B = \frac{B C D}{C D} = a_3 \sin \left\{ 2 \arctan \left( \frac{F_z}{a_4} \right) \right\} (1 - a_5 <tt>\gamma</tt>) \]</p><p>\[ E = a_6 F_z + a_7 \]</p><p>The horizontal and vertical shifts of the curve are calculated as</p><p>\[ S_h = a_8 \gamma + a_9 F_z + a_{10} \]</p><p>\[ S_v = a_{11} F_z \gamma + a_{12} F_z + a_{13} \]</p><p>The model implemented here converts the slip angle using the following equation</p><p><i>ALPHA = asin(sin(alpha));</i></p><p>This equation alters the slip angle in such way that the characteristic equation becames symmetric in relation to the vertical line at 90 degrees and the lateral force becomes zero at 180 degrees. The same analogy can be made with negative values of the slip angle</p><p><b>Hypothesis</b></p><div><ul><li>Nonlinear tire model</li><li>Covers the whole range of slip angles (-180 to 180 degrees)</li></ul></div><h2>References<a name="4"></a></h2><p>[1] BAKKER, E.; PACEJKA, H. B.; LIDNER, L. A new tire model with an application in vehicle dynamics studies. [S.l.], 1989</p><h2>See Also<a name="5"></a></h2><p><a href="../index.html">Home</a> | <a href="TireLinear.html">Linear Tire</a> | <a href="TirePolynomial.html">Polynomial Tire</a></p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% Pacejka tire model
 % Nonlinear relationship between tire lateral force and slip angle expressed by a semi-empirical model with experimental coefficients [1].
@@ -137,7 +138,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 %
 %% See Also
 %
-% <../index.html index> | <TireLinear.html Linear Tire> | <TirePolynomial.html Polynomial Tire>
+% <../index.html Home> | <TireLinear.html Linear Tire> | <TirePolynomial.html Polynomial Tire>
 %
 
 ##### SOURCE END #####
