@@ -1,6 +1,6 @@
 # Vehicle Dynamics - Lateral: Open Source Simulation Package for MATLAB
 
-![](http://andresmendes.github.io/Vehicle-Dynamics-Lateral/illustrations/AnimationArticulated.gif)
+![](http://andresmendes.github.io/Vehicle-Dynamics-Lateral/illustrations/AnimationTemplateArticulated.gif)
 
 ## Documentation
 

@@ -23,14 +23,25 @@ apiDocPath = strcat(docPath, 'api/');
 
 % Examples
 addpath('../Examples/KalmanFilter/')
-addpath('../Examples/SimulinkApplication/')
 addpath('../Examples/SinusoidalSteering/')
 addpath('../Examples/SkidPad/')
 addpath('../Examples/SkidPad4DOF/')
 addpath('../Examples/SteeringControl/')
 addpath('../Examples/TemplateArticulated/')
+addpath('../Examples/TemplateArticulatedSimulink/')
 addpath('../Examples/TemplateSimple/')
+addpath('../Examples/TemplateSimpleSimulink/')
 addpath('../Examples/TireComparison/')
+
+%% Deleting
+% Deleting old documentation
+
+% Old gifs
+delete('../Documentation/illustrations/*.gif')
+
+% Old html
+delete('../Documentation/html/*.*')
+delete('../Documentation/html/api/*.*')
 
 %% Publishing documentation
 %
@@ -76,44 +87,15 @@ publish('../+VehicleDynamicsLateral/@Simulator/Simulator.m', 'outputDir', apiDoc
 publish('../+VehicleDynamicsLateral/@Graphics/Graphics.m', 'outputDir', apiDocPath, 'evalCode', false);
 
 % Examples
-% TemplateSimple
-publish('TemplateSimple.m', 'outputDir', docPath, 'evalCode', true);
-g.Animation('../Documentation/illustrations/AnimationSimple');
-close all
-clearvars -except docPath apiDocPath
-
-% TemplateArticulated
-publish('TemplateArticulated.m', 'outputDir', docPath, 'evalCode', true);
-g.Animation('../Documentation/illustrations/AnimationArticulated');
-close all
-clearvars -except docPath apiDocPath
-
-% Simulink Application
-publish('VehicleSystem.m', 'outputDir', docPath, 'evalCode', false);
-publish('SimulinkApplication.m', 'outputDir', docPath, 'evalCode', true);
-g.Animation('../Documentation/illustrations/AnimationSimulinkApplication');
-close all
-clearvars -except docPath apiDocPath
-
-% Sinusoidal Steering
-publish('SinusoidalSteering.m', 'outputDir', docPath, 'evalCode', true);
-g.Animation('../Documentation/illustrations/AnimationSinusoidal');
-close all
-clearvars -except docPath apiDocPath
 
 % Kalman Filter
 publish('KalmanFilter.m', 'outputDir', docPath, 'evalCode', true);
 close all
 clearvars -except docPath apiDocPath
 
-% TireComparison
-publish('TireComparison.m', 'outputDir', docPath, 'evalCode', true);
-close all
-clearvars -except docPath apiDocPath
-
-% SteeringControl
-publish('SteeringControl.m', 'outputDir', docPath, 'evalCode', true,'showCode',false);
-g.Animation('../Documentation/illustrations/SteeringControlAnimation');
+% Sinusoidal Steering
+publish('SinusoidalSteering.m', 'outputDir', docPath, 'evalCode', true);
+g.Animation('../Documentation/illustrations/AnimationSinusoidalSteering');
 close all
 clearvars -except docPath apiDocPath
 
@@ -126,6 +108,43 @@ clearvars -except docPath apiDocPath
 % Skid Pad 4DOF
 publish('SkidPad4DOF.m', 'outputDir', docPath, 'evalCode', true,'showCode',true);
 g.Animation('../Documentation/illustrations/AnimationSkidPad4DOF');
+close all
+clearvars -except docPath apiDocPath
+
+% SteeringControl
+publish('SteeringControl.m', 'outputDir', docPath, 'evalCode', true,'showCode',false);
+g.Animation('../Documentation/illustrations/AnimationSteeringControl');
+close all
+clearvars -except docPath apiDocPath
+
+% TemplateArticulated
+publish('TemplateArticulated.m', 'outputDir', docPath, 'evalCode', true);
+g.Animation('../Documentation/illustrations/AnimationTemplateArticulated');
+close all
+clearvars -except docPath apiDocPath
+
+% Template Articulated Simulink
+publish('ArticulatedVehicleSFunction.m', 'outputDir', docPath, 'evalCode', false);
+publish('TemplateArticulatedSimulink.m', 'outputDir', docPath, 'evalCode', true);
+g.Animation('../Documentation/illustrations/AnimationTemplateArticulatedSimulink');
+close all
+clearvars -except docPath apiDocPath
+
+% TemplateSimple
+publish('TemplateSimple.m', 'outputDir', docPath, 'evalCode', true);
+g.Animation('../Documentation/illustrations/AnimationTemplateSimple');
+close all
+clearvars -except docPath apiDocPath
+
+% Template Simple Simulink
+publish('SimpleVehicleSFunction.m', 'outputDir', docPath, 'evalCode', false);
+publish('TemplateSimpleSimulink.m', 'outputDir', docPath, 'evalCode', true);
+g.Animation('../Documentation/illustrations/AnimationTemplateSimpleSimulink');
+close all
+clearvars -except docPath apiDocPath
+
+% TireComparison
+publish('TireComparison.m', 'outputDir', docPath, 'evalCode', true);
 close all
 clearvars -except docPath apiDocPath
 

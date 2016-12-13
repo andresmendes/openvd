@@ -310,7 +310,7 @@ g.Frame();
 g.Animation();
 
 %%
-% <<../illustrations/SteeringControlAnimation.gif>>
+% <<../illustrations/AnimationSteeringControl.gif>>
 %
 
 % Retrieving states

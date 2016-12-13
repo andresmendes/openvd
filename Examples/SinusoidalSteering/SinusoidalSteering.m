@@ -55,7 +55,7 @@ g.Frame();
 g.Animation();
 
 %%
-% <<../illustrations/AnimationSinusoidal.gif>>
+% <<../illustrations/AnimationSinusoidalSteering.gif>>
 %
 %% See Also
 %

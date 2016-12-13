@@ -103,7 +103,7 @@ g.Frame();
 g.Animation();
 
 %%
-% <<../illustrations/AnimationSimple.gif>>
+% <<../illustrations/AnimationTemplateSimple.gif>>
 %
 %% See Also
 %

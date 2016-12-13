@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>Simulink Application</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-12-11"><meta name="DC.source" content="SimulinkApplication.m"><style type="text/css">
+      --><title>Template Simple Simulink</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-12-13"><meta name="DC.source" content="TemplateSimpleSimulink.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,14 +66,14 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>Simulink Application</h1><!--introduction--><p>This template shows how to simulate a simple vehicle in Simulink using a s-function. The graphics are also plotted.</p><p>
+  </style></head><body><div class="content"><h1>Template Simple Simulink</h1><!--introduction--><p>This template shows how to simulate a simple vehicle in Simulink using a s-function. The graphics are also plotted.</p><p>
 <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
-</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Simulink model</a></li><li><a href="#3">Generating Graphics</a></li><li><a href="#5">See Also</a></li></ul></div><h2>Simulink model<a name="1"></a></h2><p>This model uses the s-function <a href="VehicleSystem.html">VehicleSystem.m</a> in Simulink. The package and this s-function must be in Matlab path.</p><p>The "SimulinkModel.slx" available in the repository ("Examples/SimulinkApplication") is illustrated below:</p><p><img vspace="5" hspace="5" src="../illustrations/SimulinkApplication.png" alt=""> </p><p>It can be seen that the longitudinal forces of the tire are zero for the entire simulation. The steering angle recieve a step input.</p><p>Running the Simulink model</p><pre class="codeinput">sim(<span class="string">'SimulinkModel'</span>);
-</pre><pre class="codeoutput">Warning: Model 'SimulinkModel' is using a default value of 0.2 for maximum step
-size. You can disable this diagnostic by setting 'Automatic solver parameter
-selection' diagnostic to 'none' in the Diagnostics page of the configuration
-parameters dialog 
-</pre><p>Each vehicle state variable goes to a scope. And the output of the model is saved in workspace.</p><h2>Generating Graphics<a name="3"></a></h2><p>To generate the graphics the same model used in <a href="VehicleSystem.html">VehicleSystem.m</a> must be defined.</p><pre class="codeinput"><span class="comment">% Choosing tire model</span>
+</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Simulink model</a></li><li><a href="#3">Generating Graphics</a></li><li><a href="#5">See Also</a></li></ul></div><h2>Simulink model<a name="1"></a></h2><p>This model uses the s-function <a href="SimpleVehicleSFunction.html">SimpleVehicleSFunction.m</a> in Simulink. The package and this s-function must be in Matlab path.</p><p>The "SimpleVehicleSimulink.slx" available in the repository ("Examples/TemplateSimpleSimulink") is illustrated below:</p><p><img vspace="5" hspace="5" src="../illustrations/SimpleVehicleSimulink.png" alt=""> </p><p>It can be seen that the longitudinal forces of the tire are zero for the entire simulation. The steering angle recieve a step input.</p><p>Running the Simulink model</p><pre class="codeinput">sim(<span class="string">'SimpleVehicleSimulink'</span>);
+</pre><pre class="codeoutput">Warning: Model 'SimpleVehicleSimulink' is using a default value of 0.2 for
+maximum step size. You can disable this diagnostic by setting 'Automatic solver
+parameter selection' diagnostic to 'none' in the Diagnostics page of the
+configuration parameters dialog 
+</pre><p>Each vehicle state variable goes to a scope. And the output of the model is saved in workspace.</p><h2>Generating Graphics<a name="3"></a></h2><p>To generate the graphics the same model used in <a href="SimpleVehicleSFunction.html">SimpleVehicleSFunction.m</a> must be defined.</p><pre class="codeinput"><span class="comment">% Choosing tire model</span>
 TireModel = VehicleDynamicsLateral.TirePacejka();
 <span class="comment">% Defining tire parameters</span>
 TireModel.a0 = 1;
@@ -120,9 +120,9 @@ g.TractorColor = <span class="string">'r'</span>;
 
 g.Frame();
 g.Animation();
-</pre><img vspace="5" hspace="5" src="SimulinkApplication_01.png" alt=""> <img vspace="5" hspace="5" src="SimulinkApplication_02.png" alt=""> <p>As expected the vehicle starts traveling in a straight line and starts a turn at \(t = 1 \, s\) because of the step function.</p><p><img vspace="5" hspace="5" src="../illustrations/AnimationSimulinkApplication.gif" alt=""> </p><h2>See Also<a name="5"></a></h2><p><a href="../index.html">Home</a> | <a href="VehicleSystem.html">VehicleSystem.m</a></p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
+</pre><img vspace="5" hspace="5" src="TemplateSimpleSimulink_01.png" alt=""> <img vspace="5" hspace="5" src="TemplateSimpleSimulink_02.png" alt=""> <p>As expected the vehicle starts traveling in a straight line and starts a turn at \(t = 1 \, s\) because of the step function.</p><p><img vspace="5" hspace="5" src="../illustrations/AnimationTemplateSimpleSimulink.gif" alt=""> </p><h2>See Also<a name="5"></a></h2><p><a href="../index.html">Home</a> | <a href="SimpleVehicleSFunction.html">SimpleVehicleSFunction.m</a> | <a href="TemplateArticulatedSimulink.html">Template Articulated Simulink</a></p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
-%% Simulink Application
+%% Template Simple Simulink
 % This template shows how to simulate a simple vehicle in Simulink using a s-function. The graphics are also plotted.
 %
 % <html>
@@ -130,24 +130,24 @@ g.Animation();
 % </html>
 %
 %% Simulink model
-% This model uses the s-function <VehicleSystem.html VehicleSystem.m> in Simulink. The package and this s-function must be in Matlab path.
+% This model uses the s-function <SimpleVehicleSFunction.html SimpleVehicleSFunction.m> in Simulink. The package and this s-function must be in Matlab path.
 %
-% The "SimulinkModel.slx" available in the repository ("Examples/SimulinkApplication") is illustrated below:
+% The "SimpleVehicleSimulink.slx" available in the repository ("Examples/TemplateSimpleSimulink") is illustrated below:
 %
-% <<../illustrations/SimulinkApplication.png>>
+% <<../illustrations/SimpleVehicleSimulink.png>>
 %
 % It can be seen that the longitudinal forces of the tire are zero for the entire simulation. The steering angle recieve a step input.
 %
 % Running the Simulink model
 %
 
-sim('SimulinkModel');
+sim('SimpleVehicleSimulink');
 
 %%
 % Each vehicle state variable goes to a scope. And the output of the model is saved in workspace.
 %
 %% Generating Graphics
-% To generate the graphics the same model used in <VehicleSystem.html VehicleSystem.m> must be defined.
+% To generate the graphics the same model used in <SimpleVehicleSFunction.html SimpleVehicleSFunction.m> must be defined.
 
 % Choosing tire model
 TireModel = VehicleDynamicsLateral.TirePacejka();
@@ -200,11 +200,11 @@ g.Animation();
 %%
 % As expected the vehicle starts traveling in a straight line and starts a turn at \(t = 1 \, s\) because of the step function.
 %
-% <<../illustrations/AnimationSimulinkApplication.gif>>
+% <<../illustrations/AnimationTemplateSimpleSimulink.gif>>
 %
 %% See Also
 %
-% <../index.html Home> | <VehicleSystem.html VehicleSystem.m>
+% <../index.html Home> | <SimpleVehicleSFunction.html SimpleVehicleSFunction.m> | <TemplateArticulatedSimulink.html Template Articulated Simulink>
 %
 
 ##### SOURCE END #####

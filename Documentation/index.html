@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>Vehicle Dynamics - Lateral: Open Source Simulation Package for MATLAB</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-12-12"><meta name="DC.source" content="index.m"><style type="text/css">
+      --><title>Vehicle Dynamics - Lateral: Open Source Simulation Package for MATLAB</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-12-13"><meta name="DC.source" content="index.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,14 +66,14 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>Vehicle Dynamics - Lateral: Open Source Simulation Package for MATLAB</h1><!--introduction--><p>This package is an open source initiative that provides vehicle models and graphics features for yaw dynamics simulation of simple and articulated vehicles.</p><p><img vspace="5" hspace="5" src="http://andresmendes.github.io/Vehicle-Dynamics-Lateral/illustrations/AnimationArticulated.gif" alt=""> </p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Installation</a></li><li><a href="#2">Dependencies</a></li><li><a href="#4">Description</a></li><li><a href="#5">Getting started</a></li><li><a href="#6">Examples</a></li><li><a href="#7">API Documentation</a></li><li><a href="#8">Contributing</a></li><li><a href="#9">Publications</a></li><li><a href="#10">See Also</a></li></ul></div><h2>Installation<a name="1"></a></h2><p>The first thing you have to do is install the package according to the following steps:</p><div><ul><li>Download the Vehicle Dynamics - Lateral repository by clicking <a href="https://github.com/andresmendes/Vehicle-Dynamics-Lateral/archive/master.zip">here</a></li><li>Save the package (folder "+VehicleDynamicsLateral") in the MATLAB&reg; <i>path</i> or add your current path to the <i>paths list</i>. More details in <a href="http://www.mathworks.com/help/matlab/ref/path.html">help path</a>.</li></ul></div><h2>Dependencies<a name="2"></a></h2><p>To run the functions of the package and the examples from the repository a minimal MATLAB&reg; version and/or Toolbox is required.</p><p>Dependencies of the package (Only the files in "+VehicleDynamicsLateral"):</p><pre class="codeoutput">MATLAB, v8.5
+  </style></head><body><div class="content"><h1>Vehicle Dynamics - Lateral: Open Source Simulation Package for MATLAB</h1><!--introduction--><p>This package is an open source initiative that provides vehicle models and graphics features for yaw dynamics simulation of simple and articulated vehicles.</p><p><img vspace="5" hspace="5" src="illustrations/AnimationTemplateArticulated.gif" alt=""> </p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Installation</a></li><li><a href="#2">Dependencies</a></li><li><a href="#4">Description</a></li><li><a href="#5">Getting started</a></li><li><a href="#6">Examples</a></li><li><a href="#7">API Documentation</a></li><li><a href="#8">Contributing</a></li><li><a href="#9">Publications</a></li><li><a href="#10">See Also</a></li></ul></div><h2>Installation<a name="1"></a></h2><p>The first thing you have to do is install the package according to the following steps:</p><div><ul><li>Download the Vehicle Dynamics - Lateral repository by clicking <a href="https://github.com/andresmendes/Vehicle-Dynamics-Lateral/archive/master.zip">here</a></li><li>Save the package (folder "+VehicleDynamicsLateral") in the MATLAB&reg; <i>path</i> or add your current path to the <i>paths list</i>. More details in <a href="http://www.mathworks.com/help/matlab/ref/path.html">help path</a>.</li></ul></div><h2>Dependencies<a name="2"></a></h2><p>To run the functions of the package and the examples from the repository a minimal MATLAB&reg; version and/or Toolbox is required.</p><p>Dependencies of the package (Only the files in "+VehicleDynamicsLateral"):</p><pre class="codeoutput">MATLAB, v8.5
 </pre><p>Dependencies of the examples (Only the files in "Examples"):</p><pre class="codeoutput">Control System Toolbox, v9.9
 MATLAB, v8.5
 Robust Control Toolbox, v5.3
 Symbolic Math Toolbox, v6.2
 Simulink, v8.5
 SystemTest, v2.6.9
-</pre><h2>Description<a name="4"></a></h2><p>The general structure of the package is illustrated below. All the classes of the package are categorized into Vehicle model, Tire model and Graphics. One Vehicle model and one Tire model are combined to form the System. The integration of the System, with the apropriate parameters and initial conditions, is performed through the standard <a href="https://www.mathworks.com/help/matlab/ref/ode45.html">ode45</a> function of MATLAB&reg;. The resulting data can be ploted as Frame and Animation with the Graphics features.</p><p>This package uses an object-oriented programming architecture. For more details see <a href="https://www.mathworks.com/discovery/object-oriented-programming.html">Object-Oriented Programming in MATLAB</a></p><p><img vspace="5" hspace="5" src="illustrations/fluxograma.svg" alt=""> </p><p>The available tire and vehicle model models are listed below.</p><p><b>Tire model</b></p><div><ul><li><a href="html/DocTireLinear.html">Tire linear</a></li><li><a href="html/DocTirePolynomial.html">Tire polynomial</a></li><li><a href="html/DocTirePacejka.html">Tire Pacejka</a></li></ul></div><p><b>Vehicle model</b></p><div><ul><li><a href="html/DocVehicleSimpleLinear.html">Vehicle Simple Linear</a></li><li><a href="html/DocVehicleSimpleNonlinear.html">Vehicle Simple Nonlinear</a></li><li><a href="html/DocVehicleSimpleNonlinear4DOF.html">Vehicle Simple Nonlinear 4DOF</a></li><li><a href="html/DocVehicleArticulatedLinear.html">Vehicle Articulated Linear</a></li><li><a href="html/DocVehicleArticulatedNonlinear.html">Vehicle Articulated Nonlinear</a></li></ul></div><p><b>Graphics</b></p><p><a href="html/DocGraphics.html">Graphics</a> - Functions for graphics generation.</p><h2>Getting started<a name="5"></a></h2><p>To make the first steps easier, two template scripts are available covering the simulation of simple and articulated vehicles. We encourage the users to run and explore the files <a href="html/TemplateSimple.html">TemplateSimple.m</a> and <a href="html/TemplateArticulated.html">TemplateArticulated.m</a>.</p><p>Alternatively, for users familiar with Simulink, two template applications are available for running the models of the package in Simulink. Run and explore the files</p><h2>Examples<a name="6"></a></h2><p>This section presents a series of studies with the successful use of the package.</p><p>
+</pre><h2>Description<a name="4"></a></h2><p>The general structure of the package is illustrated below. All the classes of the package are categorized into Vehicle model, Tire model and Graphics. One Vehicle model and one Tire model are combined to form the System. The integration of the System, with the apropriate parameters and initial conditions, is performed through the standard <a href="https://www.mathworks.com/help/matlab/ref/ode45.html">ode45</a> function of MATLAB&reg;. The resulting data can be ploted as Frame and Animation with the Graphics features.</p><p>This package uses an object-oriented programming architecture. For more details see <a href="https://www.mathworks.com/discovery/object-oriented-programming.html">Object-Oriented Programming in MATLAB</a></p><p><img vspace="5" hspace="5" src="illustrations/fluxograma.svg" alt=""> </p><p>The available tire and vehicle models are listed below.</p><p><b>Tire model</b></p><div><ul><li><a href="html/DocTireLinear.html">Tire linear</a></li><li><a href="html/DocTirePolynomial.html">Tire polynomial</a></li><li><a href="html/DocTirePacejka.html">Tire Pacejka</a></li></ul></div><p><b>Vehicle model</b></p><div><ul><li><a href="html/DocVehicleSimpleLinear.html">Vehicle Simple Linear</a></li><li><a href="html/DocVehicleSimpleNonlinear.html">Vehicle Simple Nonlinear</a></li><li><a href="html/DocVehicleSimpleNonlinear4DOF.html">Vehicle Simple Nonlinear 4DOF</a></li><li><a href="html/DocVehicleArticulatedLinear.html">Vehicle Articulated Linear</a></li><li><a href="html/DocVehicleArticulatedNonlinear.html">Vehicle Articulated Nonlinear</a></li></ul></div><p><b>Graphics</b></p><p><a href="html/DocGraphics.html">Graphics</a> - Functions for graphics generation.</p><h2>Getting started<a name="5"></a></h2><p>To make the first steps easier, two template scripts are available covering the simulation of simple and articulated vehicles. We encourage the users to run and explore the examples <a href="html/TemplateSimple.html">TemplateSimple.m</a> and <a href="html/TemplateArticulated.html">TemplateArticulated.m</a>.</p><p>Alternatively, for users familiar with Simulink, two template applications are available for running the models of the package in Simulink. Run and explore the examples <a href="html/TemplateSimpleSimulink.html">TemplateSimpleSimulink.m</a> and <a href="html/TemplateArticulatedSimulink.html">TemplateArticulatedSimulink.m</a>.</p><h2>Examples<a name="6"></a></h2><p>This section presents a series of studies with the successful use of the package.</p><p>
 <table>
   <tr>
     <th>Name</th>
@@ -92,10 +92,6 @@ SystemTest, v2.6.9
     <td>Simple vehicle with roll dynamics moving in circle.</td>
   </tr>
   <tr>
-    <td><a href="html/SimulinkApplication.html"> Simulink Application </a></td>
-    <td>Simulate the vehicle models in Simulink.</td>
-  </tr>
-  <tr>
     <td><a href="html/SinusoidalSteering.html"> Sinusoidal Steering </a></td>
     <td>Maneuver with sinusoidal steering angle input.</td>
   </tr>
@@ -104,12 +100,20 @@ SystemTest, v2.6.9
     <td>Double lane change maneuver.</td>
   </tr>
   <tr>
+    <td><a href="html/TemplateArticulated.html"> Template Articulated </a></td>
+    <td>Articulated vehicle simulation.</td>
+  </tr>
+  <tr>
+    <td><a href="html/TemplateArticulatedSimulink.html"> Template Articulated Simulink </a></td>
+    <td>Simulate the articulated vehicle model in Simulink.</td>
+  </tr>
+  <tr>
     <td><a href="html/TemplateSimple.html"> Template Simple </a></td>
     <td>Simple vehicle simulation.</td>
   </tr>
   <tr>
-    <td><a href="html/TemplateArticulated.html"> Template Articulated </a></td>
-    <td>Articulated vehicle simulation.</td>
+    <td><a href="html/TemplateSimpleSimulink.html"> Template Simple Simulink </a></td>
+    <td>Simulate the simple vehicle model in Simulink.</td>
   </tr>
   <tr>
     <td><a href="html/TireComparison.html"> Tire Comparison </a></td>
@@ -121,7 +125,7 @@ SystemTest, v2.6.9
 %% Vehicle Dynamics - Lateral: Open Source Simulation Package for MATLAB
 % This package is an open source initiative that provides vehicle models and graphics features for yaw dynamics simulation of simple and articulated vehicles.
 %
-% <<http://andresmendes.github.io/Vehicle-Dynamics-Lateral/illustrations/AnimationArticulated.gif>>
+% <<illustrations/AnimationTemplateArticulated.gif>>
 %
 %% Installation
 % The first thing you have to do is install the package according to the following steps:
@@ -168,7 +172,7 @@ end
 %
 % <<illustrations/fluxograma.svg>>
 %
-% The available tire and vehicle model models are listed below.
+% The available tire and vehicle models are listed below.
 %
 % *Tire model*
 %
@@ -189,9 +193,9 @@ end
 % <html/DocGraphics.html Graphics> - Functions for graphics generation.
 %
 %% Getting started
-% To make the first steps easier, two template scripts are available covering the simulation of simple and articulated vehicles. We encourage the users to run and explore the files <html/TemplateSimple.html TemplateSimple.m> and <html/TemplateArticulated.html TemplateArticulated.m>.
+% To make the first steps easier, two template scripts are available covering the simulation of simple and articulated vehicles. We encourage the users to run and explore the examples <html/TemplateSimple.html TemplateSimple.m> and <html/TemplateArticulated.html TemplateArticulated.m>.
 %
-% Alternatively, for users familiar with Simulink, two template applications are available for running the models of the package in Simulink. Run and explore the files
+% Alternatively, for users familiar with Simulink, two template applications are available for running the models of the package in Simulink. Run and explore the examples <html/TemplateSimpleSimulink.html TemplateSimpleSimulink.m> and <html/TemplateArticulatedSimulink.html TemplateArticulatedSimulink.m>.
 %
 %% Examples
 % This section presents a series of studies with the successful use of the package.
@@ -217,10 +221,6 @@ end
 %     <td>Simple vehicle with roll dynamics moving in circle.</td>
 %   </tr>
 %   <tr>
-%     <td><a href="html/SimulinkApplication.html"> Simulink Application </a></td>
-%     <td>Simulate the vehicle models in Simulink.</td>
-%   </tr>
-%   <tr>
 %     <td><a href="html/SinusoidalSteering.html"> Sinusoidal Steering </a></td>
 %     <td>Maneuver with sinusoidal steering angle input.</td>
 %   </tr>
@@ -229,12 +229,20 @@ end
 %     <td>Double lane change maneuver.</td>
 %   </tr>
 %   <tr>
+%     <td><a href="html/TemplateArticulated.html"> Template Articulated </a></td>
+%     <td>Articulated vehicle simulation.</td>
+%   </tr>
+%   <tr>
+%     <td><a href="html/TemplateArticulatedSimulink.html"> Template Articulated Simulink </a></td>
+%     <td>Simulate the articulated vehicle model in Simulink.</td>
+%   </tr>
+%   <tr>
 %     <td><a href="html/TemplateSimple.html"> Template Simple </a></td>
 %     <td>Simple vehicle simulation.</td>
 %   </tr>
 %   <tr>
-%     <td><a href="html/TemplateArticulated.html"> Template Articulated </a></td>
-%     <td>Articulated vehicle simulation.</td>
+%     <td><a href="html/TemplateSimpleSimulink.html"> Template Simple Simulink </a></td>
+%     <td>Simulate the simple vehicle model in Simulink.</td>
 %   </tr>
 %   <tr>
 %     <td><a href="html/TireComparison.html"> Tire Comparison </a></td>

@@ -6,11 +6,11 @@
 % </html>
 %
 %% Simulink model
-% This model uses the s-function <VehicleSystem.html VehicleSystem.m> in Simulink. The package and this s-function must be in Matlab path.
+% This model uses the s-function <SimpleVehicleSFunction.html SimpleVehicleSFunction.m> in Simulink. The package and this s-function must be in Matlab path.
 %
-% The "SimulinkModel.slx" available in the repository ("Examples/SimulinkApplication") is illustrated below:
+% The "SimpleVehicleSimulink.slx" available in the repository ("Examples/TemplateSimpleSimulink") is illustrated below:
 %
-% <<../illustrations/SimulinkApplication.png>>
+% <<../illustrations/SimpleVehicleSimulink.png>>
 %
 % It can be seen that the longitudinal forces of the tire are zero for the entire simulation. The steering angle recieve a step input.
 %
@@ -23,7 +23,7 @@ sim('SimpleVehicleSimulink');
 % Each vehicle state variable goes to a scope. And the output of the model is saved in workspace.
 %
 %% Generating Graphics
-% To generate the graphics the same model used in <VehicleSystem.html VehicleSystem.m> must be defined.
+% To generate the graphics the same model used in <SimpleVehicleSFunction.html SimpleVehicleSFunction.m> must be defined.
 
 % Choosing tire model
 TireModel = VehicleDynamicsLateral.TirePacejka();
@@ -76,9 +76,9 @@ g.Animation();
 %%
 % As expected the vehicle starts traveling in a straight line and starts a turn at \(t = 1 \, s\) because of the step function.
 %
-% <<../illustrations/AnimationSimulinkApplication.gif>>
+% <<../illustrations/AnimationTemplateSimpleSimulink.gif>>
 %
 %% See Also
 %
-% <../index.html Home> | <VehicleSystem.html VehicleSystem.m>
+% <../index.html Home> | <SimpleVehicleSFunction.html SimpleVehicleSFunction.m> | <TemplateArticulatedSimulink.html Template Articulated Simulink>
 %

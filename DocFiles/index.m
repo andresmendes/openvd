@@ -1,7 +1,7 @@
 %% Vehicle Dynamics - Lateral: Open Source Simulation Package for MATLAB
 % This package is an open source initiative that provides vehicle models and graphics features for yaw dynamics simulation of simple and articulated vehicles.
 %
-% <<http://andresmendes.github.io/Vehicle-Dynamics-Lateral/illustrations/AnimationArticulated.gif>>
+% <<illustrations/AnimationTemplateArticulated.gif>>
 %
 %% Installation
 % The first thing you have to do is install the package according to the following steps:
@@ -69,9 +69,9 @@ end
 % <html/DocGraphics.html Graphics> - Functions for graphics generation.
 %
 %% Getting started
-% To make the first steps easier, two template scripts are available covering the simulation of simple and articulated vehicles. We encourage the users to run and explore the files <html/TemplateSimple.html TemplateSimple.m> and <html/TemplateArticulated.html TemplateArticulated.m>.
+% To make the first steps easier, two template scripts are available covering the simulation of simple and articulated vehicles. We encourage the users to run and explore the examples <html/TemplateSimple.html TemplateSimple.m> and <html/TemplateArticulated.html TemplateArticulated.m>.
 %
-% Alternatively, for users familiar with Simulink, two template applications are available for running the models of the package in Simulink. Run and explore the files
+% Alternatively, for users familiar with Simulink, two template applications are available for running the models of the package in Simulink. Run and explore the examples <html/TemplateSimpleSimulink.html TemplateSimpleSimulink.m> and <html/TemplateArticulatedSimulink.html TemplateArticulatedSimulink.m>.
 %
 %% Examples
 % This section presents a series of studies with the successful use of the package.
@@ -97,10 +97,6 @@ end
 %     <td>Simple vehicle with roll dynamics moving in circle.</td>
 %   </tr>
 %   <tr>
-%     <td><a href="html/SimulinkApplication.html"> Simulink Application </a></td>
-%     <td>Simulate the vehicle models in Simulink.</td>
-%   </tr>
-%   <tr>
 %     <td><a href="html/SinusoidalSteering.html"> Sinusoidal Steering </a></td>
 %     <td>Maneuver with sinusoidal steering angle input.</td>
 %   </tr>
@@ -109,12 +105,20 @@ end
 %     <td>Double lane change maneuver.</td>
 %   </tr>
 %   <tr>
+%     <td><a href="html/TemplateArticulated.html"> Template Articulated </a></td>
+%     <td>Articulated vehicle simulation.</td>
+%   </tr>
+%   <tr>
+%     <td><a href="html/TemplateArticulatedSimulink.html"> Template Articulated Simulink </a></td>
+%     <td>Simulate the articulated vehicle model in Simulink.</td>
+%   </tr>
+%   <tr>
 %     <td><a href="html/TemplateSimple.html"> Template Simple </a></td>
 %     <td>Simple vehicle simulation.</td>
 %   </tr>
 %   <tr>
-%     <td><a href="html/TemplateArticulated.html"> Template Articulated </a></td>
-%     <td>Articulated vehicle simulation.</td>
+%     <td><a href="html/TemplateSimpleSimulink.html"> Template Simple Simulink </a></td>
+%     <td>Simulate the simple vehicle model in Simulink.</td>
 %   </tr>
 %   <tr>
 %     <td><a href="html/TireComparison.html"> Tire Comparison </a></td>

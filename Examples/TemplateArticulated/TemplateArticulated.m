@@ -82,7 +82,7 @@ g.Animation();
 
 %%
 %
-% <<../illustrations/AnimationArticulated.gif>>
+% <<../illustrations/AnimationTemplateArticulated.gif>>
 %
 %% See Also
 %

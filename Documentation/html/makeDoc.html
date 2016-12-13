@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>Documentation Generator</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-12-11"><meta name="DC.source" content="makeDoc.m"><style type="text/css">
+      --><title>Documentation Generator</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-12-13"><meta name="DC.source" content="makeDoc.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,7 +66,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>Documentation Generator</h1><!--introduction--><p>This script generates the whole documentation of the package.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Description</a></li><li><a href="#2">Code start</a></li><li><a href="#3">Adding paths</a></li><li><a href="#4">Publishing documentation</a></li><li><a href="#5">Code end</a></li><li><a href="#6">See Also</a></li></ul></div><h2>Description<a name="1"></a></h2><p>The documentation of the package is written within the code of all .m files as comments.</p><p>Running this script all the .html files are generated through the command <a href="http://www.mathworks.com/help/matlab/ref/publish.html">publish</a> and saved in the folder "../Vehicle-Dynamics-Lateral-Documentation/".</p><h2>Code start<a name="2"></a></h2><pre class="codeinput">clear <span class="string">all</span>                   <span class="comment">% Clear workspace</span>
+  </style></head><body><div class="content"><h1>Documentation Generator</h1><!--introduction--><p>This script generates the whole documentation of the package.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Description</a></li><li><a href="#2">Code start</a></li><li><a href="#3">Adding paths</a></li><li><a href="#4">Deleting</a></li><li><a href="#5">Publishing documentation</a></li><li><a href="#6">Code end</a></li><li><a href="#7">See Also</a></li></ul></div><h2>Description<a name="1"></a></h2><p>The documentation of the package is written within the code of all .m files as comments.</p><p>Running this script all the .html files are generated through the command <a href="http://www.mathworks.com/help/matlab/ref/publish.html">publish</a> and saved in the folder "../Vehicle-Dynamics-Lateral-Documentation/".</p><h2>Code start<a name="2"></a></h2><pre class="codeinput">clear <span class="string">all</span>                   <span class="comment">% Clear workspace</span>
 close <span class="string">all</span>                   <span class="comment">% Closing figures</span>
 clc
 
@@ -74,15 +74,22 @@ docPath = <span class="string">'../Documentation/html/'</span>;                 
 apiDocPath = strcat(docPath, <span class="string">'api/'</span>);
 </pre><h2>Adding paths<a name="3"></a></h2><p>Adding the folder of all files to the Matlab path (only the ones that 'evalCode' is true)</p><pre class="codeinput"><span class="comment">% Examples</span>
 addpath(<span class="string">'../Examples/KalmanFilter/'</span>)
-addpath(<span class="string">'../Examples/SimulinkApplication/'</span>)
 addpath(<span class="string">'../Examples/SinusoidalSteering/'</span>)
 addpath(<span class="string">'../Examples/SkidPad/'</span>)
 addpath(<span class="string">'../Examples/SkidPad4DOF/'</span>)
 addpath(<span class="string">'../Examples/SteeringControl/'</span>)
 addpath(<span class="string">'../Examples/TemplateArticulated/'</span>)
+addpath(<span class="string">'../Examples/TemplateArticulatedSimulink/'</span>)
 addpath(<span class="string">'../Examples/TemplateSimple/'</span>)
+addpath(<span class="string">'../Examples/TemplateSimpleSimulink/'</span>)
 addpath(<span class="string">'../Examples/TireComparison/'</span>)
-</pre><h2>Publishing documentation<a name="4"></a></h2><pre class="codeinput"><span class="comment">% Index</span>
+</pre><h2>Deleting<a name="4"></a></h2><p>Deleting old documentation</p><pre class="codeinput"><span class="comment">% Old gifs</span>
+delete(<span class="string">'../Documentation/illustrations/*.gif'</span>)
+
+<span class="comment">% Old html</span>
+delete(<span class="string">'../Documentation/html/*.*'</span>)
+delete(<span class="string">'../Documentation/html/api/*.*'</span>)
+</pre><h2>Publishing documentation<a name="5"></a></h2><pre class="codeinput"><span class="comment">% Index</span>
 publish(<span class="string">'index.m'</span>, <span class="string">'outputDir'</span>, <span class="string">'../Documentation'</span>, <span class="string">'evalCode'</span>, true,<span class="string">'showCode'</span>,false);
 
 <span class="comment">% API</span>
@@ -123,44 +130,15 @@ publish(<span class="string">'../+VehicleDynamicsLateral/@Simulator/Simulator.m'
 publish(<span class="string">'../+VehicleDynamicsLateral/@Graphics/Graphics.m'</span>, <span class="string">'outputDir'</span>, apiDocPath, <span class="string">'evalCode'</span>, false);
 
 <span class="comment">% Examples</span>
-<span class="comment">% TemplateSimple</span>
-publish(<span class="string">'TemplateSimple.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, true);
-g.Animation(<span class="string">'../Documentation/illustrations/AnimationSimple'</span>);
-close <span class="string">all</span>
-clearvars <span class="string">-except</span> <span class="string">docPath</span> <span class="string">apiDocPath</span>
-
-<span class="comment">% TemplateArticulated</span>
-publish(<span class="string">'TemplateArticulated.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, true);
-g.Animation(<span class="string">'../Documentation/illustrations/AnimationArticulated'</span>);
-close <span class="string">all</span>
-clearvars <span class="string">-except</span> <span class="string">docPath</span> <span class="string">apiDocPath</span>
-
-<span class="comment">% Simulink Application</span>
-publish(<span class="string">'VehicleSystem.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, false);
-publish(<span class="string">'SimulinkApplication.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, true);
-g.Animation(<span class="string">'../Documentation/illustrations/AnimationSimulinkApplication'</span>);
-close <span class="string">all</span>
-clearvars <span class="string">-except</span> <span class="string">docPath</span> <span class="string">apiDocPath</span>
-
-<span class="comment">% Sinusoidal Steering</span>
-publish(<span class="string">'SinusoidalSteering.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, true);
-g.Animation(<span class="string">'../Documentation/illustrations/AnimationSinusoidal'</span>);
-close <span class="string">all</span>
-clearvars <span class="string">-except</span> <span class="string">docPath</span> <span class="string">apiDocPath</span>
 
 <span class="comment">% Kalman Filter</span>
 publish(<span class="string">'KalmanFilter.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, true);
 close <span class="string">all</span>
 clearvars <span class="string">-except</span> <span class="string">docPath</span> <span class="string">apiDocPath</span>
 
-<span class="comment">% TireComparison</span>
-publish(<span class="string">'TireComparison.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, true);
-close <span class="string">all</span>
-clearvars <span class="string">-except</span> <span class="string">docPath</span> <span class="string">apiDocPath</span>
-
-<span class="comment">% SteeringControl</span>
-publish(<span class="string">'SteeringControl.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, true,<span class="string">'showCode'</span>,false);
-g.Animation(<span class="string">'../Documentation/illustrations/SteeringControlAnimation'</span>);
+<span class="comment">% Sinusoidal Steering</span>
+publish(<span class="string">'SinusoidalSteering.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, true);
+g.Animation(<span class="string">'../Documentation/illustrations/AnimationSinusoidalSteering'</span>);
 close <span class="string">all</span>
 clearvars <span class="string">-except</span> <span class="string">docPath</span> <span class="string">apiDocPath</span>
 
@@ -176,12 +154,49 @@ g.Animation(<span class="string">'../Documentation/illustrations/AnimationSkidPa
 close <span class="string">all</span>
 clearvars <span class="string">-except</span> <span class="string">docPath</span> <span class="string">apiDocPath</span>
 
+<span class="comment">% SteeringControl</span>
+publish(<span class="string">'SteeringControl.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, true,<span class="string">'showCode'</span>,false);
+g.Animation(<span class="string">'../Documentation/illustrations/AnimationSteeringControl'</span>);
+close <span class="string">all</span>
+clearvars <span class="string">-except</span> <span class="string">docPath</span> <span class="string">apiDocPath</span>
+
+<span class="comment">% TemplateArticulated</span>
+publish(<span class="string">'TemplateArticulated.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, true);
+g.Animation(<span class="string">'../Documentation/illustrations/AnimationTemplateArticulated'</span>);
+close <span class="string">all</span>
+clearvars <span class="string">-except</span> <span class="string">docPath</span> <span class="string">apiDocPath</span>
+
+<span class="comment">% Template Articulated Simulink</span>
+publish(<span class="string">'ArticulatedVehicleSFunction.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, false);
+publish(<span class="string">'TemplateArticulatedSimulink.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, true);
+g.Animation(<span class="string">'../Documentation/illustrations/AnimationTemplateArticulatedSimulink'</span>);
+close <span class="string">all</span>
+clearvars <span class="string">-except</span> <span class="string">docPath</span> <span class="string">apiDocPath</span>
+
+<span class="comment">% TemplateSimple</span>
+publish(<span class="string">'TemplateSimple.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, true);
+g.Animation(<span class="string">'../Documentation/illustrations/AnimationTemplateSimple'</span>);
+close <span class="string">all</span>
+clearvars <span class="string">-except</span> <span class="string">docPath</span> <span class="string">apiDocPath</span>
+
+<span class="comment">% Template Simple Simulink</span>
+publish(<span class="string">'SimpleVehicleSFunction.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, false);
+publish(<span class="string">'TemplateSimpleSimulink.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, true);
+g.Animation(<span class="string">'../Documentation/illustrations/AnimationTemplateSimpleSimulink'</span>);
+close <span class="string">all</span>
+clearvars <span class="string">-except</span> <span class="string">docPath</span> <span class="string">apiDocPath</span>
+
+<span class="comment">% TireComparison</span>
+publish(<span class="string">'TireComparison.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, true);
+close <span class="string">all</span>
+clearvars <span class="string">-except</span> <span class="string">docPath</span> <span class="string">apiDocPath</span>
+
 <span class="comment">% DocGen</span>
 publish(<span class="string">'makeDoc'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, false);
-</pre><h2>Code end<a name="5"></a></h2><pre class="codeinput">clear <span class="string">all</span>                   <span class="comment">% Clear workspace</span>
+</pre><h2>Code end<a name="6"></a></h2><pre class="codeinput">clear <span class="string">all</span>                   <span class="comment">% Clear workspace</span>
 close <span class="string">all</span>                   <span class="comment">% Closing figures</span>
 clc                         <span class="comment">% Clear command window</span>
-</pre><h2>See Also<a name="6"></a></h2><p><a href="../index.html">Home</a></p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
+</pre><h2>See Also<a name="7"></a></h2><p><a href="../index.html">Home</a></p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% Documentation Generator
 %
@@ -208,14 +223,25 @@ apiDocPath = strcat(docPath, 'api/');
 
 % Examples
 addpath('../Examples/KalmanFilter/')
-addpath('../Examples/SimulinkApplication/')
 addpath('../Examples/SinusoidalSteering/')
 addpath('../Examples/SkidPad/')
 addpath('../Examples/SkidPad4DOF/')
 addpath('../Examples/SteeringControl/')
 addpath('../Examples/TemplateArticulated/')
+addpath('../Examples/TemplateArticulatedSimulink/')
 addpath('../Examples/TemplateSimple/')
+addpath('../Examples/TemplateSimpleSimulink/')
 addpath('../Examples/TireComparison/')
+
+%% Deleting
+% Deleting old documentation
+
+% Old gifs
+delete('../Documentation/illustrations/*.gif')
+
+% Old html
+delete('../Documentation/html/*.*')
+delete('../Documentation/html/api/*.*')
 
 %% Publishing documentation
 %
@@ -261,44 +287,15 @@ publish('../+VehicleDynamicsLateral/@Simulator/Simulator.m', 'outputDir', apiDoc
 publish('../+VehicleDynamicsLateral/@Graphics/Graphics.m', 'outputDir', apiDocPath, 'evalCode', false);
 
 % Examples
-% TemplateSimple
-publish('TemplateSimple.m', 'outputDir', docPath, 'evalCode', true);
-g.Animation('../Documentation/illustrations/AnimationSimple');
-close all
-clearvars -except docPath apiDocPath
-
-% TemplateArticulated
-publish('TemplateArticulated.m', 'outputDir', docPath, 'evalCode', true);
-g.Animation('../Documentation/illustrations/AnimationArticulated');
-close all
-clearvars -except docPath apiDocPath
-
-% Simulink Application
-publish('VehicleSystem.m', 'outputDir', docPath, 'evalCode', false);
-publish('SimulinkApplication.m', 'outputDir', docPath, 'evalCode', true);
-g.Animation('../Documentation/illustrations/AnimationSimulinkApplication');
-close all
-clearvars -except docPath apiDocPath
-
-% Sinusoidal Steering
-publish('SinusoidalSteering.m', 'outputDir', docPath, 'evalCode', true);
-g.Animation('../Documentation/illustrations/AnimationSinusoidal');
-close all
-clearvars -except docPath apiDocPath
 
 % Kalman Filter
 publish('KalmanFilter.m', 'outputDir', docPath, 'evalCode', true);
 close all
 clearvars -except docPath apiDocPath
 
-% TireComparison
-publish('TireComparison.m', 'outputDir', docPath, 'evalCode', true);
-close all
-clearvars -except docPath apiDocPath
-
-% SteeringControl
-publish('SteeringControl.m', 'outputDir', docPath, 'evalCode', true,'showCode',false);
-g.Animation('../Documentation/illustrations/SteeringControlAnimation');
+% Sinusoidal Steering
+publish('SinusoidalSteering.m', 'outputDir', docPath, 'evalCode', true);
+g.Animation('../Documentation/illustrations/AnimationSinusoidalSteering');
 close all
 clearvars -except docPath apiDocPath
 
@@ -311,6 +308,43 @@ clearvars -except docPath apiDocPath
 % Skid Pad 4DOF
 publish('SkidPad4DOF.m', 'outputDir', docPath, 'evalCode', true,'showCode',true);
 g.Animation('../Documentation/illustrations/AnimationSkidPad4DOF');
+close all
+clearvars -except docPath apiDocPath
+
+% SteeringControl
+publish('SteeringControl.m', 'outputDir', docPath, 'evalCode', true,'showCode',false);
+g.Animation('../Documentation/illustrations/AnimationSteeringControl');
+close all
+clearvars -except docPath apiDocPath
+
+% TemplateArticulated
+publish('TemplateArticulated.m', 'outputDir', docPath, 'evalCode', true);
+g.Animation('../Documentation/illustrations/AnimationTemplateArticulated');
+close all
+clearvars -except docPath apiDocPath
+
+% Template Articulated Simulink
+publish('ArticulatedVehicleSFunction.m', 'outputDir', docPath, 'evalCode', false);
+publish('TemplateArticulatedSimulink.m', 'outputDir', docPath, 'evalCode', true);
+g.Animation('../Documentation/illustrations/AnimationTemplateArticulatedSimulink');
+close all
+clearvars -except docPath apiDocPath
+
+% TemplateSimple
+publish('TemplateSimple.m', 'outputDir', docPath, 'evalCode', true);
+g.Animation('../Documentation/illustrations/AnimationTemplateSimple');
+close all
+clearvars -except docPath apiDocPath
+
+% Template Simple Simulink
+publish('SimpleVehicleSFunction.m', 'outputDir', docPath, 'evalCode', false);
+publish('TemplateSimpleSimulink.m', 'outputDir', docPath, 'evalCode', true);
+g.Animation('../Documentation/illustrations/AnimationTemplateSimpleSimulink');
+close all
+clearvars -except docPath apiDocPath
+
+% TireComparison
+publish('TireComparison.m', 'outputDir', docPath, 'evalCode', true);
 close all
 clearvars -except docPath apiDocPath
 
