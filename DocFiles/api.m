@@ -5,7 +5,7 @@
 % * <VehicleSimple.html VehicleSimple -- Abstract>
 % * <VehicleSimpleLinear.html VehicleSimpleLinear>
 % * <VehicleSimpleNonlinear.html VehicleSimpleNonlinear>
-% * <VehicleSimpleNonlinear4DOF.html VehicleSimpleNonlinear>
+% * <VehicleSimpleNonlinear4DOF.html VehicleSimpleNonlinear4DOF>
 % * <VehicleArticulated.html VehicleArticulated -- Abstract>
 % * <VehicleArticulatedLinear.html VehicleArticulatedLinear>
 % * <VehicleArticulatedNonlinear.html VehicleArticulatedNonlinear>

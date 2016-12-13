@@ -138,7 +138,7 @@ end
 % * Add and/or improve Matlab files (package or examples) with codes and publishable comments.
 % * Add the publish command of the new files to <html/makeDoc.html DocFiles/makeDoc.m>.
 % * Create the apropriate links between the documentation pages. Ex: "See Also", "Examples", ...
-% * Update index.m and README.md.
+% * Update index.m and api.m.
 % * Run <html/makeDoc.html makeDoc.m>.
 % * Copy the files from directory "Documentation" to the gh-pages branch of the repository. One easy way is using <https://github.com/davisp/ghp-import ghp-import>.
 % * Commit and push.
