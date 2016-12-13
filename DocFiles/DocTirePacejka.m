@@ -1,12 +1,17 @@
 %% Pacejka tire model
 % Nonlinear relationship between tire lateral force and slip angle expressed by a semi-empirical model with experimental coefficients [1].
 %
+% The code of this class can be found in <api/TirePacejka.html TirePacejka>. It inherits methods from abstract class <api/Tire.html Tire>. The complete list of class codes is in <api/api.html API>.
+%
 % <html>
 % <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 % </html>
 %
 %% Sintax
 % |Fy = _TireModel_.Characteristic(alpha, Fz, muy)|
+%
+%
+% |_TireModel_.PlotTire()|
 %
 %% Arguments
 % The following table describes the input arguments
@@ -15,6 +20,12 @@
 % <tr> <td width="30%"><tt>alpha</tt></td> <td width="70%">Tire slip angle [rad]</td> </tr>
 % <tr> <td width="30%"><tt>Fz</tt></td> <td width="70%">Vertical force [N]</td> </tr>
 % <tr> <td width="30%"><tt>muy</tt></td> <td width="70%">Friction coefficient [-]</td> </tr>
+% </table> </html>
+%
+%% Outputs
+%
+% <html> <table border=1 width="97%">
+% <tr> <td width="30%"><tt>Fy</tt></td> <td width="70%">Tire lateral force [N]</td> </tr>
 % </table> </html>
 %
 %% Description
@@ -36,7 +47,7 @@
 %
 % \[ D = \mu_{y, n} F_z = (a_1 F_z + a_2) F_z \]
 %
-% \[ B = \frac{B C D}{C D} = a_3 \sin \left\{ 2 \arctan \left( \frac{F_z}{a_4} \right) \right\} (1 - a_5 |\gamma|) \]
+% \[ B = \frac{B C D}{C D} = a_3 \sin \left\{ 2 \arctan \left( \frac{F_z}{a_4} \right) \right\} (1 - a_5 | \gamma |) \]
 %
 % \[ E = a_6 F_z + a_7 \]
 %
@@ -62,5 +73,5 @@
 %
 %% See Also
 %
-% <../index.html Home> | <TireLinear.html Linear Tire> | <TirePolynomial.html Polynomial Tire>
+% <../index.html Home> | <DocTireLinear.html Linear tire model> | <DocTirePolynomial.html Polynomial tire model>
 %

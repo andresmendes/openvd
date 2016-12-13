@@ -86,7 +86,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
             self.Fxf = 0;
             self.Fxr = 0;
         <span class="keyword">end</span>
-</pre><h2>Model<a name="3"></a></h2><p>Fun&ccedil;&atilde;o com as equa&ccedil;&otilde;es de estado do modelo</p><pre class="codeinput">        <span class="keyword">function</span> dx = Model(self, t, estados,tspan)
+</pre><h2>Model<a name="3"></a></h2><p>Fun&ccedil;&atilde;o com as equa&ccedil;&otilde;es de estado do modelo</p><pre class="codeinput">        <span class="keyword">function</span> dx = Model(self, t, states,tspan)
             <span class="comment">% Data</span>
             m = self.mT;
             I = self.IT;
@@ -103,12 +103,12 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
             FzR = self.mR0 * g;       <span class="comment">% Vertical load @ R [N]</span>
 
             <span class="comment">% Estados</span>
-            X = estados(1);
-            Y = estados(2);
-            PSI = estados(3);
-            v = estados(4);
-            ALPHAT = estados(5);
-            dPSI = estados(6);
+            X = states(1);
+            Y = states(2);
+            PSI = states(3);
+            v = states(4);
+            ALPHAT = states(5);
+            dPSI = states(6);
 
 
             <span class="keyword">if</span> isa(self.deltaf,<span class="string">'function_handle'</span>)
@@ -181,7 +181,7 @@ classdef VehicleSimpleNonlinear < VehicleDynamicsLateral.VehicleSimple
 
         %% Model
         % Função com as equações de estado do modelo
-        function dx = Model(self, t, estados,tspan)
+        function dx = Model(self, t, states,tspan)
             % Data
             m = self.mT;
             I = self.IT;
@@ -198,12 +198,12 @@ classdef VehicleSimpleNonlinear < VehicleDynamicsLateral.VehicleSimple
             FzR = self.mR0 * g;       % Vertical load @ R [N]
 
             % Estados
-            X = estados(1);
-            Y = estados(2);
-            PSI = estados(3);
-            v = estados(4);
-            ALPHAT = estados(5);
-            dPSI = estados(6);
+            X = states(1);
+            Y = states(2);
+            PSI = states(3);
+            v = states(4);
+            ALPHAT = states(5);
+            dPSI = states(6);
 
 
             if isa(self.deltaf,'function_handle')

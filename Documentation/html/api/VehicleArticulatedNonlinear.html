@@ -96,7 +96,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
             self.Fxm = 0;
         <span class="keyword">end</span>
 
-        <span class="keyword">function</span> dx = Model(self,t, estados,tspan)
+        <span class="keyword">function</span> dx = Model(self,t, states,tspan)
             <span class="comment">% Vehicle parameters</span>
             mT = self.mT;
             mS = self.mS;
@@ -120,14 +120,14 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
             <span class="comment">% States</span>
-            X = estados(1,1);
-            Y = estados(2,1);
-            PSI = estados(3,1);
-            PHI = estados(4,1);
-            VT = estados(5,1);
-            ALPHAT = estados(6,1);
-            dPSI = estados(7,1);
-            dPHI = estados(8,1);
+            X = states(1,1);
+            Y = states(2,1);
+            PSI = states(3,1);
+            PHI = states(4,1);
+            VT = states(5,1);
+            ALPHAT = states(6,1);
+            dPSI = states(7,1);
+            dPHI = states(8,1);
 
             <span class="keyword">if</span> isa(self.deltaf,<span class="string">'function_handle'</span>)
                 deltaf = self.deltaf([X;Y;PSI;PHI;VT;ALPHAT;dPSI;dPHI],t);
@@ -186,15 +186,15 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
             dx = f;
         <span class="keyword">end</span>
 
-        <span class="keyword">function</span> [value,isterminal,direction] = velocity(~,~,estados)
+        <span class="keyword">function</span> [value,isterminal,direction] = velocity(~,~,states)
             <span class="comment">% If the velocity is less than 0.1m/s the integrator stops.</span>
             <span class="comment">% The MassMatrix is singular when the velocity is 0 m/s.</span>
-            value = estados(5,1) - 0.1;
+            value = states(5,1) - 0.1;
             isterminal = 1;
             direction = -1;
         <span class="keyword">end</span>
 
-        <span class="keyword">function</span> M = MassMatrix(self,~,estados)
+        <span class="keyword">function</span> M = MassMatrix(self,~,states)
             <span class="comment">% Vehicle Parameters</span>
             mT = self.mT;
             mS = self.mS;
@@ -219,12 +219,12 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
             <span class="comment">% States</span>
-            PSI = estados(3,1);
-            PHI = estados(4,1);
-            VT = estados(5,1);
-            ALPHAT = estados(6,1);
-            <span class="comment">% dPSI = estados(7,1);</span>
-            <span class="comment">% dPHI = estados(8,1);</span>
+            PSI = states(3,1);
+            PHI = states(4,1);
+            VT = states(5,1);
+            ALPHAT = states(6,1);
+            <span class="comment">% dPSI = states(7,1);</span>
+            <span class="comment">% dPHI = states(8,1);</span>
 
             <span class="comment">% Matriz de massa</span>
             M55 = (mT + mS)*cos(PSI + ALPHAT);
@@ -287,7 +287,7 @@ classdef VehicleArticulatedNonlinear < VehicleDynamicsLateral.VehicleArticulated
             self.Fxm = 0;
         end
 
-        function dx = Model(self,t, estados,tspan)
+        function dx = Model(self,t, states,tspan)
             % Vehicle parameters
             mT = self.mT;
             mS = self.mS;
@@ -311,14 +311,14 @@ classdef VehicleArticulatedNonlinear < VehicleDynamicsLateral.VehicleArticulated
 
 
             % States
-            X = estados(1,1);
-            Y = estados(2,1);
-            PSI = estados(3,1);
-            PHI = estados(4,1);
-            VT = estados(5,1);
-            ALPHAT = estados(6,1);
-            dPSI = estados(7,1);
-            dPHI = estados(8,1);
+            X = states(1,1);
+            Y = states(2,1);
+            PSI = states(3,1);
+            PHI = states(4,1);
+            VT = states(5,1);
+            ALPHAT = states(6,1);
+            dPSI = states(7,1);
+            dPHI = states(8,1);
 
             if isa(self.deltaf,'function_handle')
                 deltaf = self.deltaf([X;Y;PSI;PHI;VT;ALPHAT;dPSI;dPHI],t);
@@ -377,15 +377,15 @@ classdef VehicleArticulatedNonlinear < VehicleDynamicsLateral.VehicleArticulated
             dx = f;
         end
 
-        function [value,isterminal,direction] = velocity(~,~,estados)
+        function [value,isterminal,direction] = velocity(~,~,states)
             % If the velocity is less than 0.1m/s the integrator stops.
             % The MassMatrix is singular when the velocity is 0 m/s.
-            value = estados(5,1) - 0.1;
+            value = states(5,1) - 0.1;
             isterminal = 1;
             direction = -1;
         end
 
-        function M = MassMatrix(self,~,estados)
+        function M = MassMatrix(self,~,states)
             % Vehicle Parameters
             mT = self.mT;
             mS = self.mS;
@@ -410,12 +410,12 @@ classdef VehicleArticulatedNonlinear < VehicleDynamicsLateral.VehicleArticulated
 
 
             % States
-            PSI = estados(3,1);
-            PHI = estados(4,1);
-            VT = estados(5,1);
-            ALPHAT = estados(6,1);
-            % dPSI = estados(7,1);
-            % dPHI = estados(8,1);
+            PSI = states(3,1);
+            PHI = states(4,1);
+            VT = states(5,1);
+            ALPHAT = states(6,1);
+            % dPSI = states(7,1);
+            % dPHI = states(8,1);
 
             % Matriz de massa
             M55 = (mT + mS)*cos(PSI + ALPHAT);

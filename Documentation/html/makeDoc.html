@@ -92,25 +92,24 @@ delete(<span class="string">'../Documentation/html/api/*.*'</span>)
 </pre><h2>Publishing documentation<a name="5"></a></h2><pre class="codeinput"><span class="comment">% Index</span>
 publish(<span class="string">'index.m'</span>, <span class="string">'outputDir'</span>, <span class="string">'../Documentation'</span>, <span class="string">'evalCode'</span>, true,<span class="string">'showCode'</span>,false);
 
-<span class="comment">% API</span>
-publish(<span class="string">'api.m'</span>, <span class="string">'outputDir'</span>, apiDocPath,<span class="string">'evalCode'</span>, false);
-
 <span class="comment">% Tire models</span>
 publish(<span class="string">'DocTireLinear.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, false);
-publish(<span class="string">'DocTirePolynomial.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, false);
 publish(<span class="string">'DocTirePacejka.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, false);
+publish(<span class="string">'DocTirePolynomial.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, false);
 
 <span class="comment">% Vehicle models</span>
+publish(<span class="string">'DocVehicleArticulatedLinear.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, false);
+publish(<span class="string">'DocVehicleArticulatedNonlinear.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, false);
 publish(<span class="string">'DocVehicleSimpleLinear.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, false);
 publish(<span class="string">'DocVehicleSimpleNonlinear.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, false);
 publish(<span class="string">'DocVehicleSimpleNonlinear4DOF.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, false);
-publish(<span class="string">'DocVehicleArticulatedLinear.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, false);
-publish(<span class="string">'DocVehicleArticulatedNonlinear.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, false);
 
 <span class="comment">% Graphics</span>
 publish(<span class="string">'DocGraphics.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, false);
 
 <span class="comment">% API</span>
+publish(<span class="string">'api.m'</span>, <span class="string">'outputDir'</span>, apiDocPath,<span class="string">'evalCode'</span>, false);
+
 publish(<span class="string">'../+VehicleDynamicsLateral/@VehicleSimple/VehicleSimple.m'</span>, <span class="string">'outputDir'</span>, apiDocPath, <span class="string">'evalCode'</span>, false);
 publish(<span class="string">'../+VehicleDynamicsLateral/@VehicleArticulated/VehicleArticulated.m'</span>, <span class="string">'outputDir'</span>, apiDocPath, <span class="string">'evalCode'</span>, false);
 
@@ -129,8 +128,7 @@ publish(<span class="string">'../+VehicleDynamicsLateral/@Simulator/Simulator.m'
 
 publish(<span class="string">'../+VehicleDynamicsLateral/@Graphics/Graphics.m'</span>, <span class="string">'outputDir'</span>, apiDocPath, <span class="string">'evalCode'</span>, false);
 
-<span class="comment">% Examples</span>
-
+<span class="comment">% EXAMPLES</span>
 <span class="comment">% Kalman Filter</span>
 publish(<span class="string">'KalmanFilter.m'</span>, <span class="string">'outputDir'</span>, docPath, <span class="string">'evalCode'</span>, true);
 close <span class="string">all</span>
@@ -249,25 +247,24 @@ delete('../Documentation/html/api/*.*')
 % Index
 publish('index.m', 'outputDir', '../Documentation', 'evalCode', true,'showCode',false);
 
-% API
-publish('api.m', 'outputDir', apiDocPath,'evalCode', false);
-
 % Tire models
 publish('DocTireLinear.m', 'outputDir', docPath, 'evalCode', false);
-publish('DocTirePolynomial.m', 'outputDir', docPath, 'evalCode', false);
 publish('DocTirePacejka.m', 'outputDir', docPath, 'evalCode', false);
+publish('DocTirePolynomial.m', 'outputDir', docPath, 'evalCode', false);
 
 % Vehicle models
+publish('DocVehicleArticulatedLinear.m', 'outputDir', docPath, 'evalCode', false);
+publish('DocVehicleArticulatedNonlinear.m', 'outputDir', docPath, 'evalCode', false);
 publish('DocVehicleSimpleLinear.m', 'outputDir', docPath, 'evalCode', false);
 publish('DocVehicleSimpleNonlinear.m', 'outputDir', docPath, 'evalCode', false);
 publish('DocVehicleSimpleNonlinear4DOF.m', 'outputDir', docPath, 'evalCode', false);
-publish('DocVehicleArticulatedLinear.m', 'outputDir', docPath, 'evalCode', false);
-publish('DocVehicleArticulatedNonlinear.m', 'outputDir', docPath, 'evalCode', false);
 
 % Graphics
 publish('DocGraphics.m', 'outputDir', docPath, 'evalCode', false);
 
 % API
+publish('api.m', 'outputDir', apiDocPath,'evalCode', false);
+
 publish('../+VehicleDynamicsLateral/@VehicleSimple/VehicleSimple.m', 'outputDir', apiDocPath, 'evalCode', false);
 publish('../+VehicleDynamicsLateral/@VehicleArticulated/VehicleArticulated.m', 'outputDir', apiDocPath, 'evalCode', false);
 
@@ -286,8 +283,7 @@ publish('../+VehicleDynamicsLateral/@Simulator/Simulator.m', 'outputDir', apiDoc
 
 publish('../+VehicleDynamicsLateral/@Graphics/Graphics.m', 'outputDir', apiDocPath, 'evalCode', false);
 
-% Examples
-
+% EXAMPLES
 % Kalman Filter
 publish('KalmanFilter.m', 'outputDir', docPath, 'evalCode', true);
 close all

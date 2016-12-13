@@ -42,7 +42,7 @@ classdef VehicleSimpleNonlinear4DOF < VehicleDynamicsLateral.VehicleSimple
 
         %% Model
         % Função com as equações de estado do modelo
-        function dx = Model(self, t, estados,tspan)
+        function dx = Model(self, t, states,tspan)
             % Data
             m = self.mT;
             a = self.a;
@@ -68,14 +68,14 @@ classdef VehicleSimpleNonlinear4DOF < VehicleDynamicsLateral.VehicleSimple
             g = 9.81;                 % Gravity [m/s^2]
 
             % Estados
-            X = estados(1);
-            Y = estados(2);
-            PSI = estados(3);
-            THETA = estados(4);
-            v = estados(5);
-            ALPHAT = estados(6);
-            dPSI = estados(7);
-            dTHETA = estados(8);
+            X = states(1);
+            Y = states(2);
+            PSI = states(3);
+            THETA = states(4);
+            v = states(5);
+            ALPHAT = states(6);
+            dPSI = states(7);
+            dTHETA = states(8);
 
             FzRight = (m*g*l/2 + KK*THETA + CC*dTHETA)/l;
             FzLeft = -(-m*g*l/2 + KK*THETA + CC*dTHETA)/l;
@@ -160,7 +160,7 @@ classdef VehicleSimpleNonlinear4DOF < VehicleDynamicsLateral.VehicleSimple
 
 
 
-        function M = MassMatrix(self,~,estados)
+        function M = MassMatrix(self,~,states)
             % Data
             m = self.mT;
             h = self.H;                       % CG height [m]
@@ -172,9 +172,9 @@ classdef VehicleSimpleNonlinear4DOF < VehicleDynamicsLateral.VehicleSimple
 
 
             % Estados
-            THETA = estados(4);
-            v = estados(5);
-            ALPHAT = estados(6);
+            THETA = states(4);
+            v = states(5);
+            ALPHAT = states(6);
 
             M = [1 0 0 0 0 0 0 0;...
                  0 1 0 0 0 0 0 0;...

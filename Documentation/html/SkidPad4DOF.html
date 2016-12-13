@@ -66,7 +66,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>SkidPad 4DOF</h1><!--introduction--><p>This template show how to simulate a simple vehicle and plot the results.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Results</a></li><li><a href="#10">See Also</a></li></ul></div><pre class="codeinput">import <span class="string">VehicleDynamicsLateral.*</span>
+  </style></head><body><div class="content"><h1>SkidPad 4DOF</h1><!--introduction--><p>Maneuver in circles of a <a href="DocVehicleSimpleNonlinear4DOF.html">nonlinear simple vehicle 4DOF</a> with Pacejka tire model.</p><p>A control law (rear-wheel-drive) is used to maintain a CG speed of 8 m/s.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#2">Results</a></li><li><a href="#9">See Also</a></li></ul></div><pre class="codeinput">import <span class="string">VehicleDynamicsLateral.*</span>
 
 <span class="comment">% Choosing tire</span>
 TireModel = TirePacejka();
@@ -81,10 +81,10 @@ System.nR = 1;
 System.wT = 2;
 System.muy = 1;
 System.deltaf = 10*pi/180;
-System.FXFRONTLEFT = 0;    <span class="comment">% Longitudinal force at F [rad]</span>
-System.FXFRONTRIGHT = 0;    <span class="comment">% Longitudinal force at R [rad]</span>
+System.FXFRONTLEFT = 0;
+System.FXFRONTRIGHT = 0;
 System.FXREARLEFT = @VelControl4DOF;
-System.FXREARRIGHT = @VelControl4DOF;    <span class="comment">% Longitudinal force at R [rad]</span>
+System.FXREARRIGHT = @VelControl4DOF;
 System.K = 50000000; <span class="comment">% Rigidez torcional da massa suspensa</span>
 System.C = 5000000;
 
@@ -111,7 +111,7 @@ simulator.V0 = 8;
 
 <span class="comment">% Simulation</span>
 simulator.Simulate();
-</pre><h2>Results<a name="3"></a></h2><pre class="codeinput"><span class="comment">% Retrieving states</span>
+</pre><h2>Results<a name="2"></a></h2><pre class="codeinput"><span class="comment">% Retrieving states</span>
 XT = simulator.XT;
 YT = simulator.YT;
 PSI = simulator.PSI;
@@ -145,7 +145,7 @@ figure
 hold <span class="string">on</span> ; grid <span class="string">on</span> ; box <span class="string">on</span>
 plot(TSPAN,XT)
 xlabel(<span class="string">'time [s]'</span>)
-ylabel(<span class="string">'Distance in the x dire*0.4ction [m]'</span>)
+ylabel(<span class="string">'Distance in the x direction [m]'</span>)
 
 figure
 hold <span class="string">on</span> ; grid <span class="string">on</span> ; box <span class="string">on</span>
@@ -198,7 +198,7 @@ plot(TSPAN,FzFrontLeft,<span class="string">'b'</span>)
 plot(TSPAN,FzRearLeft,<span class="string">'m'</span>)
 xlabel(<span class="string">'time [s]'</span>)
 ylabel(<span class="string">'Vertical force [N]'</span>)
-legend(<span class="string">'FFRz'</span>,<span class="string">'FRRz'</span>,<span class="string">'FFLz'</span>,<span class="string">'FRLz'</span>)
+legend(<span class="string">'Front Right'</span>,<span class="string">'Rear Right'</span>,<span class="string">'Front Left'</span>,<span class="string">'Rear Left'</span>)
 
 figure
 hold <span class="string">on</span> ; grid <span class="string">on</span> ; box <span class="string">on</span>
@@ -206,7 +206,7 @@ plot(TSPAN,FzFrontRight + FzFrontLeft,<span class="string">'r'</span>)
 plot(TSPAN,FzRearRight + FzRearLeft,<span class="string">'g'</span>)
 xlabel(<span class="string">'time [s]'</span>)
 ylabel(<span class="string">'Vertical force [N]'</span>)
-legend(<span class="string">'Front axel'</span>,<span class="string">'Rear axle'</span>)
+legend(<span class="string">'Front axle'</span>,<span class="string">'Rear axle'</span>)
 </pre><img vspace="5" hspace="5" src="SkidPad4DOF_01.png" alt=""> <img vspace="5" hspace="5" src="SkidPad4DOF_02.png" alt=""> <img vspace="5" hspace="5" src="SkidPad4DOF_03.png" alt=""> <img vspace="5" hspace="5" src="SkidPad4DOF_04.png" alt=""> <img vspace="5" hspace="5" src="SkidPad4DOF_05.png" alt=""> <img vspace="5" hspace="5" src="SkidPad4DOF_06.png" alt=""> <img vspace="5" hspace="5" src="SkidPad4DOF_07.png" alt=""> <img vspace="5" hspace="5" src="SkidPad4DOF_08.png" alt=""> <img vspace="5" hspace="5" src="SkidPad4DOF_09.png" alt=""> <img vspace="5" hspace="5" src="SkidPad4DOF_10.png" alt=""> <p>mF0</p><pre class="codeinput">disp(num2str(System.mF0))
 </pre><pre class="codeoutput">700
 </pre><p>mR0</p><pre class="codeinput">disp(num2str(System.mR0))
@@ -228,12 +228,12 @@ plot(XX,YY,<span class="string">'k'</span>)
 g.Animation();
 </pre><img vspace="5" hspace="5" src="SkidPad4DOF_12.png" alt=""> <img vspace="5" hspace="5" src="SkidPad4DOF_13.png" alt=""> <p>Maneuver radius</p><pre class="codeinput">disp(num2str(R))
 </pre><pre class="codeoutput">20.0944
-</pre><p><img vspace="5" hspace="5" src="../illustrations/AnimationSkidPad4DOF.gif" alt=""> </p><h2>See Also<a name="10"></a></h2><p><a href="../index.html">Home</a></p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
+</pre><p><img vspace="5" hspace="5" src="../illustrations/AnimationSkidPad4DOF.gif" alt=""> </p><h2>See Also<a name="9"></a></h2><p><a href="../index.html">Home</a></p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% SkidPad 4DOF
-% This template show how to simulate a simple vehicle and plot the results.
+% Maneuver in circles of a <DocVehicleSimpleNonlinear4DOF.html nonlinear simple vehicle 4DOF> with Pacejka tire model.
 %
-%%
+% A control law (rear-wheel-drive) is used to maintain a CG speed of 8 m/s.
 %
 %%
 %
@@ -252,10 +252,10 @@ System.nR = 1;
 System.wT = 2;
 System.muy = 1;
 System.deltaf = 10*pi/180;
-System.FXFRONTLEFT = 0;    % Longitudinal force at F [rad]
-System.FXFRONTRIGHT = 0;    % Longitudinal force at R [rad]
+System.FXFRONTLEFT = 0;
+System.FXFRONTRIGHT = 0;
 System.FXREARLEFT = @VelControl4DOF;
-System.FXREARRIGHT = @VelControl4DOF;    % Longitudinal force at R [rad]
+System.FXREARRIGHT = @VelControl4DOF;
 System.K = 50000000; % Rigidez torcional da massa suspensa
 System.C = 5000000;
 
@@ -319,7 +319,7 @@ figure
 hold on ; grid on ; box on
 plot(TSPAN,XT)
 xlabel('time [s]')
-ylabel('Distance in the x dire*0.4ction [m]')
+ylabel('Distance in the x direction [m]')
 
 figure
 hold on ; grid on ; box on
@@ -372,7 +372,7 @@ plot(TSPAN,FzFrontLeft,'b')
 plot(TSPAN,FzRearLeft,'m')
 xlabel('time [s]')
 ylabel('Vertical force [N]')
-legend('FFRz','FRRz','FFLz','FRLz')
+legend('Front Right','Rear Right','Front Left','Rear Left')
 
 figure
 hold on ; grid on ; box on
@@ -380,7 +380,7 @@ plot(TSPAN,FzFrontRight + FzFrontLeft,'r')
 plot(TSPAN,FzRearRight + FzRearLeft,'g')
 xlabel('time [s]')
 ylabel('Vertical force [N]')
-legend('Front axel','Rear axle')
+legend('Front axle','Rear axle')
 
 %%
 % mF0

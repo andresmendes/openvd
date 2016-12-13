@@ -21,7 +21,7 @@ classdef VehicleSimpleNonlinear < VehicleDynamicsLateral.VehicleSimple
 
         %% Model
         % Função com as equações de estado do modelo
-        function dx = Model(self, t, estados,tspan)
+        function dx = Model(self, t, states,tspan)
             % Data
             m = self.mT;
             I = self.IT;
@@ -38,12 +38,12 @@ classdef VehicleSimpleNonlinear < VehicleDynamicsLateral.VehicleSimple
             FzR = self.mR0 * g;       % Vertical load @ R [N]
 
             % Estados
-            X = estados(1);
-            Y = estados(2);
-            PSI = estados(3);
-            v = estados(4);
-            ALPHAT = estados(5);
-            dPSI = estados(6);
+            X = states(1);
+            Y = states(2);
+            PSI = states(3);
+            v = states(4);
+            ALPHAT = states(5);
+            dPSI = states(6);
 
 
             if isa(self.deltaf,'function_handle')

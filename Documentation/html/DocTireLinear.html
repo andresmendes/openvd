@@ -66,27 +66,41 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>Linear tire model</h1><!--introduction--><p>Linear relationship between tire lateral force and slip angle.</p><p>
+  </style></head><body><div class="content"><h1>Linear tire model</h1><!--introduction--><p>Linear relationship between tire lateral force and slip angle.</p><p>The code of this class can be found in <a href="api/TireLinear.html">TireLinear</a>. It inherits methods from abstract class <a href="api/Tire.html">Tire</a>. The complete list of class codes is in <a href="api/api.html">API</a>.</p><p>
 <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
-</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Sintax</a></li><li><a href="#2">Arguments</a></li><li><a href="#3">Description</a></li><li><a href="#4">See Also</a></li></ul></div><h2>Sintax<a name="1"></a></h2><p><tt>Fy = <i>TireModel</i>.Characteristic(alpha)</tt></p><h2>Arguments<a name="2"></a></h2><p>The following table describes the input arguments</p><p> <table border=1 width="97%">
+</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Sintax</a></li><li><a href="#2">Arguments</a></li><li><a href="#3">Outputs</a></li><li><a href="#4">Description</a></li><li><a href="#5">See Also</a></li></ul></div><h2>Sintax<a name="1"></a></h2><p>The class LinearTire has two methods</p><p><tt>Fy = <i>TireModel</i>.Characteristic(alpha)</tt></p><p><tt><i>TireModel</i>.PlotTire()</tt></p><h2>Arguments<a name="2"></a></h2><p>The following table describes the input arguments</p><p> <table border=1 width="97%">
 <tr> <td width="30%"><tt>alpha</tt></td> <td width="70%">Tire slip angle [rad]</td> </tr>
-</table> </p><h2>Description<a name="3"></a></h2><p>The lateral force of the tire can be calculated as</p><p>\[ F_y = K \alpha \]</p><p>where \(F_y\) is the lateral force, \(K\) is the cornering stiffness and \(\alpha\) is the tire slip angle.</p><p><b>Hypothesis</b></p><div><ul><li>Linear tire model</li><li>Valid only for small values of slip angle</li></ul></div><h2>See Also<a name="4"></a></h2><p><a href="../index.html">Home</a></p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
+</table> </p><h2>Outputs<a name="3"></a></h2><p> <table border=1 width="97%">
+<tr> <td width="30%"><tt>Fy</tt></td> <td width="70%">Tire lateral force [N]</td> </tr>
+</table> </p><h2>Description<a name="4"></a></h2><p>The lateral force of the tire can be calculated as</p><p>\[ F_y = K \alpha \]</p><p>where \(F_y\) is the lateral force, \(K\) is the cornering stiffness and \(\alpha\) is the tire slip angle.</p><p><b>Hypothesis</b></p><div><ul><li>Linear tire model</li><li>Valid only for small values of slip angle</li></ul></div><h2>See Also<a name="5"></a></h2><p><a href="../index.html">Home</a> | <a href="DocTirePacejka.html">Pacejka tire model</a> | <a href="DocTirePolynomial.html">Polynomial tire model</a></p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% Linear tire model
 % Linear relationship between tire lateral force and slip angle.
+%
+% The code of this class can be found in <api/TireLinear.html TireLinear>. It inherits methods from abstract class <api/Tire.html Tire>. The complete list of class codes is in <api/api.html API>.
 %
 % <html>
 % <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 % </html>
 %
 %% Sintax
+% The class LinearTire has two methods
+%
 % |Fy = _TireModel_.Characteristic(alpha)|
+%
+% |_TireModel_.PlotTire()|
 %
 %% Arguments
 % The following table describes the input arguments
 %
 % <html> <table border=1 width="97%">
 % <tr> <td width="30%"><tt>alpha</tt></td> <td width="70%">Tire slip angle [rad]</td> </tr>
+% </table> </html>
+%
+%% Outputs
+%
+% <html> <table border=1 width="97%">
+% <tr> <td width="30%"><tt>Fy</tt></td> <td width="70%">Tire lateral force [N]</td> </tr>
 % </table> </html>
 %
 %% Description
@@ -104,7 +118,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 %
 %% See Also
 %
-% <../index.html Home>
+% <../index.html Home> | <DocTirePacejka.html Pacejka tire model> | <DocTirePolynomial.html Polynomial tire model>
 %
 
 ##### SOURCE END #####

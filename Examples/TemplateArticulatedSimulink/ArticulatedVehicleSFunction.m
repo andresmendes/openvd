@@ -99,7 +99,7 @@ sizes.NumSampleTimes = 1;
 sys = simsizes(sizes);
 
 % Setting initial conditions
-x0  = [0 0 0 0 10 0 0 0];
+x0  = [0 0 0 0 15 0 0 0];
 str = [];
 ts  = [0 0];
 
@@ -125,7 +125,7 @@ ModelFunction = @vehicle.Model;
 % Getting the mass matrix function of the model
 MassMatrixFunction = @vehicle.MassMatrix;
 
-% The derivatives are calculated with the inverse of the MassMatrix 
+% The derivatives are calculated with the inverse of the MassMatrix
 sys = MassMatrixFunction(t,x)\ModelFunction(t,x,0);
 
 % end mdlDerivatives

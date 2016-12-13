@@ -28,7 +28,7 @@ classdef VehicleArticulatedLinear < VehicleDynamicsLateral.VehicleArticulated
             self.Fxm = 0;
         end
 
-        function dx = Model(self,t,estados,tspan)
+        function dx = Model(self,t,states,tspan)
             % Vehicle parameters
             mT = self.mT;
             mS = self.mS;
@@ -54,14 +54,14 @@ classdef VehicleArticulatedLinear < VehicleDynamicsLateral.VehicleArticulated
             v0 = 20;
 
             % State
-            X = estados(1,1);
-            Y = estados(2,1);
-            PSI     = estados(3,1);
-            PHI     = estados(4,1);
-            V       = estados(5,1);
-            ALPHAT  = estados(6,1);
-            dPSI    = estados(7,1);
-            dPHI    = estados(8,1);
+            X = states(1,1);
+            Y = states(2,1);
+            PSI     = states(3,1);
+            PHI     = states(4,1);
+            V       = states(5,1);
+            ALPHAT  = states(6,1);
+            dPSI    = states(7,1);
+            dPHI    = states(8,1);
 
             if isa(self.deltaf,'function_handle')
                 deltaf = self.deltaf([X;Y;PSI;PHI;V;ALPHAT;dPSI;dPHI],t);
@@ -132,10 +132,10 @@ classdef VehicleArticulatedLinear < VehicleDynamicsLateral.VehicleArticulated
             dx = A*vetEst + B*vetEnt;
         end
 
-        function [value,isterminal,direction] = velocity(~,~,estados)
+        function [value,isterminal,direction] = velocity(~,~,states)
             % If the velocity is less than 0.1m/s the integrator stops.
             % The MassMatrix is singular when the velocity is 0 m/s.
-            value = estados(5,1) - 0.1;
+            value = states(5,1) - 0.1;
             isterminal = 1;
             direction = -1;
         end

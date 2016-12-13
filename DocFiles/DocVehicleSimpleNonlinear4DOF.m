@@ -1,29 +1,36 @@
-%% Vehicle Simple Nonlinear
-% Bicycle model nonlinear with 3 degrees of freedom.
+%% Vehicle Simple Nonlinear 4DOF
+% Nonlinear bicycle model nonlinear with 4 degrees of freedom.
+%
+% The code of this class can be found in <api/VehicleSimpleNonlinear4DOF.html VehicleSimpleNonlinear4DOF>. It inherits methods from abstract class <api/VehicleSimple.html VehicleSimple>. The complete list of class codes is in <api/api.html API>.
+%
 %
 % <html>
 % <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 % </html>
 %
 %% Theory
-% <../theory/vehicleSimple.pdf Simple equations of motion>
+% The development of the equations of motion of this model can be found in <../theory/vehicleSimple4DOF.pdf TheoryVehicleSimple4DOF>.
 %
 %% Sintax
-% |dx = _VehicleModel_.Model(~,estados)|
+% |dx = _VehicleModel_.Model(t,states,tspan)|
+%
+% |dx = _VehicleModel_.MassMatrix(t,states,tspan)|
 %
 %% Arguments
 % The following table describes the input arguments:
 %
 % <html> <table border=1 width="97%">
-% <tr> <td width="30%"><tt>estados</tt></td> <td width="70%">Estados do modelo: [dPSI ALPHAT PSI XT YT VEL]</td> </tr>
+% <tr> <td width="30%"><tt>t</tt></td> <td width="70%">Time</td> </tr>
+% <tr> <td width="30%"><tt>states</tt></td> <td width="70%">Model state variables: [XT YT PSI VT ALPHAT dPSI]</td> </tr>
+% <tr> <td width="30%"><tt>tspan</tt></td> <td width="70%">Time span</td> </tr>
 % </table> </html>
 %
 %% Description
-% O centro de massa do veculo  dado pelo ponto \(T\) e os eixos dianteiro e traseiro so dados pelos pontos \(F\) e \(R\), respectivamente. A constante \(a\) mede a distncia do ponto \(F\) ao \(T\) e \(b\) a distncia do ponto \(T\) ao \(R\). Os ngulos \(\alpha_F\) e \(\alpha_R\) so os ngulos de deriva nos eixos dianteiro e traseiro. \(\alpha_T\) is the vehicle side slip angle and \(\psi\) is the vehicle yaw angle. Por fim, \(\delta\)  o ngulo de esteramento.
+% The center of gravity of the vehicle is located at the point \(T\). The front and rear axles are located at the points \(F\) and \(R\), respectively. The constant \(a\) measures the distance of point \(F\) to \(T\) and \(b\) the distance of point \(T\) to \(R\). The angles \(\alpha_F\) e \(\alpha_R\) are the front and rear slip angles, respectively. \(\alpha_T\) is the vehicle side slip angle and \(\psi\) is the vehicle yaw angle. \(\delta\) is the steering angle.
 %
-% <<../illustrations/modelSimple.svg>>
+% <<../illustrations/modelSimple4DOF.svg>>
 %
 %% See Also
 %
-% <../index.html Home>
+% <../index.html Home> | <DocVehicleSimpleLinear.html Vehicle Simple Linear> | <DocVehicleSimpleNonlinear.html Vehicle Simple Nonlinear>
 %

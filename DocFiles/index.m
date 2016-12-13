@@ -48,25 +48,27 @@ end
 %
 % <<illustrations/fluxograma.svg>>
 %
-% The available tire and vehicle models are listed below.
+% The links to the description page of the available models and graphics listed below.
 %
 % *Tire model*
 %
 % * <html/DocTireLinear.html Tire linear>
-% * <html/DocTirePolynomial.html Tire polynomial>
 % * <html/DocTirePacejka.html Tire Pacejka>
+% * <html/DocTirePolynomial.html Tire polynomial>
 %
 % *Vehicle model*
 %
+% The theoretical foundation of vehicle models can be found in: <theory/vehicleSimple.pdf TheoryVehicleSimple>, <theory/vehicleSimple4DOF.pdf TheoryVehicleSimple4DOF> and <theory/vehicleArticulated.pdf TheoryVehicleArticulated>.
+%
+% * <html/DocVehicleArticulatedLinear.html Vehicle Articulated Linear>
+% * <html/DocVehicleArticulatedNonlinear.html Vehicle Articulated Nonlinear>
 % * <html/DocVehicleSimpleLinear.html Vehicle Simple Linear>
 % * <html/DocVehicleSimpleNonlinear.html Vehicle Simple Nonlinear>
 % * <html/DocVehicleSimpleNonlinear4DOF.html Vehicle Simple Nonlinear 4DOF>
-% * <html/DocVehicleArticulatedLinear.html Vehicle Articulated Linear>
-% * <html/DocVehicleArticulatedNonlinear.html Vehicle Articulated Nonlinear>
 %
 % *Graphics*
 %
-% <html/DocGraphics.html Graphics> - Functions for graphics generation.
+% * <html/DocGraphics.html Graphics>
 %
 %% Getting started
 % To make the first steps easier, two template scripts are available covering the simulation of simple and articulated vehicles. We encourage the users to run and explore the examples <html/TemplateSimple.html TemplateSimple.m> and <html/TemplateArticulated.html TemplateArticulated.m>.
@@ -89,16 +91,16 @@ end
 %     <td>Kalman Filter application.</td>
 %   </tr>
 %   <tr>
+%     <td><a href="html/SinusoidalSteering.html"> Sinusoidal Steering </a></td>
+%     <td>Maneuver with sinusoidal steering angle input.</td>
+%   </tr>
+%   <tr>
 %     <td><a href="html/SkidPad.html"> Skid Pad </a></td>
 %     <td>Simple vehicle moving in circle.</td>
 %   </tr>
 %   <tr>
 %     <td><a href="html/SkidPad4DOF.html"> Skid Pad 4DOF </a></td>
 %     <td>Simple vehicle with roll dynamics moving in circle.</td>
-%   </tr>
-%   <tr>
-%     <td><a href="html/SinusoidalSteering.html"> Sinusoidal Steering </a></td>
-%     <td>Maneuver with sinusoidal steering angle input.</td>
 %   </tr>
 %   <tr>
 %     <td><a href="html/SteeringControl.html"> Steering Control </a></td>

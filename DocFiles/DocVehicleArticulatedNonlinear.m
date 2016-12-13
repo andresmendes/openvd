@@ -1,35 +1,49 @@
 %% Vehicle Articulated Nonlinear
+% Nonlinear articulated bicycle model with 4 degrees of freedom.
+%
+% The code of this class can be found in <api/VehicleArticulatedNonlinear.html VehicleArticulatedNonlinear>. It inherits methods from abstract class <api/VehicleArticulated.html VehicleArticulated>. The complete list of class codes is in <api/api.html API>.
 %
 % <html>
 % <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 % </html>
 %
 %% Theory
-% <../theory/vehicleArticulated.pdf Articulated equations of motion>
+% The development of the equations of motion of this model can be found in <../theory/vehicleArticulated.pdf TheoryVehicleArticulated>.
 %
 %% Sintax
-% |dx = _VehicleModel_.Model(~,estados)|
+% |dx = _VehicleModel_.Model(t,states,tspan)|
+%
+% |dx = _VehicleModel_.MassMatrix(t,states,tspan)|
 %
 %% Arguments
 % The following table describes the input arguments:
 %
 % <html> <table border=1 width="97%">
-% <tr> <td width="30%"><tt>estados</tt></td> <td width="70%">Estados do modelo: [dPSI ALPHAT dPHI VEL PHI PSI XT YT]</td> </tr>
+% <tr> <td width="30%"><tt>t</tt></td> <td width="70%">Time</td> </tr>
+% <tr> <td width="30%"><tt>states</tt></td> <td width="70%">Model state variables: [XT YT PSI PHI VT ALPHAT dPSI dPHI]</td> </tr>
+% <tr> <td width="30%"><tt>tspan</tt></td> <td width="70%">Time span</td> </tr>
 % </table> </html>
 %
 %% Description
-% O ngulo \(\psi\) define a orientao do caminho-trator em relao ao referencial inercial. O estado \(\phi\)  o ngulo formado entre o caminho-trator e o semirreboque. O ngulo \(\alpha_T\)  o ngulo de deriva do mdulo dianteiro e  formado pelo vetor velocidade do centro de massa e a linha longitudinal do caminho-trator. Por fim, \(v\)  o mdulo do vetor velocidade do centro de massa do caminho-trator. Os pontos \(T\) e \(S\) so coincidentes com os centros de massa do caminho-trator e semirreboque, respectivamente. Os pontos F e R so coincidentes com os eixos dianteiro e traseiro do caminho-trator, respectivamente. M  o ponto que representa o eixo do semirreboque e A  o ponto de articulao ente as duas unidades. As grandezas a, b e c da unidade motora so as distncias entre os pontos F-T, T-R e R-A, respectivamente. Na unidade movida, d e e definem as distncias entre os pontos A-S e S-M, respectivamente.
+% Bicycle model
+%
+% <<../illustrations/modelArticulatedBicycleApprox.svg>>
+%
+% Free body diagram
+%
+% <<../illustrations/modelArticulatedFreeBodyDiagram.svg>>
+%
+% The center of gravity of the tractor and semitrailer are located at the point \(T\) and \(S\), respectively. The front and rear axles are located at the points \(F\) and \(R\), respectively. \(A\) is the articulation point and \(M\) is the axle of the semitrailer. The constant \(a\) measures the distance of point \(F\) to \(T\) and \(b\) the distance of point \(T\) to \(R\). The distance of the articulation from the rear axle of the tractor is given by \(c\). \(d\) and \(e\) are the distances from the semitrailer. The angles \(\alpha_F\) e \(\alpha_R\) are the front and rear slip angles, respectively. \(\alpha_T\) is the vehicle side slip angle and \(\psi\) is the vehicle yaw angle. \(\delta\) is the steering angle.
 %
 % <<../illustrations/modelArticulated.svg>>
 %
 % Este modelo  escrito na forma:
 %
-% \[ M(x) \dot{x} = f(x) \]
+% \[ {\bf M}({\bf x}) \dot{{\bf x}} = {\bf f}({\bf x}) \]
 %
-% Onde \(x\)  o vetor de estados, \(M(x)\)  a matriz de massa do sistema e \(f(x)\)  uma funo vetorial no linear. Logo,  necessria uma funo que permita a integrao do sistema com a matriz de massa escrita explicitamente. Uma opo  utilizar a funo _ode45_. Details: <http://www.mathworks.com/help/matlab/ref/ode45.html?searchHighlight=%22mass%20matrix%22 ode45 (Mass matrix)>
+% Where \({\bf x}\) is the state vector, \({\bf M}({\bf x})\) the mass matrix and \({\bf f}({\bf x})\) is the vector function. Therefore, a function that allows the integration of the system with an explicit mass matrix is necessary. In this package the _ode45_ function is used. Details: <http://www.mathworks.com/help/matlab/ref/ode45.html?searchHighlight=%22mass%20matrix%22 ode45 (Mass matrix)>.
 %
-
 %% See Also
 %
-% <../index.html Home>
+% <../index.html Home> | <DocVehicleArticulatedLinear.html Vehicle Articulated Linear>
 %

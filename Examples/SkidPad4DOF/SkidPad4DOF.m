@@ -1,7 +1,7 @@
 %% SkidPad 4DOF
-% This template show how to simulate a simple vehicle and plot the results.
+% Maneuver in circles of a <DocVehicleSimpleNonlinear4DOF.html nonlinear simple vehicle 4DOF> with Pacejka tire model.
 %
-%%
+% A control law (rear-wheel-drive) is used to maintain a CG speed of 8 m/s.
 %
 %%
 %
@@ -20,10 +20,10 @@ System.nR = 1;
 System.wT = 2;
 System.muy = 1;
 System.deltaf = 10*pi/180;
-System.FXFRONTLEFT = 0;    % Longitudinal force at F [rad]
-System.FXFRONTRIGHT = 0;    % Longitudinal force at R [rad]
+System.FXFRONTLEFT = 0;
+System.FXFRONTRIGHT = 0;
 System.FXREARLEFT = @VelControl4DOF;
-System.FXREARRIGHT = @VelControl4DOF;    % Longitudinal force at R [rad]
+System.FXREARRIGHT = @VelControl4DOF;
 System.K = 50000000; % Rigidez torcional da massa suspensa
 System.C = 5000000;
 
@@ -87,7 +87,7 @@ figure
 hold on ; grid on ; box on
 plot(TSPAN,XT)
 xlabel('time [s]')
-ylabel('Distance in the x dire*0.4ction [m]')
+ylabel('Distance in the x direction [m]')
 
 figure
 hold on ; grid on ; box on
@@ -140,7 +140,7 @@ plot(TSPAN,FzFrontLeft,'b')
 plot(TSPAN,FzRearLeft,'m')
 xlabel('time [s]')
 ylabel('Vertical force [N]')
-legend('FFRz','FRRz','FFLz','FRLz')
+legend('Front Right','Rear Right','Front Left','Rear Left')
 
 figure
 hold on ; grid on ; box on
@@ -148,7 +148,7 @@ plot(TSPAN,FzFrontRight + FzFrontLeft,'r')
 plot(TSPAN,FzRearRight + FzRearLeft,'g')
 xlabel('time [s]')
 ylabel('Vertical force [N]')
-legend('Front axel','Rear axle')
+legend('Front axle','Rear axle')
 
 %%
 % mF0

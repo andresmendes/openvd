@@ -58,31 +58,37 @@ ALPHAT = simulator.ALPHAT;
 dPSI = simulator.dPSI;
 
 figure(1)
+hold on ; grid on ; box on
 plot(TSPAN,XT)
 xlabel('time [s]')
 ylabel('Distance in the x direction [m]')
 
 figure(2)
+hold on ; grid on ; box on
 plot(TSPAN,YT)
 xlabel('time [s]')
 ylabel('Distance in the y direction [m]')
 
 figure(3)
+hold on ; grid on ; box on
 plot(TSPAN,PSI)
 xlabel('time [s]')
 ylabel('Yaw angle [rad]')
 
 figure(4)
+hold on ; grid on ; box on
 plot(TSPAN,VEL)
 xlabel('time [s]')
 ylabel('Velocity [m/s]')
 
 figure(5)
+hold on ; grid on ; box on
 plot(TSPAN,ALPHAT)
 xlabel('time [s]')
 ylabel('Vehicle slip angle [rad/s]')
 
 figure(6)
+hold on ; grid on ; box on
 plot(TSPAN,dPSI)
 xlabel('time [s]')
 ylabel('Yaw rate [rad/s]')

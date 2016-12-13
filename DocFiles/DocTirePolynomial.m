@@ -1,6 +1,8 @@
 %% Polynomial tire model
 % Nonlinear relation between tire lateral force and slip angle expressed by a third order polinomial equation. This model is used by several authors [1] [2] [3].
 %
+% The code of this class can be found in <api/TirePolynomial.html TirePolynomial>. It inherits methods from abstract class <api/Tire.html Tire>. The complete list of class codes is in <api/api.html API>.
+%
 % <html>
 % <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 % </html>
@@ -8,11 +10,20 @@
 %% Sintax
 % |Fy = _TireModel_.Characteristic(alpha)|
 %
+%
+% |_TireModel_.PlotTire()|
+%
 %% Arguments
 % The following table describes the input arguments:
 %
 % <html> <table border=1 width="97%">
 % <tr> <td width="30%"><tt>alpha</tt></td> <td width="70%">Tire slip angle [rad]</td> </tr>
+% </table> </html>
+%
+%% Outputs
+%
+% <html> <table border=1 width="97%">
+% <tr> <td width="30%"><tt>Fy</tt></td> <td width="70%">Tire lateral force [N]</td> </tr>
 % </table> </html>
 %
 %% Description
@@ -38,5 +49,5 @@
 %
 %% See Also
 %
-% <../index.html Home>
+% <../index.html Home> | <DocTireLinear.html Linear tire model> | <DocTirePacejka.html Pacejka tire model>
 %
