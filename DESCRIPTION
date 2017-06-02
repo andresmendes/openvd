@@ -1,0 +1,12 @@
+Name: openvd
+Version: 0.0.0
+Date: 2017-06-02
+Author: André de Souza Mendes <asmgma@gmail.com> and Douglas de Rizzo Meneghetti <douglasrizzom@gmail.com>
+Maintainer: André de Souza Mendes <asmgma@gmail.com> and Douglas de Rizzo Meneghetti <douglasrizzom@gmail.com>
+Title: Open Vehicle Dynamics
+Description: Open source simulation package for Octave/Matlab.
+Depends: octave (>= 4.2.1)
+Autoload: no
+Categories: Vehicle Dynamics
+License: BSD-3-Clause
+Url: https://andresmendes.github.io/openvd/, https://github.com/andresmendes/openvd
