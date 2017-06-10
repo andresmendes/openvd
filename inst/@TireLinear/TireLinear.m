@@ -1,4 +1,4 @@
-classdef TireLinear < openvd.Tire
+classdef TireLinear < Tire
     % TireLinear Linear tire model
     %
     % It inherits methods from Tire.

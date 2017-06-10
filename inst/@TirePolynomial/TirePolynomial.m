@@ -1,4 +1,4 @@
-classdef TirePolynomial < openvd.Tire
+classdef TirePolynomial < Tire
     % TirePolynomial Polynomial tire model
     %
     % It inherits methods from Tire.

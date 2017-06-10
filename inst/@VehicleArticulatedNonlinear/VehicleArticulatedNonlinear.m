@@ -1,4 +1,4 @@
-classdef VehicleArticulatedNonlinear < openvd.VehicleArticulated
+classdef VehicleArticulatedNonlinear < VehicleArticulated
     % VehicleArticulatedNonlinear Nonlinear articulated vehicle model.
     %
     % It inherits properties from VehicleArticulated.

@@ -1,4 +1,4 @@
-classdef TirePacejka < openvd.Tire
+classdef TirePacejka < Tire
     % TirePacejka Pacejka tire model
     %
     % It inherits methods from Tire.
