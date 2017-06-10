@@ -176,7 +176,7 @@
 ## @seealso{grabcode}
 ## @end deftypefn
 
-function output_file = publish (file, varargin)
+function output_file = publishOVD (file, varargin)
   narginchk (1, Inf);
   nargoutchk (0, 1);
 
@@ -195,12 +195,13 @@ function output_file = publish (file, varargin)
 
   ## Check file extension and for an Octave script
   file_info = __which__ (file_name);
-  if ((! strcmp (file_ext, ".m")) || (! strcmp (file_info.type, "script")))
+  if (! strcmp (file_ext, ".m"))
+  % if ((! strcmp (file_ext, ".m")) || (! strcmp (file_info.type, "script")))
     error ("publish: Only Octave script files can be published.");
   endif
 
   ## Check file to be parsable
-  __parse_file__ (file);
+  % __parse_file__ (file);
 
   ## Get structure with necessary options
   options = struct ();
