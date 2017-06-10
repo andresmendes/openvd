@@ -1,4 +1,4 @@
-classdef (Abstract) VehicleArticulated  < VehicleDynamicsLateral.VehicleSimple
+classdef (Abstract) VehicleArticulated  < openvd.VehicleSimple
     % VehicleArticulated Articulated vehicle abstract class.
     %
     % Abstract class representing an articulated vehicle. It inherits properties from VehicleSimple and has additional properties related to the semitrailer.

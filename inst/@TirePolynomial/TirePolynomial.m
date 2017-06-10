@@ -1,12 +1,13 @@
-classdef TireLinear < VehicleDynamicsLateral.Tire
-    % TireLinear Linear tire model
+classdef TirePolynomial < openvd.Tire
+    % TirePolynomial Polynomial tire model
     %
     % It inherits methods from Tire.
 
     methods
         % Constructor
-        function self = TireLinear()
-            self.k = 40000;
+        function self = TirePolynomial()
+            self.k1 = 115000;
+            self.k2 = 560000;
         end
 
         function p = PlotTire(self)
@@ -20,14 +21,15 @@ classdef TireLinear < VehicleDynamicsLateral.Tire
         end
 
         function Fy = Characteristic(self, alpha, varargin)
-            Fy = - self.k * alpha;
+            % Lateral force
+            Fy = - (self.k1 * alpha - self.k2 * alpha.^3);
         end
     end
 
     properties
-        k % Cornering stiffness [N/rad]
+        k1 % 1st polynomial coefficient, cornering stiffness [N/rad]
+        k2 % 2nd polynomial coefficient [N/rad^3]
     end
-
 end
 
 %% See Also

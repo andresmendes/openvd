@@ -1,4 +1,4 @@
-classdef VehicleSimpleLinear < VehicleDynamicsLateral.VehicleSimple
+classdef VehicleSimpleLinear < openvd.VehicleSimple
     % VehicleSimpleLinear Linear simple vehicle model.
     %
     % It inherits properties from VehicleSimple.

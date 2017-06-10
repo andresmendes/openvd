@@ -1,4 +1,4 @@
-classdef TirePacejka < VehicleDynamicsLateral.Tire
+classdef TirePacejka < openvd.Tire
     % TirePacejka Pacejka tire model
     %
     % It inherits methods from Tire.

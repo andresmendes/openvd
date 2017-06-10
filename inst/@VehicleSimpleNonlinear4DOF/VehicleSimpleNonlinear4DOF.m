@@ -1,4 +1,4 @@
-classdef VehicleSimpleNonlinear4DOF < VehicleDynamicsLateral.VehicleSimple
+classdef VehicleSimpleNonlinear4DOF < openvd.VehicleSimple
     % VehicleSimpleNonlinear Nonlinear simple vehicle model.
     %
     % It inherits properties from VehicleSimple.
