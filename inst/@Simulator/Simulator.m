@@ -6,7 +6,7 @@ classdef Simulator<handle
         function self = Simulator(vehicle, tspan)
             self.Vehicle = vehicle;
             self.TSpan = tspan;
-            if isa(self.Vehicle, 'VehicleDynamicsLateral.VehicleArticulated')
+            if isa(self.Vehicle, 'VehicleArticulated')
                 self.X0 = 0;
                 self.Y0 = 0;
                 self.PSI0 = 0;
@@ -16,7 +16,7 @@ classdef Simulator<handle
                 self.dPSI0 = 0;
                 self.dPHI0 = 0;
             else
-                if isa(self.Vehicle, 'VehicleDynamicsLateral.VehicleSimpleNonlinear4DOF')
+                if isa(self.Vehicle, 'VehicleSimpleNonlinear4DOF')
                     self.X0 = 0;
                     self.Y0 = 0;
                     self.PSI0 = 0;
@@ -38,10 +38,10 @@ classdef Simulator<handle
 
         function f = getInitialState(self)
             % Transforms properties into a vector so it can be used by the integrator
-            if isa(self.Vehicle, 'VehicleDynamicsLateral.VehicleArticulated')
+            if isa(self.Vehicle, 'VehicleArticulated')
                 f = [self.X0 self.Y0 self.PSI0 self.PHI0 self.V0 self.ALPHAT0 self.dPSI0 self.dPHI0];
             else
-                if isa(self.Vehicle, 'VehicleDynamicsLateral.VehicleSimpleNonlinear4DOF')
+                if isa(self.Vehicle, 'VehicleSimpleNonlinear4DOF')
                     f = [self.X0 self.Y0 self.PSI0 self.THETA0 self.V0 self.ALPHAT0 self.dPSI0 self.dTHETA0];
                 else
                     f = [self.X0 self.Y0 self.PSI0 self.V0 self.ALPHAT0 self.dPSI0];
@@ -56,9 +56,13 @@ classdef Simulator<handle
 
             % integration
             % if vehicle is articulated, adds mass matrix as an integration option
-            if isa(self.Vehicle, 'VehicleDynamicsLateral.VehicleArticulated')
+            if isa(self.Vehicle, 'VehicleArticulated')
                 fun = self.Vehicle;
-                options = odeset('Mass', @fun.MassMatrix,'Events', @fun.velocity);
+                funMass = @(t,states) fun.MassMatrix(t,states);
+                funVelocity = @(t,states) fun.velocity(t,states);
+
+                options = odeset('Mass',funMass,'Events', funVelocity);
+                % options = odeset('Mass',funMass);
                 [TOUT, XOUT] = ode45(@(t, estados) self.Vehicle.Model(t, estados,self.TSpan), self.TSpan, self.getInitialState(), options);
                 % retrieve states exclusive to the articulated vehicle
                 self.XT = XOUT(:, 1);
@@ -70,9 +74,12 @@ classdef Simulator<handle
                 self.dPSI = XOUT(:, 7);
                 self.dPHI = XOUT(:, 8);
             else
-                if isa(self.Vehicle, 'VehicleDynamicsLateral.VehicleSimpleNonlinear4DOF')
+                if isa(self.Vehicle, 'VehicleSimpleNonlinear4DOF')
                     fun = self.Vehicle;
-                    options = odeset('Mass', @fun.MassMatrix);
+                    funMass = @(t,states) fun.MassMatrix(t,states);
+                    % TODO: add velocity fun to 4DOF
+                    % funVelocity = @(t,states) fun.velocity(t,states);
+                    options = odeset('Mass',funMass);
                     [TOUT, XOUT] = ode45(@(t, estados) self.Vehicle.Model(t, estados,self.TSpan), self.TSpan, self.getInitialState(), options);
 
                     % Retrieving states post integration
