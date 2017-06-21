@@ -6,15 +6,13 @@ classdef Graphics
         % Constructor
         function self = Graphics(simulator)
             self.Simulator = simulator;
-            self.TractorColor = 'r';
+            self.TractorColor = 'b';
             self.SemitrailerColor = 'g';
+            self.IsOctave = isOctave; % Return: true if the environment is Octave.
         end
 
         function Animation(self, varargin)
-            % Verifying number of columns of the state output matrix
-            % col = 6 -> simples
-            % col = 8 -> articulado
-            articulated = isa(self.Simulator.Vehicle, 'VehicleDynamicsLateral.VehicleArticulated');
+            articulated = isa(self.Simulator.Vehicle, 'VehicleArticulated');
 
             % States
             TOUT = self.Simulator.TSpan;
@@ -152,26 +150,26 @@ classdef Graphics
             end
 
 
-            figWidth = 20 ;                             % Defining the width of the figure [centimeters]
+            figWidth = 30 ;                             % Defining the width of the figure [centimeters]
             Scale = 1; % Adjust the scale of y in relation to x
             % Margins added to Position to include text labels [left bottom right top] Property - TightInset (read only)
-            tight = [1.3 1.3 0.2 0.2];
-            PosAxX = figWidth - tight(1) - tight(3);     % Width of the axes (axes position x)
             XLim = [min(XT)-20 max(XT)+10];              % Limits of x
             rangeX = XLim(2) - XLim(1);                  % Range of x
             YLim = [min(YT)-5 max(YT)+5];              % Limits of y
             % YLim = [min(YT)-10 max(YT)+10];              % Limits of y
             rangeY = YLim(2) - YLim(1);                  % Range of y
-            PosAxY = Scale*PosAxX*rangeY/rangeX;         % Height of the axes (axes position y) - Equivalent to axis
+            figHeight = Scale*figWidth*rangeY/rangeX;         % Height of the axes (axes position y) - Equivalent to axis
             % Defining figure
             f666 = figure(666);
             % Defining axes
             ax666=gca;
-            set(ax666,'NextPlot','add')                 % hold on
+            set(ax666,'NextPlot','add','fontsize',15)                 % hold on
 
             % Description
-            xlabel('Distance [m]');
-            ylabel('Distance [m]');
+            xl = xlabel('Distance [m]');
+            yl = ylabel('Distance [m]');
+            set(xl,'fontsize',18)
+            set(yl,'fontsize',18)
 
             % First frame
 
@@ -262,7 +260,7 @@ classdef Graphics
             end
 
             if nargin == 2
-                [pathstr, name, ext] = fileparts(varargin{1});
+                [pathstr, name, ~] = fileparts(varargin{1});
 
                 if not(exist(pathstr, 'file') == 7)
                     mkdir(pathstr);
@@ -272,32 +270,34 @@ classdef Graphics
                 set(f666,'Units','centimeters')         % Changing units of the figure to centimeters
                 set(f666,'PaperUnits','centimeters')    % Changing units of the paper to centimeters
                 % Position and size of the figure window
-                set(f666,'Position',[0 0 PosAxX+tight(1)+tight(3) PosAxY+tight(2)+tight(4)])
+                set(f666,'Position',[0 0 figWidth figHeight])
                 % Position and size of the figure on the printed page
-                set(f666,'PaperPosition',[0 0 PosAxX+tight(1)+tight(3) PosAxY+tight(2)+tight(4)])
+                set(f666,'PaperPosition',[0 0 figWidth figHeight])
                 % % Size of the paper
-                set(f666,'PaperSize',[PosAxX+tight(1)+tight(3) PosAxY+tight(2)+tight(4)])
+                set(f666,'PaperSize',[figWidth figHeight])
                 set(ax666,'Units','centimeters')        % Changing units of the axes to centimeters
 
                 % Setting axes
                 set(ax666,'XLim',XLim)
                 set(ax666,'YLim',YLim)
-                set(ax666,'Position',[tight(1:2) PosAxX PosAxY])
+                % set(ax666,'Position',[tight(1:2) PosAxX PosAxY])
                 set(ax666,'Box','on','XGrid','on','YGrid','on','ZGrid','on')
 
-                % Initializing gif
-                frame = getframe(666);
-                im = frame2im(frame);
-                [A, map] = rgb2ind(im, 256, 'nodither');
-                imwrite(A, map, strcat(pathstr, '/', name, '.gif'), 'LoopCount', Inf, 'DelayTime', 0.05);
+                if self.IsOctave == 0
+                    % Initializing gif
+                    frame = getframe(666);
+                    im = frame2im(frame);
+                    [A, map] = rgb2ind(im, 256, 'nodither');
+                    imwrite(A, map, strcat(pathstr, '/', name, '.gif'), 'LoopCount', Inf, 'DelayTime', 0.05);
+                end
             end
 
             % Remaining frames
             %
             for j = 1:length(TEMPO)
                 % Axles
-                plot(efrente(:,1),efrente(:,2),'r')
-                plot(etras(:,1),etras(:,2),'g')
+                plot(efrente(:,1),efrente(:,2),'r','linewidth',1);
+                plot(etras(:,1),etras(:,2),'g','linewidth',1);
 
                 % Coordinates of the corners
                 xc = [rc1(j, 1) rc2(j, 1) rc3(j, 1) rc4(j, 1)];
@@ -323,26 +323,32 @@ classdef Graphics
                 set(f666,'Units','centimeters')         % Changing units of the figure to centimeters
                 set(f666,'PaperUnits','centimeters')    % Changing units of the paper to centimeters
                 % Position and size of the figure window
-                set(f666,'Position',[0 0 PosAxX+tight(1)+tight(3) PosAxY+tight(2)+tight(4)])
+                set(f666,'Position',[0 0 figWidth figHeight])
                 % Position and size of the figure on the printed page
-                set(f666,'PaperPosition',[0 0 PosAxX+tight(1)+tight(3) PosAxY+tight(2)+tight(4)])
+                set(f666,'PaperPosition',[0 0 figWidth figHeight])
                 % % Size of the paper
-                set(f666,'PaperSize',[PosAxX+tight(1)+tight(3) PosAxY+tight(2)+tight(4)])
+                set(f666,'PaperSize',[figWidth figHeight])
                 set(ax666,'Units','centimeters')        % Changing units of the axes to centimeters
 
                 % Setting axes
                 set(ax666,'XLim',XLim)
                 set(ax666,'YLim',YLim)
-                set(ax666,'Position',[tight(1:2) PosAxX PosAxY])
+                % set(ax666,'Position',[tight(1:2) PosAxX PosAxY])
                 set(ax666,'Box','on','XGrid','on','YGrid','on','ZGrid','on')
                 if nargin == 2
-                    [pathstr, name, ext] = fileparts(varargin{1});
+                    [pathstr, name, ~] = fileparts(varargin{1});
 
-                    % Adding the current frame to the initialized gif
-                    frame = getframe(666);
-                    im = frame2im(frame);
-                    [A, map] = rgb2ind(im, 256, 'nodither');
-                    imwrite(A, map, strcat(pathstr, '/', name, '.gif'), 'WriteMode', 'append', 'DelayTime', 0.05);
+
+                    if self.IsOctave == 1
+                        print('-dpdf','animation.pdf','-append')
+                    else
+                        % Adding the current frame to the initialized gif
+                        frame = getframe(666);
+                        im = frame2im(frame);
+                        [A, map] = rgb2ind(im, 256, 'nodither');
+                        imwrite(A, map, strcat(pathstr, '/', name, '.gif'), 'WriteMode', 'append', 'DelayTime', 0.05);
+                    end
+
                 end
 
                 pause(0.05)                 % OBS: It has to be the same value of the time adjustment
@@ -350,12 +356,22 @@ classdef Graphics
                 cla(ax666);                    % Clearing axes
             end
 
+            if nargin == 2
+                [pathstr, name, ~] = fileparts(varargin{1});
+
+                if self.IsOctave == 1
+                    im = imread('animation.pdf','Index','all');
+                    imwrite(im,strcat(pathstr, '/', name, '.gif'),'delayTime',.05,'Compression','bzip')
+                    delete('animation.pdf')
+                end
+            end
+
             % Last frame
             % Last image seen when the animation is over
 
             % Axles
-            plot(efrente(:,1),efrente(:,2),'r')
-            plot(etras(:,1),etras(:,2),'g')
+            plot(efrente(:,1),efrente(:,2),'r','linewidth',1)
+            plot(etras(:,1),etras(:,2),'g','linewidth',1)
 
             % Coordinates of the corners of the last frame
             xc = [rc1(end, 1) rc2(end, 1) rc3(end, 1) rc4(end, 1)];
@@ -364,8 +380,8 @@ classdef Graphics
             % Vehicle
             fill(xc, yc, self.TractorColor)
 
-            self.Vector(efrente(end, 1:2),(alphaf(end)+psii(end)),velf(end),'r');
-            self.Vector(etras(end, 1:2),(alphar(end)+psii(end)),velr(end),'g');
+            % self.Vector(efrente(end, 1:2),(alphaf(end)+psii(end)),velf(end),'r');
+            % self.Vector(etras(end, 1:2),(alphar(end)+psii(end)),velr(end),'g');
 
             % Adding the semitrailer
             if articulated
@@ -373,12 +389,13 @@ classdef Graphics
                 xn = [rn1(end, 1) rn2(end, 1) rn3(end, 1) rn4(end, 1)];
                 yn = [rn1(end, 2) rn2(end, 2) rn3(end, 2) rn4(end, 2)];
                 fill(xn, yn, self.SemitrailerColor)
-                self.Vector(emsemi(end, 1:2),(alpham(end)+psii(end)-phii(end)),velm(end),'b');
+                % self.Vector(emsemi(end, 1:2),(alpham(end)+psii(end)-phii(end)),velm(end),'b');
             end
+
         end
 
         function Frame(self, varargin)
-            articulated = isa(self.Simulator.Vehicle, 'VehicleDynamicsLateral.VehicleArticulated');
+            articulated = isa(self.Simulator.Vehicle, 'VehicleArticulated');
 
             % States
             TOUT = self.Simulator.TSpan;
@@ -505,13 +522,12 @@ classdef Graphics
             figWidth = 20 ;                             % Defining the width of the figure [centimeters]
             Scale = 1; % Adjust the scale of y in relation to x
             % Margins added to Position to include text labels [left bottom right top] Property - TightInset (read only)
-            tight = [1.3 1.3 0.2 0.2];
-            PosAxX = figWidth - tight(1) - tight(3);     % Width of the axes (axes position x)
             XLim = [min(XT)-20 max(XT)+10];              % Limits of x
             rangeX = XLim(2) - XLim(1);                  % Range of x
-            YLim = [min(YT)-10 max(YT)+10];              % Limits of y
+            YLim = [min(YT)-5 max(YT)+5];              % Limits of y
+            % YLim = [min(YT)-10 max(YT)+10];              % Limits of y
             rangeY = YLim(2) - YLim(1);                  % Range of y
-            PosAxY = Scale*PosAxX*rangeY/rangeX;         % Height of the axes (axes position y) - Equivalent to axis
+            figHeight = Scale*figWidth*rangeY/rangeX;         % Height of the axes (axes position y) - Equivalent to axis
 
             % Defining figure
             f999 = figure(999);
@@ -528,8 +544,8 @@ classdef Graphics
                 etras(i, 1:2) = interp1(TOUT, er, TEMPOplot(i));
             end
 
-            plot(ef(:,1),ef(:,2),'r')
-            plot(er(:,1),er(:,2),'g')
+            plot(ef(:,1),ef(:,2),'r','linewidth',0.5)
+            plot(er(:,1),er(:,2),'g','linewidth',0.5)
 
 
             for j = 1:length(TEMPO)
@@ -538,8 +554,9 @@ classdef Graphics
                 yc = [rc1(j, 2) rc2(j, 2) rc3(j, 2) rc4(j, 2)];
                 % Vehicle
                 fill(xc, yc, self.TractorColor);
+                % TODO: Improve this CG plot!
                 p = plot(xxx(j),yyy(j),'ko');
-                set(p,'MarkerFaceColor','k','MarkerEdgeColor','k','MarkerSize',6)
+                set(p,'MarkerFaceColor','k','MarkerEdgeColor','k','MarkerSize',2)
             end
 
             % Adding semitrailer
@@ -627,21 +644,22 @@ classdef Graphics
             set(f999,'Units','centimeters')         % Changing units of the figure to centimeters
             set(f999,'PaperUnits','centimeters')    % Changing units of the paper to centimeters
             % Position and size of the figure window
-            set(f999,'Position',[0 0 PosAxX+tight(1)+tight(3) PosAxY+tight(2)+tight(4)])
+            set(f999,'Position',[0 0 figWidth figHeight])
             % Position and size of the figure on the printed page
-            set(f999,'PaperPosition',[0 0 PosAxX+tight(1)+tight(3) PosAxY+tight(2)+tight(4)])
+            set(f999,'PaperPosition',[0 0 figWidth figHeight])
             % % Size of the paper
-            set(f999,'PaperSize',[PosAxX+tight(1)+tight(3) PosAxY+tight(2)+tight(4)])
+            set(f999,'PaperSize',[figWidth figHeight])
 
-            % Setting axes
+
             set(ax999,'Units','centimeters')        % Changing units of the axes to centimeters
+            % Setting axes
             set(ax999,'XLim',XLim)
             set(ax999,'YLim',YLim)
-            set(ax999,'Position',[tight(1:2) PosAxX PosAxY])
+            % set(ax999,'Position',[tight(1:2) PosAxX PosAxY])
             set(ax999,'Box','on','XGrid','on','YGrid','on','ZGrid','on')
 
             if nargin == 2
-                [pathstr, name, ext] = fileparts(varargin{1});
+                [pathstr, name, ~] = fileparts(varargin{1});
 
                 if not(exist(pathstr, 'file') == 7)
                     mkdir(pathstr);
@@ -772,6 +790,7 @@ classdef Graphics
         Simulator
         TractorColor
         SemitrailerColor
+        IsOctave
     end
 end
 
