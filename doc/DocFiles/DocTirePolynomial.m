@@ -3,36 +3,36 @@
 %
 % The code of this class can be found in <api/TirePolynomial.html TirePolynomial>. It inherits methods from abstract class <api/Tire.html Tire>. The complete list of class codes is in <api/api.html API>.
 %
-% <html>
-% <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
-% </html>
-%
 %% Sintax
 % |Fy = _TireModel_.Characteristic(alpha)|
 %
 %
 % |_TireModel_.PlotTire()|
 %
-%% Arguments
+%%      Arguments
 % The following table describes the input arguments:
 %
-% <html> <table border=1 width="97%">
+% <html>
+% <table border=1 width="97%">
 % <tr> <td width="30%"><tt>alpha</tt></td> <td width="70%">Tire slip angle [rad]</td> </tr>
-% </table> </html>
+% </table>
+% </html>
 %
 %% Outputs
 %
-% <html> <table border=1 width="97%">
+% <html>
+% <table border=1 width="97%">
 % <tr> <td width="30%"><tt>Fy</tt></td> <td width="70%">Tire lateral force [N]</td> </tr>
-% </table> </html>
+% </table>
+% </html>
 %
 %% Description
 %
 % Model equation:
 %
-% \[ F_y = k_1 \alpha  - k_2\alpha^3 \]
+% $$ F_y = k_1 \alpha  - k_2\alpha^3 $$
 %
-% where \(F_y\) is the lateral force and \(\alpha\) is the tire slip angle. \(k_1\) and \(k_2\) are the model coefficients.
+% where $F_y$ is the lateral force and $\alpha$ is the tire slip angle. $k_1$ and $k_2$ are the model coefficients.
 %
 % *Hypothesis*
 %
@@ -49,5 +49,5 @@
 %
 %% See Also
 %
-% <../index.html Home> | <DocTireLinear.html Linear tire model> | <DocTirePacejka.html Pacejka tire model>
+% [<../index.html Home>] [<DocTireLinear.html Linear tire model>] [<DocTirePacejka.html Pacejka tire model>]
 %
