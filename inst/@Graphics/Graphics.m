@@ -8,10 +8,25 @@ classdef Graphics
             self.Simulator = simulator;
             self.TractorColor = 'b';
             self.SemitrailerColor = 'g';
-            self.IsOctave = isOctave; % Return: true if the environment is Octave.
+            self.IsOctave = isOctave;       % Return true if the environment is Octave.
+            % Default user options
+            self.ScaleFig = 1;              % Scale 1 x 1 between x and y axis.
         end
 
         function Animation(self, varargin)
+            % Arranging user options
+            i=1;
+            while i <= length(varargin)
+                switch lower(varargin{i})
+                    case 'savepath'
+                        self.SavePath = varargin{i+1}; i=i+2;
+                    case 'scalefig'
+                        self.ScaleFig = varargin{i+1}; i=i+2;
+                    otherwise
+                        error('Unknown option: %s\n',varargin{i}); i=i+1;
+                end
+            end
+
             articulated = isa(self.Simulator.Vehicle, 'VehicleArticulated');
 
             % States
@@ -151,7 +166,7 @@ classdef Graphics
 
 
             figWidth = 30 ;                             % Defining the width of the figure [centimeters]
-            Scale = 1; % Adjust the scale of y in relation to x
+            Scale = self.ScaleFig; % Adjust the scale of y in relation to x
             % Margins added to Position to include text labels [left bottom right top] Property - TightInset (read only)
             XLim = [min(XT)-20 max(XT)+10];              % Limits of x
             rangeX = XLim(2) - XLim(1);                  % Range of x
@@ -259,8 +274,8 @@ classdef Graphics
                 fill(xn, yn, self.SemitrailerColor)
             end
 
-            if nargin == 2
-                [pathstr, name, ~] = fileparts(varargin{1});
+            if isempty(self.SavePath) == 0
+                [pathstr, name, ~] = fileparts(self.SavePath);
 
                 if not(exist(pathstr, 'file') == 7)
                     mkdir(pathstr);
@@ -335,8 +350,8 @@ classdef Graphics
                 set(ax666,'YLim',YLim)
                 % set(ax666,'Position',[tight(1:2) PosAxX PosAxY])
                 set(ax666,'Box','on','XGrid','on','YGrid','on','ZGrid','on')
-                if nargin == 2
-                    [pathstr, name, ~] = fileparts(varargin{1});
+                if isempty(self.SavePath) == 0
+                    [pathstr, name, ~] = fileparts(self.SavePath);
 
 
                     if self.IsOctave == 1
@@ -356,8 +371,8 @@ classdef Graphics
                 cla(ax666);                    % Clearing axes
             end
 
-            if nargin == 2
-                [pathstr, name, ~] = fileparts(varargin{1});
+            if isempty(self.SavePath) == 0
+                [pathstr, name, ~] = fileparts(self.SavePath);
 
                 if self.IsOctave == 1
                     im = imread('animation.pdf','Index','all');
@@ -395,6 +410,19 @@ classdef Graphics
         end
 
         function Frame(self, varargin)
+            % Arranging user options
+            i=1;
+            while i <= length(varargin)
+                switch lower(varargin{i})
+                    case 'savepath'
+                        self.SavePath = varargin{i+1}; i=i+2;
+                    case 'scalefig'
+                        self.ScaleFig = varargin{i+1}; i=i+2;
+                    otherwise
+                        error('Unknown option: %s\n',varargin{i}); i=i+1;
+                end
+            end
+
             articulated = isa(self.Simulator.Vehicle, 'VehicleArticulated');
 
             % States
@@ -520,7 +548,7 @@ classdef Graphics
             end
 
             figWidth = 20 ;                             % Defining the width of the figure [centimeters]
-            Scale = 1; % Adjust the scale of y in relation to x
+            Scale = self.ScaleFig; % Adjust the scale of y in relation to x
             % Margins added to Position to include text labels [left bottom right top] Property - TightInset (read only)
             XLim = [min(XT)-20 max(XT)+10];              % Limits of x
             rangeX = XLim(2) - XLim(1);                  % Range of x
@@ -659,7 +687,7 @@ classdef Graphics
             set(ax999,'Box','on','XGrid','on','YGrid','on','ZGrid','on')
 
             if nargin == 2
-                [pathstr, name, ~] = fileparts(varargin{1});
+                [pathstr, name, ~] = fileparts(self.SavePath);
 
                 if not(exist(pathstr, 'file') == 7)
                     mkdir(pathstr);
@@ -791,6 +819,8 @@ classdef Graphics
         TractorColor
         SemitrailerColor
         IsOctave
+        SavePath
+        ScaleFig
     end
 end
 
