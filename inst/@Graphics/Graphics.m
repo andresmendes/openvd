@@ -770,43 +770,75 @@ classdef Graphics
         %
         % TEXTO
 
-        function changeMarker(p, n)
-            % p - handle of plot
+        function changeMarker(n,varargin)
             % n - number of markers
+            % varargin contain all plot handles
+            plotNumber = length(varargin);
+            % Preallocating
+            lineColor{plotNumber} = 'void';
+            line_Style{plotNumber} = 'void';
+            line_LineWidth = zeros(plotNumber,1);
+            marker_type{plotNumber} = 'void';
+            marker_size = zeros(plotNumber,1);
+            marker_EdgeColor{plotNumber} = 'void';
+            marker_FaceColor{plotNumber} = 'void';
+            vec_XDataOne = get(varargin{1}, 'XData');
+            vec_YDataOne = get(varargin{1}, 'YData');
+            vec_XData = zeros(plotNumber, length(vec_XDataOne));
+            vec_YData = zeros(plotNumber, length(vec_YDataOne));
+            p_marker = zeros(plotNumber,1);
 
-            % Line info
-            line_color = get(p, 'Color');
-            line_Style = get(p, 'LineStyle');
-            line_LineWidth = get(p, 'LineWidth');
-            % Marker info
-            marker_type = get(p, 'Marker');
-            marker_size = get(p, 'MarkerSize');
-            marker_EdgeColor = get(p, 'MarkerEdgeColor');
-            marker_FaceColor = get(p, 'MarkerFaceColor');
-            % Axis info
-            vec_XData = get(p, 'XData');
-            vec_YData = get(p, 'YData');
+            % Getting infos and plotting new markers
+            for i = 1:plotNumber
+                % Current handle
+                p = varargin{i};
+                % Line info
+                line_color{i} = get(p, 'Color');
+                line_Style{i} = get(p, 'LineStyle');
+                line_LineWidth(i) = get(p, 'LineWidth');
+                % Marker info
+                marker_type{i} = get(p, 'Marker');
+                marker_size(i) = get(p, 'MarkerSize');
+                marker_EdgeColor{i} = get(p, 'MarkerEdgeColor');
+                marker_FaceColor{i} = get(p, 'MarkerFaceColor');
+                % Axis info
+                vec_XData(i,:) = get(p, 'XData');
+                vec_YData(i,:) = get(p, 'YData');
 
-            size_XData = length(vec_XData);
+                size_XData = length(vec_XData(i,:));
 
-            step = floor((size_XData)/(n-1));
+                step = floor((size_XData)/(n-1));
 
-            % Ploting the markers
-            p_marker = plot(vec_XData(1:step:end),vec_YData(1:step:end));
-            set(p_marker, 'LineStyle', 'none', 'Marker', marker_type, 'MarkerSize', marker_size,...
-                'MarkerEdgeColor', marker_EdgeColor, 'MarkerFaceColor', marker_FaceColor)
+                % Ploting the markers
+                p_marker(i) = plot(vec_XData(i,1:step:end),vec_YData(i,1:step:end));
+                set(p_marker(i), 'LineStyle', 'none', 'Marker', marker_type{i}, 'MarkerSize', marker_size(i),...
+                    'MarkerEdgeColor', marker_EdgeColor{i}, 'MarkerFaceColor', marker_FaceColor{i})
+            end
 
-            % Removing the markers from the original plot
-            set(p, 'Marker', 'none')
-            % Hiding the original plot
-            set(p, 'HandleVisibility', 'off')
-            set(p_marker, 'HandleVisibility', 'off')
+            % Getting axis Limits
+            xlim = get(gca,'xlim');
+            ylim = get(gca,'ylim');
 
-            % Dummy for legend
-            p_dummy = plot(vec_XData(1),vec_YData(1));
-            set(p_dummy, 'Color', line_color, 'LineStyle', line_Style, 'LineWidth', line_LineWidth,...
-                'Marker', marker_type, 'MarkerSize', marker_size,...
-                'MarkerEdgeColor', marker_EdgeColor, 'MarkerFaceColor', marker_FaceColor)
+            for i = 1:plotNumber
+                % Removing the markers from the original plot
+                set(varargin{i}, 'Marker', 'none')
+                % Hiding the original plot
+                set(varargin{i}, 'HandleVisibility', 'off')
+                set(p_marker(i), 'HandleVisibility', 'off')
+            end
+
+            % Creating dummy for legend
+            for i = 1:plotNumber
+                % Dummy for legend
+                p_dummy = plot(vec_XData(i,1),vec_YData(i,1));
+                set(p_dummy, 'Color', line_color{i}, 'LineStyle', line_Style{i}, 'LineWidth', line_LineWidth(i),...
+                    'Marker', marker_type{i}, 'MarkerSize', marker_size(i),...
+                    'MarkerEdgeColor', marker_EdgeColor{i}, 'MarkerFaceColor', marker_FaceColor{i})
+            end
+
+            % Adjusting limits
+            set(gca,'xlim',xlim,'ylim',ylim)
+
         end
 
     end
