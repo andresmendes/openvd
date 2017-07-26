@@ -37,7 +37,7 @@ VEL = simulator.VEL;
 ALPHAT = simulator.ALPHAT;
 dPSI = simulator.dPSI;
 
-figure(1)
+f1 = figure(1);
 grid on ; box on;
 plot(TSPAN,180/pi*System.deltaf)
 xlabel('time [s]')

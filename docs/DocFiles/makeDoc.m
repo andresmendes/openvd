@@ -21,8 +21,8 @@ openvdPath = pwd;
 % Going back to DocFiles
 cd doc/DocFiles
 % Folder where html doc files are saved
-docPath = strcat(openvdPath,'/doc/Documentation/html/');
-apiDocPath = strcat(openvdPath,'/doc/Documentation/html/api/');
+docPath = strcat(openvdPath,'/doc/html/');
+apiDocPath = strcat(openvdPath,'/doc/html/api/');
 
 %% Adding paths
 % Adding the folder of all necessary files to the Octave/Matlab path
@@ -75,9 +75,9 @@ addpath(strcat(openvdPath,'/doc/Examples/TireComparison/'))
 %
 % Index
 options.evalCode = false;
-options.outputDir = strcat(openvdPath,'/doc/Documentation/');
+options.outputDir = strcat(openvdPath,'/doc/');
 publishOVD('main.m', options);
-movefile(strcat(openvdPath,'/doc/Documentation/main.html'),strcat(openvdPath,'/doc/Documentation/index.html'))
+movefile(strcat(openvdPath,'/doc/main.html'),strcat(openvdPath,'/doc/index.html'))
 %
 % Tire models
 options.evalCode = false;
@@ -136,12 +136,12 @@ graphics_toolkit gnuplot            % svg quality is higher with gnuplot
 SinusoidalSteering
 paperPos = [0 0 10 8];
 set(f1,'Paperunits','centimeters','PaperPosition',paperPos)
-print(f1, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/SinusoidalSteeringFig1.svg'))
+print(f1, '-dsvg', strcat(openvdPath,'/doc/illustrations/plot/SinusoidalSteeringFig1.svg'))
 g.Frame('scalefig',3);
-print(gcf, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/frame/SinusoidalSteeringFrame.svg'))
+print(gcf, '-dsvg', strcat(openvdPath,'/doc/illustrations/frame/SinusoidalSteeringFrame.svg'))
 graphics_toolkit qt
 publishOVD(strcat(openvdPath,'/doc/Examples/SinusoidalSteering/SinusoidalSteering.m'),options);
-g.Animation('savepath',strcat(openvdPath,'/doc/Documentation/illustrations/animation/SinusoidalSteeringAnimation'),'scalefig',3);
+g.Animation('savepath',strcat(openvdPath,'/doc/illustrations/animation/SinusoidalSteeringAnimation'),'scalefig',3);
 close all
 
 
@@ -157,22 +157,22 @@ graphics_toolkit gnuplot            % svg quality is higher with gnuplot
 SkidPad
 paperPos = [0 0 10 8];
 set(f1,'Paperunits','centimeters','PaperPosition',paperPos)
-print(f1, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/SkidPadFig1.svg'))
+print(f1, '-dsvg', strcat(openvdPath,'/doc/illustrations/plot/SkidPadFig1.svg'))
 set(f2,'Paperunits','centimeters','PaperPosition',paperPos)
-print(f2, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/SkidPadFig2.svg'))
+print(f2, '-dsvg', strcat(openvdPath,'/doc/illustrations/plot/SkidPadFig2.svg'))
 set(f3,'Paperunits','centimeters','PaperPosition',paperPos)
-print(f3, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/SkidPadFig3.svg'))
+print(f3, '-dsvg', strcat(openvdPath,'/doc/illustrations/plot/SkidPadFig3.svg'))
 set(f4,'Paperunits','centimeters','PaperPosition',paperPos)
-print(f4, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/SkidPadFig4.svg'))
+print(f4, '-dsvg', strcat(openvdPath,'/doc/illustrations/plot/SkidPadFig4.svg'))
 set(f5,'Paperunits','centimeters','PaperPosition',paperPos)
-print(f5, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/SkidPadFig5.svg'))
+print(f5, '-dsvg', strcat(openvdPath,'/doc/illustrations/plot/SkidPadFig5.svg'))
 set(f6,'Paperunits','centimeters','PaperPosition',paperPos)
-print(f6, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/SkidPadFig6.svg'))
+print(f6, '-dsvg', strcat(openvdPath,'/doc/illustrations/plot/SkidPadFig6.svg'))
 g.Frame();
-print(gcf, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/frame/SkidPadFrame.svg'))
+print(gcf, '-dsvg', strcat(openvdPath,'/doc/illustrations/frame/SkidPadFrame.svg'))
 graphics_toolkit qt
 publishOVD(strcat(openvdPath,'/doc/Examples/SkidPad/SkidPad.m'),options);
-g.Animation('savepath',strcat(openvdPath,'/doc/Documentation/illustrations/animation/SkidPadAnimation'));
+g.Animation('savepath',strcat(openvdPath,'/doc/illustrations/animation/SkidPadAnimation'));
 close all
 
 %% Skid Pad 4DOF
@@ -181,30 +181,30 @@ graphics_toolkit gnuplot            % svg quality is higher with gnuplot
 SkidPad4DOF
 paperPos = [0 0 10 8];
 set(f1,'Paperunits','centimeters','PaperPosition',paperPos)
-print(f1, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/SkidPad4DOFFig1.svg'))
+print(f1, '-dsvg', strcat(openvdPath,'/doc/illustrations/plot/SkidPad4DOFFig1.svg'))
 set(f2,'Paperunits','centimeters','PaperPosition',paperPos)
-print(f2, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/SkidPad4DOFFig2.svg'))
+print(f2, '-dsvg', strcat(openvdPath,'/doc/illustrations/plot/SkidPad4DOFFig2.svg'))
 set(f3,'Paperunits','centimeters','PaperPosition',paperPos)
-print(f3, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/SkidPad4DOFFig3.svg'))
+print(f3, '-dsvg', strcat(openvdPath,'/doc/illustrations/plot/SkidPad4DOFFig3.svg'))
 set(f4,'Paperunits','centimeters','PaperPosition',paperPos)
-print(f4, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/SkidPad4DOFFig4.svg'))
+print(f4, '-dsvg', strcat(openvdPath,'/doc/illustrations/plot/SkidPad4DOFFig4.svg'))
 set(f5,'Paperunits','centimeters','PaperPosition',paperPos)
-print(f5, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/SkidPad4DOFFig5.svg'))
+print(f5, '-dsvg', strcat(openvdPath,'/doc/illustrations/plot/SkidPad4DOFFig5.svg'))
 set(f6,'Paperunits','centimeters','PaperPosition',paperPos)
-print(f6, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/SkidPad4DOFFig6.svg'))
+print(f6, '-dsvg', strcat(openvdPath,'/doc/illustrations/plot/SkidPad4DOFFig6.svg'))
 set(f7,'Paperunits','centimeters','PaperPosition',paperPos)
-print(f7, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/SkidPad4DOFFig7.svg'))
+print(f7, '-dsvg', strcat(openvdPath,'/doc/illustrations/plot/SkidPad4DOFFig7.svg'))
 set(f8,'Paperunits','centimeters','PaperPosition',paperPos)
-print(f8, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/SkidPad4DOFFig8.svg'))
+print(f8, '-dsvg', strcat(openvdPath,'/doc/illustrations/plot/SkidPad4DOFFig8.svg'))
 set(f9,'Paperunits','centimeters','PaperPosition',paperPos)
-print(f9, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/SkidPad4DOFFig9.svg'))
+print(f9, '-dsvg', strcat(openvdPath,'/doc/illustrations/plot/SkidPad4DOFFig9.svg'))
 set(f10,'Paperunits','centimeters','PaperPosition',paperPos)
-print(f10, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/SkidPad4DOFFig10.svg'))
+print(f10, '-dsvg', strcat(openvdPath,'/doc/illustrations/plot/SkidPad4DOFFig10.svg'))
 g.Frame();
-print(gcf, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/frame/SkidPad4DOFFrame.svg'))
+print(gcf, '-dsvg', strcat(openvdPath,'/doc/illustrations/frame/SkidPad4DOFFrame.svg'))
 graphics_toolkit qt
 publishOVD(strcat(openvdPath,'/doc/Examples/SkidPad4DOF/SkidPad4DOF.m'),options);
-g.Animation('savepath',strcat(openvdPath,'/doc/Documentation/illustrations/animation/SkidPad4DOFAnimation'));
+g.Animation('savepath',strcat(openvdPath,'/doc/illustrations/animation/SkidPad4DOFAnimation'));
 close all
 
 
@@ -214,16 +214,16 @@ graphics_toolkit gnuplot            % svg quality is higher with gnuplot
 SteeringControl
 paperPos = [0 0 10 8];
 set(f1,'Paperunits','centimeters','PaperPosition',paperPos)
-print(f1, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/SteeringControlFig1.svg'))
+print(f1, '-dsvg', strcat(openvdPath,'/doc/illustrations/plot/SteeringControlFig1.svg'))
 set(f2,'Paperunits','centimeters','PaperPosition',paperPos)
-print(f2, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/SteeringControlFig2.svg'))
+print(f2, '-dsvg', strcat(openvdPath,'/doc/illustrations/plot/SteeringControlFig2.svg'))
 set(f3,'Paperunits','centimeters','PaperPosition',paperPos)
-print(f3, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/SteeringControlFig3.svg'))
+print(f3, '-dsvg', strcat(openvdPath,'/doc/illustrations/plot/SteeringControlFig3.svg'))
 g.Frame('scalefig',3);
-print(gcf, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/frame/SteeringControlFrame.svg'))
+print(gcf, '-dsvg', strcat(openvdPath,'/doc/illustrations/frame/SteeringControlFrame.svg'))
 graphics_toolkit qt
 publishOVD(strcat(openvdPath,'/doc/Examples/SteeringControl/SteeringControl.m'),options);
-g.Animation('savepath',strcat(openvdPath,'/doc/Documentation/illustrations/animation/SteeringControlAnimation'),'scalefig',3);
+g.Animation('savepath',strcat(openvdPath,'/doc/illustrations/animation/SteeringControlAnimation'),'scalefig',3);
 close all
 
 %% TemplateArticulated
@@ -231,11 +231,11 @@ close all
 graphics_toolkit gnuplot            % svg quality is higher with gnuplot
 TemplateArticulated
 g.Frame();
-print(gcf, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/frame/TemplateArticulatedFrame.svg'))
+print(gcf, '-dsvg', strcat(openvdPath,'/doc/illustrations/frame/TemplateArticulatedFrame.svg'))
 graphics_toolkit qt
 options.outputDir = docPath;
 publishOVD(strcat(openvdPath,'/doc/Examples/TemplateArticulated/TemplateArticulated.m'),options);
-g.Animation('savepath',strcat(openvdPath,'/doc/Documentation/illustrations/animation/TemplateArticulatedAnimation'));
+g.Animation('savepath',strcat(openvdPath,'/doc/illustrations/animation/TemplateArticulatedAnimation'));
 close all
 
 % % Template Articulated Simulink
@@ -253,23 +253,23 @@ graphics_toolkit gnuplot            % svg quality is higher with gnuplot
 TemplateSimple
 paperPos = [0 0 10 8];
 set(f1,'Paperunits','centimeters','PaperPosition',paperPos)
-print(f1, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/TemplateSimpleFig1.svg'))
+print(f1, '-dsvg', strcat(openvdPath,'/doc/illustrations/plot/TemplateSimpleFig1.svg'))
 set(f2,'Paperunits','centimeters','PaperPosition',paperPos)
-print(f2, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/TemplateSimpleFig2.svg'))
+print(f2, '-dsvg', strcat(openvdPath,'/doc/illustrations/plot/TemplateSimpleFig2.svg'))
 set(f3,'Paperunits','centimeters','PaperPosition',paperPos)
-print(f3, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/TemplateSimpleFig3.svg'))
+print(f3, '-dsvg', strcat(openvdPath,'/doc/illustrations/plot/TemplateSimpleFig3.svg'))
 set(f4,'Paperunits','centimeters','PaperPosition',paperPos)
-print(f4, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/TemplateSimpleFig4.svg'))
+print(f4, '-dsvg', strcat(openvdPath,'/doc/illustrations/plot/TemplateSimpleFig4.svg'))
 set(f5,'Paperunits','centimeters','PaperPosition',paperPos)
-print(f5, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/TemplateSimpleFig5.svg'))
+print(f5, '-dsvg', strcat(openvdPath,'/doc/illustrations/plot/TemplateSimpleFig5.svg'))
 set(f6,'Paperunits','centimeters','PaperPosition',paperPos)
-print(f6, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/TemplateSimpleFig6.svg'))
+print(f6, '-dsvg', strcat(openvdPath,'/doc/illustrations/plot/TemplateSimpleFig6.svg'))
 g.Frame();
-print(gcf, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/frame/TemplateSimpleFrame.svg'))
+print(gcf, '-dsvg', strcat(openvdPath,'/doc/illustrations/frame/TemplateSimpleFrame.svg'))
 graphics_toolkit qt
 options.outputDir = docPath;
 publishOVD(strcat(openvdPath,'/doc/Examples/TemplateSimple/TemplateSimple.m'),options);
-g.Animation('savepath',strcat(openvdPath,'/doc/Documentation/illustrations/animation/TemplateSimpleAnimation'));
+g.Animation('savepath',strcat(openvdPath,'/doc/illustrations/animation/TemplateSimpleAnimation'));
 close all
 
 
@@ -285,9 +285,9 @@ graphics_toolkit gnuplot            % svg quality is higher with gnuplot
 TireComparison
 paperPos = [0 0 10 8];
 set(f1,'Paperunits','centimeters','PaperPosition',paperPos)
-print(f1, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/TireComparisonFig1.svg'))
+print(f1, '-dsvg', strcat(openvdPath,'/doc/illustrations/plot/TireComparisonFig1.svg'))
 set(f2,'Paperunits','centimeters','PaperPosition',paperPos)
-print(f2, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/TireComparisonFig2.svg'))
+print(f2, '-dsvg', strcat(openvdPath,'/doc/illustrations/plot/TireComparisonFig2.svg'))
 publishOVD(strcat(openvdPath,'/doc/Examples/TireComparison/TireComparison.m'),options);
 close all
 

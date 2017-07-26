@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Skid pad</title>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] },
+  TeX: { equationNumbers: { autoNumber: 'all' } }
+});
+</script>
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<style>
+body > * {
+  max-width: 1000px;
+}
+body {
+  font-family: "Roboto Condensed", sans-serif;
+  padding-left: 7.5em;
+  padding-right: 7.5em;
+}
+pre, code {
+  max-width: 50em;
+  font-family: monospace;
+}
+pre.oct-code {
+  border: 1px solid Grey;
+  padding: 5px;
+}
+pre.oct-code-output {
+  margin-left: 2em;
+}
+span.comment {
+  color: ForestGreen;
+}
+span.keyword {
+  color: Blue;
+}
+span.string {
+  color: DarkOrchid;
+}
+footer {
+  margin-top: 2em;
+  font-size: 80%;
+}
+a, a:visited {
+  color: Blue;
+}
+h2 {
+  font-family: "Roboto Condensed", serif;
+  margin-top: 1.5em;
+}
+h2 a, h2 a:visited {
+  color: Black;
+}
+</style>
+</head>
+<body>
+<h1>Skid pad</h1>
+<p>Maneuver in circles of a nonlinear simple vehicle with Pacejka tire model.</p><img src="../illustrations/animation/SkidPadAnimation.gif" alt="../illustrations/animation/SkidPadAnimation.gif"><h2>Contents</h2><ul><li><a href="#node1">Model and parameters</a></li><li><a href="#node2">Simulation</a></li><li><a href="#node3">Results</a></li><li><a href="#node4">See Also</a></li></ul><h2><a id="node1">Model and parameters</a></h2><p>Simulation</p><pre class="oct-code">T = 10;                     <span class="comment">% Total simulation time [s]</span>
+resol = 100;                <span class="comment">% Resolution</span>
+TSPAN = 0:T/resol:T;        <span class="comment">% Time span [s]</span>
+</pre><p>Tire (default)</p><pre class="oct-code">TireModel = TirePacejka();</pre><p>Vehicle</p><pre class="oct-code">System = VehicleSimpleNonlinear();
+
+<span class="comment">% Defining vehicle parameters</span>
+System.mF0 = 700;
+System.mR0 = 600;
+System.IT = 10000;
+System.lT = 3.5;
+System.nF = 2;
+System.nR = 2;
+System.wT = 2;
+System.muy = .8;
+System.deltaf = 20*pi/180;
+System.Fxf = 0;
+System.Fxr = @VelControl;
+
+System.tire = TireModel;
+simulator = Simulator(System, TSPAN);
+simulator.V0 = 8.333;</pre><h2><a id="node2">Simulation</a></h2><pre class="oct-code">simulator.Simulate();</pre><h2><a id="node3">Results</a></h2><pre class="oct-code"><span class="comment">% Retrieving states</span>
+XT = simulator.XT;
+YT = simulator.YT;
+PSI = simulator.PSI;
+VEL = simulator.VEL;
+ALPHAT = simulator.ALPHAT;
+dPSI = simulator.dPSI;
+
+f1 = figure(1);
+hold on ; grid on ; box on
+plot(TSPAN,XT)
+xlabel(<span class="string">'time [s]'</span>)
+ylabel(<span class="string">'Distance in the x direction [m]'</span>)</pre><img width="500" src="../illustrations/plot/SkidPadFig1.svg" alt="../illustrations/plot/SkidPadFig1.svg"><pre class="oct-code">f2 = figure(2);
+hold on ; grid on ; box on
+plot(TSPAN,YT)
+xlabel(<span class="string">'time [s]'</span>)
+ylabel(<span class="string">'Distance in the y direction [m]'</span>)</pre><img width="500" src="../illustrations/plot/SkidPadFig2.svg" alt="../illustrations/plot/SkidPadFig2.svg"><pre class="oct-code">f3 = figure(3);
+hold on ; grid on ; box on
+plot(TSPAN,PSI)
+xlabel(<span class="string">'time [s]'</span>)
+ylabel(<span class="string">'Yaw angle [rad]'</span>)</pre><img width="500" src="../illustrations/plot/SkidPadFig3.svg" alt="../illustrations/plot/SkidPadFig3.svg"><pre class="oct-code">f4 = figure(4);
+hold on ; grid on ; box on
+plot(TSPAN,VEL)
+xlabel(<span class="string">'time [s]'</span>)
+ylabel(<span class="string">'Velocity [m/s]'</span>)</pre><img width="500" src="../illustrations/plot/SkidPadFig4.svg" alt="../illustrations/plot/SkidPadFig4.svg"><pre class="oct-code">f5 = figure(5);
+hold on ; grid on ; box on
+plot(TSPAN,ALPHAT)
+xlabel(<span class="string">'time [s]'</span>)
+ylabel(<span class="string">'Vehicle slip angle [rad/s]'</span>)</pre><img width="500" src="../illustrations/plot/SkidPadFig5.svg" alt="../illustrations/plot/SkidPadFig5.svg"><pre class="oct-code">f6 = figure(6);
+hold on ; grid on ; box on
+plot(TSPAN,dPSI)
+xlabel(<span class="string">'time [s]'</span>)
+ylabel(<span class="string">'Yaw rate [rad/s]'</span>)</pre><img width="500" src="../illustrations/plot/SkidPadFig6.svg" alt="../illustrations/plot/SkidPadFig6.svg"><p>Frame and animation</p><pre class="oct-code">g = Graphics(simulator);
+g.TractorColor = <span class="string">'c'</span>;
+
+g.Frame();</pre><img width="800" src="../illustrations/frame/SkidPadFrame.svg" alt="../illustrations/frame/SkidPadFrame.svg"><pre class="oct-code">angulo = 0:0.01:2*pi;
+
+[R,XC,YC] = circfit(XT(40:end),YT(40:end));
+
+XX = XC + R*cos(angulo);
+YY = YC + R*sin(angulo);
+
+hold on
+plot(XX,YY,<span class="string">'k'</span>)
+
+
+g.Animation();</pre><img src="../illustrations/animation/SkidPadAnimation.gif" alt="../illustrations/animation/SkidPadAnimation.gif"><p>Maneuver radius</p><pre class="oct-code">disp(num2str(R))
+
+<span class="comment">%</span>
+</pre><h2><a id="node4">See Also</a></h2><p><a href="../index.html">Home</a></p>
+<footer><hr><a href="http://www.octave.org">Published with GNU Octave 4.2.1</a></footer>
+<!--
+##### SOURCE BEGIN #####
+%% Skid pad
+% Maneuver in circles of a nonlinear simple vehicle with Pacejka tire model.
+%
+% <<../illustrations/animation/SkidPadAnimation.gif>>
+%
+%% Model and parameters
+% Simulation
+%
+
+T = 10;                     % Total simulation time [s]
+resol = 100;                % Resolution
+TSPAN = 0:T/resol:T;        % Time span [s]
+
+%%
+% Tire (default)
+
+TireModel = TirePacejka();
+
+%%
+% Vehicle
+
+System = VehicleSimpleNonlinear();
+
+% Defining vehicle parameters
+System.mF0 = 700;
+System.mR0 = 600;
+System.IT = 10000;
+System.lT = 3.5;
+System.nF = 2;
+System.nR = 2;
+System.wT = 2;
+System.muy = .8;
+System.deltaf = 20*pi/180;
+System.Fxf = 0;
+System.Fxr = @VelControl;
+
+System.tire = TireModel;
+simulator = Simulator(System, TSPAN);
+simulator.V0 = 8.333;
+
+%% Simulation
+%
+
+simulator.Simulate();
+
+%% Results
+%
+
+% Retrieving states
+XT = simulator.XT;
+YT = simulator.YT;
+PSI = simulator.PSI;
+VEL = simulator.VEL;
+ALPHAT = simulator.ALPHAT;
+dPSI = simulator.dPSI;
+
+f1 = figure(1);
+hold on ; grid on ; box on
+plot(TSPAN,XT)
+xlabel('time [s]')
+ylabel('Distance in the x direction [m]')
+
+%%
+% <<../illustrations/plot/SkidPadFig1.svg>>
+
+f2 = figure(2);
+hold on ; grid on ; box on
+plot(TSPAN,YT)
+xlabel('time [s]')
+ylabel('Distance in the y direction [m]')
+
+%%
+% <<../illustrations/plot/SkidPadFig2.svg>>
+
+f3 = figure(3);
+hold on ; grid on ; box on
+plot(TSPAN,PSI)
+xlabel('time [s]')
+ylabel('Yaw angle [rad]')
+
+%%
+% <<../illustrations/plot/SkidPadFig3.svg>>
+
+f4 = figure(4);
+hold on ; grid on ; box on
+plot(TSPAN,VEL)
+xlabel('time [s]')
+ylabel('Velocity [m/s]')
+
+%%
+% <<../illustrations/plot/SkidPadFig4.svg>>
+
+f5 = figure(5);
+hold on ; grid on ; box on
+plot(TSPAN,ALPHAT)
+xlabel('time [s]')
+ylabel('Vehicle slip angle [rad/s]')
+
+%%
+% <<../illustrations/plot/SkidPadFig5.svg>>
+
+f6 = figure(6);
+hold on ; grid on ; box on
+plot(TSPAN,dPSI)
+xlabel('time [s]')
+ylabel('Yaw rate [rad/s]')
+
+%%
+% <<../illustrations/plot/SkidPadFig6.svg>>
+
+%%
+% Frame and animation
+
+g = Graphics(simulator);
+g.TractorColor = 'c';
+
+g.Frame();
+
+%%
+% <<../illustrations/frame/SkidPadFrame.svg>>
+
+angulo = 0:0.01:2*pi;
+
+[R,XC,YC] = circfit(XT(40:end),YT(40:end));
+
+XX = XC + R*cos(angulo);
+YY = YC + R*sin(angulo);
+
+hold on
+plot(XX,YY,'k')
+
+
+g.Animation();
+
+%%
+% <<../illustrations/animation/SkidPadAnimation.gif>>
+
+%%
+% Maneuver radius
+
+disp(num2str(R))
+
+%
+%% See Also
+%
+% <../index.html Home>
+%
+##### SOURCE END #####
+-->
+</body>
+</html>
