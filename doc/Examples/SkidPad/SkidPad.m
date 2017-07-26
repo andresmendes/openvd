@@ -1,11 +1,8 @@
 %% Skid pad
 % Maneuver in circles of a nonlinear simple vehicle with Pacejka tire model.
 %
-%% Code start
+% <<../illustrations/animation/SkidPadAnimation.gif>>
 %
-
-import VehicleDynamicsLateral.*
-
 %% Model and parameters
 % Simulation
 %
@@ -57,41 +54,59 @@ VEL = simulator.VEL;
 ALPHAT = simulator.ALPHAT;
 dPSI = simulator.dPSI;
 
-figure(1)
+f1 = figure(1);
 hold on ; grid on ; box on
 plot(TSPAN,XT)
 xlabel('time [s]')
 ylabel('Distance in the x direction [m]')
 
-figure(2)
+%%
+% <<../illustrations/plot/SkidPadFig1.svg>>
+
+f2 = figure(2);
 hold on ; grid on ; box on
 plot(TSPAN,YT)
 xlabel('time [s]')
 ylabel('Distance in the y direction [m]')
 
-figure(3)
+%%
+% <<../illustrations/plot/SkidPadFig2.svg>>
+
+f3 = figure(3);
 hold on ; grid on ; box on
 plot(TSPAN,PSI)
 xlabel('time [s]')
 ylabel('Yaw angle [rad]')
 
-figure(4)
+%%
+% <<../illustrations/plot/SkidPadFig3.svg>>
+
+f4 = figure(4);
 hold on ; grid on ; box on
 plot(TSPAN,VEL)
 xlabel('time [s]')
 ylabel('Velocity [m/s]')
 
-figure(5)
+%%
+% <<../illustrations/plot/SkidPadFig4.svg>>
+
+f5 = figure(5);
 hold on ; grid on ; box on
 plot(TSPAN,ALPHAT)
 xlabel('time [s]')
 ylabel('Vehicle slip angle [rad/s]')
 
-figure(6)
+%%
+% <<../illustrations/plot/SkidPadFig5.svg>>
+
+f6 = figure(6);
 hold on ; grid on ; box on
 plot(TSPAN,dPSI)
 xlabel('time [s]')
 ylabel('Yaw rate [rad/s]')
+
+%%
+% <<../illustrations/plot/SkidPadFig6.svg>>
 
 %%
 % Frame and animation
@@ -100,6 +115,9 @@ g = Graphics(simulator);
 g.TractorColor = 'c';
 
 g.Frame();
+
+%%
+% <<../illustrations/frame/SkidPadFrame.svg>>
 
 angulo = 0:0.01:2*pi;
 
@@ -115,12 +133,13 @@ plot(XX,YY,'k')
 g.Animation();
 
 %%
+% <<../illustrations/animation/SkidPadAnimation.gif>>
+
+%%
 % Maneuver radius
 
 disp(num2str(R))
 
-%%
-% <<../illustrations/AnimationSkidPad.gif>>
 %
 %% See Also
 %

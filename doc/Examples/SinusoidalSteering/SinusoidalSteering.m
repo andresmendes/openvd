@@ -1,13 +1,10 @@
 %% Sinusoidal Steering
 % Simulation of a simple vehicle with sinusoidal steering actuation.
 %
+% <<../illustrations/animation/SinusoidalSteeringAnimation.gif>>
+%
 %%
 %
-
-%%
-%
-import VehicleDynamicsLateral.*
-
 % Choosing simulation
 T = 4;                      % Total simulation time [s]
 resol = 50;                 % Resolution
@@ -41,9 +38,14 @@ ALPHAT = simulator.ALPHAT;
 dPSI = simulator.dPSI;
 
 figure(1)
+grid on ; box on;
 plot(TSPAN,180/pi*System.deltaf)
 xlabel('time [s]')
 ylabel('Steering angle [deg]')
+
+%%
+% <<../illustrations/plot/SinusoidalSteeringFig1.svg>>
+%
 
 %%
 % Frame and animation
@@ -51,11 +53,16 @@ ylabel('Steering angle [deg]')
 g = Graphics(simulator);
 g.TractorColor = 'r';
 
-g.Frame();
-g.Animation();
+g.Frame('scalefig',3);
 
 %%
-% <<../illustrations/AnimationSinusoidalSteering.gif>>
+% <<../illustrations/frame/SinusoidalSteeringFrame.svg>>
+%
+
+g.Animation('scalefig',3);
+
+%%
+% <<../illustrations/animation/SinusoidalSteeringAnimation.gif>>
 %
 %% See Also
 %

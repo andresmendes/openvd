@@ -1,88 +1,92 @@
-
-<!DOCTYPE html
-  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head>
-      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-   <!--
-This HTML was auto-generated from MATLAB code.
-To make changes, update the MATLAB code and republish this document.
-      --><title>Graphics</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-12-13"><meta name="DC.source" content="Graphics.m"><style type="text/css">
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
-
-html { min-height:100%; margin-bottom:1px; }
-html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
-html body td { vertical-align:top; text-align:left; }
-
-h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
-h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
-h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
-
-a { color:#005fce; text-decoration:none; }
-a:hover { color:#005fce; text-decoration:underline; }
-a:visited { color:#004aa0; text-decoration:none; }
-
-p { padding:0px; margin:0px 0px 20px; }
-img { padding:0px; margin:0px 0px 20px; border:none; }
-p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
-
-ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
-ul li { padding:0px; margin:0px 0px 7px 0px; }
-ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
-ul li ol li { list-style:decimal; }
-ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
-ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
-ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
-ol li ol li { list-style-type:lower-alpha; }
-ol li ul { padding-top:7px; }
-ol li ul li { list-style:square; }
-
-.content { font-size:1.2em; line-height:140%; padding: 20px; }
-
-pre, code { font-size:12px; }
-tt { font-size: 1.2em; }
-pre { margin:0px 0px 20px; }
-pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
-pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
-pre.error { color:red; }
-
-@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
-
-span.keyword { color:#0000FF }
-span.comment { color:#228B22 }
-span.string { color:#A020F0 }
-span.untermstring { color:#B20000 }
-span.syscmd { color:#B28C00 }
-
-.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
-.footer p { margin:0px; }
-.footer a { color:#878787; }
-.footer a:hover { color:#878787; text-decoration:underline; }
-.footer a:visited { color:#878787; }
-
-table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
-table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
-
-
-
-
-
-  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#4">Vector</a></li><li><a href="#5">changeMarker</a></li><li><a href="#7">Properties</a></li><li><a href="#9">See Also</a></li></ul></div><pre class="codeinput"><span class="keyword">classdef</span> Graphics
-</pre><pre class="codeinput">    <span class="comment">% Graphics Functions for graphics generation.</span>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Graphics</title>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] },
+  TeX: { equationNumbers: { autoNumber: 'all' } }
+});
+</script>
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<style>
+body > * {
+  max-width: 1000px;
+}
+body {
+  font-family: "Roboto Condensed", sans-serif;
+  padding-left: 7.5em;
+  padding-right: 7.5em;
+}
+pre, code {
+  max-width: 50em;
+  font-family: monospace;
+}
+pre.oct-code {
+  border: 1px solid Grey;
+  padding: 5px;
+}
+pre.oct-code-output {
+  margin-left: 2em;
+}
+span.comment {
+  color: ForestGreen;
+}
+span.keyword {
+  color: Blue;
+}
+span.string {
+  color: DarkOrchid;
+}
+footer {
+  margin-top: 2em;
+  font-size: 80%;
+}
+a, a:visited {
+  color: Blue;
+}
+h2 {
+  font-family: "Roboto Condensed", serif;
+  margin-top: 1.5em;
+}
+h2 a, h2 a:visited {
+  color: Black;
+}
+</style>
+</head>
+<body>
+<h1>Graphics</h1>
+<h2>Contents</h2><ul><li><a href="#node1">See Also</a></li></ul><pre class="oct-code"><span class="keyword">classdef</span> Graphics
+    <span class="comment">% Graphics Functions for graphics generation.</span>
     <span class="comment">%</span>
 
-    methods
+    <span class="keyword">methods</span>
         <span class="comment">% Constructor</span>
         <span class="keyword">function</span> self = Graphics(simulator)
             self.Simulator = simulator;
-            self.TractorColor = <span class="string">'r'</span>;
+            self.TractorColor = <span class="string">'b'</span>;
             self.SemitrailerColor = <span class="string">'g'</span>;
+            self.IsOctave = isOctave;       <span class="comment">% Return true if the environment is Octave.</span>
+            <span class="comment">% Default user options</span>
+            self.ScaleFig = 1;              <span class="comment">% Scale 1 x 1 between x and y axis.</span>
         <span class="keyword">end</span>
 
         <span class="keyword">function</span> Animation(self, varargin)
-            <span class="comment">% Verifying number of columns of the state output matrix</span>
-            <span class="comment">% col = 6 -&gt; simples</span>
-            <span class="comment">% col = 8 -&gt; articulado</span>
-            articulated = isa(self.Simulator.Vehicle, <span class="string">'VehicleDynamicsLateral.VehicleArticulated'</span>);
+            <span class="comment">% Arranging user options</span>
+            i=1;
+            <span class="keyword">while</span> i <= length(varargin)
+                <span class="keyword">switch</span> lower(varargin{i})
+                    <span class="keyword">case</span> <span class="string">'savepath'</span>
+                        self.SavePath = varargin{i+1}; i=i+2;
+                    <span class="keyword">case</span> <span class="string">'scalefig'</span>
+                        self.ScaleFig = varargin{i+1}; i=i+2;
+                    <span class="keyword">otherwise</span>
+                        error(<span class="string">'Unknown option: %s\n'</span>,varargin{i}); i=i+1;
+                <span class="keyword">end</span>
+            <span class="keyword">end</span>
+
+            articulated = isa(self.Simulator.Vehicle, <span class="string">'VehicleArticulated'</span>);
 
             <span class="comment">% States</span>
             TOUT = self.Simulator.TSpan;
@@ -138,10 +142,10 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
                 <span class="comment">% Rotation matrix base (T t1 t2 t3) to (o i j k)</span>
                 RTI=[cos(PSI(j)) -sin(PSI(j));sin(PSI(j)) cos(PSI(j))];
                 <span class="comment">% Position vectors 1, 2, 3 e 4 relative to origin of the inertial reference base (T t1 t2 t3)</span>
-                rt1i(j, 1:2) = (RTI * rt1t)';
-                rt2i(j, 1:2) = (RTI * rt2t)';
-                rt3i(j, 1:2) = (RTI * rt3t)';
-                rt4i(j, 1:2) = (RTI * rt4t)';
+                rt1i(j, 1:2) = (RTI * rt1t)<span class="string">';</span>
+                rt2i(j, 1:2) = (RTI * rt2t)<span class="string">';</span>
+                rt3i(j, 1:2) = (RTI * rt3t)<span class="string">';</span>
+                rt4i(j, 1:2) = (RTI * rt4t)<span class="string">';</span>
                 <span class="comment">% Position of front and rear axle</span>
                 eff(j, 1:2) = (RTI * eif);     <span class="comment">% Front</span>
                 err(j, 1:2) = (RTI * eir);     <span class="comment">% Rear</span>
@@ -220,26 +224,26 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
             <span class="keyword">end</span>
 
 
-            figWidth = 20 ;                             <span class="comment">% Defining the width of the figure [centimeters]</span>
-            Scale = 1; <span class="comment">% Adjust the scale of y in relation to x</span>
+            figWidth = 30 ;                             <span class="comment">% Defining the width of the figure [centimeters]</span>
+            Scale = self.ScaleFig; <span class="comment">% Adjust the scale of y in relation to x</span>
             <span class="comment">% Margins added to Position to include text labels [left bottom right top] Property - TightInset (read only)</span>
-            tight = [1.3 1.3 0.2 0.2];
-            PosAxX = figWidth - tight(1) - tight(3);     <span class="comment">% Width of the axes (axes position x)</span>
             XLim = [min(XT)-20 max(XT)+10];              <span class="comment">% Limits of x</span>
             rangeX = XLim(2) - XLim(1);                  <span class="comment">% Range of x</span>
             YLim = [min(YT)-5 max(YT)+5];              <span class="comment">% Limits of y</span>
             <span class="comment">% YLim = [min(YT)-10 max(YT)+10];              % Limits of y</span>
             rangeY = YLim(2) - YLim(1);                  <span class="comment">% Range of y</span>
-            PosAxY = Scale*PosAxX*rangeY/rangeX;         <span class="comment">% Height of the axes (axes position y) - Equivalent to axis</span>
+            figHeight = Scale*figWidth*rangeY/rangeX;         <span class="comment">% Height of the axes (axes position y) - Equivalent to axis</span>
             <span class="comment">% Defining figure</span>
             f666 = figure(666);
             <span class="comment">% Defining axes</span>
             ax666=gca;
-            set(ax666,<span class="string">'NextPlot'</span>,<span class="string">'add'</span>)                 <span class="comment">% hold on</span>
+            set(ax666,<span class="string">'NextPlot'</span>,<span class="string">'add'</span>,<span class="string">'fontsize'</span>,15)                 <span class="comment">% hold on</span>
 
             <span class="comment">% Description</span>
-            xlabel(<span class="string">'Distance [m]'</span>);
-            ylabel(<span class="string">'Distance [m]'</span>);
+            xl = xlabel(<span class="string">'Distance [m]'</span>);
+            yl = ylabel(<span class="string">'Distance [m]'</span>);
+            set(xl,<span class="string">'fontsize'</span>,18)
+            set(yl,<span class="string">'fontsize'</span>,18)
 
             <span class="comment">% First frame</span>
 
@@ -288,10 +292,10 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
                     <span class="comment">% Rotation matrix base (S s1 s2 s3) to (o i j k)</span>
                     RSI=[cos(PSI(j)-PHI(j)) -sin(PSI(j)-PHI(j));sin(PSI(j)-PHI(j)) cos(PSI(j)-PHI(j))];
                     <span class="comment">% Position vectors 1, 2, 3 e 4 relative to O base (c c1 c2 c3)</span>
-                    rn1i(j, 1:2) = (RSI * rs1s)';
-                    rn2i(j, 1:2) = (RSI * rs2s)';
-                    rn3i(j, 1:2) = (RSI * rs3s)';
-                    rn4i(j, 1:2) = (RSI * rs4s)';
+                    rn1i(j, 1:2) = (RSI * rs1s)<span class="string">';</span>
+                    rn2i(j, 1:2) = (RSI * rs2s)<span class="string">';</span>
+                    rn3i(j, 1:2) = (RSI * rs3s)<span class="string">';</span>
+                    rn4i(j, 1:2) = (RSI * rs4s)<span class="string">';</span>
 
                     <span class="comment">% Position of semitrailer axle</span>
                     emm(j, 1:2) = (RSI * eim);
@@ -329,8 +333,8 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
                 fill(xn, yn, self.SemitrailerColor)
             <span class="keyword">end</span>
 
-            <span class="keyword">if</span> nargin == 2
-                [pathstr, name, ext] = fileparts(varargin{1});
+            <span class="keyword">if</span> isempty(self.SavePath) == 0
+                [pathstr, name, ~] = fileparts(self.SavePath);
 
                 <span class="keyword">if</span> not(exist(pathstr, <span class="string">'file'</span>) == 7)
                     mkdir(pathstr);
@@ -340,32 +344,34 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
                 set(f666,<span class="string">'Units'</span>,<span class="string">'centimeters'</span>)         <span class="comment">% Changing units of the figure to centimeters</span>
                 set(f666,<span class="string">'PaperUnits'</span>,<span class="string">'centimeters'</span>)    <span class="comment">% Changing units of the paper to centimeters</span>
                 <span class="comment">% Position and size of the figure window</span>
-                set(f666,<span class="string">'Position'</span>,[0 0 PosAxX+tight(1)+tight(3) PosAxY+tight(2)+tight(4)])
+                set(f666,<span class="string">'Position'</span>,[0 0 figWidth figHeight])
                 <span class="comment">% Position and size of the figure on the printed page</span>
-                set(f666,<span class="string">'PaperPosition'</span>,[0 0 PosAxX+tight(1)+tight(3) PosAxY+tight(2)+tight(4)])
+                set(f666,<span class="string">'PaperPosition'</span>,[0 0 figWidth figHeight])
                 <span class="comment">% % Size of the paper</span>
-                set(f666,<span class="string">'PaperSize'</span>,[PosAxX+tight(1)+tight(3) PosAxY+tight(2)+tight(4)])
+                set(f666,<span class="string">'PaperSize'</span>,[figWidth figHeight])
                 set(ax666,<span class="string">'Units'</span>,<span class="string">'centimeters'</span>)        <span class="comment">% Changing units of the axes to centimeters</span>
 
                 <span class="comment">% Setting axes</span>
                 set(ax666,<span class="string">'XLim'</span>,XLim)
                 set(ax666,<span class="string">'YLim'</span>,YLim)
-                set(ax666,<span class="string">'Position'</span>,[tight(1:2) PosAxX PosAxY])
+                <span class="comment">% set(ax666,'Position',[tight(1:2) PosAxX PosAxY])</span>
                 set(ax666,<span class="string">'Box'</span>,<span class="string">'on'</span>,<span class="string">'XGrid'</span>,<span class="string">'on'</span>,<span class="string">'YGrid'</span>,<span class="string">'on'</span>,<span class="string">'ZGrid'</span>,<span class="string">'on'</span>)
 
-                <span class="comment">% Initializing gif</span>
-                frame = getframe(666);
-                im = frame2im(frame);
-                [A, map] = rgb2ind(im, 256, <span class="string">'nodither'</span>);
-                imwrite(A, map, strcat(pathstr, <span class="string">'/'</span>, name, <span class="string">'.gif'</span>), <span class="string">'LoopCount'</span>, Inf, <span class="string">'DelayTime'</span>, 0.05);
+                <span class="keyword">if</span> self.IsOctave == 0
+                    <span class="comment">% Initializing gif</span>
+                    frame = getframe(666);
+                    im = frame2im(frame);
+                    [A, map] = rgb2ind(im, 256, <span class="string">'nodither'</span>);
+                    imwrite(A, map, strcat(pathstr, <span class="string">'/'</span>, name, <span class="string">'.gif'</span>), <span class="string">'LoopCount'</span>, Inf, <span class="string">'DelayTime'</span>, 0.05);
+                <span class="keyword">end</span>
             <span class="keyword">end</span>
 
             <span class="comment">% Remaining frames</span>
             <span class="comment">%</span>
             <span class="keyword">for</span> j = 1:length(TEMPO)
                 <span class="comment">% Axles</span>
-                plot(efrente(:,1),efrente(:,2),<span class="string">'r'</span>)
-                plot(etras(:,1),etras(:,2),<span class="string">'g'</span>)
+                plot(efrente(:,1),efrente(:,2),<span class="string">'r'</span>,<span class="string">'linewidth'</span>,1);
+                plot(etras(:,1),etras(:,2),<span class="string">'g'</span>,<span class="string">'linewidth'</span>,1);
 
                 <span class="comment">% Coordinates of the corners</span>
                 xc = [rc1(j, 1) rc2(j, 1) rc3(j, 1) rc4(j, 1)];
@@ -391,26 +397,32 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
                 set(f666,<span class="string">'Units'</span>,<span class="string">'centimeters'</span>)         <span class="comment">% Changing units of the figure to centimeters</span>
                 set(f666,<span class="string">'PaperUnits'</span>,<span class="string">'centimeters'</span>)    <span class="comment">% Changing units of the paper to centimeters</span>
                 <span class="comment">% Position and size of the figure window</span>
-                set(f666,<span class="string">'Position'</span>,[0 0 PosAxX+tight(1)+tight(3) PosAxY+tight(2)+tight(4)])
+                set(f666,<span class="string">'Position'</span>,[0 0 figWidth figHeight])
                 <span class="comment">% Position and size of the figure on the printed page</span>
-                set(f666,<span class="string">'PaperPosition'</span>,[0 0 PosAxX+tight(1)+tight(3) PosAxY+tight(2)+tight(4)])
+                set(f666,<span class="string">'PaperPosition'</span>,[0 0 figWidth figHeight])
                 <span class="comment">% % Size of the paper</span>
-                set(f666,<span class="string">'PaperSize'</span>,[PosAxX+tight(1)+tight(3) PosAxY+tight(2)+tight(4)])
+                set(f666,<span class="string">'PaperSize'</span>,[figWidth figHeight])
                 set(ax666,<span class="string">'Units'</span>,<span class="string">'centimeters'</span>)        <span class="comment">% Changing units of the axes to centimeters</span>
 
                 <span class="comment">% Setting axes</span>
                 set(ax666,<span class="string">'XLim'</span>,XLim)
                 set(ax666,<span class="string">'YLim'</span>,YLim)
-                set(ax666,<span class="string">'Position'</span>,[tight(1:2) PosAxX PosAxY])
+                <span class="comment">% set(ax666,'Position',[tight(1:2) PosAxX PosAxY])</span>
                 set(ax666,<span class="string">'Box'</span>,<span class="string">'on'</span>,<span class="string">'XGrid'</span>,<span class="string">'on'</span>,<span class="string">'YGrid'</span>,<span class="string">'on'</span>,<span class="string">'ZGrid'</span>,<span class="string">'on'</span>)
-                <span class="keyword">if</span> nargin == 2
-                    [pathstr, name, ext] = fileparts(varargin{1});
+                <span class="keyword">if</span> isempty(self.SavePath) == 0
+                    [pathstr, name, ~] = fileparts(self.SavePath);
 
-                    <span class="comment">% Adding the current frame to the initialized gif</span>
-                    frame = getframe(666);
-                    im = frame2im(frame);
-                    [A, map] = rgb2ind(im, 256, <span class="string">'nodither'</span>);
-                    imwrite(A, map, strcat(pathstr, <span class="string">'/'</span>, name, <span class="string">'.gif'</span>), <span class="string">'WriteMode'</span>, <span class="string">'append'</span>, <span class="string">'DelayTime'</span>, 0.05);
+
+                    <span class="keyword">if</span> self.IsOctave == 1
+                        print(<span class="string">'-dpdf'</span>,<span class="string">'animation.pdf'</span>,<span class="string">'-append'</span>)
+                    <span class="keyword">else</span>
+                        <span class="comment">% Adding the current frame to the initialized gif</span>
+                        frame = getframe(666);
+                        im = frame2im(frame);
+                        [A, map] = rgb2ind(im, 256, <span class="string">'nodither'</span>);
+                        imwrite(A, map, strcat(pathstr, <span class="string">'/'</span>, name, <span class="string">'.gif'</span>), <span class="string">'WriteMode'</span>, <span class="string">'append'</span>, <span class="string">'DelayTime'</span>, 0.05);
+                    <span class="keyword">end</span>
+
                 <span class="keyword">end</span>
 
                 pause(0.05)                 <span class="comment">% OBS: It has to be the same value of the time adjustment</span>
@@ -418,12 +430,22 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
                 cla(ax666);                    <span class="comment">% Clearing axes</span>
             <span class="keyword">end</span>
 
+            <span class="keyword">if</span> isempty(self.SavePath) == 0
+                [pathstr, name, ~] = fileparts(self.SavePath);
+
+                <span class="keyword">if</span> self.IsOctave == 1
+                    im = imread(<span class="string">'animation.pdf'</span>,<span class="string">'Index'</span>,<span class="string">'all'</span>);
+                    imwrite(im,strcat(pathstr, <span class="string">'/'</span>, name, <span class="string">'.gif'</span>),<span class="string">'delayTime'</span>,.05,<span class="string">'Compression'</span>,<span class="string">'bzip'</span>)
+                    delete(<span class="string">'animation.pdf'</span>)
+                <span class="keyword">end</span>
+            <span class="keyword">end</span>
+
             <span class="comment">% Last frame</span>
             <span class="comment">% Last image seen when the animation is over</span>
 
             <span class="comment">% Axles</span>
-            plot(efrente(:,1),efrente(:,2),<span class="string">'r'</span>)
-            plot(etras(:,1),etras(:,2),<span class="string">'g'</span>)
+            plot(efrente(:,1),efrente(:,2),<span class="string">'r'</span>,<span class="string">'linewidth'</span>,1)
+            plot(etras(:,1),etras(:,2),<span class="string">'g'</span>,<span class="string">'linewidth'</span>,1)
 
             <span class="comment">% Coordinates of the corners of the last frame</span>
             xc = [rc1(end, 1) rc2(end, 1) rc3(end, 1) rc4(end, 1)];
@@ -432,8 +454,8 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
             <span class="comment">% Vehicle</span>
             fill(xc, yc, self.TractorColor)
 
-            self.Vector(efrente(end, 1:2),(alphaf(end)+psii(end)),velf(end),<span class="string">'r'</span>);
-            self.Vector(etras(end, 1:2),(alphar(end)+psii(end)),velr(end),<span class="string">'g'</span>);
+            <span class="comment">% self.Vector(efrente(end, 1:2),(alphaf(end)+psii(end)),velf(end),'r');</span>
+            <span class="comment">% self.Vector(etras(end, 1:2),(alphar(end)+psii(end)),velr(end),'g');</span>
 
             <span class="comment">% Adding the semitrailer</span>
             <span class="keyword">if</span> articulated
@@ -441,12 +463,26 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
                 xn = [rn1(end, 1) rn2(end, 1) rn3(end, 1) rn4(end, 1)];
                 yn = [rn1(end, 2) rn2(end, 2) rn3(end, 2) rn4(end, 2)];
                 fill(xn, yn, self.SemitrailerColor)
-                self.Vector(emsemi(end, 1:2),(alpham(end)+psii(end)-phii(end)),velm(end),<span class="string">'b'</span>);
+                <span class="comment">% self.Vector(emsemi(end, 1:2),(alpham(end)+psii(end)-phii(end)),velm(end),'b');</span>
             <span class="keyword">end</span>
+
         <span class="keyword">end</span>
 
         <span class="keyword">function</span> Frame(self, varargin)
-            articulated = isa(self.Simulator.Vehicle, <span class="string">'VehicleDynamicsLateral.VehicleArticulated'</span>);
+            <span class="comment">% Arranging user options</span>
+            i=1;
+            <span class="keyword">while</span> i <= length(varargin)
+                <span class="keyword">switch</span> lower(varargin{i})
+                    <span class="keyword">case</span> <span class="string">'savepath'</span>
+                        self.SavePath = varargin{i+1}; i=i+2;
+                    <span class="keyword">case</span> <span class="string">'scalefig'</span>
+                        self.ScaleFig = varargin{i+1}; i=i+2;
+                    <span class="keyword">otherwise</span>
+                        error(<span class="string">'Unknown option: %s\n'</span>,varargin{i}); i=i+1;
+                <span class="keyword">end</span>
+            <span class="keyword">end</span>
+
+            articulated = isa(self.Simulator.Vehicle, <span class="string">'VehicleArticulated'</span>);
 
             <span class="comment">% States</span>
             TOUT = self.Simulator.TSpan;
@@ -497,10 +533,10 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
                 <span class="comment">% Rotation matrix base (T t1 t2 t3) to (o i j k)</span>
                 RTI=[cos(PSI(j)) -sin(PSI(j));sin(PSI(j)) cos(PSI(j))];
                 <span class="comment">% Position vectors 1, 2, 3 e 4 relative to origin of the inertial reference base (T t1 t2 t3)</span>
-                rt1i(j, 1:2) = (RTI * rt1t)';
-                rt2i(j, 1:2) = (RTI * rt2t)';
-                rt3i(j, 1:2) = (RTI * rt3t)';
-                rt4i(j, 1:2) = (RTI * rt4t)';
+                rt1i(j, 1:2) = (RTI * rt1t)<span class="string">';</span>
+                rt2i(j, 1:2) = (RTI * rt2t)<span class="string">';</span>
+                rt3i(j, 1:2) = (RTI * rt3t)<span class="string">';</span>
+                rt4i(j, 1:2) = (RTI * rt4t)<span class="string">';</span>
                 <span class="comment">% Position of front and rear axle</span>
                 eff(j, 1:2) = (RTI * eif);     <span class="comment">% Front</span>
                 err(j, 1:2) = (RTI * eir);     <span class="comment">% Rear</span>
@@ -571,15 +607,14 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
             <span class="keyword">end</span>
 
             figWidth = 20 ;                             <span class="comment">% Defining the width of the figure [centimeters]</span>
-            Scale = 1; <span class="comment">% Adjust the scale of y in relation to x</span>
+            Scale = self.ScaleFig; <span class="comment">% Adjust the scale of y in relation to x</span>
             <span class="comment">% Margins added to Position to include text labels [left bottom right top] Property - TightInset (read only)</span>
-            tight = [1.3 1.3 0.2 0.2];
-            PosAxX = figWidth - tight(1) - tight(3);     <span class="comment">% Width of the axes (axes position x)</span>
             XLim = [min(XT)-20 max(XT)+10];              <span class="comment">% Limits of x</span>
             rangeX = XLim(2) - XLim(1);                  <span class="comment">% Range of x</span>
-            YLim = [min(YT)-10 max(YT)+10];              <span class="comment">% Limits of y</span>
+            YLim = [min(YT)-5 max(YT)+5];              <span class="comment">% Limits of y</span>
+            <span class="comment">% YLim = [min(YT)-10 max(YT)+10];              % Limits of y</span>
             rangeY = YLim(2) - YLim(1);                  <span class="comment">% Range of y</span>
-            PosAxY = Scale*PosAxX*rangeY/rangeX;         <span class="comment">% Height of the axes (axes position y) - Equivalent to axis</span>
+            figHeight = Scale*figWidth*rangeY/rangeX;         <span class="comment">% Height of the axes (axes position y) - Equivalent to axis</span>
 
             <span class="comment">% Defining figure</span>
             f999 = figure(999);
@@ -596,8 +631,8 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
                 etras(i, 1:2) = interp1(TOUT, er, TEMPOplot(i));
             <span class="keyword">end</span>
 
-            plot(ef(:,1),ef(:,2),<span class="string">'r'</span>)
-            plot(er(:,1),er(:,2),<span class="string">'g'</span>)
+            plot(ef(:,1),ef(:,2),<span class="string">'r'</span>,<span class="string">'linewidth'</span>,0.5)
+            plot(er(:,1),er(:,2),<span class="string">'g'</span>,<span class="string">'linewidth'</span>,0.5)
 
 
             <span class="keyword">for</span> j = 1:length(TEMPO)
@@ -606,8 +641,9 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
                 yc = [rc1(j, 2) rc2(j, 2) rc3(j, 2) rc4(j, 2)];
                 <span class="comment">% Vehicle</span>
                 fill(xc, yc, self.TractorColor);
+                <span class="comment">% TODO: Improve this CG plot!</span>
                 p = plot(xxx(j),yyy(j),<span class="string">'ko'</span>);
-                set(p,<span class="string">'MarkerFaceColor'</span>,<span class="string">'k'</span>,<span class="string">'MarkerEdgeColor'</span>,<span class="string">'k'</span>,<span class="string">'MarkerSize'</span>,6)
+                set(p,<span class="string">'MarkerFaceColor'</span>,<span class="string">'k'</span>,<span class="string">'MarkerEdgeColor'</span>,<span class="string">'k'</span>,<span class="string">'MarkerSize'</span>,2)
             <span class="keyword">end</span>
 
             <span class="comment">% Adding semitrailer</span>
@@ -643,10 +679,10 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
                     <span class="comment">% Rotation matrix base (S s1 s2 s3) to (o i j k)</span>
                     RSI=[cos(PSI(j)-PHI(j)) -sin(PSI(j)-PHI(j));sin(PSI(j)-PHI(j)) cos(PSI(j)-PHI(j))];
                     <span class="comment">% Position vectors 1, 2, 3 e 4 relative to O base (c c1 c2 c3)</span>
-                    rn1i(j, 1:2) = (RSI * rs1s)';
-                    rn2i(j, 1:2) = (RSI * rs2s)';
-                    rn3i(j, 1:2) = (RSI * rs3s)';
-                    rn4i(j, 1:2) = (RSI * rs4s)';
+                    rn1i(j, 1:2) = (RSI * rs1s)<span class="string">';</span>
+                    rn2i(j, 1:2) = (RSI * rs2s)<span class="string">';</span>
+                    rn3i(j, 1:2) = (RSI * rs3s)<span class="string">';</span>
+                    rn4i(j, 1:2) = (RSI * rs4s)<span class="string">';</span>
 
                     <span class="comment">% Position of semitrailer axle</span>
                     emm(j, 1:2) = (RSI * eim);
@@ -695,21 +731,22 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
             set(f999,<span class="string">'Units'</span>,<span class="string">'centimeters'</span>)         <span class="comment">% Changing units of the figure to centimeters</span>
             set(f999,<span class="string">'PaperUnits'</span>,<span class="string">'centimeters'</span>)    <span class="comment">% Changing units of the paper to centimeters</span>
             <span class="comment">% Position and size of the figure window</span>
-            set(f999,<span class="string">'Position'</span>,[0 0 PosAxX+tight(1)+tight(3) PosAxY+tight(2)+tight(4)])
+            set(f999,<span class="string">'Position'</span>,[0 0 figWidth figHeight])
             <span class="comment">% Position and size of the figure on the printed page</span>
-            set(f999,<span class="string">'PaperPosition'</span>,[0 0 PosAxX+tight(1)+tight(3) PosAxY+tight(2)+tight(4)])
+            set(f999,<span class="string">'PaperPosition'</span>,[0 0 figWidth figHeight])
             <span class="comment">% % Size of the paper</span>
-            set(f999,<span class="string">'PaperSize'</span>,[PosAxX+tight(1)+tight(3) PosAxY+tight(2)+tight(4)])
+            set(f999,<span class="string">'PaperSize'</span>,[figWidth figHeight])
 
-            <span class="comment">% Setting axes</span>
+
             set(ax999,<span class="string">'Units'</span>,<span class="string">'centimeters'</span>)        <span class="comment">% Changing units of the axes to centimeters</span>
+            <span class="comment">% Setting axes</span>
             set(ax999,<span class="string">'XLim'</span>,XLim)
             set(ax999,<span class="string">'YLim'</span>,YLim)
-            set(ax999,<span class="string">'Position'</span>,[tight(1:2) PosAxX PosAxY])
+            <span class="comment">% set(ax999,'Position',[tight(1:2) PosAxX PosAxY])</span>
             set(ax999,<span class="string">'Box'</span>,<span class="string">'on'</span>,<span class="string">'XGrid'</span>,<span class="string">'on'</span>,<span class="string">'YGrid'</span>,<span class="string">'on'</span>,<span class="string">'ZGrid'</span>,<span class="string">'on'</span>)
 
             <span class="keyword">if</span> nargin == 2
-                [pathstr, name, ext] = fileparts(varargin{1});
+                [pathstr, name, ~] = fileparts(self.SavePath);
 
                 <span class="keyword">if</span> not(exist(pathstr, <span class="string">'file'</span>) == 7)
                     mkdir(pathstr);
@@ -720,13 +757,31 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
         <span class="keyword">end</span>
     <span class="keyword">end</span>
 
-    methods(Static)
-</pre><h2>Vector<a name="4"></a></h2><p>Plots a vector arrow.</p><p><b>Sintax</b></p><p><tt><i>GraphicsClass</i>.Vector(inicio, angulo, modulo, cor)</tt></p><p><b>Arguments</b></p><p>The following table describes the input arguments:</p><p> <table border=1 width="97%">
-<tr> <td width="30%"><tt>startCoord</tt></td> <td width="70%"> Vector start coordinate.</td> </tr>
-<tr> <td width="30%"><tt>angle</tt></td> <td width="70%"> Orientation angle of the arrow.</td> </tr>
-<tr> <td width="30%"><tt>modulo</tt></td> <td width="70%">Size of the arrow.</td> </tr>
-<tr> <td width="30%"><tt>color</tt></td> <td width="70%">Color of the arrow.</td> </tr>
-</table> </p><p><b>Description</b></p><p>TEXTO</p><pre class="codeinput">        <span class="keyword">function</span> Vector(startCoord, angle, modulo, color)
+    <span class="keyword">methods</span>(Static)
+
+        <span class="comment">%% Vector</span>
+        <span class="comment">% Plots a vector arrow.</span>
+        <span class="comment">%</span>
+        <span class="comment">% *Sintax*</span>
+        <span class="comment">%</span>
+        <span class="comment">% |_GraphicsClass_.Vector(inicio, angulo, modulo, cor)|</span>
+        <span class="comment">%</span>
+        <span class="comment">% *Arguments*</span>
+        <span class="comment">%</span>
+        <span class="comment">% The following table describes the input arguments:</span>
+        <span class="comment">%</span>
+        <span class="comment">% <html> <table border=1 width="97%"></span>
+        <span class="comment">% <tr> <td width="30%"><tt>startCoord</tt></td> <td width="70%"> Vector start coordinate.</td> </tr></span>
+        <span class="comment">% <tr> <td width="30%"><tt>angle</tt></td> <td width="70%"> Orientation angle of the arrow.</td> </tr></span>
+        <span class="comment">% <tr> <td width="30%"><tt>modulo</tt></td> <td width="70%">Size of the arrow.</td> </tr></span>
+        <span class="comment">% <tr> <td width="30%"><tt>color</tt></td> <td width="70%">Color of the arrow.</td> </tr></span>
+        <span class="comment">% </table> </html></span>
+        <span class="comment">%</span>
+        <span class="comment">% *Description*</span>
+        <span class="comment">%</span>
+        <span class="comment">% TEXTO</span>
+
+        <span class="keyword">function</span> Vector(startCoord, angle, modulo, color)
             coord1 = startCoord;                                <span class="comment">% Vector start coordinate</span>
             theta = angle;
             modulo = 0.7 * modulo;                                <span class="comment">% Size of the vector</span>
@@ -745,7 +800,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
             x = [c1(1)+coord2(1) c2(1)+coord2(1) c3(1)+coord2(1)];
             y = [c1(2)+coord2(2) c2(2)+coord2(2) c3(2)+coord2(2)];
 
-            hold <span class="string">on</span>
+            hold on
             fill(x, y, color)
             p = plot([coord1(1) coord2(1)],[coord1(2) coord2(2)],color);
             set(p, <span class="string">'LineWidth'</span>, 2)
@@ -753,55 +808,114 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
             <span class="comment">% m = plot(coord1(1),coord1(2),strcat('*', cor));</span>
             <span class="comment">% set(m, 'MarkerSize', 10)</span>
         <span class="keyword">end</span>
-</pre><h2>changeMarker<a name="5"></a></h2><p>The function changeMarker changes the number of marker in a plot.</p><p><b>Sintax</b></p><p><tt><i>GraphicsClass</i>.changeMarker(p, n)</tt></p><p><b>Arguments</b></p><p>The following table describes the input arguments:</p><p> <table border=1 width="97%">
-<tr> <td width="30%"><tt>p</tt></td> <td width="70%">Handle do plot.</td> </tr>
-<tr> <td width="30%"><tt>n</tt></td> <td width="70%">Number of markers to be included.</td> </tr>
-</table> </p><p><b>Description</b></p><p>TEXTO</p><pre class="codeinput">        <span class="keyword">function</span> changeMarker(p, n)
-            <span class="comment">% p - handle of plot</span>
+
+        <span class="comment">%% changeMarker</span>
+        <span class="comment">% The function changeMarker changes the number of marker in a plot.</span>
+        <span class="comment">%</span>
+        <span class="comment">% *Sintax*</span>
+        <span class="comment">%</span>
+        <span class="comment">% |_GraphicsClass_.changeMarker(p, n)|</span>
+        <span class="comment">%</span>
+        <span class="comment">% *Arguments*</span>
+        <span class="comment">%</span>
+        <span class="comment">% The following table describes the input arguments:</span>
+        <span class="comment">%</span>
+        <span class="comment">% <html> <table border=1 width="97%"></span>
+        <span class="comment">% <tr> <td width="30%"><tt>p</tt></td> <td width="70%">Handle do plot.</td> </tr></span>
+        <span class="comment">% <tr> <td width="30%"><tt>n</tt></td> <td width="70%">Number of markers to be included.</td> </tr></span>
+        <span class="comment">% </table> </html></span>
+        <span class="comment">%</span>
+        <span class="comment">% *Description*</span>
+        <span class="comment">%</span>
+        <span class="comment">% TEXTO</span>
+
+        <span class="keyword">function</span> changeMarker(n,varargin)
             <span class="comment">% n - number of markers</span>
+            <span class="comment">% varargin contain all plot handles</span>
+            plotNumber = length(varargin);
+            <span class="comment">% Preallocating</span>
+            lineColor{plotNumber} = <span class="string">'void'</span>;
+            line_Style{plotNumber} = <span class="string">'void'</span>;
+            line_LineWidth = zeros(plotNumber,1);
+            marker_type{plotNumber} = <span class="string">'void'</span>;
+            marker_size = zeros(plotNumber,1);
+            marker_EdgeColor{plotNumber} = <span class="string">'void'</span>;
+            marker_FaceColor{plotNumber} = <span class="string">'void'</span>;
+            vec_XDataOne = get(varargin{1}, <span class="string">'XData'</span>);
+            vec_YDataOne = get(varargin{1}, <span class="string">'YData'</span>);
+            vec_XData = zeros(plotNumber, length(vec_XDataOne));
+            vec_YData = zeros(plotNumber, length(vec_YDataOne));
+            p_marker = zeros(plotNumber,1);
 
-            <span class="comment">% Line info</span>
-            line_color = get(p, <span class="string">'Color'</span>);
-            line_Style = get(p, <span class="string">'LineStyle'</span>);
-            line_LineWidth = get(p, <span class="string">'LineWidth'</span>);
-            <span class="comment">% Marker info</span>
-            marker_type = get(p, <span class="string">'Marker'</span>);
-            marker_size = get(p, <span class="string">'MarkerSize'</span>);
-            marker_EdgeColor = get(p, <span class="string">'MarkerEdgeColor'</span>);
-            marker_FaceColor = get(p, <span class="string">'MarkerFaceColor'</span>);
-            <span class="comment">% Axis info</span>
-            vec_XData = get(p, <span class="string">'XData'</span>);
-            vec_YData = get(p, <span class="string">'YData'</span>);
+            <span class="comment">% Getting infos and plotting new markers</span>
+            <span class="keyword">for</span> i = 1:plotNumber
+                <span class="comment">% Current handle</span>
+                p = varargin{i};
+                <span class="comment">% Line info</span>
+                line_color{i} = get(p, <span class="string">'Color'</span>);
+                line_Style{i} = get(p, <span class="string">'LineStyle'</span>);
+                line_LineWidth(i) = get(p, <span class="string">'LineWidth'</span>);
+                <span class="comment">% Marker info</span>
+                marker_type{i} = get(p, <span class="string">'Marker'</span>);
+                marker_size(i) = get(p, <span class="string">'MarkerSize'</span>);
+                marker_EdgeColor{i} = get(p, <span class="string">'MarkerEdgeColor'</span>);
+                marker_FaceColor{i} = get(p, <span class="string">'MarkerFaceColor'</span>);
+                <span class="comment">% Axis info</span>
+                vec_XData(i,:) = get(p, <span class="string">'XData'</span>);
+                vec_YData(i,:) = get(p, <span class="string">'YData'</span>);
 
-            size_XData = length(vec_XData);
+                size_XData = length(vec_XData(i,:));
 
-            step = floor((size_XData)/(n-1));
+                step = floor((size_XData)/(n-1));
 
-            <span class="comment">% Ploting the markers</span>
-            p_marker = plot(vec_XData(1:step:end),vec_YData(1:step:end));
-            set(p_marker, <span class="string">'LineStyle'</span>, <span class="string">'none'</span>, <span class="string">'Marker'</span>, marker_type, <span class="string">'MarkerSize'</span>, marker_size,<span class="keyword">...</span>
-                <span class="string">'MarkerEdgeColor'</span>, marker_EdgeColor, <span class="string">'MarkerFaceColor'</span>, marker_FaceColor)
+                <span class="comment">% Ploting the markers</span>
+                p_marker(i) = plot(vec_XData(i,1:step:end),vec_YData(i,1:step:end));
+                set(p_marker(i), <span class="string">'LineStyle'</span>, <span class="string">'none'</span>, <span class="string">'Marker'</span>, marker_type{i}, <span class="string">'MarkerSize'</span>, marker_size(i),...
+                    <span class="string">'MarkerEdgeColor'</span>, marker_EdgeColor{i}, <span class="string">'MarkerFaceColor'</span>, marker_FaceColor{i})
+            <span class="keyword">end</span>
 
-            <span class="comment">% Removing the markers from the original plot</span>
-            set(p, <span class="string">'Marker'</span>, <span class="string">'none'</span>)
-            <span class="comment">% Hiding the original plot</span>
-            set(p, <span class="string">'HandleVisibility'</span>, <span class="string">'off'</span>)
-            set(p_marker, <span class="string">'HandleVisibility'</span>, <span class="string">'off'</span>)
+            <span class="comment">% Getting axis Limits</span>
+            xlim = get(gca,<span class="string">'xlim'</span>);
+            ylim = get(gca,<span class="string">'ylim'</span>);
 
-            <span class="comment">% Dummy for legend</span>
-            p_dummy = plot(vec_XData(1),vec_YData(1));
-            set(p_dummy, <span class="string">'Color'</span>, line_color, <span class="string">'LineStyle'</span>, line_Style, <span class="string">'LineWidth'</span>, line_LineWidth,<span class="keyword">...</span>
-                <span class="string">'Marker'</span>, marker_type, <span class="string">'MarkerSize'</span>, marker_size,<span class="keyword">...</span>
-                <span class="string">'MarkerEdgeColor'</span>, marker_EdgeColor, <span class="string">'MarkerFaceColor'</span>, marker_FaceColor)
+            <span class="keyword">for</span> i = 1:plotNumber
+                <span class="comment">% Removing the markers from the original plot</span>
+                set(varargin{i}, <span class="string">'Marker'</span>, <span class="string">'none'</span>)
+                <span class="comment">% Hiding the original plot</span>
+                set(varargin{i}, <span class="string">'HandleVisibility'</span>, <span class="string">'off'</span>)
+                set(p_marker(i), <span class="string">'HandleVisibility'</span>, <span class="string">'off'</span>)
+            <span class="keyword">end</span>
+
+            <span class="comment">% Creating dummy for legend</span>
+            <span class="keyword">for</span> i = 1:plotNumber
+                <span class="comment">% Dummy for legend</span>
+                p_dummy = plot(vec_XData(i,1),vec_YData(i,1));
+                set(p_dummy, <span class="string">'Color'</span>, line_color{i}, <span class="string">'LineStyle'</span>, line_Style{i}, <span class="string">'LineWidth'</span>, line_LineWidth(i),...
+                    <span class="string">'Marker'</span>, marker_type{i}, <span class="string">'MarkerSize'</span>, marker_size(i),...
+                    <span class="string">'MarkerEdgeColor'</span>, marker_EdgeColor{i}, <span class="string">'MarkerFaceColor'</span>, marker_FaceColor{i})
+            <span class="keyword">end</span>
+
+            <span class="comment">% Adjusting limits</span>
+            set(gca,<span class="string">'xlim'</span>,xlim,<span class="string">'ylim'</span>,ylim)
+
         <span class="keyword">end</span>
-</pre><pre class="codeinput">    <span class="keyword">end</span>
-</pre><h2>Properties<a name="7"></a></h2><pre class="codeinput">    properties
+
+    <span class="keyword">end</span>
+
+    <span class="comment">%% Properties</span>
+    <span class="comment">%</span>
+
+    <span class="keyword">properties</span>
         Simulator
         TractorColor
         SemitrailerColor
+        IsOctave
+        SavePath
+        ScaleFig
     <span class="keyword">end</span>
-</pre><pre class="codeinput"><span class="keyword">end</span>
-</pre><h2>See Also<a name="9"></a></h2><p><a href="../../index.html">Home</a></p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
+<span class="keyword">end</span></pre><h2><a id="node1">See Also</a></h2><p><a href="../../index.html">Home</a></p>
+<footer><hr><a href="http://www.octave.org">Published with GNU Octave 4.2.1</a></footer>
+<!--
 ##### SOURCE BEGIN #####
 classdef Graphics
     % Graphics Functions for graphics generation.
@@ -811,15 +925,28 @@ classdef Graphics
         % Constructor
         function self = Graphics(simulator)
             self.Simulator = simulator;
-            self.TractorColor = 'r';
+            self.TractorColor = 'b';
             self.SemitrailerColor = 'g';
+            self.IsOctave = isOctave;       % Return true if the environment is Octave.
+            % Default user options
+            self.ScaleFig = 1;              % Scale 1 x 1 between x and y axis.
         end
 
         function Animation(self, varargin)
-            % Verifying number of columns of the state output matrix
-            % col = 6 -> simples
-            % col = 8 -> articulado
-            articulated = isa(self.Simulator.Vehicle, 'VehicleDynamicsLateral.VehicleArticulated');
+            % Arranging user options
+            i=1;
+            while i <= length(varargin)
+                switch lower(varargin{i})
+                    case 'savepath'
+                        self.SavePath = varargin{i+1}; i=i+2;
+                    case 'scalefig'
+                        self.ScaleFig = varargin{i+1}; i=i+2;
+                    otherwise
+                        error('Unknown option: %s\n',varargin{i}); i=i+1;
+                end
+            end
+
+            articulated = isa(self.Simulator.Vehicle, 'VehicleArticulated');
 
             % States
             TOUT = self.Simulator.TSpan;
@@ -957,26 +1084,26 @@ classdef Graphics
             end
 
 
-            figWidth = 20 ;                             % Defining the width of the figure [centimeters]
-            Scale = 1; % Adjust the scale of y in relation to x
+            figWidth = 30 ;                             % Defining the width of the figure [centimeters]
+            Scale = self.ScaleFig; % Adjust the scale of y in relation to x
             % Margins added to Position to include text labels [left bottom right top] Property - TightInset (read only)
-            tight = [1.3 1.3 0.2 0.2];
-            PosAxX = figWidth - tight(1) - tight(3);     % Width of the axes (axes position x)
             XLim = [min(XT)-20 max(XT)+10];              % Limits of x
             rangeX = XLim(2) - XLim(1);                  % Range of x
             YLim = [min(YT)-5 max(YT)+5];              % Limits of y
             % YLim = [min(YT)-10 max(YT)+10];              % Limits of y
             rangeY = YLim(2) - YLim(1);                  % Range of y
-            PosAxY = Scale*PosAxX*rangeY/rangeX;         % Height of the axes (axes position y) - Equivalent to axis
+            figHeight = Scale*figWidth*rangeY/rangeX;         % Height of the axes (axes position y) - Equivalent to axis
             % Defining figure
             f666 = figure(666);
             % Defining axes
             ax666=gca;
-            set(ax666,'NextPlot','add')                 % hold on
+            set(ax666,'NextPlot','add','fontsize',15)                 % hold on
 
             % Description
-            xlabel('Distance [m]');
-            ylabel('Distance [m]');
+            xl = xlabel('Distance [m]');
+            yl = ylabel('Distance [m]');
+            set(xl,'fontsize',18)
+            set(yl,'fontsize',18)
 
             % First frame
 
@@ -1066,8 +1193,8 @@ classdef Graphics
                 fill(xn, yn, self.SemitrailerColor)
             end
 
-            if nargin == 2
-                [pathstr, name, ext] = fileparts(varargin{1});
+            if isempty(self.SavePath) == 0
+                [pathstr, name, ~] = fileparts(self.SavePath);
 
                 if not(exist(pathstr, 'file') == 7)
                     mkdir(pathstr);
@@ -1077,32 +1204,34 @@ classdef Graphics
                 set(f666,'Units','centimeters')         % Changing units of the figure to centimeters
                 set(f666,'PaperUnits','centimeters')    % Changing units of the paper to centimeters
                 % Position and size of the figure window
-                set(f666,'Position',[0 0 PosAxX+tight(1)+tight(3) PosAxY+tight(2)+tight(4)])
+                set(f666,'Position',[0 0 figWidth figHeight])
                 % Position and size of the figure on the printed page
-                set(f666,'PaperPosition',[0 0 PosAxX+tight(1)+tight(3) PosAxY+tight(2)+tight(4)])
+                set(f666,'PaperPosition',[0 0 figWidth figHeight])
                 % % Size of the paper
-                set(f666,'PaperSize',[PosAxX+tight(1)+tight(3) PosAxY+tight(2)+tight(4)])
+                set(f666,'PaperSize',[figWidth figHeight])
                 set(ax666,'Units','centimeters')        % Changing units of the axes to centimeters
 
                 % Setting axes
                 set(ax666,'XLim',XLim)
                 set(ax666,'YLim',YLim)
-                set(ax666,'Position',[tight(1:2) PosAxX PosAxY])
+                % set(ax666,'Position',[tight(1:2) PosAxX PosAxY])
                 set(ax666,'Box','on','XGrid','on','YGrid','on','ZGrid','on')
 
-                % Initializing gif
-                frame = getframe(666);
-                im = frame2im(frame);
-                [A, map] = rgb2ind(im, 256, 'nodither');
-                imwrite(A, map, strcat(pathstr, '/', name, '.gif'), 'LoopCount', Inf, 'DelayTime', 0.05);
+                if self.IsOctave == 0
+                    % Initializing gif
+                    frame = getframe(666);
+                    im = frame2im(frame);
+                    [A, map] = rgb2ind(im, 256, 'nodither');
+                    imwrite(A, map, strcat(pathstr, '/', name, '.gif'), 'LoopCount', Inf, 'DelayTime', 0.05);
+                end
             end
 
             % Remaining frames
             %
             for j = 1:length(TEMPO)
                 % Axles
-                plot(efrente(:,1),efrente(:,2),'r')
-                plot(etras(:,1),etras(:,2),'g')
+                plot(efrente(:,1),efrente(:,2),'r','linewidth',1);
+                plot(etras(:,1),etras(:,2),'g','linewidth',1);
 
                 % Coordinates of the corners
                 xc = [rc1(j, 1) rc2(j, 1) rc3(j, 1) rc4(j, 1)];
@@ -1128,26 +1257,32 @@ classdef Graphics
                 set(f666,'Units','centimeters')         % Changing units of the figure to centimeters
                 set(f666,'PaperUnits','centimeters')    % Changing units of the paper to centimeters
                 % Position and size of the figure window
-                set(f666,'Position',[0 0 PosAxX+tight(1)+tight(3) PosAxY+tight(2)+tight(4)])
+                set(f666,'Position',[0 0 figWidth figHeight])
                 % Position and size of the figure on the printed page
-                set(f666,'PaperPosition',[0 0 PosAxX+tight(1)+tight(3) PosAxY+tight(2)+tight(4)])
+                set(f666,'PaperPosition',[0 0 figWidth figHeight])
                 % % Size of the paper
-                set(f666,'PaperSize',[PosAxX+tight(1)+tight(3) PosAxY+tight(2)+tight(4)])
+                set(f666,'PaperSize',[figWidth figHeight])
                 set(ax666,'Units','centimeters')        % Changing units of the axes to centimeters
 
                 % Setting axes
                 set(ax666,'XLim',XLim)
                 set(ax666,'YLim',YLim)
-                set(ax666,'Position',[tight(1:2) PosAxX PosAxY])
+                % set(ax666,'Position',[tight(1:2) PosAxX PosAxY])
                 set(ax666,'Box','on','XGrid','on','YGrid','on','ZGrid','on')
-                if nargin == 2
-                    [pathstr, name, ext] = fileparts(varargin{1});
+                if isempty(self.SavePath) == 0
+                    [pathstr, name, ~] = fileparts(self.SavePath);
 
-                    % Adding the current frame to the initialized gif
-                    frame = getframe(666);
-                    im = frame2im(frame);
-                    [A, map] = rgb2ind(im, 256, 'nodither');
-                    imwrite(A, map, strcat(pathstr, '/', name, '.gif'), 'WriteMode', 'append', 'DelayTime', 0.05);
+
+                    if self.IsOctave == 1
+                        print('-dpdf','animation.pdf','-append')
+                    else
+                        % Adding the current frame to the initialized gif
+                        frame = getframe(666);
+                        im = frame2im(frame);
+                        [A, map] = rgb2ind(im, 256, 'nodither');
+                        imwrite(A, map, strcat(pathstr, '/', name, '.gif'), 'WriteMode', 'append', 'DelayTime', 0.05);
+                    end
+
                 end
 
                 pause(0.05)                 % OBS: It has to be the same value of the time adjustment
@@ -1155,12 +1290,22 @@ classdef Graphics
                 cla(ax666);                    % Clearing axes
             end
 
+            if isempty(self.SavePath) == 0
+                [pathstr, name, ~] = fileparts(self.SavePath);
+
+                if self.IsOctave == 1
+                    im = imread('animation.pdf','Index','all');
+                    imwrite(im,strcat(pathstr, '/', name, '.gif'),'delayTime',.05,'Compression','bzip')
+                    delete('animation.pdf')
+                end
+            end
+
             % Last frame
             % Last image seen when the animation is over
 
             % Axles
-            plot(efrente(:,1),efrente(:,2),'r')
-            plot(etras(:,1),etras(:,2),'g')
+            plot(efrente(:,1),efrente(:,2),'r','linewidth',1)
+            plot(etras(:,1),etras(:,2),'g','linewidth',1)
 
             % Coordinates of the corners of the last frame
             xc = [rc1(end, 1) rc2(end, 1) rc3(end, 1) rc4(end, 1)];
@@ -1169,8 +1314,8 @@ classdef Graphics
             % Vehicle
             fill(xc, yc, self.TractorColor)
 
-            self.Vector(efrente(end, 1:2),(alphaf(end)+psii(end)),velf(end),'r');
-            self.Vector(etras(end, 1:2),(alphar(end)+psii(end)),velr(end),'g');
+            % self.Vector(efrente(end, 1:2),(alphaf(end)+psii(end)),velf(end),'r');
+            % self.Vector(etras(end, 1:2),(alphar(end)+psii(end)),velr(end),'g');
 
             % Adding the semitrailer
             if articulated
@@ -1178,12 +1323,26 @@ classdef Graphics
                 xn = [rn1(end, 1) rn2(end, 1) rn3(end, 1) rn4(end, 1)];
                 yn = [rn1(end, 2) rn2(end, 2) rn3(end, 2) rn4(end, 2)];
                 fill(xn, yn, self.SemitrailerColor)
-                self.Vector(emsemi(end, 1:2),(alpham(end)+psii(end)-phii(end)),velm(end),'b');
+                % self.Vector(emsemi(end, 1:2),(alpham(end)+psii(end)-phii(end)),velm(end),'b');
             end
+
         end
 
         function Frame(self, varargin)
-            articulated = isa(self.Simulator.Vehicle, 'VehicleDynamicsLateral.VehicleArticulated');
+            % Arranging user options
+            i=1;
+            while i <= length(varargin)
+                switch lower(varargin{i})
+                    case 'savepath'
+                        self.SavePath = varargin{i+1}; i=i+2;
+                    case 'scalefig'
+                        self.ScaleFig = varargin{i+1}; i=i+2;
+                    otherwise
+                        error('Unknown option: %s\n',varargin{i}); i=i+1;
+                end
+            end
+
+            articulated = isa(self.Simulator.Vehicle, 'VehicleArticulated');
 
             % States
             TOUT = self.Simulator.TSpan;
@@ -1308,15 +1467,14 @@ classdef Graphics
             end
 
             figWidth = 20 ;                             % Defining the width of the figure [centimeters]
-            Scale = 1; % Adjust the scale of y in relation to x
+            Scale = self.ScaleFig; % Adjust the scale of y in relation to x
             % Margins added to Position to include text labels [left bottom right top] Property - TightInset (read only)
-            tight = [1.3 1.3 0.2 0.2];
-            PosAxX = figWidth - tight(1) - tight(3);     % Width of the axes (axes position x)
             XLim = [min(XT)-20 max(XT)+10];              % Limits of x
             rangeX = XLim(2) - XLim(1);                  % Range of x
-            YLim = [min(YT)-10 max(YT)+10];              % Limits of y
+            YLim = [min(YT)-5 max(YT)+5];              % Limits of y
+            % YLim = [min(YT)-10 max(YT)+10];              % Limits of y
             rangeY = YLim(2) - YLim(1);                  % Range of y
-            PosAxY = Scale*PosAxX*rangeY/rangeX;         % Height of the axes (axes position y) - Equivalent to axis
+            figHeight = Scale*figWidth*rangeY/rangeX;         % Height of the axes (axes position y) - Equivalent to axis
 
             % Defining figure
             f999 = figure(999);
@@ -1333,8 +1491,8 @@ classdef Graphics
                 etras(i, 1:2) = interp1(TOUT, er, TEMPOplot(i));
             end
 
-            plot(ef(:,1),ef(:,2),'r')
-            plot(er(:,1),er(:,2),'g')
+            plot(ef(:,1),ef(:,2),'r','linewidth',0.5)
+            plot(er(:,1),er(:,2),'g','linewidth',0.5)
 
 
             for j = 1:length(TEMPO)
@@ -1343,8 +1501,9 @@ classdef Graphics
                 yc = [rc1(j, 2) rc2(j, 2) rc3(j, 2) rc4(j, 2)];
                 % Vehicle
                 fill(xc, yc, self.TractorColor);
+                % TODO: Improve this CG plot!
                 p = plot(xxx(j),yyy(j),'ko');
-                set(p,'MarkerFaceColor','k','MarkerEdgeColor','k','MarkerSize',6)
+                set(p,'MarkerFaceColor','k','MarkerEdgeColor','k','MarkerSize',2)
             end
 
             % Adding semitrailer
@@ -1432,21 +1591,22 @@ classdef Graphics
             set(f999,'Units','centimeters')         % Changing units of the figure to centimeters
             set(f999,'PaperUnits','centimeters')    % Changing units of the paper to centimeters
             % Position and size of the figure window
-            set(f999,'Position',[0 0 PosAxX+tight(1)+tight(3) PosAxY+tight(2)+tight(4)])
+            set(f999,'Position',[0 0 figWidth figHeight])
             % Position and size of the figure on the printed page
-            set(f999,'PaperPosition',[0 0 PosAxX+tight(1)+tight(3) PosAxY+tight(2)+tight(4)])
+            set(f999,'PaperPosition',[0 0 figWidth figHeight])
             % % Size of the paper
-            set(f999,'PaperSize',[PosAxX+tight(1)+tight(3) PosAxY+tight(2)+tight(4)])
+            set(f999,'PaperSize',[figWidth figHeight])
 
-            % Setting axes
+
             set(ax999,'Units','centimeters')        % Changing units of the axes to centimeters
+            % Setting axes
             set(ax999,'XLim',XLim)
             set(ax999,'YLim',YLim)
-            set(ax999,'Position',[tight(1:2) PosAxX PosAxY])
+            % set(ax999,'Position',[tight(1:2) PosAxX PosAxY])
             set(ax999,'Box','on','XGrid','on','YGrid','on','ZGrid','on')
 
             if nargin == 2
-                [pathstr, name, ext] = fileparts(varargin{1});
+                [pathstr, name, ~] = fileparts(self.SavePath);
 
                 if not(exist(pathstr, 'file') == 7)
                     mkdir(pathstr);
@@ -1529,43 +1689,75 @@ classdef Graphics
         %
         % TEXTO
 
-        function changeMarker(p, n)
-            % p - handle of plot
+        function changeMarker(n,varargin)
             % n - number of markers
+            % varargin contain all plot handles
+            plotNumber = length(varargin);
+            % Preallocating
+            lineColor{plotNumber} = 'void';
+            line_Style{plotNumber} = 'void';
+            line_LineWidth = zeros(plotNumber,1);
+            marker_type{plotNumber} = 'void';
+            marker_size = zeros(plotNumber,1);
+            marker_EdgeColor{plotNumber} = 'void';
+            marker_FaceColor{plotNumber} = 'void';
+            vec_XDataOne = get(varargin{1}, 'XData');
+            vec_YDataOne = get(varargin{1}, 'YData');
+            vec_XData = zeros(plotNumber, length(vec_XDataOne));
+            vec_YData = zeros(plotNumber, length(vec_YDataOne));
+            p_marker = zeros(plotNumber,1);
 
-            % Line info
-            line_color = get(p, 'Color');
-            line_Style = get(p, 'LineStyle');
-            line_LineWidth = get(p, 'LineWidth');
-            % Marker info
-            marker_type = get(p, 'Marker');
-            marker_size = get(p, 'MarkerSize');
-            marker_EdgeColor = get(p, 'MarkerEdgeColor');
-            marker_FaceColor = get(p, 'MarkerFaceColor');
-            % Axis info
-            vec_XData = get(p, 'XData');
-            vec_YData = get(p, 'YData');
+            % Getting infos and plotting new markers
+            for i = 1:plotNumber
+                % Current handle
+                p = varargin{i};
+                % Line info
+                line_color{i} = get(p, 'Color');
+                line_Style{i} = get(p, 'LineStyle');
+                line_LineWidth(i) = get(p, 'LineWidth');
+                % Marker info
+                marker_type{i} = get(p, 'Marker');
+                marker_size(i) = get(p, 'MarkerSize');
+                marker_EdgeColor{i} = get(p, 'MarkerEdgeColor');
+                marker_FaceColor{i} = get(p, 'MarkerFaceColor');
+                % Axis info
+                vec_XData(i,:) = get(p, 'XData');
+                vec_YData(i,:) = get(p, 'YData');
 
-            size_XData = length(vec_XData);
+                size_XData = length(vec_XData(i,:));
 
-            step = floor((size_XData)/(n-1));
+                step = floor((size_XData)/(n-1));
 
-            % Ploting the markers
-            p_marker = plot(vec_XData(1:step:end),vec_YData(1:step:end));
-            set(p_marker, 'LineStyle', 'none', 'Marker', marker_type, 'MarkerSize', marker_size,...
-                'MarkerEdgeColor', marker_EdgeColor, 'MarkerFaceColor', marker_FaceColor)
+                % Ploting the markers
+                p_marker(i) = plot(vec_XData(i,1:step:end),vec_YData(i,1:step:end));
+                set(p_marker(i), 'LineStyle', 'none', 'Marker', marker_type{i}, 'MarkerSize', marker_size(i),...
+                    'MarkerEdgeColor', marker_EdgeColor{i}, 'MarkerFaceColor', marker_FaceColor{i})
+            end
 
-            % Removing the markers from the original plot
-            set(p, 'Marker', 'none')
-            % Hiding the original plot
-            set(p, 'HandleVisibility', 'off')
-            set(p_marker, 'HandleVisibility', 'off')
+            % Getting axis Limits
+            xlim = get(gca,'xlim');
+            ylim = get(gca,'ylim');
 
-            % Dummy for legend
-            p_dummy = plot(vec_XData(1),vec_YData(1));
-            set(p_dummy, 'Color', line_color, 'LineStyle', line_Style, 'LineWidth', line_LineWidth,...
-                'Marker', marker_type, 'MarkerSize', marker_size,...
-                'MarkerEdgeColor', marker_EdgeColor, 'MarkerFaceColor', marker_FaceColor)
+            for i = 1:plotNumber
+                % Removing the markers from the original plot
+                set(varargin{i}, 'Marker', 'none')
+                % Hiding the original plot
+                set(varargin{i}, 'HandleVisibility', 'off')
+                set(p_marker(i), 'HandleVisibility', 'off')
+            end
+
+            % Creating dummy for legend
+            for i = 1:plotNumber
+                % Dummy for legend
+                p_dummy = plot(vec_XData(i,1),vec_YData(i,1));
+                set(p_dummy, 'Color', line_color{i}, 'LineStyle', line_Style{i}, 'LineWidth', line_LineWidth(i),...
+                    'Marker', marker_type{i}, 'MarkerSize', marker_size(i),...
+                    'MarkerEdgeColor', marker_EdgeColor{i}, 'MarkerFaceColor', marker_FaceColor{i})
+            end
+
+            % Adjusting limits
+            set(gca,'xlim',xlim,'ylim',ylim)
+
         end
 
     end
@@ -1577,6 +1769,9 @@ classdef Graphics
         Simulator
         TractorColor
         SemitrailerColor
+        IsOctave
+        SavePath
+        ScaleFig
     end
 end
 
@@ -1584,6 +1779,7 @@ end
 %
 % <../../index.html Home>
 %
-
 ##### SOURCE END #####
---></body></html>
+-->
+</body>
+</html>

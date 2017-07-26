@@ -2,7 +2,7 @@ function [sys,x0,str,ts] = SimpleVehicleSFunction(t,x,u,flag)
 % This file is a s-function template for simulating the simple vehicle model in Simulink.
 
 % Choosing tire model
-TireModel = VehicleDynamicsLateral.TirePacejka();
+TireModel = TirePacejka();
 % Defining tire parameters
 TireModel.a0 = 1;
 TireModel.a1 = 0;
@@ -20,7 +20,7 @@ TireModel.a12 = 0;
 TireModel.a13 = 0;
 
 % Choosing vehicle model
-VehicleModel = VehicleDynamicsLateral.VehicleSimpleNonlinear();
+VehicleModel = VehicleSimpleNonlinear();
 % Defining vehicle parameters
 VehicleModel.mF0 = 700;
 VehicleModel.mR0 = 600;

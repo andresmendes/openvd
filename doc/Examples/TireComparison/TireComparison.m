@@ -49,7 +49,7 @@ a11 = 0;
 a12= 0;
 a13 = 0;
 
-TirePac = VehicleDynamicsLateral.TirePacejka();
+TirePac = TirePacejka();
 
 Fz = 4e+03;
 camber = 0;
@@ -76,7 +76,7 @@ BCD = TirePac.a3 * sin(2 * atan(Fz/1000/TirePac.a4))*(1-TirePac.a5 * abs(camber)
 
 K = BCD * 180/pi;
 
-TireLin = VehicleDynamicsLateral.TireLinear();
+TireLin = TireLinear();
 TireLin.k = K;
 
 % Polynomial tire MODEL
@@ -84,7 +84,7 @@ TireLin.k = K;
 k1 = BCD * 180/pi;
 k2 = (4 * k1^3)/(27 * D^2);
 
-TirePol = VehicleDynamicsLateral.TirePolynomial();
+TirePol = TirePolynomial();
 TirePol.k1 = k1;
 TirePol.k2 = k2;
 
@@ -94,22 +94,23 @@ FyLin = TireLin.Characteristic(deriva);
 FyPol = TirePol.Characteristic(deriva);
 
 % Graphics
-g = VehicleDynamicsLateral.Graphics(TirePac);
+g = Graphics(TirePac);
 
-figure(1)
+f1 = figure(1);
 ax = gca;
 set(ax, 'NextPlot', 'add', 'Box', 'on', 'XGrid', 'on', 'YGrid', 'on')
-p = plot(deriva * 180/pi,-FyLin, 'Color', 'g', 'Marker', 's', 'MarkerFaceColor', 'g', 'MarkeredgeColor', 'k', 'MarkerSize', 7);
-g.changeMarker(p, 10);
-p = plot(deriva * 180/pi,-FyPol, 'Color', 'b', 'Marker', '^', 'MarkerFaceColor', 'b', 'MarkeredgeColor', 'k', 'MarkerSize', 7);
-g.changeMarker(p, 10);
-p = plot(deriva * 180/pi,-FyPac, 'Color', 'r', 'Marker', 'o', 'MarkerFaceColor', 'r', 'MarkeredgeColor', 'k', 'MarkerSize', 7);
-g.changeMarker(p, 10);
+p1 = plot(deriva * 180/pi,-FyLin, 'Color', 'g', 'Marker', 's', 'MarkerFaceColor', 'g', 'MarkeredgeColor', 'k', 'MarkerSize', 2);
+p2 = plot(deriva * 180/pi,-FyPol, 'Color', 'b', 'Marker', '^', 'MarkerFaceColor', 'b', 'MarkeredgeColor', 'k', 'MarkerSize', 2);
+p3 = plot(deriva * 180/pi,-FyPac, 'Color', 'r', 'Marker', 'o', 'MarkerFaceColor', 'r', 'MarkeredgeColor', 'k', 'MarkerSize', 2);
+g.changeMarker(10,p1,p2,p3);
 xlabel('\(\alpha\) [grau]', 'Interpreter', 'Latex')
 ylabel('\(F_y\) [N]', 'Interpreter', 'Latex')
 l = legend('Linear', 'Polynomial', 'Pacejka');
 set(l, 'Interpreter', 'Latex', 'Location', 'NorthWest')
 
+%%
+% <<../illustrations/plot/TireComparisonFig1.svg>>
+%
 %%
 % In the above figure the 3 characteristic curves are plotted. For small slip angles all models are equivalents.
 %
@@ -135,19 +136,21 @@ FyPacSem180 = -muy/muy0*(fy + Sv);
 % Com tratamento
 FyPacCom180 = TirePac.Characteristic(deriva180, Fz, muy0/1000);
 
-figure(2)
+f2 = figure(2);
 ax = gca;
 set(ax, 'NextPlot', 'add', 'Box', 'on', 'XGrid', 'on', 'YGrid', 'on')
-p = plot(deriva180 * 180/pi,-FyPacSem180, 'Color', 'm', 'Marker', 'd', 'MarkerFaceColor', 'm', 'MarkeredgeColor', 'k', 'MarkerSize', 7);
-g.changeMarker(p, 10);
-p = plot(deriva180 * 180/pi,-FyPacCom180, 'Color', 'r', 'Marker', 'o', 'MarkerFaceColor', 'r', 'MarkeredgeColor', 'k', 'MarkerSize', 7);
-g.changeMarker(p, 10);
+p1 = plot(deriva180 * 180/pi,-FyPacSem180, 'Color', 'm', 'Marker', 'd', 'MarkerFaceColor', 'm', 'MarkeredgeColor', 'k', 'MarkerSize', 2);
+p2 = plot(deriva180 * 180/pi,-FyPacCom180, 'Color', 'r', 'Marker', 'o', 'MarkerFaceColor', 'r', 'MarkeredgeColor', 'k', 'MarkerSize', 2);
+g.changeMarker(10,p1,p2);
 plot([90 90],[0 3000],'--k')    % Linha vertical de simetria
 xlabel('\(\alpha\) [grau]', 'Interpreter', 'Latex')
 ylabel('\(F_y\) [N]', 'Interpreter', 'Latex')
 l = legend('Pacejka without treatment', 'Pacejka with treatment ');
 set(l, 'Interpreter', 'Latex', 'Location', 'SouthEast')
 
+%%
+% <<../illustrations/plot/TireComparisonFig2.svg>>
+%
 %%
 % In the above figure we can see that the curve is symmetric to a vertical line positioned at \(\alpha = 90 [graus]\).
 %

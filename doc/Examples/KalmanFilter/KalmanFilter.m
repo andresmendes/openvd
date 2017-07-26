@@ -24,12 +24,6 @@
 %
 % O modelo da planta é composto pelos modelos não lineares de maior complexidade disponível no pacote, ou seja, o modelo de veículo <../DocVehicleSimpleNonlinear.html Vehicle Simple Nonlinear> com o modelo de pneu <../DocTirePacejka.html Tire Pacejka>. A descrição das equações de movimento podem ser encontradas em <../theory/vehicleSimple.pdf Simple equations of motion>
 %
-
-% O pacote é importado com o comando:
-%
-
-import VehicleDynamicsLateral.*
-
 %%
 % O pneu escolhido <../DocTirePacejka.html Tire Pacejka> é inicializado com os parâmetros predefinidos (default).
 %

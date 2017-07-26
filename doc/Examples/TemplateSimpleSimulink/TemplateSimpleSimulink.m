@@ -1,9 +1,8 @@
 %% Template Simple Simulink
 % This template shows how to simulate a simple vehicle in Simulink using a s-function. The graphics are also plotted.
 %
-% <html>
-% <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
-% </html>
+% <<../illustrations/animation/TemplateSimpleSimulinkAnimation.gif>>
+%
 %
 %% Simulink model
 % This model uses the s-function <SimpleVehicleSFunction.html SimpleVehicleSFunction.m> in Simulink. The package and this s-function must be in Matlab path.
@@ -26,7 +25,7 @@ sim('SimpleVehicleSimulink');
 % To generate the graphics the same model used in <SimpleVehicleSFunction.html SimpleVehicleSFunction.m> must be defined.
 
 % Choosing tire model
-TireModel = VehicleDynamicsLateral.TirePacejka();
+TireModel = TirePacejka();
 % Defining tire parameters
 TireModel.a0 = 1;
 TireModel.a1 = 0;
@@ -44,7 +43,7 @@ TireModel.a12 = 0;
 TireModel.a13 = 0;
 
 % Choosing vehicle model
-VehicleModel = VehicleDynamicsLateral.VehicleSimpleNonlinear();
+VehicleModel = VehicleSimpleNonlinear();
 % Defining vehicle parameters
 VehicleModel.mF0 = 700;
 VehicleModel.mR0 = 600;
@@ -56,7 +55,7 @@ VehicleModel.wT = 2;
 VehicleModel.muy = .8;
 VehicleModel.tire = TireModel;
 
-simulator = VehicleDynamicsLateral.Simulator(VehicleModel, tout);
+simulator = Simulator(VehicleModel, tout);
 
 % Retrieving states from Simulink model
 simulator.XT = simout.Data(:,1);
@@ -67,16 +66,21 @@ simulator.ALPHAT = simout.Data(:,5);
 simulator.dPSI = simout.Data(:,6);
 
 
-g = VehicleDynamicsLateral.Graphics(simulator);
+g = Graphics(simulator);
 g.TractorColor = 'r';
 
 g.Frame();
+
+%%
+% <<../illustrations/frame/TemplateSimpleSimulinkFrame.gif>>
+%
+
 g.Animation();
 
 %%
 % As expected the vehicle starts traveling in a straight line and starts a turn at \(t = 1 \, s\) because of the step function.
 %
-% <<../illustrations/AnimationTemplateSimpleSimulink.gif>>
+% <<../illustrations/animation/TemplateSimpleSimulinkAnimation.gif>>
 %
 %% See Also
 %

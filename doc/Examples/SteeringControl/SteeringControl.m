@@ -1,9 +1,7 @@
 %% Steering Control
 % Steering Control of Autonomous Vehicles in Obstacle Avoidance Maneuvers.
 %
-% <html>
-% <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
-% </html>
+% <<../illustrations/animation/SteeringControlAnimation.gif>>
 %
 %% Vehicle model
 % *Bicycle model*
@@ -95,7 +93,7 @@ a11 = 0;
 a12 = 0;
 a13 = 0;
 
-TirePac = VehicleDynamicsLateral.TirePacejka();
+TirePac = TirePacejka();
 
 Fz = 4e+03;
 camber = 0;
@@ -122,7 +120,7 @@ BCD = TirePac.a3 * sin(2 * atan(Fz/1000/TirePac.a4))*(1-TirePac.a5 * abs(camber)
 
 Ktire = BCD * 180/pi;
 
-TireLin = VehicleDynamicsLateral.TireLinear();
+TireLin = TireLinear();
 TireLin.k = Ktire;
 
 % Lateral force
@@ -130,30 +128,34 @@ FyPac = TirePac.Characteristic(deriva, Fz, muy0/1000);
 FyLin = TireLin.Characteristic(deriva);
 
 % Graphics
-g = VehicleDynamicsLateral.Graphics(TirePac);
+g = Graphics(TirePac);
 
 %%
 % Comparison of tire models
 
-figure(1)
+f1 = figure(1);
 ax = gca;
 set(ax, 'NextPlot', 'add', 'Box', 'on', 'XGrid', 'on', 'YGrid', 'on')
-p = plot(deriva * 180/pi,-FyLin, 'Color', 'g', 'Marker', 's', 'MarkerFaceColor', 'g', 'MarkeredgeColor', 'k', 'MarkerSize', 7);
-g.changeMarker(p, 10);
-p = plot(deriva * 180/pi,-FyPac, 'Color', 'r', 'Marker', 'o', 'MarkerFaceColor', 'r', 'MarkeredgeColor', 'k', 'MarkerSize', 7);
-g.changeMarker(p, 10);
+set(ax,'xlim',[0 15])
+p1 = plot(deriva * 180/pi,-FyPac, 'Color', 'r', 'Marker', 'o', 'MarkerFaceColor', 'r', 'MarkeredgeColor', 'k', 'MarkerSize', 3);
+p2 = plot(deriva * 180/pi,-FyLin, 'Color', 'g', 'Marker', 's', 'MarkerFaceColor', 'g', 'MarkeredgeColor', 'k', 'MarkerSize', 3);
+g.changeMarker(10,p1,p2);
 xlabel('\(\alpha\) [grau]', 'Interpreter', 'Latex')
 ylabel('\(F_y\) [N]', 'Interpreter', 'Latex')
 l = legend('Linear', 'Pacejka');
 set(l, 'Interpreter', 'Latex', 'Location', 'NorthWest')
+
+%%
+% <<../illustrations/plot/SteeringControlFig1.svg>>
+%
 
 %
 %% Plant model
 % Nonlinear vehicle + Pacejka tire
 
 % Choosing vehicle
-% System = VehicleDynamicsLateral.VehicleSimpleLinear();
-VehiclePlant = VehicleDynamicsLateral.VehicleSimpleNonlinear();
+% System = VehicleSimpleLinear();
+VehiclePlant = VehicleSimpleNonlinear();
 % Defining vehicle parameters
 VehiclePlant.mF0 = 700;
 VehiclePlant.mR0 = 600;
@@ -172,7 +174,7 @@ disp(VehiclePlant)
 T = 12;                      % Total simulation time [s]
 resol = 500;                 % Resolution
 TSPAN = 0:T/resol:T;        % Time span [s]
-simulator = VehicleDynamicsLateral.Simulator(VehiclePlant, TSPAN);
+simulator = Simulator(VehiclePlant, TSPAN);
 simulator.V0 = 16.7;
 
 %% Controller design
@@ -269,8 +271,13 @@ disp(Kplace)
 % Simulation
 simulator.Simulate();
 
-g = VehicleDynamicsLateral.Graphics(simulator);
-g.Frame();
+g = Graphics(simulator);
+g.Frame('scalefig',3);
+
+%%
+% <<../illustrations/frame/SteeringControlFrame.svg>>
+%
+
 
     % Adding the double lane change track to the frame figure
     carWidth = 2;
@@ -307,10 +314,10 @@ g.Frame();
     plot([95 130],[section5Sup section5Sup],'k')
     plot([95 130],[0 0],'k--')
 
-g.Animation();
+g.Animation('scalefig',3);
 
 %%
-% <<../illustrations/AnimationSteeringControl.gif>>
+% <<../illustrations/animation/SteeringControlAnimation.gif>>
 %
 
 % Retrieving states
@@ -350,11 +357,11 @@ for ii = 1:length(TSPAN)
 end
 
 % States
-f = figure;
-set(f,'PaperUnits','centimeters')
-set(f,'PaperPosition',[0 0 8.9 5])
-PaperPos = get(f,'PaperPosition');
-set(f,'PaperSize',PaperPos(3:4))
+f2 = figure(2);
+% set(f2,'PaperUnits','centimeters')
+% set(f2,'PaperPosition',[0 0 8.9 5])
+% PaperPos = get(f,'PaperPosition');
+% set(f,'PaperSize',PaperPos(3:4))
 hold on; box on; grid on
 plot(TSPAN,YT,'r')
 plot(TSPAN,PSI,'g')
@@ -365,17 +372,25 @@ ylabel('States')
 l = legend('\(y\)','\(\psi\)','\(\alpha_T\)','\(\dot{\psi}\)');
 set(l,'Interpreter','Latex','Location','NorthEast')
 
+%%
+% <<../illustrations/plot/SteeringControlFig2.svg>>
+%
+
 % Steering input
-f = figure;
-set(f,'PaperUnits','centimeters')
-set(f,'PaperPosition',[0 0 8.9 3.5])
-PaperPos = get(f,'PaperPosition');
-set(f,'PaperSize',PaperPos(3:4))
+f3 = figure(3);
+% set(f2,'PaperUnits','centimeters')
+% set(f2,'PaperPosition',[0 0 8.9 3.5])
+% PaperPos = get(f,'PaperPosition');
+% set(f,'PaperSize',PaperPos(3:4))
 hold on; box on; grid on
 plot(TSPAN,output*180/pi,'k')
 xlabel('Time [s]')
 y = ylabel('\(\delta [deg]\)');
 set(y,'Interpreter','Latex')
+
+%%
+% <<../illustrations/plot/SteeringControlFig3.svg>>
+%
 
 %% See Also
 %

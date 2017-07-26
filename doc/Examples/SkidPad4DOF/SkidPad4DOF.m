@@ -1,11 +1,11 @@
 %% SkidPad 4DOF
 % Maneuver in circles of a <DocVehicleSimpleNonlinear4DOF.html nonlinear simple vehicle 4DOF> with Pacejka tire model.
 %
-% A control law (rear-wheel-drive) is used to maintain a CG speed of 8 m/s.
+% <<../illustrations/animation/SkidPad4DOFAnimation.gif>>
 %
 %%
+% A control law (rear-wheel-drive) is used to maintain a CG speed of 8 m/s.
 %
-import VehicleDynamicsLateral.*
 
 % Choosing tire
 TireModel = TirePacejka();
@@ -83,56 +83,79 @@ FzRearRight = FzRight*a/(a+b);
 FzRearLeft = FzLeft*a/(a+b);
 
 
-figure
+f1 = figure(1);
 hold on ; grid on ; box on
 plot(TSPAN,XT)
 xlabel('time [s]')
 ylabel('Distance in the x direction [m]')
 
-figure
+%%
+% <<../illustrations/plot/SkidPad4DOFFig1.svg>>
+
+f2 = figure(2);
 hold on ; grid on ; box on
 plot(TSPAN,YT)
 xlabel('time [s]')
 ylabel('Distance in the y direction [m]')
 
-figure
+%%
+% <<../illustrations/plot/SkidPad4DOFFig2.svg>>
+
+f3 = figure(3);
 hold on ; grid on ; box on
 plot(TSPAN,PSI)
 xlabel('time [s]')
 ylabel('Yaw angle [rad]')
 
-figure
+%%
+% <<../illustrations/plot/SkidPad4DOFFig3.svg>>
+
+f4 = figure(4);
 hold on ; grid on ; box on
 plot(TSPAN,THETA)
 xlabel('time [s]')
 ylabel('Roll angle [rad]')
 
-figure
+%%
+% <<../illustrations/plot/SkidPad4DOFFig4.svg>>
+
+f5 = figure(5);
 hold on ; grid on ; box on
 plot(TSPAN,VEL)
 xlabel('time [s]')
 ylabel('Velocity [m/s]')
 
-figure
+%%
+% <<../illustrations/plot/SkidPad4DOFFig5.svg>>
+
+f6 = figure(6);
 hold on ; grid on ; box on
 plot(TSPAN,ALPHAT)
 xlabel('time [s]')
 ylabel('Vehicle slip angle [rad/s]')
 
-figure
+%%
+% <<../illustrations/plot/SkidPad4DOFFig6.svg>>
+
+f7 = figure(7);
 hold on ; grid on ; box on
 plot(TSPAN,dPSI)
 xlabel('time [s]')
 ylabel('Yaw rate [rad/s]')
 
-figure
+%%
+% <<../illustrations/plot/SkidPad4DOFFig7.svg>>
+
+f8 = figure(8);
 hold on ; grid on ; box on
 plot(TSPAN,dTHETA)
 xlabel('time [s]')
 ylabel('Roll rate [rad/s]')
 
+%%
+% <<../illustrations/plot/SkidPad4DOFFig8.svg>>
 
-figure
+f9 = figure(9);
 hold on ; grid on ; box on
 plot(TSPAN,FzFrontRight,'r')
 plot(TSPAN,FzRearRight,'g')
@@ -142,13 +165,19 @@ xlabel('time [s]')
 ylabel('Vertical force [N]')
 legend('Front Right','Rear Right','Front Left','Rear Left')
 
-figure
+%%
+% <<../illustrations/plot/SkidPad4DOFFig9.svg>>
+
+f10 = figure(10);
 hold on ; grid on ; box on
 plot(TSPAN,FzFrontRight + FzFrontLeft,'r')
 plot(TSPAN,FzRearRight + FzRearLeft,'g')
 xlabel('time [s]')
 ylabel('Vertical force [N]')
 legend('Front axle','Rear axle')
+
+%%
+% <<../illustrations/plot/SkidPad4DOFFig10.svg>>
 
 %%
 % mF0
@@ -169,6 +198,8 @@ g.TractorColor = 'r';
 
 g.Frame();
 
+%%
+% <<../illustrations/frame/SkidPad4DOFFrame.svg>>
 
 %%
 %
@@ -186,13 +217,13 @@ plot(XX,YY,'k')
 g.Animation();
 
 %%
+% <<../illustrations/animation/SkidPad4DOFAnimation.gif>>
+
+%%
 % Maneuver radius
 
 disp(num2str(R))
 
-%%
-% <<../illustrations/AnimationSkidPad4DOF.gif>>
-%
 %% See Also
 %
 % <../index.html Home>

@@ -1,77 +1,66 @@
-
-<!DOCTYPE html
-  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head>
-      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-   <!--
-This HTML was auto-generated from MATLAB code.
-To make changes, update the MATLAB code and republish this document.
-      --><title>Skid pad</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-12-13"><meta name="DC.source" content="SkidPad.m"><style type="text/css">
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
-
-html { min-height:100%; margin-bottom:1px; }
-html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
-html body td { vertical-align:top; text-align:left; }
-
-h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
-h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
-h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
-
-a { color:#005fce; text-decoration:none; }
-a:hover { color:#005fce; text-decoration:underline; }
-a:visited { color:#004aa0; text-decoration:none; }
-
-p { padding:0px; margin:0px 0px 20px; }
-img { padding:0px; margin:0px 0px 20px; border:none; }
-p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
-
-ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
-ul li { padding:0px; margin:0px 0px 7px 0px; }
-ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
-ul li ol li { list-style:decimal; }
-ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
-ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
-ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
-ol li ol li { list-style-type:lower-alpha; }
-ol li ul { padding-top:7px; }
-ol li ul li { list-style:square; }
-
-.content { font-size:1.2em; line-height:140%; padding: 20px; }
-
-pre, code { font-size:12px; }
-tt { font-size: 1.2em; }
-pre { margin:0px 0px 20px; }
-pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
-pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
-pre.error { color:red; }
-
-@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
-
-span.keyword { color:#0000FF }
-span.comment { color:#228B22 }
-span.string { color:#A020F0 }
-span.untermstring { color:#B20000 }
-span.syscmd { color:#B28C00 }
-
-.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
-.footer p { margin:0px; }
-.footer a { color:#878787; }
-.footer a:hover { color:#878787; text-decoration:underline; }
-.footer a:visited { color:#878787; }
-
-table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
-table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
-
-
-
-
-
-  </style></head><body><div class="content"><h1>Skid pad</h1><!--introduction--><p>Maneuver in circles of a nonlinear simple vehicle with Pacejka tire model.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Code start</a></li><li><a href="#2">Model and parameters</a></li><li><a href="#5">Simulation</a></li><li><a href="#6">Results</a></li><li><a href="#10">See Also</a></li></ul></div><h2>Code start<a name="1"></a></h2><pre class="codeinput">import <span class="string">VehicleDynamicsLateral.*</span>
-</pre><h2>Model and parameters<a name="2"></a></h2><p>Simulation</p><pre class="codeinput">T = 10;                     <span class="comment">% Total simulation time [s]</span>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Skid pad</title>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] },
+  TeX: { equationNumbers: { autoNumber: 'all' } }
+});
+</script>
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<style>
+body > * {
+  max-width: 1000px;
+}
+body {
+  font-family: "Roboto Condensed", sans-serif;
+  padding-left: 7.5em;
+  padding-right: 7.5em;
+}
+pre, code {
+  max-width: 50em;
+  font-family: monospace;
+}
+pre.oct-code {
+  border: 1px solid Grey;
+  padding: 5px;
+}
+pre.oct-code-output {
+  margin-left: 2em;
+}
+span.comment {
+  color: ForestGreen;
+}
+span.keyword {
+  color: Blue;
+}
+span.string {
+  color: DarkOrchid;
+}
+footer {
+  margin-top: 2em;
+  font-size: 80%;
+}
+a, a:visited {
+  color: Blue;
+}
+h2 {
+  font-family: "Roboto Condensed", serif;
+  margin-top: 1.5em;
+}
+h2 a, h2 a:visited {
+  color: Black;
+}
+</style>
+</head>
+<body>
+<h1>Skid pad</h1>
+<p>Maneuver in circles of a nonlinear simple vehicle with Pacejka tire model.</p><img src="../illustrations/animation/SkidPadAnimation.gif" alt="../illustrations/animation/SkidPadAnimation.gif"><h2>Contents</h2><ul><li><a href="#node1">Model and parameters</a></li><li><a href="#node2">Simulation</a></li><li><a href="#node3">Results</a></li><li><a href="#node4">See Also</a></li></ul><h2><a id="node1">Model and parameters</a></h2><p>Simulation</p><pre class="oct-code">T = 10;                     <span class="comment">% Total simulation time [s]</span>
 resol = 100;                <span class="comment">% Resolution</span>
 TSPAN = 0:T/resol:T;        <span class="comment">% Time span [s]</span>
-</pre><p>Tire (default)</p><pre class="codeinput">TireModel = TirePacejka();
-</pre><p>Vehicle</p><pre class="codeinput">System = VehicleSimpleNonlinear();
+</pre><p>Tire (default)</p><pre class="oct-code">TireModel = TirePacejka();</pre><p>Vehicle</p><pre class="oct-code">System = VehicleSimpleNonlinear();
 
 <span class="comment">% Defining vehicle parameters</span>
 System.mF0 = 700;
@@ -88,9 +77,7 @@ System.Fxr = @VelControl;
 
 System.tire = TireModel;
 simulator = Simulator(System, TSPAN);
-simulator.V0 = 8.333;
-</pre><h2>Simulation<a name="5"></a></h2><pre class="codeinput">simulator.Simulate();
-</pre><h2>Results<a name="6"></a></h2><pre class="codeinput"><span class="comment">% Retrieving states</span>
+simulator.V0 = 8.333;</pre><h2><a id="node2">Simulation</a></h2><pre class="oct-code">simulator.Simulate();</pre><h2><a id="node3">Results</a></h2><pre class="oct-code"><span class="comment">% Retrieving states</span>
 XT = simulator.XT;
 YT = simulator.YT;
 PSI = simulator.PSI;
@@ -98,70 +85,53 @@ VEL = simulator.VEL;
 ALPHAT = simulator.ALPHAT;
 dPSI = simulator.dPSI;
 
-figure(1)
-hold <span class="string">on</span> ; grid <span class="string">on</span> ; box <span class="string">on</span>
+f1 = figure(1);
+hold on ; grid on ; box on
 plot(TSPAN,XT)
 xlabel(<span class="string">'time [s]'</span>)
-ylabel(<span class="string">'Distance in the x direction [m]'</span>)
-
-figure(2)
-hold <span class="string">on</span> ; grid <span class="string">on</span> ; box <span class="string">on</span>
+ylabel(<span class="string">'Distance in the x direction [m]'</span>)</pre><img width="500" src="../illustrations/plot/SkidPadFig1.svg" alt="../illustrations/plot/SkidPadFig1.svg"><pre class="oct-code">f2 = figure(2);
+hold on ; grid on ; box on
 plot(TSPAN,YT)
 xlabel(<span class="string">'time [s]'</span>)
-ylabel(<span class="string">'Distance in the y direction [m]'</span>)
-
-figure(3)
-hold <span class="string">on</span> ; grid <span class="string">on</span> ; box <span class="string">on</span>
+ylabel(<span class="string">'Distance in the y direction [m]'</span>)</pre><img width="500" src="../illustrations/plot/SkidPadFig2.svg" alt="../illustrations/plot/SkidPadFig2.svg"><pre class="oct-code">f3 = figure(3);
+hold on ; grid on ; box on
 plot(TSPAN,PSI)
 xlabel(<span class="string">'time [s]'</span>)
-ylabel(<span class="string">'Yaw angle [rad]'</span>)
-
-figure(4)
-hold <span class="string">on</span> ; grid <span class="string">on</span> ; box <span class="string">on</span>
+ylabel(<span class="string">'Yaw angle [rad]'</span>)</pre><img width="500" src="../illustrations/plot/SkidPadFig3.svg" alt="../illustrations/plot/SkidPadFig3.svg"><pre class="oct-code">f4 = figure(4);
+hold on ; grid on ; box on
 plot(TSPAN,VEL)
 xlabel(<span class="string">'time [s]'</span>)
-ylabel(<span class="string">'Velocity [m/s]'</span>)
-
-figure(5)
-hold <span class="string">on</span> ; grid <span class="string">on</span> ; box <span class="string">on</span>
+ylabel(<span class="string">'Velocity [m/s]'</span>)</pre><img width="500" src="../illustrations/plot/SkidPadFig4.svg" alt="../illustrations/plot/SkidPadFig4.svg"><pre class="oct-code">f5 = figure(5);
+hold on ; grid on ; box on
 plot(TSPAN,ALPHAT)
 xlabel(<span class="string">'time [s]'</span>)
-ylabel(<span class="string">'Vehicle slip angle [rad/s]'</span>)
-
-figure(6)
-hold <span class="string">on</span> ; grid <span class="string">on</span> ; box <span class="string">on</span>
+ylabel(<span class="string">'Vehicle slip angle [rad/s]'</span>)</pre><img width="500" src="../illustrations/plot/SkidPadFig5.svg" alt="../illustrations/plot/SkidPadFig5.svg"><pre class="oct-code">f6 = figure(6);
+hold on ; grid on ; box on
 plot(TSPAN,dPSI)
 xlabel(<span class="string">'time [s]'</span>)
-ylabel(<span class="string">'Yaw rate [rad/s]'</span>)
-</pre><img vspace="5" hspace="5" src="SkidPad_01.png" alt=""> <img vspace="5" hspace="5" src="SkidPad_02.png" alt=""> <img vspace="5" hspace="5" src="SkidPad_03.png" alt=""> <img vspace="5" hspace="5" src="SkidPad_04.png" alt=""> <img vspace="5" hspace="5" src="SkidPad_05.png" alt=""> <img vspace="5" hspace="5" src="SkidPad_06.png" alt=""> <p>Frame and animation</p><pre class="codeinput">g = Graphics(simulator);
+ylabel(<span class="string">'Yaw rate [rad/s]'</span>)</pre><img width="500" src="../illustrations/plot/SkidPadFig6.svg" alt="../illustrations/plot/SkidPadFig6.svg"><p>Frame and animation</p><pre class="oct-code">g = Graphics(simulator);
 g.TractorColor = <span class="string">'c'</span>;
 
-g.Frame();
-
-angulo = 0:0.01:2*pi;
+g.Frame();</pre><img width="800" src="../illustrations/frame/SkidPadFrame.svg" alt="../illustrations/frame/SkidPadFrame.svg"><pre class="oct-code">angulo = 0:0.01:2*pi;
 
 [R,XC,YC] = circfit(XT(40:end),YT(40:end));
 
 XX = XC + R*cos(angulo);
 YY = YC + R*sin(angulo);
 
-hold <span class="string">on</span>
+hold on
 plot(XX,YY,<span class="string">'k'</span>)
 
 
-g.Animation();
-</pre><img vspace="5" hspace="5" src="SkidPad_07.png" alt=""> <img vspace="5" hspace="5" src="SkidPad_08.png" alt=""> <p>Maneuver radius</p><pre class="codeinput">disp(num2str(R))
-</pre><pre class="codeoutput">10.7397
-</pre><p><img vspace="5" hspace="5" src="../illustrations/AnimationSkidPad.gif" alt=""> </p><h2>See Also<a name="10"></a></h2><p><a href="../index.html">Home</a></p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
+g.Animation();</pre><p>Maneuver radius</p><pre class="oct-code">disp(num2str(R))</pre><img src="../illustrations/animation/SkidPadAnimation.gif" alt="../illustrations/animation/SkidPadAnimation.gif"><h2><a id="node4">See Also</a></h2><p><a href="../index.html">Home</a></p>
+<footer><hr><a href="http://www.octave.org">Published with GNU Octave 4.2.1</a></footer>
+<!--
 ##### SOURCE BEGIN #####
 %% Skid pad
 % Maneuver in circles of a nonlinear simple vehicle with Pacejka tire model.
 %
-%% Code start
+% <<../illustrations/animation/SkidPadAnimation.gif>>
 %
-
-import VehicleDynamicsLateral.*
-
 %% Model and parameters
 % Simulation
 %
@@ -213,41 +183,59 @@ VEL = simulator.VEL;
 ALPHAT = simulator.ALPHAT;
 dPSI = simulator.dPSI;
 
-figure(1)
+f1 = figure(1);
 hold on ; grid on ; box on
 plot(TSPAN,XT)
 xlabel('time [s]')
 ylabel('Distance in the x direction [m]')
 
-figure(2)
+%%
+% <<../illustrations/plot/SkidPadFig1.svg>>
+
+f2 = figure(2);
 hold on ; grid on ; box on
 plot(TSPAN,YT)
 xlabel('time [s]')
 ylabel('Distance in the y direction [m]')
 
-figure(3)
+%%
+% <<../illustrations/plot/SkidPadFig2.svg>>
+
+f3 = figure(3);
 hold on ; grid on ; box on
 plot(TSPAN,PSI)
 xlabel('time [s]')
 ylabel('Yaw angle [rad]')
 
-figure(4)
+%%
+% <<../illustrations/plot/SkidPadFig3.svg>>
+
+f4 = figure(4);
 hold on ; grid on ; box on
 plot(TSPAN,VEL)
 xlabel('time [s]')
 ylabel('Velocity [m/s]')
 
-figure(5)
+%%
+% <<../illustrations/plot/SkidPadFig4.svg>>
+
+f5 = figure(5);
 hold on ; grid on ; box on
 plot(TSPAN,ALPHAT)
 xlabel('time [s]')
 ylabel('Vehicle slip angle [rad/s]')
 
-figure(6)
+%%
+% <<../illustrations/plot/SkidPadFig5.svg>>
+
+f6 = figure(6);
 hold on ; grid on ; box on
 plot(TSPAN,dPSI)
 xlabel('time [s]')
 ylabel('Yaw rate [rad/s]')
+
+%%
+% <<../illustrations/plot/SkidPadFig6.svg>>
 
 %%
 % Frame and animation
@@ -256,6 +244,9 @@ g = Graphics(simulator);
 g.TractorColor = 'c';
 
 g.Frame();
+
+%%
+% <<../illustrations/frame/SkidPadFrame.svg>>
 
 angulo = 0:0.01:2*pi;
 
@@ -276,12 +267,13 @@ g.Animation();
 disp(num2str(R))
 
 %%
-% <<../illustrations/AnimationSkidPad.gif>>
+% <<../illustrations/animation/SkidPadAnimation.gif>>
 %
 %% See Also
 %
 % <../index.html Home>
 %
-
 ##### SOURCE END #####
---></body></html>
+-->
+</body>
+</html>

@@ -14,145 +14,292 @@ clear all                   % Clear workspace
 close all                   % Closing figures
 clc
 
-docPath = '../Documentation/html/';                      % Folder where html doc files are saved
-apiDocPath = strcat(docPath, 'api/');
+% Going to openvd root
+cd ../..
+% Getting openvd path
+openvdPath = pwd;
+% Going back to DocFiles
+cd doc/DocFiles
+% Folder where html doc files are saved
+docPath = strcat(openvdPath,'/doc/Documentation/html/');
+apiDocPath = strcat(openvdPath,'/doc/Documentation/html/api/');
 
 %% Adding paths
-% Adding the folder of all files to the Matlab path (only the ones that 'evalCode' is true)
-%
+% Adding the folder of all necessary files to the Octave/Matlab path
 
-% Examples
-addpath('../Examples/KalmanFilter/')
-addpath('../Examples/SinusoidalSteering/')
-addpath('../Examples/SkidPad/')
-addpath('../Examples/SkidPad4DOF/')
-addpath('../Examples/SteeringControl/')
-addpath('../Examples/TemplateArticulated/')
-addpath('../Examples/TemplateArticulatedSimulink/')
-addpath('../Examples/TemplateSimple/')
-addpath('../Examples/TemplateSimpleSimulink/')
-addpath('../Examples/TireComparison/')
+% Path of the publishOVD function
+addpath(strcat(openvdPath,'/doc/DocFiles/publishOVD'))
 
-%% Deleting
-% Deleting old documentation
-
-% Old gifs
-delete('../Documentation/illustrations/*.gif')
-
-% Old html
-delete('../Documentation/html/*.*')
-delete('../Documentation/html/api/*.*')
-
-%% Publishing documentation
-%
-
-% Index
-publish('index.m', 'outputDir', '../Documentation', 'evalCode', true,'showCode',false);
-
-% Tire models
-publish('DocTireLinear.m', 'outputDir', docPath, 'evalCode', false);
-publish('DocTirePacejka.m', 'outputDir', docPath, 'evalCode', false);
-publish('DocTirePolynomial.m', 'outputDir', docPath, 'evalCode', false);
-
-% Vehicle models
-publish('DocVehicleArticulatedLinear.m', 'outputDir', docPath, 'evalCode', false);
-publish('DocVehicleArticulatedNonlinear.m', 'outputDir', docPath, 'evalCode', false);
-publish('DocVehicleSimpleLinear.m', 'outputDir', docPath, 'evalCode', false);
-publish('DocVehicleSimpleNonlinear.m', 'outputDir', docPath, 'evalCode', false);
-publish('DocVehicleSimpleNonlinear4DOF.m', 'outputDir', docPath, 'evalCode', false);
-
-% Graphics
-publish('DocGraphics.m', 'outputDir', docPath, 'evalCode', false);
+% Path of the package
+addpath(strcat(openvdPath,'/inst/'))
 
 % API
-publish('api.m', 'outputDir', apiDocPath,'evalCode', false);
+addpath(strcat(openvdPath,'/inst/@VehicleSimple/'))
+addpath(strcat(openvdPath,'/inst/@VehicleArticulated/'))
+addpath(strcat(openvdPath,'/inst/@VehicleSimpleLinear/'))
+addpath(strcat(openvdPath,'/inst/@VehicleSimpleNonlinear/'))
+addpath(strcat(openvdPath,'/inst/@VehicleSimpleNonlinear4DOF/'))
+addpath(strcat(openvdPath,'/inst/@VehicleArticulatedLinear/'))
+addpath(strcat(openvdPath,'/inst/@VehicleArticulatedNonlinear/'))
+addpath(strcat(openvdPath,'/inst/@Tire/'))
+addpath(strcat(openvdPath,'/inst/@TireLinear/'))
+addpath(strcat(openvdPath,'/inst/@TirePolynomial/'))
+addpath(strcat(openvdPath,'/inst/@TirePacejka/'))
+addpath(strcat(openvdPath,'/inst/@Simulator/'))
+addpath(strcat(openvdPath,'/inst/@Graphics/'))
 
-publish('../+VehicleDynamicsLateral/@VehicleSimple/VehicleSimple.m', 'outputDir', apiDocPath, 'evalCode', false);
-publish('../+VehicleDynamicsLateral/@VehicleArticulated/VehicleArticulated.m', 'outputDir', apiDocPath, 'evalCode', false);
+% % Examples
+addpath(strcat(openvdPath,'/doc/Examples/KalmanFilter/'))
+addpath(strcat(openvdPath,'/doc/Examples/SinusoidalSteering/'))
+addpath(strcat(openvdPath,'/doc/Examples/SkidPad/'))
+addpath(strcat(openvdPath,'/doc/Examples/SkidPad4DOF/'))
+addpath(strcat(openvdPath,'/doc/Examples/SteeringControl/'))
+addpath(strcat(openvdPath,'/doc/Examples/TemplateArticulated/'))
+addpath(strcat(openvdPath,'/doc/Examples/TemplateArticulatedSimulink/'))
+addpath(strcat(openvdPath,'/doc/Examples/TemplateSimple/'))
+addpath(strcat(openvdPath,'/doc/Examples/TemplateSimpleSimulink/'))
+addpath(strcat(openvdPath,'/doc/Examples/TireComparison/'))
+%
+% %% Deleting
+% % Deleting old documentation
+%
+% % Old gifs
+% delete('../Documentation/illustrations/*.gif')
+%
+% % Old html
+% delete('../Documentation/html/*.*')
+% delete('../Documentation/html/api/*.*')
+%
+% %% Publishing documentation
+% %
+%
+% Index
+options.evalCode = false;
+options.outputDir = strcat(openvdPath,'/doc/Documentation/');
+publishOVD('main.m', options);
+movefile(strcat(openvdPath,'/doc/Documentation/main.html'),strcat(openvdPath,'/doc/Documentation/index.html'))
+%
+% Tire models
+options.evalCode = false;
+options.outputDir = docPath;
+publishOVD('DocTireLinear.m',options);
+publishOVD('DocTirePacejka.m',options);
+publishOVD('DocTirePolynomial.m',options);
+%
+% Vehicle models
+publishOVD('DocVehicleArticulatedLinear.m',options);
+publishOVD('DocVehicleArticulatedNonlinear.m',options);
+publishOVD('DocVehicleSimpleLinear.m',options);
+publishOVD('DocVehicleSimpleNonlinear.m',options);
+publishOVD('DocVehicleSimpleNonlinear4DOF.m',options);
+%
+% % Graphics
+publishOVD('DocGraphics.m',options);
+%
+% API
+options.outputDir = apiDocPath;
 
-publish('../+VehicleDynamicsLateral/@VehicleSimpleLinear/VehicleSimpleLinear.m', 'outputDir', apiDocPath, 'evalCode', false);
-publish('../+VehicleDynamicsLateral/@VehicleSimpleNonlinear/VehicleSimpleNonlinear.m', 'outputDir', apiDocPath, 'evalCode', false);
-publish('../+VehicleDynamicsLateral/@VehicleSimpleNonlinear4DOF/VehicleSimpleNonlinear4DOF.m', 'outputDir', apiDocPath, 'evalCode', false);
-publish('../+VehicleDynamicsLateral/@VehicleArticulatedLinear/VehicleArticulatedLinear.m', 'outputDir', apiDocPath, 'evalCode', false);
-publish('../+VehicleDynamicsLateral/@VehicleArticulatedNonlinear/VehicleArticulatedNonlinear.m', 'outputDir', apiDocPath, 'evalCode', false);
+publishOVD('api.m',options);
 
-publish('../+VehicleDynamicsLateral/@Tire/Tire.m', 'outputDir', apiDocPath, 'evalCode', false);
-publish('../+VehicleDynamicsLateral/@TireLinear/TireLinear.m', 'outputDir', apiDocPath, 'evalCode', false);
-publish('../+VehicleDynamicsLateral/@TirePolynomial/TirePolynomial.m', 'outputDir', apiDocPath, 'evalCode', false);
-publish('../+VehicleDynamicsLateral/@TirePacejka/TirePacejka.m', 'outputDir', apiDocPath, 'evalCode', false);
+% Going to package folder
+cd ../../inst/
 
-publish('../+VehicleDynamicsLateral/@Simulator/Simulator.m', 'outputDir', apiDocPath, 'evalCode', false);
+publishOVD('@VehicleSimple/VehicleSimple.m',options);
+publishOVD('@VehicleArticulated/VehicleArticulated.m',options);
 
-publish('../+VehicleDynamicsLateral/@Graphics/Graphics.m', 'outputDir', apiDocPath, 'evalCode', false);
+publishOVD('@VehicleSimpleLinear/VehicleSimpleLinear.m',options);
+publishOVD('@VehicleSimpleNonlinear/VehicleSimpleNonlinear.m',options);
+publishOVD('@VehicleSimpleNonlinear4DOF/VehicleSimpleNonlinear4DOF.m',options);
+publishOVD('@VehicleArticulatedLinear/VehicleArticulatedLinear.m',options);
+publishOVD('@VehicleArticulatedNonlinear/VehicleArticulatedNonlinear.m',options);
 
-% EXAMPLES
-% Kalman Filter
-publish('KalmanFilter.m', 'outputDir', docPath, 'evalCode', true);
+publishOVD('@Tire/Tire.m',options);
+publishOVD('@TireLinear/TireLinear.m',options);
+publishOVD('@TirePolynomial/TirePolynomial.m',options);
+publishOVD('@TirePacejka/TirePacejka.m',options);
+
+publishOVD('@Simulator/Simulator.m',options);
+
+publishOVD('@Graphics/Graphics.m',options);
+
+% Going back to DocFiles
+cd ../doc/DocFiles
+%
+% % EXAMPLES
+% % Kalman Filter
+% publish('KalmanFilter.m', 'outputDir', docPath, 'evalCode', true);
+% close all
+% clearvars -except docPath apiDocPath
+%
+% % Sinusoidal Steering
+graphics_toolkit gnuplot            % svg quality is higher with gnuplot
+SinusoidalSteering
+paperPos = [0 0 10 8];
+set(f1,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f1, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/SinusoidalSteeringFig1.svg'))
+g.Frame('scalefig',3);
+print(gcf, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/frame/SinusoidalSteeringFrame.svg'))
+graphics_toolkit qt
+publishOVD(strcat(openvdPath,'/doc/Examples/SinusoidalSteering/SinusoidalSteering.m'),options);
+g.Animation('savepath',strcat(openvdPath,'/doc/Documentation/illustrations/animation/SinusoidalSteeringAnimation'),'scalefig',3);
 close all
-clearvars -except docPath apiDocPath
 
-% Sinusoidal Steering
-publish('SinusoidalSteering.m', 'outputDir', docPath, 'evalCode', true);
-g.Animation('../Documentation/illustrations/AnimationSinusoidalSteering');
+
+% publish('SinusoidalSteering.m', 'outputDir', docPath, 'evalCode', true);
+% g.Animation('../Documentation/illustrations/AnimationSinusoidalSteering');
+% close all
+% clearvars -except docPath apiDocPath
+%
+
+%% Skid Pad
+%
+graphics_toolkit gnuplot            % svg quality is higher with gnuplot
+SkidPad
+paperPos = [0 0 10 8];
+set(f1,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f1, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/SkidPadFig1.svg'))
+set(f2,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f2, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/SkidPadFig2.svg'))
+set(f3,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f3, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/SkidPadFig3.svg'))
+set(f4,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f4, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/SkidPadFig4.svg'))
+set(f5,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f5, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/SkidPadFig5.svg'))
+set(f6,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f6, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/SkidPadFig6.svg'))
+g.Frame();
+print(gcf, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/frame/SkidPadFrame.svg'))
+graphics_toolkit qt
+publishOVD(strcat(openvdPath,'/doc/Examples/SkidPad/SkidPad.m'),options);
+g.Animation('savepath',strcat(openvdPath,'/doc/Documentation/illustrations/animation/SkidPadAnimation'));
 close all
-clearvars -except docPath apiDocPath
 
-% Skid Pad
-publish('SkidPad.m', 'outputDir', docPath, 'evalCode', true,'showCode',true);
-g.Animation('../Documentation/illustrations/AnimationSkidPad');
+%% Skid Pad 4DOF
+%
+graphics_toolkit gnuplot            % svg quality is higher with gnuplot
+SkidPad4DOF
+paperPos = [0 0 10 8];
+set(f1,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f1, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/SkidPad4DOFFig1.svg'))
+set(f2,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f2, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/SkidPad4DOFFig2.svg'))
+set(f3,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f3, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/SkidPad4DOFFig3.svg'))
+set(f4,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f4, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/SkidPad4DOFFig4.svg'))
+set(f5,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f5, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/SkidPad4DOFFig5.svg'))
+set(f6,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f6, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/SkidPad4DOFFig6.svg'))
+set(f7,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f7, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/SkidPad4DOFFig7.svg'))
+set(f8,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f8, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/SkidPad4DOFFig8.svg'))
+set(f9,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f9, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/SkidPad4DOFFig9.svg'))
+set(f10,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f10, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/SkidPad4DOFFig10.svg'))
+g.Frame();
+print(gcf, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/frame/SkidPad4DOFFrame.svg'))
+graphics_toolkit qt
+publishOVD(strcat(openvdPath,'/doc/Examples/SkidPad4DOF/SkidPad4DOF.m'),options);
+g.Animation('savepath',strcat(openvdPath,'/doc/Documentation/illustrations/animation/SkidPad4DOFAnimation'));
 close all
-clearvars -except docPath apiDocPath
 
-% Skid Pad 4DOF
-publish('SkidPad4DOF.m', 'outputDir', docPath, 'evalCode', true,'showCode',true);
-g.Animation('../Documentation/illustrations/AnimationSkidPad4DOF');
+
+%% SteeringControl
+%
+graphics_toolkit gnuplot            % svg quality is higher with gnuplot
+SteeringControl
+paperPos = [0 0 10 8];
+set(f1,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f1, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/SteeringControlFig1.svg'))
+set(f2,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f2, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/SteeringControlFig2.svg'))
+set(f3,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f3, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/SteeringControlFig3.svg'))
+g.Frame('scalefig',3);
+print(gcf, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/frame/SteeringControlFrame.svg'))
+graphics_toolkit qt
+publishOVD(strcat(openvdPath,'/doc/Examples/SteeringControl/SteeringControl.m'),options);
+g.Animation('savepath',strcat(openvdPath,'/doc/Documentation/illustrations/animation/SteeringControlAnimation'),'scalefig',3);
 close all
-clearvars -except docPath apiDocPath
 
-% SteeringControl
-publish('SteeringControl.m', 'outputDir', docPath, 'evalCode', true,'showCode',false);
-g.Animation('../Documentation/illustrations/AnimationSteeringControl');
+%% TemplateArticulated
+%
+graphics_toolkit gnuplot            % svg quality is higher with gnuplot
+TemplateArticulated
+g.Frame();
+print(gcf, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/frame/TemplateArticulatedFrame.svg'))
+graphics_toolkit qt
+options.outputDir = docPath;
+publishOVD(strcat(openvdPath,'/doc/Examples/TemplateArticulated/TemplateArticulated.m'),options);
+g.Animation('savepath',strcat(openvdPath,'/doc/Documentation/illustrations/animation/TemplateArticulatedAnimation'));
 close all
-clearvars -except docPath apiDocPath
 
-% TemplateArticulated
-publish('TemplateArticulated.m', 'outputDir', docPath, 'evalCode', true);
-g.Animation('../Documentation/illustrations/AnimationTemplateArticulated');
+% % Template Articulated Simulink
+% publish('ArticulatedVehicleSFunction.m', 'outputDir', docPath, 'evalCode', false);
+% publish('TemplateArticulatedSimulink.m', 'outputDir', docPath, 'evalCode', true);
+% g.Animation('../Documentation/illustrations/AnimationTemplateArticulatedSimulink');
+% close all
+% clearvars -except docPath apiDocPath
+%
+
+
+%% TemplateSimple
+%
+graphics_toolkit gnuplot            % svg quality is higher with gnuplot
+TemplateSimple
+paperPos = [0 0 10 8];
+set(f1,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f1, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/TemplateSimpleFig1.svg'))
+set(f2,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f2, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/TemplateSimpleFig2.svg'))
+set(f3,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f3, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/TemplateSimpleFig3.svg'))
+set(f4,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f4, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/TemplateSimpleFig4.svg'))
+set(f5,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f5, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/TemplateSimpleFig5.svg'))
+set(f6,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f6, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/TemplateSimpleFig6.svg'))
+g.Frame();
+print(gcf, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/frame/TemplateSimpleFrame.svg'))
+graphics_toolkit qt
+options.outputDir = docPath;
+publishOVD(strcat(openvdPath,'/doc/Examples/TemplateSimple/TemplateSimple.m'),options);
+g.Animation('savepath',strcat(openvdPath,'/doc/Documentation/illustrations/animation/TemplateSimpleAnimation'));
 close all
-clearvars -except docPath apiDocPath
 
-% Template Articulated Simulink
-publish('ArticulatedVehicleSFunction.m', 'outputDir', docPath, 'evalCode', false);
-publish('TemplateArticulatedSimulink.m', 'outputDir', docPath, 'evalCode', true);
-g.Animation('../Documentation/illustrations/AnimationTemplateArticulatedSimulink');
+
+
+%% Template Simple Simulink
+%
+publishOVD(strcat(openvdPath,'/doc/Examples/TemplateSimpleSimulink/TemplateSimpleSimulink.m'),options);
+
+
+%% TireComparison
+%
+graphics_toolkit gnuplot            % svg quality is higher with gnuplot
+TireComparison
+paperPos = [0 0 10 8];
+set(f1,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f1, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/TireComparisonFig1.svg'))
+set(f2,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f2, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/TireComparisonFig2.svg'))
+publishOVD(strcat(openvdPath,'/doc/Examples/TireComparison/TireComparison.m'),options);
 close all
-clearvars -except docPath apiDocPath
 
-% TemplateSimple
-publish('TemplateSimple.m', 'outputDir', docPath, 'evalCode', true);
-g.Animation('../Documentation/illustrations/AnimationTemplateSimple');
-close all
-clearvars -except docPath apiDocPath
 
-% Template Simple Simulink
-publish('SimpleVehicleSFunction.m', 'outputDir', docPath, 'evalCode', false);
-publish('TemplateSimpleSimulink.m', 'outputDir', docPath, 'evalCode', true);
-g.Animation('../Documentation/illustrations/AnimationTemplateSimpleSimulink');
-close all
-clearvars -except docPath apiDocPath
-
-% TireComparison
-publish('TireComparison.m', 'outputDir', docPath, 'evalCode', true);
-close all
-clearvars -except docPath apiDocPath
-
-% DocGen
-publish('makeDoc', 'outputDir', docPath, 'evalCode', false);
+%% DocGen
+%
+publish('makeDoc.m',options);
 
 %% Code end
-clear all                   % Clear workspace
-close all                   % Closing figures
-clc                         % Clear command window
+% clear all                   % Clear workspace
+% close all                   % Closing figures
+% clc                         % Clear command window
 
 %% See Also
 %

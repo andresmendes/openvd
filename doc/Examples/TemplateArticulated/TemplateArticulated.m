@@ -1,11 +1,8 @@
 %% Template Articulated
 % This template shows how to simulate an articulated vehicle and plot the results.
 %
-%% Simulation models and parameters
-% First, all classes of the package are imported with
-
-import VehicleDynamicsLateral.*
-
+% <<../illustrations/animation/TemplateArticulatedAnimation.gif>>
+%
 %%
 % Choosing tire and vehicle model. In this case, the parameters are defined by the user.
 
@@ -77,12 +74,13 @@ simulator.Simulate();
 g = Graphics(simulator);
 g.TractorColor = 'r';
 g.SemitrailerColor = 'g';
-g.Frame();
+g.Frame('/home/andre/MEGA/Repos/openvd/doc/Examples/TemplateArticulated/arquivo.pdf');
 g.Animation();
 
 %%
+% <<../illustrations/frame/TemplateArticulatedFrame.svg>>
 %
-% <<../illustrations/AnimationTemplateArticulated.gif>>
+% <<../illustrations/animation/TemplateArticulatedAnimation.gif>>
 %
 %% See Also
 %

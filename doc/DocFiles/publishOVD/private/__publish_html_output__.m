@@ -37,7 +37,7 @@ function outstr = handle_header (title_str, intro_str, toc_cstr)
     "config=TeX-MML-AM_CHTML\"></script>\n"];
   stylesheet_str = ["<style>\n", ...
     "body > * {\n", ...
-    "  max-width: 42em;\n", ...
+    "  max-width: 1000px;\n", ...
     "}\n", ...
     "body {\n", ...
     "  font-family: \"Roboto Condensed\", sans-serif;\n", ...
@@ -162,7 +162,18 @@ function outstr = handle_numbered_list (cstr)
 endfunction
 
 function outstr = handle_graphic (str)
-  outstr = ["<img src=\"", str,"\" alt=\"", str, "\">"];
+    % The width of the figure depends if it is plot, frame or animation
+    [directory,name,ext] = fileparts(str);
+
+    outstr = ["<img src=\"", str,"\" alt=\"", str, "\">"];
+
+    if directory(end-3:end) == "plot"
+        outstr = ["<img width=\"500\" src=\"", str,"\" alt=\"", str, "\">"];
+    endif
+    if directory(end-4:end) == "frame"
+        outstr = ["<img width=\"800\" src=\"", str,"\" alt=\"", str, "\">"];
+    endif
+
 endfunction
 
 function outstr = handle_html (str)

@@ -1,72 +1,63 @@
-
-<!DOCTYPE html
-  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head>
-      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-   <!--
-This HTML was auto-generated from MATLAB code.
-To make changes, update the MATLAB code and republish this document.
-      --><title>Simulator</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-12-13"><meta name="DC.source" content="Simulator.m"><style type="text/css">
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
-
-html { min-height:100%; margin-bottom:1px; }
-html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
-html body td { vertical-align:top; text-align:left; }
-
-h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
-h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
-h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
-
-a { color:#005fce; text-decoration:none; }
-a:hover { color:#005fce; text-decoration:underline; }
-a:visited { color:#004aa0; text-decoration:none; }
-
-p { padding:0px; margin:0px 0px 20px; }
-img { padding:0px; margin:0px 0px 20px; border:none; }
-p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
-
-ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
-ul li { padding:0px; margin:0px 0px 7px 0px; }
-ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
-ul li ol li { list-style:decimal; }
-ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
-ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
-ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
-ol li ol li { list-style-type:lower-alpha; }
-ol li ul { padding-top:7px; }
-ol li ul li { list-style:square; }
-
-.content { font-size:1.2em; line-height:140%; padding: 20px; }
-
-pre, code { font-size:12px; }
-tt { font-size: 1.2em; }
-pre { margin:0px 0px 20px; }
-pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
-pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
-pre.error { color:red; }
-
-@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
-
-span.keyword { color:#0000FF }
-span.comment { color:#228B22 }
-span.string { color:#A020F0 }
-span.untermstring { color:#B20000 }
-span.syscmd { color:#B28C00 }
-
-.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
-.footer p { margin:0px; }
-.footer a { color:#878787; }
-.footer a:hover { color:#878787; text-decoration:underline; }
-.footer a:visited { color:#878787; }
-
-table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
-table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
-
-
-
-
-
-  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#2">See Also</a></li></ul></div><pre class="codeinput"><span class="keyword">classdef</span> Simulator&lt;handle
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Simulator</title>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] },
+  TeX: { equationNumbers: { autoNumber: 'all' } }
+});
+</script>
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<style>
+body > * {
+  max-width: 1000px;
+}
+body {
+  font-family: "Roboto Condensed", sans-serif;
+  padding-left: 7.5em;
+  padding-right: 7.5em;
+}
+pre, code {
+  max-width: 50em;
+  font-family: monospace;
+}
+pre.oct-code {
+  border: 1px solid Grey;
+  padding: 5px;
+}
+pre.oct-code-output {
+  margin-left: 2em;
+}
+span.comment {
+  color: ForestGreen;
+}
+span.keyword {
+  color: Blue;
+}
+span.string {
+  color: DarkOrchid;
+}
+footer {
+  margin-top: 2em;
+  font-size: 80%;
+}
+a, a:visited {
+  color: Blue;
+}
+h2 {
+  font-family: "Roboto Condensed", serif;
+  margin-top: 1.5em;
+}
+h2 a, h2 a:visited {
+  color: Black;
+}
+</style>
+</head>
+<body>
+<h1>Simulator</h1>
+<h2>Contents</h2><ul><li><a href="#node1">See Also</a></li></ul><pre class="oct-code"><span class="keyword">classdef</span> Simulator<handle
     <span class="comment">% Simulator Vehicle dynamics simulator</span>
     <span class="comment">% The simulator receives a vehicle object that inherits from VehicleSimple, simulates its behavior during a given time span and provides its behavior during time via its properties. Each property is a (timespan, 1) vector in which each value represents that parameter's value in time.</span>
     <span class="keyword">methods</span>
@@ -74,7 +65,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
         <span class="keyword">function</span> self = Simulator(vehicle, tspan)
             self.Vehicle = vehicle;
             self.TSpan = tspan;
-            <span class="keyword">if</span> isa(self.Vehicle, <span class="string">'VehicleDynamicsLateral.VehicleArticulated'</span>)
+            <span class="keyword">if</span> isa(self.Vehicle, <span class="string">'VehicleArticulated'</span>)
                 self.X0 = 0;
                 self.Y0 = 0;
                 self.PSI0 = 0;
@@ -84,7 +75,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
                 self.dPSI0 = 0;
                 self.dPHI0 = 0;
             <span class="keyword">else</span>
-                <span class="keyword">if</span> isa(self.Vehicle, <span class="string">'VehicleDynamicsLateral.VehicleSimpleNonlinear4DOF'</span>)
+                <span class="keyword">if</span> isa(self.Vehicle, <span class="string">'VehicleSimpleNonlinear4DOF'</span>)
                     self.X0 = 0;
                     self.Y0 = 0;
                     self.PSI0 = 0;
@@ -106,10 +97,10 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
         <span class="keyword">function</span> f = getInitialState(self)
             <span class="comment">% Transforms properties into a vector so it can be used by the integrator</span>
-            <span class="keyword">if</span> isa(self.Vehicle, <span class="string">'VehicleDynamicsLateral.VehicleArticulated'</span>)
+            <span class="keyword">if</span> isa(self.Vehicle, <span class="string">'VehicleArticulated'</span>)
                 f = [self.X0 self.Y0 self.PSI0 self.PHI0 self.V0 self.ALPHAT0 self.dPSI0 self.dPHI0];
             <span class="keyword">else</span>
-                <span class="keyword">if</span> isa(self.Vehicle, <span class="string">'VehicleDynamicsLateral.VehicleSimpleNonlinear4DOF'</span>)
+                <span class="keyword">if</span> isa(self.Vehicle, <span class="string">'VehicleSimpleNonlinear4DOF'</span>)
                     f = [self.X0 self.Y0 self.PSI0 self.THETA0 self.V0 self.ALPHAT0 self.dPSI0 self.dTHETA0];
                 <span class="keyword">else</span>
                     f = [self.X0 self.Y0 self.PSI0 self.V0 self.ALPHAT0 self.dPSI0];
@@ -124,9 +115,13 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
             <span class="comment">% integration</span>
             <span class="comment">% if vehicle is articulated, adds mass matrix as an integration option</span>
-            <span class="keyword">if</span> isa(self.Vehicle, <span class="string">'VehicleDynamicsLateral.VehicleArticulated'</span>)
+            <span class="keyword">if</span> isa(self.Vehicle, <span class="string">'VehicleArticulated'</span>)
                 fun = self.Vehicle;
-                options = odeset(<span class="string">'Mass'</span>, @fun.MassMatrix,<span class="string">'Events'</span>, @fun.velocity);
+                funMass = @(t,states) fun.MassMatrix(t,states);
+                funVelocity = @(t,states) fun.velocity(t,states);
+
+                options = odeset(<span class="string">'Mass'</span>,funMass,<span class="string">'Events'</span>, funVelocity);
+                <span class="comment">% options = odeset('Mass',funMass);</span>
                 [TOUT, XOUT] = ode45(@(t, estados) self.Vehicle.Model(t, estados,self.TSpan), self.TSpan, self.getInitialState(), options);
                 <span class="comment">% retrieve states exclusive to the articulated vehicle</span>
                 self.XT = XOUT(:, 1);
@@ -138,9 +133,12 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
                 self.dPSI = XOUT(:, 7);
                 self.dPHI = XOUT(:, 8);
             <span class="keyword">else</span>
-                <span class="keyword">if</span> isa(self.Vehicle, <span class="string">'VehicleDynamicsLateral.VehicleSimpleNonlinear4DOF'</span>)
+                <span class="keyword">if</span> isa(self.Vehicle, <span class="string">'VehicleSimpleNonlinear4DOF'</span>)
                     fun = self.Vehicle;
-                    options = odeset(<span class="string">'Mass'</span>, @fun.MassMatrix);
+                    funMass = @(t,states) fun.MassMatrix(t,states);
+                    <span class="comment">% TODO: add velocity fun to 4DOF</span>
+                    <span class="comment">% funVelocity = @(t,states) fun.velocity(t,states);</span>
+                    options = odeset(<span class="string">'Mass'</span>,funMass);
                     [TOUT, XOUT] = ode45(@(t, estados) self.Vehicle.Model(t, estados,self.TSpan), self.TSpan, self.getInitialState(), options);
 
                     <span class="comment">% Retrieving states post integration</span>
@@ -194,8 +192,9 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
         dPHI <span class="comment">% Relative yaw rate [rad/s]</span>
         dTHETA <span class="comment">% Roll rate [rad/s]</span>
     <span class="keyword">end</span>
-<span class="keyword">end</span>
-</pre><h2>See Also<a name="2"></a></h2><p><a href="../../index.html">Home</a></p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
+<span class="keyword">end</span></pre><h2><a id="node1">See Also</a></h2><p><a href="../../index.html">Home</a></p>
+<footer><hr><a href="http://www.octave.org">Published with GNU Octave 4.2.1</a></footer>
+<!--
 ##### SOURCE BEGIN #####
 classdef Simulator<handle
     % Simulator Vehicle dynamics simulator
@@ -205,7 +204,7 @@ classdef Simulator<handle
         function self = Simulator(vehicle, tspan)
             self.Vehicle = vehicle;
             self.TSpan = tspan;
-            if isa(self.Vehicle, 'VehicleDynamicsLateral.VehicleArticulated')
+            if isa(self.Vehicle, 'VehicleArticulated')
                 self.X0 = 0;
                 self.Y0 = 0;
                 self.PSI0 = 0;
@@ -215,7 +214,7 @@ classdef Simulator<handle
                 self.dPSI0 = 0;
                 self.dPHI0 = 0;
             else
-                if isa(self.Vehicle, 'VehicleDynamicsLateral.VehicleSimpleNonlinear4DOF')
+                if isa(self.Vehicle, 'VehicleSimpleNonlinear4DOF')
                     self.X0 = 0;
                     self.Y0 = 0;
                     self.PSI0 = 0;
@@ -237,10 +236,10 @@ classdef Simulator<handle
 
         function f = getInitialState(self)
             % Transforms properties into a vector so it can be used by the integrator
-            if isa(self.Vehicle, 'VehicleDynamicsLateral.VehicleArticulated')
+            if isa(self.Vehicle, 'VehicleArticulated')
                 f = [self.X0 self.Y0 self.PSI0 self.PHI0 self.V0 self.ALPHAT0 self.dPSI0 self.dPHI0];
             else
-                if isa(self.Vehicle, 'VehicleDynamicsLateral.VehicleSimpleNonlinear4DOF')
+                if isa(self.Vehicle, 'VehicleSimpleNonlinear4DOF')
                     f = [self.X0 self.Y0 self.PSI0 self.THETA0 self.V0 self.ALPHAT0 self.dPSI0 self.dTHETA0];
                 else
                     f = [self.X0 self.Y0 self.PSI0 self.V0 self.ALPHAT0 self.dPSI0];
@@ -255,9 +254,13 @@ classdef Simulator<handle
 
             % integration
             % if vehicle is articulated, adds mass matrix as an integration option
-            if isa(self.Vehicle, 'VehicleDynamicsLateral.VehicleArticulated')
+            if isa(self.Vehicle, 'VehicleArticulated')
                 fun = self.Vehicle;
-                options = odeset('Mass', @fun.MassMatrix,'Events', @fun.velocity);
+                funMass = @(t,states) fun.MassMatrix(t,states);
+                funVelocity = @(t,states) fun.velocity(t,states);
+
+                options = odeset('Mass',funMass,'Events', funVelocity);
+                % options = odeset('Mass',funMass);
                 [TOUT, XOUT] = ode45(@(t, estados) self.Vehicle.Model(t, estados,self.TSpan), self.TSpan, self.getInitialState(), options);
                 % retrieve states exclusive to the articulated vehicle
                 self.XT = XOUT(:, 1);
@@ -269,9 +272,12 @@ classdef Simulator<handle
                 self.dPSI = XOUT(:, 7);
                 self.dPHI = XOUT(:, 8);
             else
-                if isa(self.Vehicle, 'VehicleDynamicsLateral.VehicleSimpleNonlinear4DOF')
+                if isa(self.Vehicle, 'VehicleSimpleNonlinear4DOF')
                     fun = self.Vehicle;
-                    options = odeset('Mass', @fun.MassMatrix);
+                    funMass = @(t,states) fun.MassMatrix(t,states);
+                    % TODO: add velocity fun to 4DOF
+                    % funVelocity = @(t,states) fun.velocity(t,states);
+                    options = odeset('Mass',funMass);
                     [TOUT, XOUT] = ode45(@(t, estados) self.Vehicle.Model(t, estados,self.TSpan), self.TSpan, self.getInitialState(), options);
 
                     % Retrieving states post integration
@@ -331,6 +337,7 @@ end
 %
 % <../../index.html Home>
 %
-
 ##### SOURCE END #####
---></body></html>
+-->
+</body>
+</html>
