@@ -67,7 +67,7 @@ h2 a, h2 a:visited {
             self.Simulator = simulator;
             self.TractorColor = <span class="string">'b'</span>;
             self.SemitrailerColor = <span class="string">'g'</span>;
-            self.IsOctave = isOctave;       <span class="comment">% Return true if the environment is Octave.</span>
+            self.IsOctave = self.isOctave;       <span class="comment">% Return true if the environment is Octave.</span>
             <span class="comment">% Default user options</span>
             self.ScaleFig = 1;              <span class="comment">% Scale 1 x 1 between x and y axis.</span>
         <span class="keyword">end</span>
@@ -900,6 +900,18 @@ h2 a, h2 a:visited {
 
         <span class="keyword">end</span>
 
+        <span class="keyword">function</span> retval = isOctave
+        <span class="comment">%% Return: true if the environment is Octave.</span>
+        <span class="comment">%</span>
+            <span class="keyword">persistent</span> cacheval;  <span class="comment">% speeds up repeated calls</span>
+
+            <span class="keyword">if</span> isempty (cacheval)
+            cacheval = (exist (<span class="string">'OCTAVE_VERSION'</span>, <span class="string">'builtin'</span>) > 0);
+            <span class="keyword">end</span>
+
+            retval = cacheval;
+        <span class="keyword">end</span>
+
     <span class="keyword">end</span>
 
     <span class="comment">%% Properties</span>
@@ -927,7 +939,7 @@ classdef Graphics
             self.Simulator = simulator;
             self.TractorColor = 'b';
             self.SemitrailerColor = 'g';
-            self.IsOctave = isOctave;       % Return true if the environment is Octave.
+            self.IsOctave = self.isOctave;       % Return true if the environment is Octave.
             % Default user options
             self.ScaleFig = 1;              % Scale 1 x 1 between x and y axis.
         end
@@ -1758,6 +1770,18 @@ classdef Graphics
             % Adjusting limits
             set(gca,'xlim',xlim,'ylim',ylim)
 
+        end
+
+        function retval = isOctave
+        %% Return: true if the environment is Octave.
+        %
+            persistent cacheval;  % speeds up repeated calls
+
+            if isempty (cacheval)
+            cacheval = (exist ('OCTAVE_VERSION', 'builtin') > 0);
+            end
+
+            retval = cacheval;
         end
 
     end

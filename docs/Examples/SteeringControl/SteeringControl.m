@@ -12,53 +12,53 @@
 %
 % State vector
 %
-% \[ {\bf x} = \left[ \begin{array}{c} {\rm x}_1 \\ {\rm x}_2 \\ {\rm x}_3 \\ {\rm x}_4 \\ {\rm x}_5 \\ {\rm x}_6 \end{array} \right] = \left[ \begin{array}{c} x \\ y \\ \psi \\ v_{\rm T} \\ \alpha_{\rm T} \\ \dot{\psi} \end{array} \right] \]
+% $$ {\bf x} = \left[ \begin{array}{c} {\rm x}_1 \\ {\rm x}_2 \\ {\rm x}_3 \\ {\rm x}_4 \\ {\rm x}_5 \\ {\rm x}_6 \end{array} \right] = \left[ \begin{array}{c} x \\ y \\ \psi \\ v_{\rm T} \\ \alpha_{\rm T} \\ \dot{\psi} \end{array} \right] $$
 %
 % State equations
 %
-% \[ \dot{{\rm x}}_1 = {\rm x}_4 \cos \left( {\rm x}_3 + {\rm x}_5 \right) \]
+% $$ \dot{{\rm x}}_1 = {\rm x}_4 \cos \left( {\rm x}_3 + {\rm x}_5 \right) $$
 %
-% \[ \dot{{\rm x}}_2 = {\rm x}_4 \sin \left( {\rm x}_3 + {\rm x}_5 \right) \]
+% $$ \dot{{\rm x}}_2 = {\rm x}_4 \sin \left( {\rm x}_3 + {\rm x}_5 \right) $$
 %
-% \[ \dot{{\rm x}}_3 = {\rm x}_6 \]
+% $$ \dot{{\rm x}}_3 = {\rm x}_6 $$
 %
-% \[ \dot{{\rm x}}_4 = \frac{F_{y,{\rm F}} \sin \left( {\rm x}_5 - \delta \right) + F_{y,{\rm R}} \sin {\rm x}_5}{m_{T}} \]
+% $$ \dot{{\rm x}}_4 = \frac{F_{y,{\rm F}} \sin \left( {\rm x}_5 - \delta \right) + F_{y,{\rm R}} \sin {\rm x}_5}{m_{T}} $$
 %
-% \[ \dot{{\rm x}}_5 = \frac{F_{y,{\rm F}} \cos \left( {\rm x}_5 - \delta \right) + F_{y,{\rm R}} \cos \alpha_{\rm T} - m_{T} {\rm x}_4 {\rm x}_6}{m_{T} {\rm x}_4} \]
+% $$ \dot{{\rm x}}_5 = \frac{F_{y,{\rm F}} \cos \left( {\rm x}_5 - \delta \right) + F_{y,{\rm R}} \cos \alpha_{\rm T} - m_{T} {\rm x}_4 {\rm x}_6}{m_{T} {\rm x}_4} $$
 %
-% \[ \dot{{\rm x}}_6 = \frac{F_{y,{\rm F}} a \cos \delta - F_{y,{\rm R}} b}{I_{T}} \]
+% $$ \dot{{\rm x}}_6 = \frac{F_{y,{\rm F}} a \cos \delta - F_{y,{\rm R}} b}{I_{T}} $$
 %
 % Slip angles
 %
-% \[ \alpha_{\rm F} = \arctan \left( \frac{v_{\rm T} \sin \alpha_{\rm T} + a \dot{\psi}}{ v_{\rm T} \cos \alpha_{\rm T}} \right) - \delta \]
+% $$ \alpha_{\rm F} = \arctan \left( \frac{v_{\rm T} \sin \alpha_{\rm T} + a \dot{\psi}}{ v_{\rm T} \cos \alpha_{\rm T}} \right) - \delta $$
 %
-% \[ \alpha_{\rm R} = \arctan \left( \frac{v_{\rm T} \sin \alpha_{\rm T} - b \dot{\psi}}{ v_{\rm T} \cos \alpha_{\rm T}} \right) \]
+% $$ \alpha_{\rm R} = \arctan \left( \frac{v_{\rm T} \sin \alpha_{\rm T} - b \dot{\psi}}{ v_{\rm T} \cos \alpha_{\rm T}} \right) $$
 %
 %
 % *Linear model*
 %
-% \[ \dot{x} = v_{\rm T} \]
+% $$ \dot{x} = v_{\rm T} $$
 %
-% \[ \dot{y} = v_{{\rm T},0} \left( \psi + \alpha_{{\rm T}}\right) \]
+% $$ \dot{y} = v_{{\rm T},0} \left( \psi + \alpha_{{\rm T}}\right) $$
 %
-% \[ \dot{\psi} = \dot{\psi} \]
+% $$ \dot{\psi} = \dot{\psi} $$
 %
-% \[ \dot{v}_{\rm T} = 0 \]
+% $$ \dot{v}_{\rm T} = 0 $$
 %
-% \[ \dot{\alpha}_{\rm T} = \frac{F_{y,{\rm F}} + F_{y,{\rm R}}}{m_{T} v_{{\rm T},0}} - \dot{\psi} \]
+% $$ \dot{\alpha}_{\rm T} = \frac{F_{y,{\rm F}} + F_{y,{\rm R}}}{m_{T} v_{{\rm T},0}} - \dot{\psi} $$
 %
-% \[ \ddot{\psi} = \frac{a F_{y,{\rm F}} -  b F_{y,{\rm R}}}{I_{T}} \]
+% $$ \ddot{\psi} = \frac{a F_{y,{\rm F}} -  b F_{y,{\rm R}}}{I_{T}} $$
 %
-% Neglecting equations of \(x\) and \(v_T\)
+% Neglecting equations of $x$ and $v_T$
 %
 %
-% \[ \left[ \begin{array}{c} \dot{y} \\ \dot{\psi} \\ \dot{\alpha}_T \\ \ddot{\psi} \end{array} \right] = \left[ \begin{array}{cccc} 0 & v_{T,0} & v_{T,0} & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & -\frac{K_F+K_R}{m_T v_{T,0}} & - \frac{m_T v_{T,0} + \frac{a K_F - b K_R}{v_{T,0}}}{m_T v_{T,0}} \\ 0 & 0 & - \frac{a K_F - b K_R}{I_T} & - \frac{a^2 K_F + b^2 K_R}{I_T v_{T,0}} \end{array} \right] \left[ \begin{array}{c} y \\ \psi \\ \alpha_T \\ \dot{\psi} \end{array} \right] + \left[ \begin{array}{c} 0 \\ 0 \\ \frac{K_F}{m_T v_{T,0}} \\ \frac{a K_F}{I_T}  \end{array} \right] \delta \]
+% $$ \left[ \begin{array}{c} \dot{y} \\ \dot{\psi} \\ \dot{\alpha}_T \\ \ddot{\psi} \end{array} \right] = \left[ \begin{array}{cccc} 0 & v_{T,0} & v_{T,0} & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & -\frac{K_F+K_R}{m_T v_{T,0}} & - \frac{m_T v_{T,0} + \frac{a K_F - b K_R}{v_{T,0}}}{m_T v_{T,0}} \\ 0 & 0 & - \frac{a K_F - b K_R}{I_T} & - \frac{a^2 K_F + b^2 K_R}{I_T v_{T,0}} \end{array} \right] \left[ \begin{array}{c} y \\ \psi \\ \alpha_T \\ \dot{\psi} \end{array} \right] + \left[ \begin{array}{c} 0 \\ 0 \\ \frac{K_F}{m_T v_{T,0}} \\ \frac{a K_F}{I_T}  \end{array} \right] \delta $$
 %
 % Slip angles
 %
-% \[ \alpha_{{\rm F},lin} = \alpha_{{\rm T}} + \frac{a}{v_{{\rm T},0}} \dot{\psi} - \delta \]
+% $$ \alpha_{{\rm F},lin} = \alpha_{{\rm T}} + \frac{a}{v_{{\rm T},0}} \dot{\psi} - \delta $$
 %
-% \[ \alpha_{{\rm F},lin} = \alpha_{{\rm T}} - \frac{b}{v_{{\rm T},0}} \dot{\psi} \]
+% $$ \alpha_{{\rm F},lin} = \alpha_{{\rm T}} - \frac{b}{v_{{\rm T},0}} \dot{\psi} $$
 %
 %% Tire model
 %
@@ -68,11 +68,11 @@
 %
 % *Pacejka*
 %
-% \[ F_{y} = D \sin \left[ C \arctan{B \alpha - E( B \alpha -\arctan(B \alpha))} \right] \]
+% $$ F_{y} = D \sin \left[ C \arctan{B \alpha - E( B \alpha -\arctan(B \alpha))} \right] $$
 %
 % *Linear*
 %
-% \[ F_ y = K \alpha \]
+% $$ F_ y = K \alpha $$
 %
 
 deriva = (0:0.1:15)*pi/180;         % ngulo de deriva [rad]
@@ -140,8 +140,8 @@ set(ax,'xlim',[0 15])
 p1 = plot(deriva * 180/pi,-FyPac, 'Color', 'r', 'Marker', 'o', 'MarkerFaceColor', 'r', 'MarkeredgeColor', 'k', 'MarkerSize', 3);
 p2 = plot(deriva * 180/pi,-FyLin, 'Color', 'g', 'Marker', 's', 'MarkerFaceColor', 'g', 'MarkeredgeColor', 'k', 'MarkerSize', 3);
 g.changeMarker(10,p1,p2);
-xlabel('\(\alpha\) [grau]', 'Interpreter', 'Latex')
-ylabel('\(F_y\) [N]', 'Interpreter', 'Latex')
+xlabel('$\alpha$ [grau]', 'Interpreter', 'Latex')
+ylabel('$F_y$ [N]', 'Interpreter', 'Latex')
 l = legend('Linear', 'Pacejka');
 set(l, 'Interpreter', 'Latex', 'Location', 'NorthWest')
 
@@ -259,14 +259,14 @@ disp(Kplace)
 %%
 % Control law
 %
-% \[\delta = - {\bf K} {\bf z} + K_1 r \]
+% $$\delta = - {\bf K} {\bf z} + K_1 r $$
 %
 %% Double Lane Change Maneuver
 % *Control - Step y*
 %
 % Reference - r = 2 m
 %
-% \[ \delta_{max} = \pm 70 deg \]
+% $$ \delta_{max} = \pm 70 deg $$
 
 % Simulation
 simulator.Simulate();
@@ -369,7 +369,7 @@ plot(TSPAN,ALPHAT,'b')
 plot(TSPAN,dPSI,'c')
 xlabel('Time [s]')
 ylabel('States')
-l = legend('\(y\)','\(\psi\)','\(\alpha_T\)','\(\dot{\psi}\)');
+l = legend('$y$','$\psi$','$\alpha_T$','$\dot{\psi}$');
 set(l,'Interpreter','Latex','Location','NorthEast')
 
 %%
@@ -385,7 +385,7 @@ f3 = figure(3);
 hold on; box on; grid on
 plot(TSPAN,output*180/pi,'k')
 xlabel('Time [s]')
-y = ylabel('\(\delta [deg]\)');
+y = ylabel('$\delta [deg]$');
 set(y,'Interpreter','Latex')
 
 %%

@@ -57,7 +57,7 @@ h2 a, h2 a:visited {
 </head>
 <body>
 <h1>Steering Control</h1>
-<p>Steering Control of Autonomous Vehicles in Obstacle Avoidance Maneuvers.</p><img src="../illustrations/animation/SteeringControlAnimation.gif" alt="../illustrations/animation/SteeringControlAnimation.gif"><h2>Contents</h2><ul><li><a href="#node1">Vehicle model</a></li><li><a href="#node2">Tire model</a></li><li><a href="#node3">Plant model</a></li><li><a href="#node4">Controller design</a></li><li><a href="#node5">Double Lane Change Maneuver</a></li><li><a href="#node6">See Also</a></li></ul><h2><a id="node1">Vehicle model</a></h2><p><b>Bicycle model</b></p><img src="../illustrations/modelSimple.svg" alt="../illustrations/modelSimple.svg"><p><b>Nonlinear model</b></p><p>State vector</p><p>\[ {\bf x} = \left[ \begin{array}{c} {\rm x}<i>1 \\ {\rm x}</i>2 \\ {\rm x}<i>3 \\ {\rm x}</i>4 \\ {\rm x}<i>5 \\ {\rm x}</i>6 \end{array} \right] = \left[ \begin{array}{c} x \\ y \\ \psi \\ v<i>{\rm T} \\ \alpha</i>{\rm T} \\ \dot{\psi} \end{array} \right] \]</p><p>State equations</p><p>\[ \dot{{\rm x}}<i>1 = {\rm x}</i>4 \cos \left( {\rm x}<i>3 + {\rm x}</i>5 \right) \]</p><p>\[ \dot{{\rm x}}<i>2 = {\rm x}</i>4 \sin \left( {\rm x}<i>3 + {\rm x}</i>5 \right) \]</p><p>\[ \dot{{\rm x}}<i>3 = {\rm x}</i>6 \]</p><p>\[ \dot{{\rm x}}<i>4 = \frac{F</i>{y,{\rm F}} \sin \left( {\rm x}<i>5 - \delta \right) + F</i>{y,{\rm R}} \sin {\rm x}<i>5}{m</i>{T}} \]</p><p>\[ \dot{{\rm x}}<i>5 = \frac{F</i>{y,{\rm F}} \cos \left( {\rm x}<i>5 - \delta \right) + F</i>{y,{\rm R}} \cos \alpha<i>{\rm T} - m</i>{T} {\rm x}<i>4 {\rm x}</i>6}{m<i>{T} {\rm x}</i>4} \]</p><p>\[ \dot{{\rm x}}<i>6 = \frac{F</i>{y,{\rm F}} a \cos \delta - F<i>{y,{\rm R}} b}{I</i>{T}} \]</p><p>Slip angles</p><p>\[ \alpha<i>{\rm F} = \arctan \left( \frac{v</i>{\rm T} \sin \alpha<i>{\rm T} + a \dot{\psi}}{ v</i>{\rm T} \cos \alpha_{\rm T}} \right) - \delta \]</p><p>\[ \alpha<i>{\rm R} = \arctan \left( \frac{v</i>{\rm T} \sin \alpha<i>{\rm T} - b \dot{\psi}}{ v</i>{\rm T} \cos \alpha_{\rm T}} \right) \]</p><p><b>Linear model</b></p><p>\[ \dot{x} = v_{\rm T} \]</p><p>\[ \dot{y} = v<i>{{\rm T},0} \left( \psi + \alpha</i>{{\rm T}}\right) \]</p><p>\[ \dot{\psi} = \dot{\psi} \]</p><p>\[ \dot{v}_{\rm T} = 0 \]</p><p>\[ \dot{\alpha}<i>{\rm T} = \frac{F</i>{y,{\rm F}} + F<i>{y,{\rm R}}}{m</i>{T} v_{{\rm T},0}} - \dot{\psi} \]</p><p>\[ \ddot{\psi} = \frac{a F<i>{y,{\rm F}} -  b F</i>{y,{\rm R}}}{I_{T}} \]</p><p>Neglecting equations of \(x\) and \(v_T\)</p><p>\[ \left[ \begin{array}{c} \dot{y} \\ \dot{\psi} \\ \dot{\alpha}<i>T \\ \ddot{\psi} \end{array} \right] = \left[ \begin{array}{cccc} 0 & v</i>{T,0} & v<i>{T,0} & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & -\frac{K</i>F+K<i>R}{m</i>T v<i>{T,0}} & - \frac{m</i>T v<i>{T,0} + \frac{a K</i>F - b K<i>R}{v</i>{T,0}}}{m<i>T v</i>{T,0}} \\ 0 & 0 & - \frac{a K<i>F - b K</i>R}{I<i>T} & - \frac{a^2 K</i>F + b^2 K<i>R}{I</i>T v<i>{T,0}} \end{array} \right] \left[ \begin{array}{c} y \\ \psi \\ \alpha</i>T \\ \dot{\psi} \end{array} \right] + \left[ \begin{array}{c} 0 \\ 0 \\ \frac{K<i>F}{m</i>T v<i>{T,0}} \\ \frac{a K</i>F}{I_T}  \end{array} \right] \delta \]</p><p>Slip angles</p><p>\[ \alpha<i>{{\rm F},lin} = \alpha</i>{{\rm T}} + \frac{a}{v_{{\rm T},0}} \dot{\psi} - \delta \]</p><p>\[ \alpha<i>{{\rm F},lin} = \alpha</i>{{\rm T}} - \frac{b}{v_{{\rm T},0}} \dot{\psi} \]</p><h2><a id="node2">Tire model</a></h2><p>Typical characteristic curve and slip angle definition</p><img src="../illustrations/CurvaCaracteristica.svg" alt="../illustrations/CurvaCaracteristica.svg"><p><b>Pacejka</b></p><p>\[ F_{y} = D \sin \left[ C \arctan{B \alpha - E( B \alpha -\arctan(B \alpha))} \right] \]</p><p><b>Linear</b></p><p>\[ F_ y = K \alpha \]</p><pre class="oct-code">deriva = (0:0.1:15)*pi/180;         <span class="comment">% ngulo de deriva [rad]</span>
+<p>Steering Control of Autonomous Vehicles in Obstacle Avoidance Maneuvers.</p><img src="../illustrations/animation/SteeringControlAnimation.gif" alt="../illustrations/animation/SteeringControlAnimation.gif"><h2>Contents</h2><ul><li><a href="#node1">Vehicle model</a></li><li><a href="#node2">Tire model</a></li><li><a href="#node3">Plant model</a></li><li><a href="#node4">Controller design</a></li><li><a href="#node5">Double Lane Change Maneuver</a></li><li><a href="#node6">See Also</a></li></ul><h2><a id="node1">Vehicle model</a></h2><p><b>Bicycle model</b></p><img src="../illustrations/modelSimple.svg" alt="../illustrations/modelSimple.svg"><p><b>Nonlinear model</b></p><p>State vector</p><p>$$ {\bf x} = \left[ \begin{array}{c} {\rm x}_1 \\ {\rm x}_2 \\ {\rm x}_3 \\ {\rm x}_4 \\ {\rm x}_5 \\ {\rm x}_6 \end{array} \right] = \left[ \begin{array}{c} x \\ y \\ \psi \\ v_{\rm T} \\ \alpha_{\rm T} \\ \dot{\psi} \end{array} \right] $$</p><p>State equations</p><p>$$ \dot{{\rm x}}_1 = {\rm x}_4 \cos \left( {\rm x}_3 + {\rm x}_5 \right) $$</p><p>$$ \dot{{\rm x}}_2 = {\rm x}_4 \sin \left( {\rm x}_3 + {\rm x}_5 \right) $$</p><p>$$ \dot{{\rm x}}_3 = {\rm x}_6 $$</p><p>$$ \dot{{\rm x}}_4 = \frac{F_{y,{\rm F}} \sin \left( {\rm x}_5 - \delta \right) + F_{y,{\rm R}} \sin {\rm x}_5}{m_{T}} $$</p><p>$$ \dot{{\rm x}}_5 = \frac{F_{y,{\rm F}} \cos \left( {\rm x}_5 - \delta \right) + F_{y,{\rm R}} \cos \alpha_{\rm T} - m_{T} {\rm x}_4 {\rm x}_6}{m_{T} {\rm x}_4} $$</p><p>$$ \dot{{\rm x}}_6 = \frac{F_{y,{\rm F}} a \cos \delta - F_{y,{\rm R}} b}{I_{T}} $$</p><p>Slip angles</p><p>$$ \alpha_{\rm F} = \arctan \left( \frac{v_{\rm T} \sin \alpha_{\rm T} + a \dot{\psi}}{ v_{\rm T} \cos \alpha_{\rm T}} \right) - \delta $$</p><p>$$ \alpha_{\rm R} = \arctan \left( \frac{v_{\rm T} \sin \alpha_{\rm T} - b \dot{\psi}}{ v_{\rm T} \cos \alpha_{\rm T}} \right) $$</p><p><b>Linear model</b></p><p>$$ \dot{x} = v_{\rm T} $$</p><p>$$ \dot{y} = v_{{\rm T},0} \left( \psi + \alpha_{{\rm T}}\right) $$</p><p>$$ \dot{\psi} = \dot{\psi} $$</p><p>$$ \dot{v}_{\rm T} = 0 $$</p><p>$$ \dot{\alpha}_{\rm T} = \frac{F_{y,{\rm F}} + F_{y,{\rm R}}}{m_{T} v_{{\rm T},0}} - \dot{\psi} $$</p><p>$$ \ddot{\psi} = \frac{a F_{y,{\rm F}} -  b F_{y,{\rm R}}}{I_{T}} $$</p><p>Neglecting equations of $x$ and $v_T$</p><p>$$ \left[ \begin{array}{c} \dot{y} \\ \dot{\psi} \\ \dot{\alpha}_T \\ \ddot{\psi} \end{array} \right] = \left[ \begin{array}{cccc} 0 & v_{T,0} & v_{T,0} & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & -\frac{K_F+K_R}{m_T v_{T,0}} & - \frac{m_T v_{T,0} + \frac{a K_F - b K_R}{v_{T,0}}}{m_T v_{T,0}} \\ 0 & 0 & - \frac{a K_F - b K_R}{I_T} & - \frac{a^2 K_F + b^2 K_R}{I_T v_{T,0}} \end{array} \right] \left[ \begin{array}{c} y \\ \psi \\ \alpha_T \\ \dot{\psi} \end{array} \right] + \left[ \begin{array}{c} 0 \\ 0 \\ \frac{K_F}{m_T v_{T,0}} \\ \frac{a K_F}{I_T}  \end{array} \right] \delta $$</p><p>Slip angles</p><p>$$ \alpha_{{\rm F},lin} = \alpha_{{\rm T}} + \frac{a}{v_{{\rm T},0}} \dot{\psi} - \delta $$</p><p>$$ \alpha_{{\rm F},lin} = \alpha_{{\rm T}} - \frac{b}{v_{{\rm T},0}} \dot{\psi} $$</p><h2><a id="node2">Tire model</a></h2><p>Typical characteristic curve and slip angle definition</p><img src="../illustrations/CurvaCaracteristica.svg" alt="../illustrations/CurvaCaracteristica.svg"><p><b>Pacejka</b></p><p>$$ F_{y} = D \sin \left[ C \arctan{B \alpha - E( B \alpha -\arctan(B \alpha))} \right] $$</p><p><b>Linear</b></p><p>$$ F_ y = K \alpha $$</p><pre class="oct-code">deriva = (0:0.1:15)*pi/180;         <span class="comment">% ngulo de deriva [rad]</span>
 
 <span class="comment">% Pacejka tire parameters</span>
 a0 = 1;
@@ -113,12 +113,12 @@ FyLin = TireLin.Characteristic(deriva);
 g = Graphics(TirePac);</pre><p>Comparison of tire models</p><pre class="oct-code">f1 = figure(1);
 ax = gca;
 set(ax, <span class="string">'NextPlot'</span>, <span class="string">'add'</span>, <span class="string">'Box'</span>, <span class="string">'on'</span>, <span class="string">'XGrid'</span>, <span class="string">'on'</span>, <span class="string">'YGrid'</span>, <span class="string">'on'</span>)
-p = plot(deriva * 180/pi,-FyLin, <span class="string">'Color'</span>, <span class="string">'g'</span>, <span class="string">'Marker'</span>, <span class="string">'s'</span>, <span class="string">'MarkerFaceColor'</span>, <span class="string">'g'</span>, <span class="string">'MarkeredgeColor'</span>, <span class="string">'k'</span>, <span class="string">'MarkerSize'</span>, 7);
-g.changeMarker(p, 10);
-p = plot(deriva * 180/pi,-FyPac, <span class="string">'Color'</span>, <span class="string">'r'</span>, <span class="string">'Marker'</span>, <span class="string">'o'</span>, <span class="string">'MarkerFaceColor'</span>, <span class="string">'r'</span>, <span class="string">'MarkeredgeColor'</span>, <span class="string">'k'</span>, <span class="string">'MarkerSize'</span>, 7);
-g.changeMarker(p, 10);
-xlabel(<span class="string">'\(\alpha\) [grau]'</span>, <span class="string">'Interpreter'</span>, <span class="string">'Latex'</span>)
-ylabel(<span class="string">'\(F_y\) [N]'</span>, <span class="string">'Interpreter'</span>, <span class="string">'Latex'</span>)
+set(ax,<span class="string">'xlim'</span>,[0 15])
+p1 = plot(deriva * 180/pi,-FyPac, <span class="string">'Color'</span>, <span class="string">'r'</span>, <span class="string">'Marker'</span>, <span class="string">'o'</span>, <span class="string">'MarkerFaceColor'</span>, <span class="string">'r'</span>, <span class="string">'MarkeredgeColor'</span>, <span class="string">'k'</span>, <span class="string">'MarkerSize'</span>, 3);
+p2 = plot(deriva * 180/pi,-FyLin, <span class="string">'Color'</span>, <span class="string">'g'</span>, <span class="string">'Marker'</span>, <span class="string">'s'</span>, <span class="string">'MarkerFaceColor'</span>, <span class="string">'g'</span>, <span class="string">'MarkeredgeColor'</span>, <span class="string">'k'</span>, <span class="string">'MarkerSize'</span>, 3);
+g.changeMarker(10,p1,p2);
+xlabel(<span class="string">'$\alpha$ [grau]'</span>, <span class="string">'Interpreter'</span>, <span class="string">'Latex'</span>)
+ylabel(<span class="string">'$F_y$ [N]'</span>, <span class="string">'Interpreter'</span>, <span class="string">'Latex'</span>)
 l = legend(<span class="string">'Linear'</span>, <span class="string">'Pacejka'</span>);
 set(l, <span class="string">'Interpreter'</span>, <span class="string">'Latex'</span>, <span class="string">'Location'</span>, <span class="string">'NorthWest'</span>)</pre><img width="500" src="../illustrations/plot/SteeringControlFig1.svg" alt="../illustrations/plot/SteeringControlFig1.svg"><pre class="oct-code"><span class="comment">%</span>
 </pre><h2><a id="node3">Plant model</a></h2><p>Nonlinear vehicle + Pacejka tire</p><pre class="oct-code"><span class="comment">% Choosing vehicle</span>
@@ -169,7 +169,7 @@ R = 1;</pre><p>R</p><pre class="oct-code">disp(R)
 
 Klqr = lqr(A,B,Q,R);</pre><p>Klqr</p><pre class="oct-code">disp(Klqr)</pre><p><b>Pole placement design</b></p><pre class="oct-code">polos = [-6 -6.3 -6.7 -7];
 
-Kplace = place(A,B,polos);</pre><p>Kplace</p><pre class="oct-code">disp(Kplace)</pre><p>Control law</p><p>\[\delta = - {\bf K} {\bf z} + K_1 r \]</p><h2><a id="node5">Double Lane Change Maneuver</a></h2><p><b>Control - Step y</b></p><p>Reference - r = 2 m</p><p>\[ \delta_{max} = \pm 70 deg \]</p><pre class="oct-code"><span class="comment">% Simulation</span>
+Kplace = place(A,B,polos);</pre><p>Kplace</p><pre class="oct-code">disp(Kplace)</pre><p>Control law</p><p>$$\delta = - {\bf K} {\bf z} + K_1 r $$</p><h2><a id="node5">Double Lane Change Maneuver</a></h2><p><b>Control - Step y</b></p><p>Reference - r = 2 m</p><p>$$ \delta_{max} = \pm 70 deg $$</p><pre class="oct-code"><span class="comment">% Simulation</span>
 simulator.Simulate();
 
 g = Graphics(simulator);
@@ -257,7 +257,7 @@ plot(TSPAN,ALPHAT,<span class="string">'b'</span>)
 plot(TSPAN,dPSI,<span class="string">'c'</span>)
 xlabel(<span class="string">'Time [s]'</span>)
 ylabel(<span class="string">'States'</span>)
-l = legend(<span class="string">'\(y\)'</span>,<span class="string">'\(\psi\)'</span>,<span class="string">'\(\alpha_T\)'</span>,<span class="string">'\(\dot{\psi}\)'</span>);
+l = legend(<span class="string">'$y$'</span>,<span class="string">'$\psi$'</span>,<span class="string">'$\alpha_T$'</span>,<span class="string">'$\dot{\psi}$'</span>);
 set(l,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>,<span class="string">'Location'</span>,<span class="string">'NorthEast'</span>)</pre><img width="500" src="../illustrations/plot/SteeringControlFig2.svg" alt="../illustrations/plot/SteeringControlFig2.svg"><pre class="oct-code"><span class="comment">% Steering input</span>
 f3 = figure(3);
 <span class="comment">% set(f2,'PaperUnits','centimeters')</span>
@@ -267,7 +267,7 @@ f3 = figure(3);
 hold on; box on; grid on
 plot(TSPAN,output*180/pi,<span class="string">'k'</span>)
 xlabel(<span class="string">'Time [s]'</span>)
-y = ylabel(<span class="string">'\(\delta [deg]\)'</span>);
+y = ylabel(<span class="string">'$\delta [deg]$'</span>);
 set(y,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>)</pre><img width="500" src="../illustrations/plot/SteeringControlFig3.svg" alt="../illustrations/plot/SteeringControlFig3.svg"><h2><a id="node6">See Also</a></h2><p><a href="../index.html">Home</a></p>
 <footer><hr><a href="http://www.octave.org">Published with GNU Octave 4.2.1</a></footer>
 <!--
@@ -286,53 +286,53 @@ set(y,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</sp
 %
 % State vector
 %
-% \[ {\bf x} = \left[ \begin{array}{c} {\rm x}_1 \\ {\rm x}_2 \\ {\rm x}_3 \\ {\rm x}_4 \\ {\rm x}_5 \\ {\rm x}_6 \end{array} \right] = \left[ \begin{array}{c} x \\ y \\ \psi \\ v_{\rm T} \\ \alpha_{\rm T} \\ \dot{\psi} \end{array} \right] \]
+% $$ {\bf x} = \left[ \begin{array}{c} {\rm x}_1 \\ {\rm x}_2 \\ {\rm x}_3 \\ {\rm x}_4 \\ {\rm x}_5 \\ {\rm x}_6 \end{array} \right] = \left[ \begin{array}{c} x \\ y \\ \psi \\ v_{\rm T} \\ \alpha_{\rm T} \\ \dot{\psi} \end{array} \right] $$
 %
 % State equations
 %
-% \[ \dot{{\rm x}}_1 = {\rm x}_4 \cos \left( {\rm x}_3 + {\rm x}_5 \right) \]
+% $$ \dot{{\rm x}}_1 = {\rm x}_4 \cos \left( {\rm x}_3 + {\rm x}_5 \right) $$
 %
-% \[ \dot{{\rm x}}_2 = {\rm x}_4 \sin \left( {\rm x}_3 + {\rm x}_5 \right) \]
+% $$ \dot{{\rm x}}_2 = {\rm x}_4 \sin \left( {\rm x}_3 + {\rm x}_5 \right) $$
 %
-% \[ \dot{{\rm x}}_3 = {\rm x}_6 \]
+% $$ \dot{{\rm x}}_3 = {\rm x}_6 $$
 %
-% \[ \dot{{\rm x}}_4 = \frac{F_{y,{\rm F}} \sin \left( {\rm x}_5 - \delta \right) + F_{y,{\rm R}} \sin {\rm x}_5}{m_{T}} \]
+% $$ \dot{{\rm x}}_4 = \frac{F_{y,{\rm F}} \sin \left( {\rm x}_5 - \delta \right) + F_{y,{\rm R}} \sin {\rm x}_5}{m_{T}} $$
 %
-% \[ \dot{{\rm x}}_5 = \frac{F_{y,{\rm F}} \cos \left( {\rm x}_5 - \delta \right) + F_{y,{\rm R}} \cos \alpha_{\rm T} - m_{T} {\rm x}_4 {\rm x}_6}{m_{T} {\rm x}_4} \]
+% $$ \dot{{\rm x}}_5 = \frac{F_{y,{\rm F}} \cos \left( {\rm x}_5 - \delta \right) + F_{y,{\rm R}} \cos \alpha_{\rm T} - m_{T} {\rm x}_4 {\rm x}_6}{m_{T} {\rm x}_4} $$
 %
-% \[ \dot{{\rm x}}_6 = \frac{F_{y,{\rm F}} a \cos \delta - F_{y,{\rm R}} b}{I_{T}} \]
+% $$ \dot{{\rm x}}_6 = \frac{F_{y,{\rm F}} a \cos \delta - F_{y,{\rm R}} b}{I_{T}} $$
 %
 % Slip angles
 %
-% \[ \alpha_{\rm F} = \arctan \left( \frac{v_{\rm T} \sin \alpha_{\rm T} + a \dot{\psi}}{ v_{\rm T} \cos \alpha_{\rm T}} \right) - \delta \]
+% $$ \alpha_{\rm F} = \arctan \left( \frac{v_{\rm T} \sin \alpha_{\rm T} + a \dot{\psi}}{ v_{\rm T} \cos \alpha_{\rm T}} \right) - \delta $$
 %
-% \[ \alpha_{\rm R} = \arctan \left( \frac{v_{\rm T} \sin \alpha_{\rm T} - b \dot{\psi}}{ v_{\rm T} \cos \alpha_{\rm T}} \right) \]
+% $$ \alpha_{\rm R} = \arctan \left( \frac{v_{\rm T} \sin \alpha_{\rm T} - b \dot{\psi}}{ v_{\rm T} \cos \alpha_{\rm T}} \right) $$
 %
 %
 % *Linear model*
 %
-% \[ \dot{x} = v_{\rm T} \]
+% $$ \dot{x} = v_{\rm T} $$
 %
-% \[ \dot{y} = v_{{\rm T},0} \left( \psi + \alpha_{{\rm T}}\right) \]
+% $$ \dot{y} = v_{{\rm T},0} \left( \psi + \alpha_{{\rm T}}\right) $$
 %
-% \[ \dot{\psi} = \dot{\psi} \]
+% $$ \dot{\psi} = \dot{\psi} $$
 %
-% \[ \dot{v}_{\rm T} = 0 \]
+% $$ \dot{v}_{\rm T} = 0 $$
 %
-% \[ \dot{\alpha}_{\rm T} = \frac{F_{y,{\rm F}} + F_{y,{\rm R}}}{m_{T} v_{{\rm T},0}} - \dot{\psi} \]
+% $$ \dot{\alpha}_{\rm T} = \frac{F_{y,{\rm F}} + F_{y,{\rm R}}}{m_{T} v_{{\rm T},0}} - \dot{\psi} $$
 %
-% \[ \ddot{\psi} = \frac{a F_{y,{\rm F}} -  b F_{y,{\rm R}}}{I_{T}} \]
+% $$ \ddot{\psi} = \frac{a F_{y,{\rm F}} -  b F_{y,{\rm R}}}{I_{T}} $$
 %
-% Neglecting equations of \(x\) and \(v_T\)
+% Neglecting equations of $x$ and $v_T$
 %
 %
-% \[ \left[ \begin{array}{c} \dot{y} \\ \dot{\psi} \\ \dot{\alpha}_T \\ \ddot{\psi} \end{array} \right] = \left[ \begin{array}{cccc} 0 & v_{T,0} & v_{T,0} & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & -\frac{K_F+K_R}{m_T v_{T,0}} & - \frac{m_T v_{T,0} + \frac{a K_F - b K_R}{v_{T,0}}}{m_T v_{T,0}} \\ 0 & 0 & - \frac{a K_F - b K_R}{I_T} & - \frac{a^2 K_F + b^2 K_R}{I_T v_{T,0}} \end{array} \right] \left[ \begin{array}{c} y \\ \psi \\ \alpha_T \\ \dot{\psi} \end{array} \right] + \left[ \begin{array}{c} 0 \\ 0 \\ \frac{K_F}{m_T v_{T,0}} \\ \frac{a K_F}{I_T}  \end{array} \right] \delta \]
+% $$ \left[ \begin{array}{c} \dot{y} \\ \dot{\psi} \\ \dot{\alpha}_T \\ \ddot{\psi} \end{array} \right] = \left[ \begin{array}{cccc} 0 & v_{T,0} & v_{T,0} & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & -\frac{K_F+K_R}{m_T v_{T,0}} & - \frac{m_T v_{T,0} + \frac{a K_F - b K_R}{v_{T,0}}}{m_T v_{T,0}} \\ 0 & 0 & - \frac{a K_F - b K_R}{I_T} & - \frac{a^2 K_F + b^2 K_R}{I_T v_{T,0}} \end{array} \right] \left[ \begin{array}{c} y \\ \psi \\ \alpha_T \\ \dot{\psi} \end{array} \right] + \left[ \begin{array}{c} 0 \\ 0 \\ \frac{K_F}{m_T v_{T,0}} \\ \frac{a K_F}{I_T}  \end{array} \right] \delta $$
 %
 % Slip angles
 %
-% \[ \alpha_{{\rm F},lin} = \alpha_{{\rm T}} + \frac{a}{v_{{\rm T},0}} \dot{\psi} - \delta \]
+% $$ \alpha_{{\rm F},lin} = \alpha_{{\rm T}} + \frac{a}{v_{{\rm T},0}} \dot{\psi} - \delta $$
 %
-% \[ \alpha_{{\rm F},lin} = \alpha_{{\rm T}} - \frac{b}{v_{{\rm T},0}} \dot{\psi} \]
+% $$ \alpha_{{\rm F},lin} = \alpha_{{\rm T}} - \frac{b}{v_{{\rm T},0}} \dot{\psi} $$
 %
 %% Tire model
 %
@@ -342,11 +342,11 @@ set(y,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</sp
 %
 % *Pacejka*
 %
-% \[ F_{y} = D \sin \left[ C \arctan{B \alpha - E( B \alpha -\arctan(B \alpha))} \right] \]
+% $$ F_{y} = D \sin \left[ C \arctan{B \alpha - E( B \alpha -\arctan(B \alpha))} \right] $$
 %
 % *Linear*
 %
-% \[ F_ y = K \alpha \]
+% $$ F_ y = K \alpha $$
 %
 
 deriva = (0:0.1:15)*pi/180;         % ngulo de deriva [rad]
@@ -410,12 +410,12 @@ g = Graphics(TirePac);
 f1 = figure(1);
 ax = gca;
 set(ax, 'NextPlot', 'add', 'Box', 'on', 'XGrid', 'on', 'YGrid', 'on')
-p = plot(deriva * 180/pi,-FyLin, 'Color', 'g', 'Marker', 's', 'MarkerFaceColor', 'g', 'MarkeredgeColor', 'k', 'MarkerSize', 7);
-g.changeMarker(p, 10);
-p = plot(deriva * 180/pi,-FyPac, 'Color', 'r', 'Marker', 'o', 'MarkerFaceColor', 'r', 'MarkeredgeColor', 'k', 'MarkerSize', 7);
-g.changeMarker(p, 10);
-xlabel('\(\alpha\) [grau]', 'Interpreter', 'Latex')
-ylabel('\(F_y\) [N]', 'Interpreter', 'Latex')
+set(ax,'xlim',[0 15])
+p1 = plot(deriva * 180/pi,-FyPac, 'Color', 'r', 'Marker', 'o', 'MarkerFaceColor', 'r', 'MarkeredgeColor', 'k', 'MarkerSize', 3);
+p2 = plot(deriva * 180/pi,-FyLin, 'Color', 'g', 'Marker', 's', 'MarkerFaceColor', 'g', 'MarkeredgeColor', 'k', 'MarkerSize', 3);
+g.changeMarker(10,p1,p2);
+xlabel('$\alpha$ [grau]', 'Interpreter', 'Latex')
+ylabel('$F_y$ [N]', 'Interpreter', 'Latex')
 l = legend('Linear', 'Pacejka');
 set(l, 'Interpreter', 'Latex', 'Location', 'NorthWest')
 
@@ -533,14 +533,14 @@ disp(Kplace)
 %%
 % Control law
 %
-% \[\delta = - {\bf K} {\bf z} + K_1 r \]
+% $$\delta = - {\bf K} {\bf z} + K_1 r $$
 %
 %% Double Lane Change Maneuver
 % *Control - Step y*
 %
 % Reference - r = 2 m
 %
-% \[ \delta_{max} = \pm 70 deg \]
+% $$ \delta_{max} = \pm 70 deg $$
 
 % Simulation
 simulator.Simulate();
@@ -643,7 +643,7 @@ plot(TSPAN,ALPHAT,'b')
 plot(TSPAN,dPSI,'c')
 xlabel('Time [s]')
 ylabel('States')
-l = legend('\(y\)','\(\psi\)','\(\alpha_T\)','\(\dot{\psi}\)');
+l = legend('$y$','$\psi$','$\alpha_T$','$\dot{\psi}$');
 set(l,'Interpreter','Latex','Location','NorthEast')
 
 %%
@@ -659,7 +659,7 @@ f3 = figure(3);
 hold on; box on; grid on
 plot(TSPAN,output*180/pi,'k')
 xlabel('Time [s]')
-y = ylabel('\(\delta [deg]\)');
+y = ylabel('$\delta [deg]$');
 set(y,'Interpreter','Latex')
 
 %%

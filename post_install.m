@@ -6,7 +6,7 @@ function post_install(var)
 currentdir = pwd;
 pkgdir = var.dir;
 
-mkdir(pkgdir)
+mkdir(pkgdir);
 
 cd(pkgdir)
 cd ..

@@ -3,7 +3,6 @@
 %
 % <<../illustrations/animation/TemplateSimpleSimulinkAnimation.gif>>
 %
-%
 %% Simulink model
 % This model uses the s-function <SimpleVehicleSFunction.html SimpleVehicleSFunction.m> in Simulink. The package and this s-function must be in Matlab path.
 %
@@ -72,7 +71,7 @@ g.TractorColor = 'r';
 g.Frame();
 
 %%
-% <<../illustrations/frame/TemplateSimpleSimulinkFrame.gif>>
+% <<../illustrations/frame/TemplateSimpleSimulinkFrame.jpeg>>
 %
 
 g.Animation();
@@ -84,5 +83,5 @@ g.Animation();
 %
 %% See Also
 %
-% <../index.html Home> | <SimpleVehicleSFunction.html SimpleVehicleSFunction.m> | <TemplateArticulatedSimulink.html Template Articulated Simulink>
+% [<../index.html Home>] [<SimpleVehicleSFunction.html SimpleVehicleSFunction.m>] [<TemplateArticulatedSimulink.html Template Articulated Simulink>]
 %

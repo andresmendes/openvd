@@ -144,5 +144,5 @@ sys = x;
 
 %% See Also
 %
-% <../index.html Home> | <TemplateArticulatedSimulink.html Template Articulated Simulink>
+% [<../index.html Home>] | [<TemplateArticulatedSimulink.html Template Articulated Simulink>]
 %

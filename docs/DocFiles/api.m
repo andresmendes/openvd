@@ -24,5 +24,5 @@
 %
 %% See Also
 %
-% <../index.html Home> | <https://github.com/andresmendes/Vehicle-Dynamics-Lateral GitHub Page>
+% <../../index.html Home> | <https://github.com/andresmendes/Vehicle-Dynamics-Lateral GitHub Page>
 %

@@ -231,12 +231,12 @@
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 	<g transform="translate(12.3,99.8) rotate(-90)" stroke="none" fill="rgb(38,38,38)" font-family="Arial" font-size="11.00"  text-anchor="middle">
-		<text><tspan font-family="Arial" >(F</tspan><tspan font-family="Arial"  font-size="8.8" dy="3.30px">y</tspan><tspan font-family="Arial"  font-size="11.0" dy="-3.30px">) [N]</tspan></text>
+		<text><tspan font-family="Arial" >$F</tspan><tspan font-family="Arial"  font-size="8.8" dy="3.30px">y</tspan><tspan font-family="Arial"  font-size="11.0" dy="-3.30px">$ [N]</tspan></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 	<g transform="translate(160.2,221.9)" stroke="none" fill="rgb(38,38,38)" font-family="Arial" font-size="11.00"  text-anchor="middle">
-		<text><tspan font-family="Arial" >(alpha) [grau]</tspan></text>
+		<text><tspan font-family="Arial" >$alpha$ [grau]</tspan></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">

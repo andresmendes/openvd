@@ -57,7 +57,7 @@ h2 a, h2 a:visited {
 </head>
 <body>
 <h1>Documentation Generator</h1>
-<p>This script generates the whole documentation of the package.</p><h2>Contents</h2><ul><li><a href="#node1">Description</a></li><li><a href="#node2">Code start</a></li><li><a href="#node3">Adding paths</a></li><li><a href="#node4">TemplateArticulated</a></li><li><a href="#node5">TemplateSimple</a></li><li><a href="#node6">Code end</a></li><li><a href="#node7">See Also</a></li></ul><h2><a id="node1">Description</a></h2><p>The documentation of the package is written within the code of all .m files as comments.</p><p>Running this script all the .html files are generated through the command <a href="http://www.mathworks.com/help/matlab/ref/publish.html">publish</a> and saved in the folder "../Vehicle-Dynamics-Lateral-Documentation/".</p><h2><a id="node2">Code start</a></h2><pre class="oct-code">clear all                   <span class="comment">% Clear workspace</span>
+<p>This script generates the whole documentation of the package.</p><h2>Contents</h2><ul><li><a href="#node1">Description</a></li><li><a href="#node2">Code start</a></li><li><a href="#node3">Adding paths</a></li><li><a href="#node4">Skid Pad</a></li><li><a href="#node5">Skid Pad 4DOF</a></li><li><a href="#node6">SteeringControl</a></li><li><a href="#node7">TemplateArticulated</a></li><li><a href="#node8">TemplateSimple</a></li><li><a href="#node9">Template Simple Simulink</a></li><li><a href="#node10">TireComparison</a></li><li><a href="#node11">DocGen</a></li><li><a href="#node12">Code end</a></li><li><a href="#node13">See Also</a></li></ul><h2><a id="node1">Description</a></h2><p>The documentation of the package is written within the code of all .m files as comments.</p><p>Running this script all the .html files are generated through the command <a href="http://www.mathworks.com/help/matlab/ref/publish.html">publish</a> and saved in the folder "../Vehicle-Dynamics-Lateral-Documentation/".</p><h2><a id="node2">Code start</a></h2><pre class="oct-code">clear all                   <span class="comment">% Clear workspace</span>
 close all                   <span class="comment">% Closing figures</span>
 clc
 
@@ -66,11 +66,14 @@ cd ../..
 <span class="comment">% Getting openvd path</span>
 openvdPath = pwd;
 <span class="comment">% Going back to DocFiles</span>
-cd doc/DocFiles
+cd docs/DocFiles
 <span class="comment">% Folder where html doc files are saved</span>
-docPath = strcat(openvdPath,<span class="string">'/doc/Documentation/html/'</span>);
-apiDocPath = strcat(openvdPath,<span class="string">'/doc/Documentation/html/api/'</span>);</pre><h2><a id="node3">Adding paths</a></h2><p>Adding the folder of all necessary files to the Octave/Matlab path</p><pre class="oct-code"><span class="comment">% Path of the publishOVD function</span>
-addpath(strcat(openvdPath,<span class="string">'/doc/DocFiles/publishOVD'</span>))
+docPath = strcat(openvdPath,<span class="string">'/docs/html/'</span>);
+apiDocPath = strcat(openvdPath,<span class="string">'/docs/html/api/'</span>);</pre><h2><a id="node3">Adding paths</a></h2><p>Adding the folder of all necessary files to the Octave/Matlab path</p><pre class="oct-code"><span class="comment">% Path main.m function</span>
+addpath(strcat(openvdPath,<span class="string">'/docs/DocFiles'</span>))
+
+<span class="comment">% Path of the publishOVD function</span>
+addpath(strcat(openvdPath,<span class="string">'/docs/DocFiles/publishOVD'</span>))
 
 <span class="comment">% Path of the package</span>
 addpath(strcat(openvdPath,<span class="string">'/inst/'</span>))
@@ -91,16 +94,16 @@ addpath(strcat(openvdPath,<span class="string">'/inst/@Simulator/'</span>))
 addpath(strcat(openvdPath,<span class="string">'/inst/@Graphics/'</span>))
 
 <span class="comment">% % Examples</span>
-addpath(strcat(openvdPath,<span class="string">'/doc/Examples/KalmanFilter/'</span>))
-addpath(strcat(openvdPath,<span class="string">'/doc/Examples/SinusoidalSteering/'</span>))
-addpath(strcat(openvdPath,<span class="string">'/doc/Examples/SkidPad/'</span>))
-addpath(strcat(openvdPath,<span class="string">'/doc/Examples/SkidPad4DOF/'</span>))
-addpath(strcat(openvdPath,<span class="string">'/doc/Examples/SteeringControl/'</span>))
-addpath(strcat(openvdPath,<span class="string">'/doc/Examples/TemplateArticulated/'</span>))
-addpath(strcat(openvdPath,<span class="string">'/doc/Examples/TemplateArticulatedSimulink/'</span>))
-addpath(strcat(openvdPath,<span class="string">'/doc/Examples/TemplateSimple/'</span>))
-addpath(strcat(openvdPath,<span class="string">'/doc/Examples/TemplateSimpleSimulink/'</span>))
-addpath(strcat(openvdPath,<span class="string">'/doc/Examples/TireComparison/'</span>))
+addpath(strcat(openvdPath,<span class="string">'/docs/Examples/KalmanFilter/'</span>))
+addpath(strcat(openvdPath,<span class="string">'/docs/Examples/SinusoidalSteering/'</span>))
+addpath(strcat(openvdPath,<span class="string">'/docs/Examples/SkidPad/'</span>))
+addpath(strcat(openvdPath,<span class="string">'/docs/Examples/SkidPad4DOF/'</span>))
+addpath(strcat(openvdPath,<span class="string">'/docs/Examples/SteeringControl/'</span>))
+addpath(strcat(openvdPath,<span class="string">'/docs/Examples/TemplateArticulated/'</span>))
+addpath(strcat(openvdPath,<span class="string">'/docs/Examples/TemplateArticulatedSimulink/'</span>))
+addpath(strcat(openvdPath,<span class="string">'/docs/Examples/TemplateSimple/'</span>))
+addpath(strcat(openvdPath,<span class="string">'/docs/Examples/TemplateSimpleSimulink/'</span>))
+addpath(strcat(openvdPath,<span class="string">'/docs/Examples/TireComparison/'</span>))
 <span class="comment">%</span>
 <span class="comment">% %% Deleting</span>
 <span class="comment">% % Deleting old documentation</span>
@@ -117,9 +120,9 @@ addpath(strcat(openvdPath,<span class="string">'/doc/Examples/TireComparison/'</
 <span class="comment">%</span>
 <span class="comment">% Index</span>
 options.evalCode = false;
-options.outputDir = strcat(openvdPath,<span class="string">'/doc/Documentation/'</span>);
+options.outputDir = strcat(openvdPath,<span class="string">'/docs/'</span>);
 publishOVD(<span class="string">'main.m'</span>, options);
-movefile(strcat(openvdPath,<span class="string">'/doc/Documentation/main.html'</span>),strcat(openvdPath,<span class="string">'/doc/Documentation/index.html'</span>))
+movefile(strcat(openvdPath,<span class="string">'/docs/main.html'</span>),strcat(openvdPath,<span class="string">'/docs/index.html'</span>))
 <span class="comment">%</span>
 <span class="comment">% Tire models</span>
 options.evalCode = false;
@@ -165,7 +168,7 @@ publishOVD(<span class="string">'@Simulator/Simulator.m'</span>,options);
 publishOVD(<span class="string">'@Graphics/Graphics.m'</span>,options);
 
 <span class="comment">% Going back to DocFiles</span>
-cd ../doc/DocFiles
+cd ../docs/DocFiles
 <span class="comment">%</span>
 <span class="comment">% % EXAMPLES</span>
 <span class="comment">% % Kalman Filter</span>
@@ -174,38 +177,96 @@ cd ../doc/DocFiles
 <span class="comment">% clearvars -except docPath apiDocPath</span>
 <span class="comment">%</span>
 <span class="comment">% % Sinusoidal Steering</span>
+graphics_toolkit gnuplot            <span class="comment">% svg quality is higher with gnuplot</span>
+SinusoidalSteering
+paperPos = [0 0 10 8];
+set(f1,<span class="string">'Paperunits'</span>,<span class="string">'centimeters'</span>,<span class="string">'PaperPosition'</span>,paperPos)
+print(f1, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/docs/illustrations/plot/SinusoidalSteeringFig1.svg'</span>))
+g.Frame(<span class="string">'scalefig'</span>,3);
+print(gcf, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/docs/illustrations/frame/SinusoidalSteeringFrame.svg'</span>))
+graphics_toolkit qt
+publishOVD(strcat(openvdPath,<span class="string">'/docs/Examples/SinusoidalSteering/SinusoidalSteering.m'</span>),options);
+g.Animation(<span class="string">'savepath'</span>,strcat(openvdPath,<span class="string">'/docs/illustrations/animation/SinusoidalSteeringAnimation'</span>),<span class="string">'scalefig'</span>,3);
+close all
+
+
 <span class="comment">% publish('SinusoidalSteering.m', 'outputDir', docPath, 'evalCode', true);</span>
 <span class="comment">% g.Animation('../Documentation/illustrations/AnimationSinusoidalSteering');</span>
 <span class="comment">% close all</span>
 <span class="comment">% clearvars -except docPath apiDocPath</span>
 <span class="comment">%</span>
-<span class="comment">% % Skid Pad</span>
-<span class="comment">% publish('SkidPad.m', 'outputDir', docPath, 'evalCode', true,'showCode',true);</span>
-<span class="comment">% g.Animation('../Documentation/illustrations/AnimationSkidPad');</span>
-<span class="comment">% close all</span>
-<span class="comment">% clearvars -except docPath apiDocPath</span>
-<span class="comment">%</span>
-<span class="comment">% % Skid Pad 4DOF</span>
-<span class="comment">% publish('SkidPad4DOF.m', 'outputDir', docPath, 'evalCode', true,'showCode',true);</span>
-<span class="comment">% g.Animation('../Documentation/illustrations/AnimationSkidPad4DOF');</span>
-<span class="comment">% close all</span>
-<span class="comment">% clearvars -except docPath apiDocPath</span>
-<span class="comment">%</span>
-<span class="comment">% % SteeringControl</span>
-<span class="comment">% publish('SteeringControl.m', 'outputDir', docPath, 'evalCode', true,'showCode',false);</span>
-<span class="comment">% g.Animation('../Documentation/illustrations/AnimationSteeringControl');</span>
-<span class="comment">% close all</span>
-<span class="comment">% clearvars -except docPath apiDocPath</span>
-<span class="comment">%</span>
-</pre><h2><a id="node4">TemplateArticulated</a></h2><pre class="oct-code">graphics_toolkit gnuplot            <span class="comment">% svg quality is higher with gnuplot</span>
+</pre><h2><a id="node4">Skid Pad</a></h2><pre class="oct-code">graphics_toolkit gnuplot            <span class="comment">% svg quality is higher with gnuplot</span>
+SkidPad
+paperPos = [0 0 10 8];
+set(f1,<span class="string">'Paperunits'</span>,<span class="string">'centimeters'</span>,<span class="string">'PaperPosition'</span>,paperPos)
+print(f1, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/docs/illustrations/plot/SkidPadFig1.svg'</span>))
+set(f2,<span class="string">'Paperunits'</span>,<span class="string">'centimeters'</span>,<span class="string">'PaperPosition'</span>,paperPos)
+print(f2, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/docs/illustrations/plot/SkidPadFig2.svg'</span>))
+set(f3,<span class="string">'Paperunits'</span>,<span class="string">'centimeters'</span>,<span class="string">'PaperPosition'</span>,paperPos)
+print(f3, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/docs/illustrations/plot/SkidPadFig3.svg'</span>))
+set(f4,<span class="string">'Paperunits'</span>,<span class="string">'centimeters'</span>,<span class="string">'PaperPosition'</span>,paperPos)
+print(f4, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/docs/illustrations/plot/SkidPadFig4.svg'</span>))
+set(f5,<span class="string">'Paperunits'</span>,<span class="string">'centimeters'</span>,<span class="string">'PaperPosition'</span>,paperPos)
+print(f5, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/docs/illustrations/plot/SkidPadFig5.svg'</span>))
+set(f6,<span class="string">'Paperunits'</span>,<span class="string">'centimeters'</span>,<span class="string">'PaperPosition'</span>,paperPos)
+print(f6, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/docs/illustrations/plot/SkidPadFig6.svg'</span>))
+g.Frame();
+print(gcf, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/docs/illustrations/frame/SkidPadFrame.svg'</span>))
+graphics_toolkit qt
+publishOVD(strcat(openvdPath,<span class="string">'/docs/Examples/SkidPad/SkidPad.m'</span>),options);
+g.Animation(<span class="string">'savepath'</span>,strcat(openvdPath,<span class="string">'/docs/illustrations/animation/SkidPadAnimation'</span>));
+close all</pre><h2><a id="node5">Skid Pad 4DOF</a></h2><pre class="oct-code">graphics_toolkit gnuplot            <span class="comment">% svg quality is higher with gnuplot</span>
+SkidPad4DOF
+paperPos = [0 0 10 8];
+set(f1,<span class="string">'Paperunits'</span>,<span class="string">'centimeters'</span>,<span class="string">'PaperPosition'</span>,paperPos)
+print(f1, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/docs/illustrations/plot/SkidPad4DOFFig1.svg'</span>))
+set(f2,<span class="string">'Paperunits'</span>,<span class="string">'centimeters'</span>,<span class="string">'PaperPosition'</span>,paperPos)
+print(f2, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/docs/illustrations/plot/SkidPad4DOFFig2.svg'</span>))
+set(f3,<span class="string">'Paperunits'</span>,<span class="string">'centimeters'</span>,<span class="string">'PaperPosition'</span>,paperPos)
+print(f3, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/docs/illustrations/plot/SkidPad4DOFFig3.svg'</span>))
+set(f4,<span class="string">'Paperunits'</span>,<span class="string">'centimeters'</span>,<span class="string">'PaperPosition'</span>,paperPos)
+print(f4, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/docs/illustrations/plot/SkidPad4DOFFig4.svg'</span>))
+set(f5,<span class="string">'Paperunits'</span>,<span class="string">'centimeters'</span>,<span class="string">'PaperPosition'</span>,paperPos)
+print(f5, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/docs/illustrations/plot/SkidPad4DOFFig5.svg'</span>))
+set(f6,<span class="string">'Paperunits'</span>,<span class="string">'centimeters'</span>,<span class="string">'PaperPosition'</span>,paperPos)
+print(f6, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/docs/illustrations/plot/SkidPad4DOFFig6.svg'</span>))
+set(f7,<span class="string">'Paperunits'</span>,<span class="string">'centimeters'</span>,<span class="string">'PaperPosition'</span>,paperPos)
+print(f7, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/docs/illustrations/plot/SkidPad4DOFFig7.svg'</span>))
+set(f8,<span class="string">'Paperunits'</span>,<span class="string">'centimeters'</span>,<span class="string">'PaperPosition'</span>,paperPos)
+print(f8, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/docs/illustrations/plot/SkidPad4DOFFig8.svg'</span>))
+set(f9,<span class="string">'Paperunits'</span>,<span class="string">'centimeters'</span>,<span class="string">'PaperPosition'</span>,paperPos)
+print(f9, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/docs/illustrations/plot/SkidPad4DOFFig9.svg'</span>))
+set(f10,<span class="string">'Paperunits'</span>,<span class="string">'centimeters'</span>,<span class="string">'PaperPosition'</span>,paperPos)
+print(f10, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/docs/illustrations/plot/SkidPad4DOFFig10.svg'</span>))
+g.Frame();
+print(gcf, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/docs/illustrations/frame/SkidPad4DOFFrame.svg'</span>))
+graphics_toolkit qt
+publishOVD(strcat(openvdPath,<span class="string">'/docs/Examples/SkidPad4DOF/SkidPad4DOF.m'</span>),options);
+g.Animation(<span class="string">'savepath'</span>,strcat(openvdPath,<span class="string">'/docs/illustrations/animation/SkidPad4DOFAnimation'</span>));
+close all</pre><h2><a id="node6">SteeringControl</a></h2><pre class="oct-code">pkg load control
+
+graphics_toolkit gnuplot            <span class="comment">% svg quality is higher with gnuplot</span>
+SteeringControl
+paperPos = [0 0 10 8];
+set(f1,<span class="string">'Paperunits'</span>,<span class="string">'centimeters'</span>,<span class="string">'PaperPosition'</span>,paperPos)
+print(f1, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/docs/illustrations/plot/SteeringControlFig1.svg'</span>))
+set(f2,<span class="string">'Paperunits'</span>,<span class="string">'centimeters'</span>,<span class="string">'PaperPosition'</span>,paperPos)
+print(f2, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/docs/illustrations/plot/SteeringControlFig2.svg'</span>))
+set(f3,<span class="string">'Paperunits'</span>,<span class="string">'centimeters'</span>,<span class="string">'PaperPosition'</span>,paperPos)
+print(f3, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/docs/illustrations/plot/SteeringControlFig3.svg'</span>))
+g.Frame(<span class="string">'scalefig'</span>,3);
+print(gcf, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/docs/illustrations/frame/SteeringControlFrame.svg'</span>))
+graphics_toolkit qt
+publishOVD(strcat(openvdPath,<span class="string">'/docs/Examples/SteeringControl/SteeringControl.m'</span>),options);
+g.Animation(<span class="string">'savepath'</span>,strcat(openvdPath,<span class="string">'/docs/illustrations/animation/SteeringControlAnimation'</span>),<span class="string">'scalefig'</span>,3);
+close all</pre><h2><a id="node7">TemplateArticulated</a></h2><pre class="oct-code">graphics_toolkit gnuplot            <span class="comment">% svg quality is higher with gnuplot</span>
 TemplateArticulated
 g.Frame();
-print(gcf, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/doc/Documentation/illustrations/frame/TemplateArticulatedFrame.svg'</span>))
+print(gcf, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/docs/illustrations/frame/TemplateArticulatedFrame.svg'</span>))
 graphics_toolkit qt
 options.outputDir = docPath;
-publishOVD(strcat(openvdPath,<span class="string">'/doc/Examples/TemplateArticulated/TemplateArticulated.m'</span>),options);
-g.Animation(strcat(openvdPath,<span class="string">'/doc/Documentation/illustrations/animation/TemplateArticulatedAnimation'</span>));
-delete(<span class="string">'animation.pdf'</span>)
+publishOVD(strcat(openvdPath,<span class="string">'/docs/Examples/TemplateArticulated/TemplateArticulated.m'</span>),options);
+g.Animation(<span class="string">'savepath'</span>,strcat(openvdPath,<span class="string">'/docs/illustrations/animation/TemplateArticulatedAnimation'</span>));
 close all
 
 <span class="comment">% % Template Articulated Simulink</span>
@@ -215,48 +276,38 @@ close all
 <span class="comment">% close all</span>
 <span class="comment">% clearvars -except docPath apiDocPath</span>
 <span class="comment">%</span>
-</pre><h2><a id="node5">TemplateSimple</a></h2><pre class="oct-code">graphics_toolkit gnuplot            <span class="comment">% svg quality is higher with gnuplot</span>
+</pre><h2><a id="node8">TemplateSimple</a></h2><pre class="oct-code">graphics_toolkit gnuplot            <span class="comment">% svg quality is higher with gnuplot</span>
 TemplateSimple
 paperPos = [0 0 10 8];
 set(f1,<span class="string">'Paperunits'</span>,<span class="string">'centimeters'</span>,<span class="string">'PaperPosition'</span>,paperPos)
-print(f1, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/doc/Documentation/illustrations/plot/TemplateSimpleFig1.svg'</span>))
+print(f1, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/docs/illustrations/plot/TemplateSimpleFig1.svg'</span>))
 set(f2,<span class="string">'Paperunits'</span>,<span class="string">'centimeters'</span>,<span class="string">'PaperPosition'</span>,paperPos)
-print(f2, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/doc/Documentation/illustrations/plot/TemplateSimpleFig2.svg'</span>))
+print(f2, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/docs/illustrations/plot/TemplateSimpleFig2.svg'</span>))
 set(f3,<span class="string">'Paperunits'</span>,<span class="string">'centimeters'</span>,<span class="string">'PaperPosition'</span>,paperPos)
-print(f3, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/doc/Documentation/illustrations/plot/TemplateSimpleFig3.svg'</span>))
+print(f3, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/docs/illustrations/plot/TemplateSimpleFig3.svg'</span>))
 set(f4,<span class="string">'Paperunits'</span>,<span class="string">'centimeters'</span>,<span class="string">'PaperPosition'</span>,paperPos)
-print(f4, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/doc/Documentation/illustrations/plot/TemplateSimpleFig4.svg'</span>))
+print(f4, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/docs/illustrations/plot/TemplateSimpleFig4.svg'</span>))
 set(f5,<span class="string">'Paperunits'</span>,<span class="string">'centimeters'</span>,<span class="string">'PaperPosition'</span>,paperPos)
-print(f5, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/doc/Documentation/illustrations/plot/TemplateSimpleFig5.svg'</span>))
+print(f5, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/docs/illustrations/plot/TemplateSimpleFig5.svg'</span>))
 set(f6,<span class="string">'Paperunits'</span>,<span class="string">'centimeters'</span>,<span class="string">'PaperPosition'</span>,paperPos)
-print(f6, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/doc/Documentation/illustrations/plot/TemplateSimpleFig6.svg'</span>))
+print(f6, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/docs/illustrations/plot/TemplateSimpleFig6.svg'</span>))
 g.Frame();
-print(gcf, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/doc/Documentation/illustrations/frame/TemplateSimpleFrame.svg'</span>))
+print(gcf, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/docs/illustrations/frame/TemplateSimpleFrame.svg'</span>))
 graphics_toolkit qt
 options.outputDir = docPath;
-publishOVD(strcat(openvdPath,<span class="string">'/doc/Examples/TemplateSimple/TemplateSimple.m'</span>),options);
-g.Animation(strcat(openvdPath,<span class="string">'/doc/Documentation/illustrations/animation/TemplateSimpleAnimation'</span>));
-delete(<span class="string">'animation.pdf'</span>)
-close all
-
-
-
-<span class="comment">% % Template Simple Simulink</span>
-<span class="comment">% publish('SimpleVehicleSFunction.m', 'outputDir', docPath, 'evalCode', false);</span>
-<span class="comment">% publish('TemplateSimpleSimulink.m', 'outputDir', docPath, 'evalCode', true);</span>
-<span class="comment">% g.Animation('../Documentation/illustrations/TemplateSimpleAnimationSimulink');</span>
-<span class="comment">% close all</span>
-<span class="comment">% clearvars -except docPath apiDocPath</span>
-<span class="comment">%</span>
-<span class="comment">% % TireComparison</span>
-<span class="comment">% publish('TireComparison.m', 'outputDir', docPath, 'evalCode', true);</span>
-<span class="comment">% close all</span>
-<span class="comment">% clearvars -except docPath apiDocPath</span>
-<span class="comment">%</span>
-<span class="comment">% DocGen</span>
-publish(<span class="string">'makeDoc.m'</span>,options);</pre><h2><a id="node6">Code end</a></h2><p>clear all                   % Clear workspace
+publishOVD(strcat(openvdPath,<span class="string">'/docs/Examples/TemplateSimple/TemplateSimple.m'</span>),options);
+g.Animation(<span class="string">'savepath'</span>,strcat(openvdPath,<span class="string">'/docs/illustrations/animation/TemplateSimpleAnimation'</span>));
+close all</pre><h2><a id="node9">Template Simple Simulink</a></h2><pre class="oct-code">publishOVD(strcat(openvdPath,<span class="string">'/docs/Examples/TemplateSimpleSimulink/TemplateSimpleSimulink.m'</span>),options);</pre><h2><a id="node10">TireComparison</a></h2><pre class="oct-code">graphics_toolkit gnuplot            <span class="comment">% svg quality is higher with gnuplot</span>
+TireComparison
+paperPos = [0 0 10 8];
+set(f1,<span class="string">'Paperunits'</span>,<span class="string">'centimeters'</span>,<span class="string">'PaperPosition'</span>,paperPos)
+print(f1, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/docs/illustrations/plot/TireComparisonFig1.svg'</span>))
+set(f2,<span class="string">'Paperunits'</span>,<span class="string">'centimeters'</span>,<span class="string">'PaperPosition'</span>,paperPos)
+print(f2, <span class="string">'-dsvg'</span>, strcat(openvdPath,<span class="string">'/docs/illustrations/plot/TireComparisonFig2.svg'</span>))
+publishOVD(strcat(openvdPath,<span class="string">'/docs/Examples/TireComparison/TireComparison.m'</span>),options);
+close all</pre><h2><a id="node11">DocGen</a></h2><pre class="oct-code">publish(<span class="string">'makeDoc.m'</span>,options);</pre><h2><a id="node12">Code end</a></h2><p>clear all                   % Clear workspace
 close all                   % Closing figures
-clc                         % Clear command window</p><h2><a id="node7">See Also</a></h2><p><a href="../index.html">Home</a></p>
+clc                         % Clear command window</p><h2><a id="node13">See Also</a></h2><p><a href="../index.html">Home</a></p>
 <footer><hr><a href="http://www.octave.org">Published with GNU Octave 4.2.1</a></footer>
 <!--
 ##### SOURCE BEGIN #####
@@ -281,16 +332,19 @@ cd ../..
 % Getting openvd path
 openvdPath = pwd;
 % Going back to DocFiles
-cd doc/DocFiles
+cd docs/DocFiles
 % Folder where html doc files are saved
-docPath = strcat(openvdPath,'/doc/Documentation/html/');
-apiDocPath = strcat(openvdPath,'/doc/Documentation/html/api/');
+docPath = strcat(openvdPath,'/docs/html/');
+apiDocPath = strcat(openvdPath,'/docs/html/api/');
 
 %% Adding paths
 % Adding the folder of all necessary files to the Octave/Matlab path
 
+% Path main.m function
+addpath(strcat(openvdPath,'/docs/DocFiles'))
+
 % Path of the publishOVD function
-addpath(strcat(openvdPath,'/doc/DocFiles/publishOVD'))
+addpath(strcat(openvdPath,'/docs/DocFiles/publishOVD'))
 
 % Path of the package
 addpath(strcat(openvdPath,'/inst/'))
@@ -311,16 +365,16 @@ addpath(strcat(openvdPath,'/inst/@Simulator/'))
 addpath(strcat(openvdPath,'/inst/@Graphics/'))
 
 % % Examples
-addpath(strcat(openvdPath,'/doc/Examples/KalmanFilter/'))
-addpath(strcat(openvdPath,'/doc/Examples/SinusoidalSteering/'))
-addpath(strcat(openvdPath,'/doc/Examples/SkidPad/'))
-addpath(strcat(openvdPath,'/doc/Examples/SkidPad4DOF/'))
-addpath(strcat(openvdPath,'/doc/Examples/SteeringControl/'))
-addpath(strcat(openvdPath,'/doc/Examples/TemplateArticulated/'))
-addpath(strcat(openvdPath,'/doc/Examples/TemplateArticulatedSimulink/'))
-addpath(strcat(openvdPath,'/doc/Examples/TemplateSimple/'))
-addpath(strcat(openvdPath,'/doc/Examples/TemplateSimpleSimulink/'))
-addpath(strcat(openvdPath,'/doc/Examples/TireComparison/'))
+addpath(strcat(openvdPath,'/docs/Examples/KalmanFilter/'))
+addpath(strcat(openvdPath,'/docs/Examples/SinusoidalSteering/'))
+addpath(strcat(openvdPath,'/docs/Examples/SkidPad/'))
+addpath(strcat(openvdPath,'/docs/Examples/SkidPad4DOF/'))
+addpath(strcat(openvdPath,'/docs/Examples/SteeringControl/'))
+addpath(strcat(openvdPath,'/docs/Examples/TemplateArticulated/'))
+addpath(strcat(openvdPath,'/docs/Examples/TemplateArticulatedSimulink/'))
+addpath(strcat(openvdPath,'/docs/Examples/TemplateSimple/'))
+addpath(strcat(openvdPath,'/docs/Examples/TemplateSimpleSimulink/'))
+addpath(strcat(openvdPath,'/docs/Examples/TireComparison/'))
 %
 % %% Deleting
 % % Deleting old documentation
@@ -337,9 +391,9 @@ addpath(strcat(openvdPath,'/doc/Examples/TireComparison/'))
 %
 % Index
 options.evalCode = false;
-options.outputDir = strcat(openvdPath,'/doc/Documentation/');
+options.outputDir = strcat(openvdPath,'/docs/');
 publishOVD('main.m', options);
-movefile(strcat(openvdPath,'/doc/Documentation/main.html'),strcat(openvdPath,'/doc/Documentation/index.html'))
+movefile(strcat(openvdPath,'/docs/main.html'),strcat(openvdPath,'/docs/index.html'))
 %
 % Tire models
 options.evalCode = false;
@@ -385,7 +439,7 @@ publishOVD('@Simulator/Simulator.m',options);
 publishOVD('@Graphics/Graphics.m',options);
 
 % Going back to DocFiles
-cd ../doc/DocFiles
+cd ../docs/DocFiles
 %
 % % EXAMPLES
 % % Kalman Filter
@@ -394,41 +448,113 @@ cd ../doc/DocFiles
 % clearvars -except docPath apiDocPath
 %
 % % Sinusoidal Steering
+graphics_toolkit gnuplot            % svg quality is higher with gnuplot
+SinusoidalSteering
+paperPos = [0 0 10 8];
+set(f1,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f1, '-dsvg', strcat(openvdPath,'/docs/illustrations/plot/SinusoidalSteeringFig1.svg'))
+g.Frame('scalefig',3);
+print(gcf, '-dsvg', strcat(openvdPath,'/docs/illustrations/frame/SinusoidalSteeringFrame.svg'))
+graphics_toolkit qt
+publishOVD(strcat(openvdPath,'/docs/Examples/SinusoidalSteering/SinusoidalSteering.m'),options);
+g.Animation('savepath',strcat(openvdPath,'/docs/illustrations/animation/SinusoidalSteeringAnimation'),'scalefig',3);
+close all
+
+
 % publish('SinusoidalSteering.m', 'outputDir', docPath, 'evalCode', true);
 % g.Animation('../Documentation/illustrations/AnimationSinusoidalSteering');
 % close all
 % clearvars -except docPath apiDocPath
 %
-% % Skid Pad
-% publish('SkidPad.m', 'outputDir', docPath, 'evalCode', true,'showCode',true);
-% g.Animation('../Documentation/illustrations/AnimationSkidPad');
-% close all
-% clearvars -except docPath apiDocPath
+
+%% Skid Pad
 %
-% % Skid Pad 4DOF
-% publish('SkidPad4DOF.m', 'outputDir', docPath, 'evalCode', true,'showCode',true);
-% g.Animation('../Documentation/illustrations/AnimationSkidPad4DOF');
-% close all
-% clearvars -except docPath apiDocPath
+graphics_toolkit gnuplot            % svg quality is higher with gnuplot
+SkidPad
+paperPos = [0 0 10 8];
+set(f1,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f1, '-dsvg', strcat(openvdPath,'/docs/illustrations/plot/SkidPadFig1.svg'))
+set(f2,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f2, '-dsvg', strcat(openvdPath,'/docs/illustrations/plot/SkidPadFig2.svg'))
+set(f3,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f3, '-dsvg', strcat(openvdPath,'/docs/illustrations/plot/SkidPadFig3.svg'))
+set(f4,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f4, '-dsvg', strcat(openvdPath,'/docs/illustrations/plot/SkidPadFig4.svg'))
+set(f5,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f5, '-dsvg', strcat(openvdPath,'/docs/illustrations/plot/SkidPadFig5.svg'))
+set(f6,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f6, '-dsvg', strcat(openvdPath,'/docs/illustrations/plot/SkidPadFig6.svg'))
+g.Frame();
+print(gcf, '-dsvg', strcat(openvdPath,'/docs/illustrations/frame/SkidPadFrame.svg'))
+graphics_toolkit qt
+publishOVD(strcat(openvdPath,'/docs/Examples/SkidPad/SkidPad.m'),options);
+g.Animation('savepath',strcat(openvdPath,'/docs/illustrations/animation/SkidPadAnimation'));
+close all
+
+%% Skid Pad 4DOF
 %
-% % SteeringControl
-% publish('SteeringControl.m', 'outputDir', docPath, 'evalCode', true,'showCode',false);
-% g.Animation('../Documentation/illustrations/AnimationSteeringControl');
-% close all
-% clearvars -except docPath apiDocPath
+graphics_toolkit gnuplot            % svg quality is higher with gnuplot
+SkidPad4DOF
+paperPos = [0 0 10 8];
+set(f1,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f1, '-dsvg', strcat(openvdPath,'/docs/illustrations/plot/SkidPad4DOFFig1.svg'))
+set(f2,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f2, '-dsvg', strcat(openvdPath,'/docs/illustrations/plot/SkidPad4DOFFig2.svg'))
+set(f3,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f3, '-dsvg', strcat(openvdPath,'/docs/illustrations/plot/SkidPad4DOFFig3.svg'))
+set(f4,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f4, '-dsvg', strcat(openvdPath,'/docs/illustrations/plot/SkidPad4DOFFig4.svg'))
+set(f5,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f5, '-dsvg', strcat(openvdPath,'/docs/illustrations/plot/SkidPad4DOFFig5.svg'))
+set(f6,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f6, '-dsvg', strcat(openvdPath,'/docs/illustrations/plot/SkidPad4DOFFig6.svg'))
+set(f7,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f7, '-dsvg', strcat(openvdPath,'/docs/illustrations/plot/SkidPad4DOFFig7.svg'))
+set(f8,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f8, '-dsvg', strcat(openvdPath,'/docs/illustrations/plot/SkidPad4DOFFig8.svg'))
+set(f9,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f9, '-dsvg', strcat(openvdPath,'/docs/illustrations/plot/SkidPad4DOFFig9.svg'))
+set(f10,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f10, '-dsvg', strcat(openvdPath,'/docs/illustrations/plot/SkidPad4DOFFig10.svg'))
+g.Frame();
+print(gcf, '-dsvg', strcat(openvdPath,'/docs/illustrations/frame/SkidPad4DOFFrame.svg'))
+graphics_toolkit qt
+publishOVD(strcat(openvdPath,'/docs/Examples/SkidPad4DOF/SkidPad4DOF.m'),options);
+g.Animation('savepath',strcat(openvdPath,'/docs/illustrations/animation/SkidPad4DOFAnimation'));
+close all
+
+
+%% SteeringControl
 %
+
+pkg load control
+
+graphics_toolkit gnuplot            % svg quality is higher with gnuplot
+SteeringControl
+paperPos = [0 0 10 8];
+set(f1,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f1, '-dsvg', strcat(openvdPath,'/docs/illustrations/plot/SteeringControlFig1.svg'))
+set(f2,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f2, '-dsvg', strcat(openvdPath,'/docs/illustrations/plot/SteeringControlFig2.svg'))
+set(f3,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f3, '-dsvg', strcat(openvdPath,'/docs/illustrations/plot/SteeringControlFig3.svg'))
+g.Frame('scalefig',3);
+print(gcf, '-dsvg', strcat(openvdPath,'/docs/illustrations/frame/SteeringControlFrame.svg'))
+graphics_toolkit qt
+publishOVD(strcat(openvdPath,'/docs/Examples/SteeringControl/SteeringControl.m'),options);
+g.Animation('savepath',strcat(openvdPath,'/docs/illustrations/animation/SteeringControlAnimation'),'scalefig',3);
+close all
 
 %% TemplateArticulated
 %
 graphics_toolkit gnuplot            % svg quality is higher with gnuplot
 TemplateArticulated
 g.Frame();
-print(gcf, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/frame/TemplateArticulatedFrame.svg'))
+print(gcf, '-dsvg', strcat(openvdPath,'/docs/illustrations/frame/TemplateArticulatedFrame.svg'))
 graphics_toolkit qt
 options.outputDir = docPath;
-publishOVD(strcat(openvdPath,'/doc/Examples/TemplateArticulated/TemplateArticulated.m'),options);
-g.Animation(strcat(openvdPath,'/doc/Documentation/illustrations/animation/TemplateArticulatedAnimation'));
-delete('animation.pdf')
+publishOVD(strcat(openvdPath,'/docs/Examples/TemplateArticulated/TemplateArticulated.m'),options);
+g.Animation('savepath',strcat(openvdPath,'/docs/illustrations/animation/TemplateArticulatedAnimation'));
 close all
 
 % % Template Articulated Simulink
@@ -446,41 +572,47 @@ graphics_toolkit gnuplot            % svg quality is higher with gnuplot
 TemplateSimple
 paperPos = [0 0 10 8];
 set(f1,'Paperunits','centimeters','PaperPosition',paperPos)
-print(f1, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/TemplateSimpleFig1.svg'))
+print(f1, '-dsvg', strcat(openvdPath,'/docs/illustrations/plot/TemplateSimpleFig1.svg'))
 set(f2,'Paperunits','centimeters','PaperPosition',paperPos)
-print(f2, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/TemplateSimpleFig2.svg'))
+print(f2, '-dsvg', strcat(openvdPath,'/docs/illustrations/plot/TemplateSimpleFig2.svg'))
 set(f3,'Paperunits','centimeters','PaperPosition',paperPos)
-print(f3, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/TemplateSimpleFig3.svg'))
+print(f3, '-dsvg', strcat(openvdPath,'/docs/illustrations/plot/TemplateSimpleFig3.svg'))
 set(f4,'Paperunits','centimeters','PaperPosition',paperPos)
-print(f4, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/TemplateSimpleFig4.svg'))
+print(f4, '-dsvg', strcat(openvdPath,'/docs/illustrations/plot/TemplateSimpleFig4.svg'))
 set(f5,'Paperunits','centimeters','PaperPosition',paperPos)
-print(f5, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/TemplateSimpleFig5.svg'))
+print(f5, '-dsvg', strcat(openvdPath,'/docs/illustrations/plot/TemplateSimpleFig5.svg'))
 set(f6,'Paperunits','centimeters','PaperPosition',paperPos)
-print(f6, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/plot/TemplateSimpleFig6.svg'))
+print(f6, '-dsvg', strcat(openvdPath,'/docs/illustrations/plot/TemplateSimpleFig6.svg'))
 g.Frame();
-print(gcf, '-dsvg', strcat(openvdPath,'/doc/Documentation/illustrations/frame/TemplateSimpleFrame.svg'))
+print(gcf, '-dsvg', strcat(openvdPath,'/docs/illustrations/frame/TemplateSimpleFrame.svg'))
 graphics_toolkit qt
 options.outputDir = docPath;
-publishOVD(strcat(openvdPath,'/doc/Examples/TemplateSimple/TemplateSimple.m'),options);
-g.Animation(strcat(openvdPath,'/doc/Documentation/illustrations/animation/TemplateSimpleAnimation'));
-delete('animation.pdf')
+publishOVD(strcat(openvdPath,'/docs/Examples/TemplateSimple/TemplateSimple.m'),options);
+g.Animation('savepath',strcat(openvdPath,'/docs/illustrations/animation/TemplateSimpleAnimation'));
 close all
 
 
 
-% % Template Simple Simulink
-% publish('SimpleVehicleSFunction.m', 'outputDir', docPath, 'evalCode', false);
-% publish('TemplateSimpleSimulink.m', 'outputDir', docPath, 'evalCode', true);
-% g.Animation('../Documentation/illustrations/TemplateSimpleAnimationSimulink');
-% close all
-% clearvars -except docPath apiDocPath
+%% Template Simple Simulink
 %
-% % TireComparison
-% publish('TireComparison.m', 'outputDir', docPath, 'evalCode', true);
-% close all
-% clearvars -except docPath apiDocPath
+publishOVD(strcat(openvdPath,'/docs/Examples/TemplateSimpleSimulink/TemplateSimpleSimulink.m'),options);
+
+
+%% TireComparison
 %
-% DocGen
+graphics_toolkit gnuplot            % svg quality is higher with gnuplot
+TireComparison
+paperPos = [0 0 10 8];
+set(f1,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f1, '-dsvg', strcat(openvdPath,'/docs/illustrations/plot/TireComparisonFig1.svg'))
+set(f2,'Paperunits','centimeters','PaperPosition',paperPos)
+print(f2, '-dsvg', strcat(openvdPath,'/docs/illustrations/plot/TireComparisonFig2.svg'))
+publishOVD(strcat(openvdPath,'/docs/Examples/TireComparison/TireComparison.m'),options);
+close all
+
+
+%% DocGen
+%
 publish('makeDoc.m',options);
 
 %% Code end

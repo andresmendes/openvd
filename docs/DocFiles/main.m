@@ -21,9 +21,16 @@ pkg install openvd-master.zip
 pkg load openvd
 
 %%
+% For more details see <https://octave.sourceforge.io/octave/function/pkg.html pkg function>.
+%%
 % *Matlab users*
 %
-% * Save the package (folder "openvd/inst") in the Matlab _path_ or add your current path to the _paths list_. More details in <http://www.mathworks.com/help/matlab/ref/path.html  help path>.
+% * Add the inst directory to the _paths list_ with
+
+addpath('(Full Path)/inst')
+
+%%
+% For more details see <http://www.mathworks.com/help/matlab/ref/path.html  help path>.
 %
 %% Dependencies
 % To run the functions of the package and the examples from the repository a minimal Octave/Matlab version and/or Package/Toolbox is required.
@@ -34,17 +41,12 @@ pkg load openvd
 %
 % Dependencies of the examples:
 %
-% * Control System Toolbox, v9.9
-% * MATLAB, v8.5
-% * Robust Control Toolbox, v5.3
-% * Symbolic Math Toolbox, v6.2
-% * Simulink, v8.5
-% * SystemTest, v2.6.9
+% * <https://octave.sourceforge.io/control/index.html Control package>
 %
 %% Overview
-% The general structure of the package is illustrated below. All the classes of the package are categorized into Vehicle model, Tire model and Graphics. One Vehicle model and one Tire model are combined to form the System. The integration of the System, with the apropriate parameters and initial conditions, is performed through the standard <https://www.mathworks.com/help/matlab/ref/ode45.html ode45> function of Octave/Matlab. The resulting data can be ploted as Frame and Animation with the Graphics features.
+% The general structure of the package is illustrated below. All the classes of the package are categorized into Vehicle model, Tire model and Graphics. One Vehicle model and one Tire model are combined to form the System. The integration of the System, with the apropriate parameters and initial conditions, is performed through the standard <https://octave.sourceforge.io/octave/function/ode45.html ode45> function of Octave/Matlab. The resulting data can be ploted as Frame and Animation with the Graphics features.
 %
-% This package uses an object-oriented programming architecture. For more details see <https://www.mathworks.com/discovery/object-oriented-programming.html Object-Oriented Programming in MATLAB>
+% This package uses an object-oriented programming architecture. For more details see <https://www.gnu.org/software/octave/doc/interpreter/Object-Oriented-Programming.html Object-Oriented Programming in OCTAVE> or <https://www.mathworks.com/discovery/object-oriented-programming.html Object-Oriented Programming in MATLAB>
 %
 % <<illustrations/fluxograma.svg>>
 %
@@ -142,7 +144,6 @@ pkg load openvd
 % * Create the apropriate links between the documentation pages. Ex: "See Also", "Examples", ...
 % * Update main.m and api.m.
 % * Run <html/makeDoc.html makeDoc.m>.
-% * Copy the files from directory "Documentation" to the gh-pages branch of the repository. One easy way is using <https://github.com/davisp/ghp-import ghp-import>.
 % * Commit and push.
 %
 %% Publications

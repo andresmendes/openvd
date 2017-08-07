@@ -128,5 +128,5 @@ sys = x;
 
 %% See Also
 %
-% <../index.html Home> | <TemplateSimpleSimulink.html Template Simple Simulink>
+% [<../index.html Home>] [<TemplateSimpleSimulink.html Template Simple Simulink>]
 %

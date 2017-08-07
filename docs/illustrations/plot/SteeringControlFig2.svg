@@ -230,12 +230,12 @@
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 	<path stroke='black'  d='M170.9,92.1 L170.9,17.3 L260.9,17.3 L260.9,92.1 L170.9,92.1 Z  '/></g>
-	<g id="gnuplot_plot_1a" ><title>\(y\)</title>
+	<g id="gnuplot_plot_1a" ><title>$y$</title>
 <g fill="none" color="#FFFFFF" stroke="black" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
 	<g transform="translate(218.9,30.0)" stroke="none" fill="rgb(0,0,0)" font-family="Arial" font-size="10.00"  text-anchor="start">
-		<text><tspan font-family="Arial" >(y)</tspan></text>
+		<text><tspan font-family="Arial" >$y$</tspan></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
@@ -303,10 +303,10 @@
 		L260.1,152.8 L260.5,152.8 L261.0,152.8 L261.5,152.8 L261.9,152.8 L262.4,152.8 L262.8,152.8 L263.3,152.8
 		L263.7,152.8 L264.2,152.8 L264.7,152.8 L265.1,152.8 L265.6,152.8 L266.0,152.8 L266.5,152.8  '/></g>
 	</g>
-	<g id="gnuplot_plot_2a" ><title>(y)</title>
+	<g id="gnuplot_plot_2a" ><title>$y$</title>
 <g fill="none" color="black" stroke="currentColor" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
 	<g transform="translate(218.9,48.7)" stroke="none" fill="rgb(0,0,0)" font-family="Arial" font-size="10.00"  text-anchor="start">
-		<text><tspan font-family="Arial" >(</tspan><tspan font-family="Symbol" >y</tspan><tspan font-family="Arial" >)</tspan></text>
+		<text><tspan font-family="Arial" >$</tspan><tspan font-family="Symbol" >y</tspan><tspan font-family="Arial" >$</tspan></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
@@ -374,10 +374,10 @@
 		L260.1,152.9 L260.5,152.9 L261.0,152.9 L261.5,152.9 L261.9,152.9 L262.4,152.9 L262.8,152.9 L263.3,152.9
 		L263.7,152.9 L264.2,152.9 L264.7,152.9 L265.1,152.9 L265.6,152.9 L266.0,152.9 L266.5,152.9  '/></g>
 	</g>
-	<g id="gnuplot_plot_3a" ><title>(aT)</title>
+	<g id="gnuplot_plot_3a" ><title>$aT$</title>
 <g fill="none" color="black" stroke="currentColor" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
 	<g transform="translate(218.9,67.4)" stroke="none" fill="rgb(0,0,0)" font-family="Arial" font-size="10.00"  text-anchor="start">
-		<text><tspan font-family="Arial" >(</tspan><tspan font-family="Symbol" >a</tspan><tspan font-family="Arial"  font-size="8.0" dy="3.00px">T</tspan><tspan font-family="Arial"  font-size="10.0" dy="-3.00px">)</tspan></text>
+		<text><tspan font-family="Arial" >$</tspan><tspan font-family="Symbol" >a</tspan><tspan font-family="Arial"  font-size="8.0" dy="3.00px">T</tspan><tspan font-family="Arial"  font-size="10.0" dy="-3.00px">$</tspan></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
@@ -445,10 +445,10 @@
 		L260.1,152.9 L260.5,152.9 L261.0,152.9 L261.5,152.9 L261.9,152.9 L262.4,152.9 L262.8,152.9 L263.3,152.9
 		L263.7,152.9 L264.2,152.9 L264.7,152.9 L265.1,152.9 L265.6,152.9 L266.0,152.9 L266.5,152.9  '/></g>
 	</g>
-	<g id="gnuplot_plot_4a" ><title>(doty)</title>
+	<g id="gnuplot_plot_4a" ><title>$doty$</title>
 <g fill="none" color="black" stroke="currentColor" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
 	<g transform="translate(218.9,86.1)" stroke="none" fill="rgb(0,0,0)" font-family="Arial" font-size="10.00"  text-anchor="start">
-		<text><tspan font-family="Arial" >(dot</tspan><tspan font-family="Symbol" >y</tspan><tspan font-family="Arial" >)</tspan></text>
+		<text><tspan font-family="Arial" >$dot</tspan><tspan font-family="Symbol" >y</tspan><tspan font-family="Arial" >$</tspan></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">

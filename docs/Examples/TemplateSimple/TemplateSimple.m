@@ -23,7 +23,7 @@ VehicleModel.tire = TireModel;
 %%
 % Choosing the simulation time span
 
-T = 1;                              % Total simulation time [s]
+T = 6;                              % Total simulation time [s]
 resol = 50;                         % Resolution
 TSPAN = 0:T/resol:T;                % Time span [s]
 
@@ -115,7 +115,7 @@ ylabel('Yaw rate [rad/s]')
 
 g = Graphics(simulator);
 
-g.Frame('scalefig',2);
+g.Frame();
 g.Animation();
 
 %%

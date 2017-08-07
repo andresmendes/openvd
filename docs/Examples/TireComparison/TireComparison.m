@@ -13,19 +13,19 @@
 %% Equivalence
 % Given a reference Pacejka tire model it is possible to obtain an equivalent linear and polynomial model. The cornering stiffness of all models must be equal and the maximal lateral force of the Pacejka and Polynomial models must be the same.
 %
-% The Pacejka model depends on the parameters \(a_0\), \(a_1\), \(a_2\), \(a_3\), \(a_4\), \(a_5\), \(a_6\) e \(a_7\) that defines the constants \(B\), \(C\), \(D\) and \(E\) wich can be used to define the constants of the equivalent models.
+% The Pacejka model depends on the parameters $a_0$, $a_1$, $a_2$, $a_3$, $a_4$, $a_5$, $a_6$ e $a_7$ that defines the constants $B$, $C$, $D$ and $E$ wich can be used to define the constants of the equivalent models.
 %
-% The equivalent linear tire model has cornering stiffness \(K\) given by
+% The equivalent linear tire model has cornering stiffness $K$ given by
 %
-% \[ K = B C D \]
+% $$ K = B C D $$
 %
-% The equivalent polynomial tire model has coeficients \(k_1\) and \(k_2\) given by
+% The equivalent polynomial tire model has coeficients $k_1$ and $k_2$ given by
 %
-% \[ k_1 = B C D \]
+% $$ k_1 = B C D $$
 %
-% \[ k_2 = (4 k_1^3)/(27 F_{y, Max}^2) \]
+% $$ k_2 = (4 k_1^3)/(27 F_{y, Max}^2) $$
 %
-% where \(F_{y, Max}\) is the maximal lateral force of the reference characteristic curve.
+% where $F_{y, Max}$ is the maximal lateral force of the reference characteristic curve.
 %
 %% Model comparison
 %
@@ -103,8 +103,8 @@ p1 = plot(deriva * 180/pi,-FyLin, 'Color', 'g', 'Marker', 's', 'MarkerFaceColor'
 p2 = plot(deriva * 180/pi,-FyPol, 'Color', 'b', 'Marker', '^', 'MarkerFaceColor', 'b', 'MarkeredgeColor', 'k', 'MarkerSize', 2);
 p3 = plot(deriva * 180/pi,-FyPac, 'Color', 'r', 'Marker', 'o', 'MarkerFaceColor', 'r', 'MarkeredgeColor', 'k', 'MarkerSize', 2);
 g.changeMarker(10,p1,p2,p3);
-xlabel('\(\alpha\) [grau]', 'Interpreter', 'Latex')
-ylabel('\(F_y\) [N]', 'Interpreter', 'Latex')
+xlabel('$\alpha$ [grau]', 'Interpreter', 'Latex')
+ylabel('$F_y$ [N]', 'Interpreter', 'Latex')
 l = legend('Linear', 'Polynomial', 'Pacejka');
 set(l, 'Interpreter', 'Latex', 'Location', 'NorthWest')
 
@@ -143,8 +143,8 @@ p1 = plot(deriva180 * 180/pi,-FyPacSem180, 'Color', 'm', 'Marker', 'd', 'MarkerF
 p2 = plot(deriva180 * 180/pi,-FyPacCom180, 'Color', 'r', 'Marker', 'o', 'MarkerFaceColor', 'r', 'MarkeredgeColor', 'k', 'MarkerSize', 2);
 g.changeMarker(10,p1,p2);
 plot([90 90],[0 3000],'--k')    % Linha vertical de simetria
-xlabel('\(\alpha\) [grau]', 'Interpreter', 'Latex')
-ylabel('\(F_y\) [N]', 'Interpreter', 'Latex')
+xlabel('$\alpha$ [grau]', 'Interpreter', 'Latex')
+ylabel('$F_y$ [N]', 'Interpreter', 'Latex')
 l = legend('Pacejka without treatment', 'Pacejka with treatment ');
 set(l, 'Interpreter', 'Latex', 'Location', 'SouthEast')
 
@@ -152,7 +152,7 @@ set(l, 'Interpreter', 'Latex', 'Location', 'SouthEast')
 % <<../illustrations/plot/TireComparisonFig2.svg>>
 %
 %%
-% In the above figure we can see that the curve is symmetric to a vertical line positioned at \(\alpha = 90 [graus]\).
+% In the above figure we can see that the curve is symmetric to a vertical line positioned at $\alpha = 90 [graus]$.
 %
 %% References
 % [1] GILLESPIE, T. D. Fundamentals of vehicle dynamics. [S.l.]: Society of Automotive Engineers Warrendale, PA, 1992.

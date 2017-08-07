@@ -8,7 +8,7 @@ classdef Graphics
             self.Simulator = simulator;
             self.TractorColor = 'b';
             self.SemitrailerColor = 'g';
-            self.IsOctave = isOctave;       % Return true if the environment is Octave.
+            self.IsOctave = self.isOctave;       % Return true if the environment is Octave.
             % Default user options
             self.ScaleFig = 1;              % Scale 1 x 1 between x and y axis.
         end
@@ -839,6 +839,18 @@ classdef Graphics
             % Adjusting limits
             set(gca,'xlim',xlim,'ylim',ylim)
 
+        end
+
+        function retval = isOctave
+        %% Return: true if the environment is Octave.
+        %
+            persistent cacheval;  % speeds up repeated calls
+
+            if isempty (cacheval)
+            cacheval = (exist ('OCTAVE_VERSION', 'builtin') > 0);
+            end
+
+            retval = cacheval;
         end
 
     end

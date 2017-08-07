@@ -74,7 +74,7 @@ simulator.Simulate();
 g = Graphics(simulator);
 g.TractorColor = 'r';
 g.SemitrailerColor = 'g';
-g.Frame('/home/andre/MEGA/Repos/openvd/doc/Examples/TemplateArticulated/arquivo.pdf');
+g.Frame();
 g.Animation();
 
 %%

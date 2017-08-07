@@ -1,9 +1,7 @@
-%% Template Simple Simulink
+%% Template Articulated Simulink
 % This template shows how to simulate an articulated vehicle in Simulink using a s-function. The graphics are also plotted.
 %
-% <html>
-% <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
-% </html>
+% <<../illustrations/AnimationTemplateArticulatedSimulink.gif>>
 %
 %% Simulink model
 % This model uses the s-function <ArticulatedVehicleSFunction.html ArticulatedVehicleSFunction.m> in Simulink. The package and this s-function must be in Matlab path.
@@ -84,6 +82,11 @@ g = VehicleDynamicsLateral.Graphics(simulator);
 g.TractorColor = 'r';
 
 g.Frame();
+
+%%
+% <<../illustrations/frame/TemplateArticulatedSimulinkFrame.png>>
+%
+
 g.Animation();
 
 %%
@@ -93,5 +96,5 @@ g.Animation();
 %
 %% See Also
 %
-% <../index.html Home> | <ArticulatedVehicleSFunction.html ArticulatedVehicleSFunction.m> | <TemplateSimpleSimulink.html Template Simple Simulink>
+% [<../index.html Home>] [<ArticulatedVehicleSFunction.html ArticulatedVehicleSFunction.m>] [<TemplateSimpleSimulink.html Template Simple Simulink>]
 %
