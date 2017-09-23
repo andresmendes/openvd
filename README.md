@@ -1,7 +1,7 @@
 # OpenVD: Open Vehicle Dynamics
 Open source simulation package for Octave/Matlab
 
-![](http://andresmendes.github.io/Vehicle-Dynamics-Lateral/illustrations/AnimationTemplateArticulated.gif)
+![](https://andresmendes.github.io/openvd/illustrations/animation/TemplateArticulatedAnimation.gif)
 
 ## Documentation
 
