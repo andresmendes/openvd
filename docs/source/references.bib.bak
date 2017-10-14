@@ -1,0 +1,57 @@
+% Encoding: UTF-8
+
+@InProceedings{Bakker1989new,
+  author    = {Egbert Bakker and Hans B. Pacejka and Lars Lidner},
+  title     = {A New Tire Model with an Application in Vehicle Dynamics Studies},
+  booktitle = {SAE Technical Paper},
+  year      = {1989},
+  month     = apr,
+  publisher = {SAE International},
+  abstract  = {The behaviour of the tyre plays an important role in controlling the horizontal motion of the vehicle. In vehicle dynamics studies, a good representation of tyre behaviour is therefore a necessity. A series of tyre measurements have been carried out on the road in stationary conditions. The data obtained have been represented by mathematical expressions on the basis of a formula. The coefficients in the formula represent some of the typifying quantities of the tyre and the formula is capable of describing all characteristics of side force, brake force and self aligning torque with great accuracy. The behaviour of the tyre during combined cornering and braking has successfully been described by a model which makes use of the obtained mathematical expressions and some tyre-modelling theory. The side force characteristic governs the behaviour in lateral direction and the brake force characteristic in longitudinal direction. Thus, the non-isotropic properties of the tyre have been taken into account. Influences of ply steer, conicity, rolling resistance and camber are included as well. In this way a new and compact empirical model is obtained, enabling sensitivity studies to be performed. Vehicle dynamics studies have been carried out with the aid of simulations including the new model. This paper is a result of a joint project between Volvo Car Corporation, Sweden and the Delft University of Technology, The Netherlands.},
+  doi       = {10.4271/890087},
+  file      = {:Bakker1989new.pdf:PDF},
+  groups    = {JBSMSE, Springer2017, OpenVD},
+  owner     = {andre},
+}
+
+@Book{Gillespie1992fundamentals,
+  title     = {Fundamentals of vehicle dynamics},
+  publisher = {SAE International},
+  year      = {1992},
+  author    = {Gillespie, Thomas D},
+  address   = {Warrendale},
+  isbn      = {978-1-56091-199-9},
+  file      = {:Gillespie1992fundamentals.pdf:PDF},
+  groups    = {Masters_Thesis_2016, OpenVD},
+  keywords  = {mestrado},
+  owner     = {andre},
+  timestamp = {2016.02.18},
+  url       = {http://books.sae.org/r-114/},
+}
+
+@Comment{jabref-meta: databaseType:bibtex;}
+
+@Comment{jabref-meta: groupstree:
+0 AllEntriesGroup:;
+1 ExplicitGroup:Masters_Thesis_2016\;0\;;
+1 ExplicitGroup:SAE_Brasil_2016\;0\;;
+1 ExplicitGroup:Diname_2017\;0\;;
+1 ExplicitGroup:PhD_Thesis_20XX\;0\;;
+2 ExplicitGroup:Platoon_Geral\;0\;;
+2 ExplicitGroup:Platoon_Control\;0\;;
+2 ExplicitGroup:Platoon_Aero\;0\;;
+2 ExplicitGroup:Platoon_Coordination\;0\;;
+1 ExplicitGroup:JBSMSE\;0\;;
+1 ExplicitGroup:Springer2017\;0\;;
+1 ExplicitGroup:COBEM2017\;0\;;
+2 ExplicitGroup:Chauffeur\;0\;;
+2 ExplicitGroup:KONVOI\;0\;;
+2 ExplicitGroup:PATH\;0\;;
+2 ExplicitGroup:SARTRE\;0\;;
+2 ExplicitGroup:EnergyITS\;0\;;
+2 ExplicitGroup:COBEM_Companion\;0\;;
+2 ExplicitGroup:Aero\;0\;;
+2 ExplicitGroup:Control\;0\;;
+2 ExplicitGroup:Coordination\;0\;;
+1 ExplicitGroup:OpenVD\;0\;;
+}

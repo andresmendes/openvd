@@ -1,0 +1,401 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>API &#8212; OpenVD a documentation</title>
+    <link rel="stylesheet" href="_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     'a',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="_static/cloud.base.js"></script>
+    <script type="text/javascript" src="_static/cloud.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Contributing" href="contributing.html" />
+    <link rel="prev" title="References" href="zreferences.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="contributing.html" title="Contributing"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="zreferences.html" title="References"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="index.html">OpenVD a documentation</a> &#187;</li>
+ 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="api">
+<h1>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h1>
+<p>API Documentation is here. Help and documentation on-the-fly are available through the “doc” and “help” commands, as usual.</p>
+<p>Tires</p>
+<img src="_images/inheritance-f6a4cf287f833c1069283256642b7e53a8e2022e.png" alt="Inheritance diagram of Tire, TireLinear, TirePacejka, TirePolynomial" usemap="#inheritance24b4070f10" class="inheritance"/>
+<map id="inheritance24b4070f10" name="inheritance24b4070f10">
+<area shape="rect" id="node1" href="#Tire.Tire" target="_top" title="Tire Tire abstract class This class must be inherited by tire models that will be used with the simulator. This class has no properties, since parameters of tire models differ significantly from one another." alt="" coords="5,55,77,80"/>
+<area shape="rect" id="node2" href="#TireLinear.TireLinear" target="_top" title="TireLinear Linear tire model" alt="" coords="141,5,225,31"/>
+<area shape="rect" id="node3" href="#TirePacejka.TirePacejka" target="_top" title="TirePacejka tire model" alt="" coords="136,55,229,80"/>
+<area shape="rect" id="node4" href="#TirePolynomial.TirePolynomial" target="_top" title="TirePolynomial" alt="" coords="125,104,240,129"/>
+</map>
+<p>Articulated vehicles</p>
+<img src="_images/inheritance-3c56182841885f435e9ec2d410bdf7df0416a7d8.png" alt="Inheritance diagram of VehicleArticulated, VehicleArticulatedLinear, VehicleArticulatedNonlinear" usemap="#inheritanceb72a86a15e" class="inheritance"/>
+<map id="inheritanceb72a86a15e" name="inheritanceb72a86a15e">
+<area shape="rect" id="node1" href="#VehicleArticulated.VehicleArticulated" target="_top" title="Tire Tire abstract class This class must be inherited by tire models that will be used with the simulator. This class has no properties, since parameters of tire models differ significantly from one another." alt="" coords="5,31,141,56"/>
+<area shape="rect" id="node2" href="#VehicleArticulatedLinear.VehicleArticulatedLinear" target="_top" title="TireLinear Linear tire model" alt="" coords="201,5,375,31"/>
+<area shape="rect" id="node3" href="#VehicleArticulatedNonlinear.VehicleArticulatedNonlinear" target="_top" title="TireLinear Linear tire model" alt="" coords="189,55,387,80"/>
+</map>
+<p>Simple vehicles</p>
+<img src="_images/inheritance-8e69efd44f308adeb1591f644f73a015be935e8a.png" alt="Inheritance diagram of VehicleSimple, VehicleSimpleLinear, VehicleSimpleNonlinear" usemap="#inheritance9f5757d628" class="inheritance"/>
+<map id="inheritance9f5757d628" name="inheritance9f5757d628">
+<area shape="rect" id="node1" href="#VehicleSimple.VehicleSimple" target="_top" title="Tire Tire abstract class This class must be inherited by tire models that will be used with the simulator. This class has no properties, since parameters of tire models differ significantly from one another." alt="" coords="5,31,116,56"/>
+<area shape="rect" id="node2" href="#VehicleSimpleLinear.VehicleSimpleLinear" target="_top" title="TireLinear Linear tire model" alt="" coords="175,5,325,31"/>
+<area shape="rect" id="node3" href="#VehicleSimpleNonlinear.VehicleSimpleNonlinear" target="_top" title="TireLinear Linear tire model" alt="" coords="164,55,336,80"/>
+</map>
+<span class="target" id="module-Tire"></span><dl class="class">
+<dt id="Tire.Tire">
+<em class="property">class </em><code class="descclassname">Tire.</code><code class="descname">Tire</code><a class="reference internal" href="_modules/Tire.html#Tire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Tire.Tire" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tire Tire abstract class This class must be inherited by tire models that will be used with the simulator. This class has no properties, since parameters of tire models differ significantly from one another.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><strong>param</strong> – Loucura</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="Tire.Tire.Characteristic">
+<code class="descname">Characteristic</code><span class="sig-paren">(</span><em>alpha</em>, <em>varargin</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Tire.html#Tire.Characteristic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Tire.Tire.Characteristic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tell my details.</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-TireLinear"></span><dl class="class">
+<dt id="TireLinear.TireLinear">
+<em class="property">class </em><code class="descclassname">TireLinear.</code><code class="descname">TireLinear</code><a class="reference internal" href="_modules/TireLinear.html#TireLinear"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TireLinear.TireLinear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Tire.Tire" title="Tire.Tire"><code class="xref py py-class docutils literal"><span class="pre">Tire.Tire</span></code></a></p>
+<p>TireLinear Linear tire model</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>k</strong> – Cornering stiffness [N/rad]</li>
+<li><strong>q</strong> – Cornering stiffness 2 [N/rad]</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TireLinear.TireLinear.PlotTire">
+<code class="descname">PlotTire</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/TireLinear.html#TireLinear.PlotTire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TireLinear.TireLinear.PlotTire" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the handle of the curve</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-TirePacejka"></span><dl class="class">
+<dt id="TirePacejka.TirePacejka">
+<em class="property">class </em><code class="descclassname">TirePacejka.</code><code class="descname">TirePacejka</code><a class="reference internal" href="_modules/TirePacejka.html#TirePacejka"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TirePacejka.TirePacejka" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Tire.Tire" title="Tire.Tire"><code class="xref py py-class docutils literal"><span class="pre">Tire.Tire</span></code></a></p>
+<p>TirePacejka tire model</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>a0</strong> – Shape factor [-]</li>
+<li><strong>a1</strong> – Load dependency of lateral friction (1000) [1/kN]</li>
+<li><strong>a2</strong> – Lateral friction level (1000) [-]</li>
+<li><strong>a3</strong> – Maximum cornering stiffness [N/deg]</li>
+<li><strong>a4</strong> – Load at maximum cornering stiffness [kN]</li>
+<li><strong>a5</strong> – Camber sensitivity of cornering stiffness</li>
+<li><strong>a6</strong> – Load dependency of curvature factor</li>
+<li><strong>a7</strong> – Curvature factor level</li>
+<li><strong>a8</strong> – Camber sensitivity of horizontal shift</li>
+<li><strong>a9</strong> – Load dependency of horizontal shift</li>
+<li><strong>a10</strong> – Horizontal shift level</li>
+<li><strong>a11</strong> – Combined load and camber sensitivity of vertical shift</li>
+<li><strong>a12</strong> – Load dependency of vertical shift</li>
+<li><strong>a13</strong> – Vertical shift level</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<span class="target" id="module-TirePolynomial"></span><dl class="class">
+<dt id="TirePolynomial.TirePolynomial">
+<em class="property">class </em><code class="descclassname">TirePolynomial.</code><code class="descname">TirePolynomial</code><a class="reference internal" href="_modules/TirePolynomial.html#TirePolynomial"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TirePolynomial.TirePolynomial" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Tire.Tire" title="Tire.Tire"><code class="xref py py-class docutils literal"><span class="pre">Tire.Tire</span></code></a></p>
+</dd></dl>
+
+<span class="target" id="module-VehicleSimple"></span><dl class="class">
+<dt id="VehicleSimple.VehicleSimple">
+<em class="property">class </em><code class="descclassname">VehicleSimple.</code><code class="descname">VehicleSimple</code><a class="reference internal" href="_modules/VehicleSimple.html#VehicleSimple"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VehicleSimple.VehicleSimple" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Tire Tire abstract class This class must be inherited by tire models that will be used with the simulator. This class has no properties, since parameters of tire models differ significantly from one another.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><strong>param</strong> – Loucura</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="VehicleSimple.VehicleSimple.Characteristic">
+<code class="descname">Characteristic</code><span class="sig-paren">(</span><em>alpha</em>, <em>varargin</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/VehicleSimple.html#VehicleSimple.Characteristic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VehicleSimple.VehicleSimple.Characteristic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tell my details.</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-VehicleSimpleLinear"></span><dl class="class">
+<dt id="VehicleSimpleLinear.VehicleSimpleLinear">
+<em class="property">class </em><code class="descclassname">VehicleSimpleLinear.</code><code class="descname">VehicleSimpleLinear</code><a class="reference internal" href="_modules/VehicleSimpleLinear.html#VehicleSimpleLinear"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VehicleSimpleLinear.VehicleSimpleLinear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#VehicleSimple.VehicleSimple" title="VehicleSimple.VehicleSimple"><code class="xref py py-class docutils literal"><span class="pre">VehicleSimple.VehicleSimple</span></code></a></p>
+<p>TireLinear Linear tire model</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>k</strong> – Cornering stiffness [N/rad]</li>
+<li><strong>q</strong> – Cornering stiffness 2 [N/rad]</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="VehicleSimpleLinear.VehicleSimpleLinear.PlotTire">
+<code class="descname">PlotTire</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/VehicleSimpleLinear.html#VehicleSimpleLinear.PlotTire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VehicleSimpleLinear.VehicleSimpleLinear.PlotTire" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the handle of the curve</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-VehicleSimpleNonlinear"></span><dl class="class">
+<dt id="VehicleSimpleNonlinear.VehicleSimpleNonlinear">
+<em class="property">class </em><code class="descclassname">VehicleSimpleNonlinear.</code><code class="descname">VehicleSimpleNonlinear</code><a class="reference internal" href="_modules/VehicleSimpleNonlinear.html#VehicleSimpleNonlinear"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VehicleSimpleNonlinear.VehicleSimpleNonlinear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#VehicleSimple.VehicleSimple" title="VehicleSimple.VehicleSimple"><code class="xref py py-class docutils literal"><span class="pre">VehicleSimple.VehicleSimple</span></code></a></p>
+<p>TireLinear Linear tire model</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>k</strong> – Cornering stiffness [N/rad]</li>
+<li><strong>q</strong> – Cornering stiffness 2 [N/rad]</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="VehicleSimpleNonlinear.VehicleSimpleNonlinear.PlotTire">
+<code class="descname">PlotTire</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/VehicleSimpleNonlinear.html#VehicleSimpleNonlinear.PlotTire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VehicleSimpleNonlinear.VehicleSimpleNonlinear.PlotTire" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the handle of the curve</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-VehicleArticulated"></span><dl class="class">
+<dt id="VehicleArticulated.VehicleArticulated">
+<em class="property">class </em><code class="descclassname">VehicleArticulated.</code><code class="descname">VehicleArticulated</code><a class="reference internal" href="_modules/VehicleArticulated.html#VehicleArticulated"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VehicleArticulated.VehicleArticulated" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Tire Tire abstract class This class must be inherited by tire models that will be used with the simulator. This class has no properties, since parameters of tire models differ significantly from one another.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><strong>param</strong> – Loucura</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="VehicleArticulated.VehicleArticulated.Characteristic">
+<code class="descname">Characteristic</code><span class="sig-paren">(</span><em>alpha</em>, <em>varargin</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/VehicleArticulated.html#VehicleArticulated.Characteristic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VehicleArticulated.VehicleArticulated.Characteristic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tell my details.</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-VehicleArticulatedLinear"></span><dl class="class">
+<dt id="VehicleArticulatedLinear.VehicleArticulatedLinear">
+<em class="property">class </em><code class="descclassname">VehicleArticulatedLinear.</code><code class="descname">VehicleArticulatedLinear</code><a class="reference internal" href="_modules/VehicleArticulatedLinear.html#VehicleArticulatedLinear"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VehicleArticulatedLinear.VehicleArticulatedLinear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#VehicleArticulated.VehicleArticulated" title="VehicleArticulated.VehicleArticulated"><code class="xref py py-class docutils literal"><span class="pre">VehicleArticulated.VehicleArticulated</span></code></a></p>
+<p>TireLinear Linear tire model</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>k</strong> – Cornering stiffness [N/rad]</li>
+<li><strong>q</strong> – Cornering stiffness 2 [N/rad]</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="VehicleArticulatedLinear.VehicleArticulatedLinear.PlotTire">
+<code class="descname">PlotTire</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/VehicleArticulatedLinear.html#VehicleArticulatedLinear.PlotTire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VehicleArticulatedLinear.VehicleArticulatedLinear.PlotTire" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the handle of the curve</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-VehicleArticulatedNonlinear"></span><dl class="class">
+<dt id="VehicleArticulatedNonlinear.VehicleArticulatedNonlinear">
+<em class="property">class </em><code class="descclassname">VehicleArticulatedNonlinear.</code><code class="descname">VehicleArticulatedNonlinear</code><a class="reference internal" href="_modules/VehicleArticulatedNonlinear.html#VehicleArticulatedNonlinear"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VehicleArticulatedNonlinear.VehicleArticulatedNonlinear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#VehicleArticulated.VehicleArticulated" title="VehicleArticulated.VehicleArticulated"><code class="xref py py-class docutils literal"><span class="pre">VehicleArticulated.VehicleArticulated</span></code></a></p>
+<p>TireLinear Linear tire model</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>k</strong> – Cornering stiffness [N/rad]</li>
+<li><strong>q</strong> – Cornering stiffness 2 [N/rad]</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="VehicleArticulatedNonlinear.VehicleArticulatedNonlinear.PlotTire">
+<code class="descname">PlotTire</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/VehicleArticulatedNonlinear.html#VehicleArticulatedNonlinear.PlotTire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VehicleArticulatedNonlinear.VehicleArticulatedNonlinear.PlotTire" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the handle of the curve</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="zreferences.html"
+                          title="Previous page">&larr; References</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="contributing.html"
+                          title="Next page">&rarr; Contributing</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/api.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="contributing.html" title="Contributing"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="zreferences.html" title="References"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="index.html">OpenVD a documentation</a> &#187;</li>
+ 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, BSD 3-clause.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

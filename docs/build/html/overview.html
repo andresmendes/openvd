@@ -1,0 +1,197 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Overview &#8212; OpenVD a documentation</title>
+    <link rel="stylesheet" href="_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     'a',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="_static/cloud.base.js"></script>
+    <script type="text/javascript" src="_static/cloud.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Getting started" href="gettingstarted.html" />
+    <link rel="prev" title="Installation" href="installation.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="gettingstarted.html" title="Getting started"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="installation.html" title="Installation"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="index.html">OpenVD a documentation</a> &#187;</li>
+ 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
+<p>The general structure of the package is illustrated below. All the classes of the package are categorized into Vehicle model, Tire model and Graphics. One Vehicle model and one Tire model are combined to form the System. The integration of the System, with the apropriate parameters and initial conditions, is performed through the standard <a class="reference external" href="https://octave.sourceforge.io/octave/function/ode45.html">ode45</a> function of Octave/Matlab. The resulting data can be plotted as Frame and Animation with the Graphics features.</p>
+<p>This package uses an object-oriented programming architecture. For more details see <a class="reference external" href="https://www.gnu.org/software/octave/doc/interpreter/Object-Oriented-Programming.html">Object-Oriented Programming in OCTAVE</a> or <a class="reference external" href="https://www.mathworks.com/discovery/object-oriented-programming.html">Object-Oriented Programming in MATLAB</a></p>
+<div class="figure">
+<img alt="https://andresmendes.github.io/openvd/illustrations/fluxograma.svg" src="https://andresmendes.github.io/openvd/illustrations/fluxograma.svg" /></div>
+<p>The links to the description page of the available models and graphics are listed below.</p>
+<div class="section" id="tire-model">
+<h2>Tire model<a class="headerlink" href="#tire-model" title="Permalink to this headline">¶</a></h2>
+<p>The tire models are listed below.</p>
+<ul class="simple">
+<li><a class="reference external" href="html/DocTireLinear.html">Tire linear</a></li>
+<li><a class="reference external" href="html/DocTirePacejka.html">Tire Pacejka</a></li>
+<li><a class="reference external" href="html/DocTirePolynomial.html">Tire polynomial</a></li>
+</ul>
+</div>
+<div class="section" id="vehicle-model">
+<h2>Vehicle model<a class="headerlink" href="#vehicle-model" title="Permalink to this headline">¶</a></h2>
+<p>The vehicle models are listed below.</p>
+<p>The theoretical foundation of vehicle models can be found in: <a class="reference external" href="theory/vehicleSimple.pdf">TheoryVehicleSimple</a>, <a class="reference external" href="theory/vehicleSimple4DOF.pdf">TheoryVehicleSimple4DOF</a> and <a class="reference external" href="theory/vehicleArticulated.pdf">TheoryVehicleArticulated</a>.</p>
+<ul class="simple">
+<li><a class="reference external" href="html/DocVehicleArticulatedLinear.html">Vehicle Articulated Linear</a></li>
+<li><a class="reference external" href="html/DocVehicleArticulatedNonlinear.html">Vehicle Articulated Nonlinear</a></li>
+<li><a class="reference external" href="html/DocVehicleSimpleLinear.html">Vehicle Simple Linear</a></li>
+<li><a class="reference external" href="html/DocVehicleSimpleNonlinear.html">Vehicle Simple Nonlinear</a></li>
+<li><a class="reference external" href="html/DocVehicleSimpleNonlinear4DOF.html">Vehicle Simple Nonlinear 4DOF</a></li>
+</ul>
+</div>
+<div class="section" id="graphics">
+<h2>Graphics<a class="headerlink" href="#graphics" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="html/DocGraphics.html">Graphics</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Overview</a><ul>
+<li><a class="reference internal" href="#tire-model">Tire model</a></li>
+<li><a class="reference internal" href="#vehicle-model">Vehicle model</a></li>
+<li><a class="reference internal" href="#graphics">Graphics</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="installation.html"
+                          title="Previous page">&larr; Installation</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="gettingstarted.html"
+                          title="Next page">&rarr; Getting started</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/overview.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="gettingstarted.html" title="Getting started"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="installation.html" title="Installation"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="index.html">OpenVD a documentation</a> &#187;</li>
+ 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, BSD 3-clause.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

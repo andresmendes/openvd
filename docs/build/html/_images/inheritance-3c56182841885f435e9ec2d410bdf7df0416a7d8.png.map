@@ -1,0 +1,5 @@
+<map id="inheritanceb72a86a15e" name="inheritanceb72a86a15e">
+<area shape="rect" id="node1" href="#VehicleArticulated.VehicleArticulated" target="_top" title="Tire Tire abstract class This class must be inherited by tire models that will be used with the simulator. This class has no properties, since parameters of tire models differ significantly from one another." alt="" coords="5,31,141,56"/>
+<area shape="rect" id="node2" href="#VehicleArticulatedLinear.VehicleArticulatedLinear" target="_top" title="TireLinear Linear tire model" alt="" coords="201,5,375,31"/>
+<area shape="rect" id="node3" href="#VehicleArticulatedNonlinear.VehicleArticulatedNonlinear" target="_top" title="TireLinear Linear tire model" alt="" coords="189,55,387,80"/>
+</map>
