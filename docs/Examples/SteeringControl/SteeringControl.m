@@ -314,7 +314,7 @@ g.Frame('scalefig',3);
     plot([95 130],[section5Sup section5Sup],'k')
     plot([95 130],[0 0],'k--')
 
-g.Animation('scalefig',3);
+% g.Animation('scalefig',3);
 
 %%
 % <<../illustrations/animation/SteeringControlAnimation.gif>>
@@ -328,32 +328,14 @@ VEL = simulator.VEL;
 ALPHAT = simulator.ALPHAT;
 dPSI = simulator.dPSI;
 
-x = [YT PSI ALPHAT dPSI];
+x = [XT YT PSI VEL ALPHAT dPSI];
 
 u = zeros(length(TSPAN),1);
-output = zeros(length(TSPAN),1);
+controlEffort = zeros(length(TSPAN),1);
 
-LateralDisp = 3.6;
-
+% Retrieving the control input of the system based on the simulation results
 for ii = 1:length(TSPAN)
-    if XT(ii) <= 15
-        r = 0;
-    end
-    if XT(ii) > 15 && XT(ii) <= 70
-        r = LateralDisp;
-    end
-    if XT(ii) > 70
-        r = 0;
-    end
-
-    u(ii) = - Kplace*x(ii,:)' + Kplace(1)*r;
-
-    % Saturation at 42 deg
-    if abs(u(ii)) < 42*pi/180
-        output(ii) = u(ii);
-    else
-        output(ii) = sign(u(ii))*42*pi/180;
-    end
+    controlEffort(ii) = ControlLaw(x(ii,:));
 end
 
 % States
@@ -383,7 +365,7 @@ f3 = figure(3);
 % PaperPos = get(f,'PaperPosition');
 % set(f,'PaperSize',PaperPos(3:4))
 hold on; box on; grid on
-plot(TSPAN,output*180/pi,'k')
+plot(TSPAN,controlEffort*180/pi,'k')
 xlabel('Time [s]')
 y = ylabel('$\delta [deg]$');
 set(y,'Interpreter','Latex')

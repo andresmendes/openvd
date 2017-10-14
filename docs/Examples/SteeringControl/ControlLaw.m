@@ -1,14 +1,17 @@
-function output = ControlLaw(input,~)
-    % The input is the simple vehicle state variables
-    x = [input(2);input(3);input(5);input(6)];
-    % Reference
+function controlEffort = ControlLaw(sysData,~)
+    % sysData are the informations of the system necessary to generate the control effort
+    % controlEffort is the control input of the system
+
+    % In this case, the sysData contains the simple vehicle state variables
+    x = [sysData(2);sysData(3);sysData(5);sysData(6)];
 
     % Vehicle longitudinal position
-    X = input(1);
+    X = sysData(1);
 
-    %
+    % Lateral displacement
     LateralDisp = 3.6;
 
+    % Reference signal (Double lane change)
     if X <= 15
         r = 0;
     end
@@ -19,13 +22,13 @@ function output = ControlLaw(input,~)
         r = 0;
     end
 
-    % Control gain
+    % Control gains
     K = [0.7936    6.6882    1.6107    0.5090];
     u = - K*x + K(1)*r;
 
-    % Saturation at 70 deg
+    % Saturation of the control effort
     if abs(u) < 42*pi/180
-        output = u;
+        controlEffort = u;
     else
-        output = sign(u)*42*pi/180;
+        controlEffort = sign(u)*42*pi/180;
     end
