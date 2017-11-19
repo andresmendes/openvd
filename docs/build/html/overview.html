@@ -7,14 +7,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Overview &#8212; OpenVD a documentation</title>
+    <title>Overview &#8212; OpenVD  documentation</title>
     <link rel="stylesheet" href="_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     'a',
+        VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -30,7 +30,7 @@
     <script type="text/javascript" src="_static/cloud.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Getting started" href="gettingstarted.html" />
+    <link rel="next" title="Examples" href="example.html" />
     <link rel="prev" title="Installation" href="installation.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
@@ -47,12 +47,12 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="gettingstarted.html" title="Getting started"
+          <a href="example.html" title="Examples"
              accesskey="N">next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="installation.html" title="Installation"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="index.html">OpenVD a documentation</a> &#187;</li>
+    <li><a href="index.html">OpenVD  documentation</a> &#187;</li>
  
       </ul>
     </div>
@@ -66,37 +66,85 @@
             
   <div class="section" id="overview">
 <h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
-<p>The general structure of the package is illustrated below. All the classes of the package are categorized into Vehicle model, Tire model and Graphics. One Vehicle model and one Tire model are combined to form the System. The integration of the System, with the apropriate parameters and initial conditions, is performed through the standard <a class="reference external" href="https://octave.sourceforge.io/octave/function/ode45.html">ode45</a> function of Octave/Matlab. The resulting data can be plotted as Frame and Animation with the Graphics features.</p>
+<p>The general structure of the package is illustrated in <a class="reference internal" href="#generalstructure"><span class="std std-numref">Fig. 2</span></a>. All the classes of the package are categorized into <a class="reference internal" href="#tire-model"><span class="std std-ref">Tire model</span></a>, <a class="reference internal" href="#vehicle-model"><span class="std std-ref">Vehicle model</span></a> and <a class="reference internal" href="#graphics-feat"><span class="std std-ref">Graphics</span></a>. One Vehicle model and one Tire model are combined to form the System. The integration of the System, with the appropriate parameters and initial conditions, is performed through the standard <a class="reference external" href="https://octave.sourceforge.io/octave/function/ode45.html">ode45</a> function of Octave/Matlab. The resulting data can be plotted as Frame and Animation with the Graphics features.</p>
 <p>This package uses an object-oriented programming architecture. For more details see <a class="reference external" href="https://www.gnu.org/software/octave/doc/interpreter/Object-Oriented-Programming.html">Object-Oriented Programming in OCTAVE</a> or <a class="reference external" href="https://www.mathworks.com/discovery/object-oriented-programming.html">Object-Oriented Programming in MATLAB</a></p>
-<div class="figure">
-<img alt="https://andresmendes.github.io/openvd/illustrations/fluxograma.svg" src="https://andresmendes.github.io/openvd/illustrations/fluxograma.svg" /></div>
+<div class="figure align-center" id="id3">
+<span id="generalstructure"></span><img alt="_images/flowchart.svg" src="_images/flowchart.svg" /><p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">General structure of the package.</span></p>
+</div>
 <p>The links to the description page of the available models and graphics are listed below.</p>
 <div class="section" id="tire-model">
-<h2>Tire model<a class="headerlink" href="#tire-model" title="Permalink to this headline">¶</a></h2>
-<p>The tire models are listed below.</p>
-<ul class="simple">
-<li><a class="reference external" href="html/DocTireLinear.html">Tire linear</a></li>
-<li><a class="reference external" href="html/DocTirePacejka.html">Tire Pacejka</a></li>
-<li><a class="reference external" href="html/DocTirePolynomial.html">Tire polynomial</a></li>
-</ul>
+<span id="id1"></span><h2>Tire model<a class="headerlink" href="#tire-model" title="Permalink to this headline">¶</a></h2>
+<p>The tire models and the respective theoretical foundation and class/function are listed below.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Theory</th>
+<th class="head">Class/Function</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Tire Linear</td>
+<td><a class="reference internal" href="tire.html#tire-linear"><span class="std std-ref">Linear</span></a></td>
+<td><a class="reference internal" href="api.html#module-TireLinear" title="TireLinear"><code class="xref py py-mod docutils literal"><span class="pre">TireLinear</span></code></a></td>
+</tr>
+<tr class="row-odd"><td>Tire Pacejka</td>
+<td><a class="reference internal" href="tire.html#tire-pacejka"><span class="std std-ref">Pacejka (Magic Formula)</span></a></td>
+<td><a class="reference internal" href="api.html#module-TirePacejka" title="TirePacejka"><code class="xref py py-mod docutils literal"><span class="pre">TirePacejka</span></code></a></td>
+</tr>
+<tr class="row-even"><td>Tire Polynomial</td>
+<td><a class="reference internal" href="tire.html#tire-polynomial"><span class="std std-ref">Polynomial</span></a></td>
+<td><a class="reference internal" href="api.html#module-TirePolynomial" title="TirePolynomial"><code class="xref py py-mod docutils literal"><span class="pre">TirePolynomial</span></code></a></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="vehicle-model">
-<h2>Vehicle model<a class="headerlink" href="#vehicle-model" title="Permalink to this headline">¶</a></h2>
-<p>The vehicle models are listed below.</p>
-<p>The theoretical foundation of vehicle models can be found in: <a class="reference external" href="theory/vehicleSimple.pdf">TheoryVehicleSimple</a>, <a class="reference external" href="theory/vehicleSimple4DOF.pdf">TheoryVehicleSimple4DOF</a> and <a class="reference external" href="theory/vehicleArticulated.pdf">TheoryVehicleArticulated</a>.</p>
-<ul class="simple">
-<li><a class="reference external" href="html/DocVehicleArticulatedLinear.html">Vehicle Articulated Linear</a></li>
-<li><a class="reference external" href="html/DocVehicleArticulatedNonlinear.html">Vehicle Articulated Nonlinear</a></li>
-<li><a class="reference external" href="html/DocVehicleSimpleLinear.html">Vehicle Simple Linear</a></li>
-<li><a class="reference external" href="html/DocVehicleSimpleNonlinear.html">Vehicle Simple Nonlinear</a></li>
-<li><a class="reference external" href="html/DocVehicleSimpleNonlinear4DOF.html">Vehicle Simple Nonlinear 4DOF</a></li>
-</ul>
+<span id="id2"></span><h2>Vehicle model<a class="headerlink" href="#vehicle-model" title="Permalink to this headline">¶</a></h2>
+<p>The vehicle models and the respective theoretical foundation and class/function are listed below.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Theory</th>
+<th class="head">Class/Function</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Vehicle Articulated Linear</td>
+<td><a class="reference internal" href="articulatedVehicleModels.html#vehicle-articulated-4dof"><span class="std std-ref">Articulated vehicle 4 DOF</span></a></td>
+<td><a class="reference internal" href="api.html#module-VehicleArticulatedLinear" title="VehicleArticulatedLinear"><code class="xref py py-mod docutils literal"><span class="pre">VehicleArticulatedLinear</span></code></a></td>
+</tr>
+<tr class="row-odd"><td>Vehicle Articulated Nonlinear</td>
+<td><a class="reference internal" href="articulatedVehicleModels.html#vehicle-articulated-4dof"><span class="std std-ref">Articulated vehicle 4 DOF</span></a></td>
+<td><a class="reference internal" href="api.html#module-VehicleArticulatedNonlinear" title="VehicleArticulatedNonlinear"><code class="xref py py-mod docutils literal"><span class="pre">VehicleArticulatedNonlinear</span></code></a></td>
+</tr>
+<tr class="row-even"><td>Vehicle Simple Linear</td>
+<td><a class="reference internal" href="simpleVehicleModels.html#vehicle-simple-3dof"><span class="std std-ref">Simple vehicle 3 DOF</span></a></td>
+<td><a class="reference internal" href="api.html#module-VehicleSimpleLinear" title="VehicleSimpleLinear"><code class="xref py py-mod docutils literal"><span class="pre">VehicleSimpleLinear</span></code></a></td>
+</tr>
+<tr class="row-odd"><td>Vehicle Simple Nonlinear</td>
+<td><a class="reference internal" href="simpleVehicleModels.html#vehicle-simple-3dof"><span class="std std-ref">Simple vehicle 3 DOF</span></a></td>
+<td><a class="reference internal" href="api.html#module-VehicleSimpleNonlinear" title="VehicleSimpleNonlinear"><code class="xref py py-mod docutils literal"><span class="pre">VehicleSimpleNonlinear</span></code></a></td>
+</tr>
+<tr class="row-even"><td>Vehicle Simple Nonlinear 4DOF</td>
+<td><a class="reference internal" href="simpleVehicleModels.html#vehicle-simple-4dof"><span class="std std-ref">Simple vehicle 4 DOF</span></a></td>
+<td><a class="reference internal" href="api.html#module-VehicleSimpleNonlinear4DOF" title="VehicleSimpleNonlinear4DOF"><code class="xref py py-mod docutils literal"><span class="pre">VehicleSimpleNonlinear4DOF</span></code></a></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="graphics">
-<h2>Graphics<a class="headerlink" href="#graphics" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><a class="reference external" href="html/DocGraphics.html">Graphics</a></li>
-</ul>
+<span id="graphics-feat"></span><h2>Graphics<a class="headerlink" href="#graphics" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="api.html#module-Graphics" title="Graphics"><code class="xref py py-mod docutils literal"><span class="pre">Graphics</span></code></a></p>
 </div>
 </div>
 
@@ -124,8 +172,8 @@
   </div>
   <div class="sphinxnext">
     <h4>Next page</h4>
-    <p class="topless"><a href="gettingstarted.html"
-                          title="Next page">&rarr; Getting started</a></p>
+    <p class="topless"><a href="example.html"
+                          title="Next page">&rarr; Examples</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
@@ -177,12 +225,12 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="gettingstarted.html" title="Getting started"
+          <a href="example.html" title="Examples"
              >next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="installation.html" title="Installation"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="index.html">OpenVD a documentation</a> &#187;</li>
+    <li><a href="index.html">OpenVD  documentation</a> &#187;</li>
  
       </ul>
     </div>

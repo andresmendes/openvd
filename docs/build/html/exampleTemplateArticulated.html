@@ -1,0 +1,254 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Template Articulated &#8212; OpenVD  documentation</title>
+    <link rel="stylesheet" href="_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="_static/cloud.base.js"></script>
+    <script type="text/javascript" src="_static/cloud.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Template Articulated Simulink" href="exampleTemplateArticulatedSimulink.html" />
+    <link rel="prev" title="Steering Control" href="exampleSteeringControl.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="exampleTemplateArticulatedSimulink.html" title="Template Articulated Simulink"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="exampleSteeringControl.html" title="Steering Control"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="index.html">OpenVD  documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="example.html" accesskey="U">Examples</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="template-articulated">
+<span id="id1"></span><h1>Template Articulated<a class="headerlink" href="#template-articulated" title="Permalink to this headline">¶</a></h1>
+<p>This template shows how to simulate an articulated vehicle and plot the results.</p>
+<p>In this case, the parameters are defined by the user.</p>
+<p>First, we define the Pacejka tire model (<a class="reference internal" href="tire.html#tire-pacejka"><span class="std std-ref">Pacejka (Magic Formula)</span></a>).</p>
+<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">TireModel</span> <span class="p">=</span> <span class="n">TirePacejka</span><span class="p">();</span>                      <span class="c">% Choosing tire</span>
+</pre></div>
+</div>
+<p>Then, the tire parameters are defined as</p>
+<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">TireModel</span><span class="p">.</span><span class="n">a0</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">TireModel</span><span class="p">.</span><span class="n">a1</span> <span class="p">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="n">TireModel</span><span class="p">.</span><span class="n">a2</span> <span class="p">=</span> <span class="mi">700</span><span class="p">;</span>
+<span class="n">TireModel</span><span class="p">.</span><span class="n">a3</span> <span class="p">=</span> <span class="mi">5000</span><span class="p">;</span>
+<span class="n">TireModel</span><span class="p">.</span><span class="n">a4</span> <span class="p">=</span> <span class="mi">80</span><span class="p">;</span>
+<span class="n">TireModel</span><span class="p">.</span><span class="n">a5</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">TireModel</span><span class="p">.</span><span class="n">a6</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">TireModel</span><span class="p">.</span><span class="n">a7</span> <span class="p">=</span> <span class="mf">0.6</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Check all the tire parameters at <a class="reference internal" href="api.html#module-TirePacejka" title="TirePacejka"><code class="xref py py-mod docutils literal"><span class="pre">TirePacejka</span></code></a>.</p>
+<p>The nonlinear articulated vehicle model (<a class="reference internal" href="articulatedVehicleModels.html#vehicle-articulated-4dof"><span class="std std-ref">Articulated vehicle 4 DOF</span></a>) is defined as</p>
+<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">VehicleModel</span> <span class="p">=</span> <span class="n">VehicleArticulatedNonlinear</span><span class="p">();</span>   <span class="c">% Choosing vehicle</span>
+</pre></div>
+</div>
+<p>The vehicle parameters can be changed as</p>
+<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">VehicleModel</span><span class="p">.</span><span class="n">mF0</span> <span class="p">=</span> <span class="mi">5200</span><span class="p">;</span>
+<span class="n">VehicleModel</span><span class="p">.</span><span class="n">mR0</span> <span class="p">=</span> <span class="mi">2400</span><span class="p">;</span>
+<span class="n">VehicleModel</span><span class="p">.</span><span class="n">mF</span> <span class="p">=</span> <span class="mi">6000</span><span class="p">;</span>
+<span class="n">VehicleModel</span><span class="p">.</span><span class="n">mR</span> <span class="p">=</span> <span class="mi">10000</span><span class="p">;</span>
+<span class="n">VehicleModel</span><span class="p">.</span><span class="n">mM</span> <span class="p">=</span> <span class="mi">17000</span><span class="p">;</span>
+<span class="n">VehicleModel</span><span class="p">.</span><span class="n">IT</span> <span class="p">=</span> <span class="mi">46000</span><span class="p">;</span>
+<span class="n">VehicleModel</span><span class="p">.</span><span class="n">IS</span> <span class="p">=</span> <span class="mi">450000</span><span class="p">;</span>
+<span class="n">VehicleModel</span><span class="p">.</span><span class="n">lT</span> <span class="p">=</span> <span class="mf">3.5</span><span class="p">;</span>
+<span class="n">VehicleModel</span><span class="p">.</span><span class="n">lS</span> <span class="p">=</span> <span class="mf">7.7</span><span class="p">;</span>
+<span class="n">VehicleModel</span><span class="p">.</span><span class="n">c</span> <span class="p">=</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">;</span>
+<span class="n">VehicleModel</span><span class="p">.</span><span class="n">nF</span> <span class="p">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="n">VehicleModel</span><span class="p">.</span><span class="n">nR</span> <span class="p">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="n">VehicleModel</span><span class="p">.</span><span class="n">nM</span> <span class="p">=</span> <span class="mi">8</span><span class="p">;</span>
+<span class="n">VehicleModel</span><span class="p">.</span><span class="n">wT</span> <span class="p">=</span> <span class="mf">2.6</span><span class="p">;</span>
+<span class="n">VehicleModel</span><span class="p">.</span><span class="n">wS</span> <span class="p">=</span> <span class="mf">2.4</span><span class="p">;</span>
+<span class="n">VehicleModel</span><span class="p">.</span><span class="n">muy</span> <span class="p">=</span> <span class="mf">0.3</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Check all the vehicle parameters at <a class="reference internal" href="api.html#module-VehicleSimpleNonlinear" title="VehicleSimpleNonlinear"><code class="xref py py-mod docutils literal"><span class="pre">VehicleSimpleNonlinear</span></code></a>.</p>
+<p>The input variables can be defined as</p>
+<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">VehicleModel</span><span class="p">.</span><span class="n">deltaf</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">VehicleModel</span><span class="p">.</span><span class="n">Fxf</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">VehicleModel</span><span class="p">.</span><span class="n">Fxr</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">VehicleModel</span><span class="p">.</span><span class="n">Fxm</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>When the input variables are defined as a scalar quantity, the attributed value remains the same for the entire simulation span.</p>
+<p>The System is completely defined once we attribute the chosen tire model to the vehicle object.</p>
+<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">VehicleModel</span><span class="p">.</span><span class="n">tire</span> <span class="p">=</span> <span class="n">TireModel</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Choosing simulation time span</p>
+<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="p">=</span> <span class="mi">7</span><span class="p">;</span>                              <span class="c">% Total simulation time [s]</span>
+<span class="n">resol</span> <span class="p">=</span> <span class="mi">50</span><span class="p">;</span>                         <span class="c">% Resolution</span>
+<span class="n">TSPAN</span> <span class="p">=</span> <span class="mi">0</span><span class="p">:</span><span class="n">T</span><span class="o">/</span><span class="n">resol</span><span class="p">:</span><span class="n">T</span><span class="p">;</span>                <span class="c">% Time span [s]</span>
+</pre></div>
+</div>
+<p>To define a simulation object (<a class="reference internal" href="api.html#module-Simulator" title="Simulator"><code class="xref py py-mod docutils literal"><span class="pre">Simulator</span></code></a>) the arguments must be the vehicle object and the time span.</p>
+<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">simulator</span> <span class="p">=</span> <span class="n">Simulator</span><span class="p">(</span><span class="n">VehicleModel</span><span class="p">,</span> <span class="n">TSPAN</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The default parameters of the simulation object can be found in <a class="reference internal" href="api.html#module-Simulator" title="Simulator"><code class="xref py py-mod docutils literal"><span class="pre">Simulator</span></code></a>. However, we are interested in changing the initial conditions of the simulation object. This can be done running</p>
+<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">simulator</span><span class="p">.</span><span class="n">ALPHAT0</span> <span class="p">=</span> <span class="mf">0.3</span><span class="p">;</span>            <span class="c">% Initial tractor side slip angle [rad]</span>
+<span class="n">simulator</span><span class="p">.</span><span class="n">dPSI0</span> <span class="p">=</span> <span class="mf">0.25</span><span class="p">;</span>             <span class="c">% Initial tractor yaw rate [rad/s]</span>
+<span class="n">simulator</span><span class="p">.</span><span class="n">dPHI0</span> <span class="p">=</span> <span class="mf">0.25</span><span class="p">;</span>             <span class="c">% Initial articulation rate [rad/s]</span>
+</pre></div>
+</div>
+<p>Now, we have everything needed to run the simulation. For this, we use</p>
+<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">simulator</span><span class="p">.</span><span class="n">Simulate</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>In this example, the plots of the time response of each state are no presented. For that, see <a class="reference internal" href="exampleTemplateSimple.html#template-simple"><span class="std std-ref">Template Simple</span></a>.</p>
+<p>Frame and animation can be generated defining a graphic object (<a class="reference internal" href="api.html#module-Graphics" title="Graphics"><code class="xref py py-mod docutils literal"><span class="pre">Graphics</span></code></a>). The only argument of the graphic object is the simulator object after the simulation.</p>
+<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="p">=</span> <span class="n">Graphics</span><span class="p">(</span><span class="n">simulator</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>To change the color of the tractor and the semitrailer run</p>
+<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">g</span><span class="p">.</span><span class="n">TractorColor</span> <span class="p">=</span> <span class="s">&#39;r&#39;</span><span class="p">;</span>
+<span class="n">g</span><span class="p">.</span><span class="n">SemitrailerColor</span> <span class="p">=</span> <span class="s">&#39;g&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>After that, just run</p>
+<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">g</span><span class="p">.</span><span class="n">Frame</span><span class="p">();</span>
+<span class="n">g</span><span class="p">.</span><span class="n">Animation</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Both graphics feature can be seen below.</p>
+<div class="figure align-center" id="id2">
+<a class="reference internal image-reference" href="_images/TemplateArticulatedFrame.svg"><img alt="_images/TemplateArticulatedFrame.svg" src="_images/TemplateArticulatedFrame.svg" width="60%" /></a>
+<p class="caption"><span class="caption-number">Fig. 47 </span><span class="caption-text">Frame of the articulated vehicle model.</span></p>
+</div>
+<div class="figure align-center" id="id3">
+<img alt="_images/TemplateArticulatedAnimation.gif" src="_images/TemplateArticulatedAnimation.gif" />
+<p class="caption"><span class="caption-number">Fig. 48 </span><span class="caption-text">Animation of the articulated vehicle model.</span></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="exampleSteeringControl.html"
+                          title="Previous page">&larr; Steering Control</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="exampleTemplateArticulatedSimulink.html"
+                          title="Next page">&rarr; Template Articulated Simulink</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/exampleTemplateArticulated.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="exampleTemplateArticulatedSimulink.html" title="Template Articulated Simulink"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="exampleSteeringControl.html" title="Steering Control"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="index.html">OpenVD  documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="example.html" >Examples</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, BSD 3-clause.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

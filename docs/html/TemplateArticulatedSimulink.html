@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Template Articulated Simulink</title>
+<title>TemplateArticulatedSimulink</title>
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] },
@@ -12,7 +12,7 @@ MathJax.Hub.Config({
 <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 <style>
 body > * {
-  max-width: 42em;
+  max-width: 1000px;
 }
 body {
   font-family: "Roboto Condensed", sans-serif;
@@ -20,7 +20,7 @@ body {
   padding-right: 7.5em;
 }
 pre, code {
-  max-width: 50em;
+  max-width: 60em;
   font-family: monospace;
 }
 pre.oct-code {
@@ -56,8 +56,7 @@ h2 a, h2 a:visited {
 </style>
 </head>
 <body>
-<h1>Template Articulated Simulink</h1>
-<p>This template shows how to simulate an articulated vehicle in Simulink using a s-function. The graphics are also plotted.</p><img src="../illustrations/AnimationTemplateArticulatedSimulink.gif" alt="../illustrations/AnimationTemplateArticulatedSimulink.gif"><h2>Contents</h2><ul><li><a href="#node1">Simulink model</a></li><li><a href="#node2">Generating Graphics</a></li><li><a href="#node3">See Also</a></li></ul><h2><a id="node1">Simulink model</a></h2><p>This model uses the s-function <a href="ArticulatedVehicleSFunction.html">ArticulatedVehicleSFunction.m</a> in Simulink. The package and this s-function must be in Matlab path.</p><p>The "ArticulatedVehicleSimulink.slx" available in the repository ("Examples/TemplateArticulatedSimulink") is illustrated below:</p><img src="../illustrations/ArticulatedVehicleSimulink.png" alt="../illustrations/ArticulatedVehicleSimulink.png"><p>It can be seen that the longitudinal forces of the tire are zero for the entire simulation. The steering angle recieve a step input.</p><p>Running the Simulink model</p><pre class="oct-code">sim(<span class="string">'ArticulatedVehicleSimulink'</span>);</pre><p>Each vehicle state variable goes to a scope. And the output of the model is saved in workspace.</p><h2><a id="node2">Generating Graphics</a></h2><p>To generate the graphics the same model used in <a href="ArticulatedVehicleSFunction.html">ArticulatedVehicleSFunction.m</a> must be defined.</p><pre class="oct-code"><span class="comment">% Choosing tire model</span>
+<p><b>Running the Simulink model</b></p><pre class="oct-code">sim(<span class="string">'ArticulatedVehicleSimulink'</span>);</pre><p>Each vehicle state variable goes to a scope. And the output of the model is saved in workspace.</p><p><b>Results</b></p><p>To generate the graphics the same model used in <a href="ArticulatedVehicleSFunction.html">ArticulatedVehicleSFunction.m</a> must be defined.</p><pre class="oct-code"><span class="comment">% Choosing tire model</span>
 TireModel = VehicleDynamicsLateral.TirePacejka();
 <span class="comment">% Defining tire parameters</span>
 TireModel.a0 = 1;
@@ -115,25 +114,12 @@ simulator.dPHI = simout.Data(:,8);
 g = VehicleDynamicsLateral.Graphics(simulator);
 g.TractorColor = <span class="string">'r'</span>;
 
-g.Frame();</pre><img src="../illustrations/frame/TemplateArticulatedSimulinkFrame.png" alt="../illustrations/frame/TemplateArticulatedSimulinkFrame.png"><pre class="oct-code">g.Animation();</pre><p>As expected the vehicle starts traveling in a straight line and starts a turn at \(t = 1 \, s\) because of the step function.</p><img src="../illustrations/AnimationTemplateArticulatedSimulink.gif" alt="../illustrations/AnimationTemplateArticulatedSimulink.gif"><h2><a id="node3">See Also</a></h2><p>[<a href="../index.html">Home</a>] [<a href="ArticulatedVehicleSFunction.html">ArticulatedVehicleSFunction.m</a>] [<a href="TemplateSimpleSimulink.html">Template Simple Simulink</a>]</p>
+g.Frame();</pre><img width="800" src="../illustrations/frame/TemplateArticulatedSimulinkFrame.png" alt="../illustrations/frame/TemplateArticulatedSimulinkFrame.png"><pre class="oct-code">g.Animation();</pre><p>As expected the vehicle starts traveling in a straight line and starts a turn at \(t = 1 \, s\) because of the step function.</p><img src="../illustrations/AnimationTemplateArticulatedSimulink.gif" alt="../illustrations/AnimationTemplateArticulatedSimulink.gif">
 <footer><hr><a href="http://www.octave.org">Published with GNU Octave 4.2.1</a></footer>
 <!--
 ##### SOURCE BEGIN #####
-%% Template Articulated Simulink
-% This template shows how to simulate an articulated vehicle in Simulink using a s-function. The graphics are also plotted.
-%
-% <<../illustrations/AnimationTemplateArticulatedSimulink.gif>>
-%
-%% Simulink model
-% This model uses the s-function <ArticulatedVehicleSFunction.html ArticulatedVehicleSFunction.m> in Simulink. The package and this s-function must be in Matlab path.
-%
-% The "ArticulatedVehicleSimulink.slx" available in the repository ("Examples/TemplateArticulatedSimulink") is illustrated below:
-%
-% <<../illustrations/ArticulatedVehicleSimulink.png>>
-%
-% It can be seen that the longitudinal forces of the tire are zero for the entire simulation. The steering angle recieve a step input.
-%
-% Running the Simulink model
+%%
+% *Running the Simulink model*
 %
 
 sim('ArticulatedVehicleSimulink');
@@ -141,7 +127,9 @@ sim('ArticulatedVehicleSimulink');
 %%
 % Each vehicle state variable goes to a scope. And the output of the model is saved in workspace.
 %
-%% Generating Graphics
+%%
+% *Results*
+%
 % To generate the graphics the same model used in <ArticulatedVehicleSFunction.html ArticulatedVehicleSFunction.m> must be defined.
 
 % Choosing tire model
@@ -214,10 +202,6 @@ g.Animation();
 % As expected the vehicle starts traveling in a straight line and starts a turn at \(t = 1 \, s\) because of the step function.
 %
 % <<../illustrations/AnimationTemplateArticulatedSimulink.gif>>
-%
-%% See Also
-%
-% [<../index.html Home>] [<ArticulatedVehicleSFunction.html ArticulatedVehicleSFunction.m>] [<TemplateSimpleSimulink.html Template Simple Simulink>]
 %
 ##### SOURCE END #####
 -->

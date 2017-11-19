@@ -1,0 +1,277 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Template Simple &#8212; OpenVD  documentation</title>
+    <link rel="stylesheet" href="_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="_static/cloud.base.js"></script>
+    <script type="text/javascript" src="_static/cloud.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Template Simple Simulink" href="exampleTemplateSimpleSimulink.html" />
+    <link rel="prev" title="Template Articulated Simulink" href="exampleTemplateArticulatedSimulink.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="exampleTemplateSimpleSimulink.html" title="Template Simple Simulink"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="exampleTemplateArticulatedSimulink.html" title="Template Articulated Simulink"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="index.html">OpenVD  documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="example.html" accesskey="U">Examples</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="template-simple">
+<span id="id1"></span><h1>Template Simple<a class="headerlink" href="#template-simple" title="Permalink to this headline">¶</a></h1>
+<p>This template shows how to simulate a simple vehicle and plot the results.</p>
+<p>First, we choose the tire and vehicle models. The first one is the Pacejka tire model (<a class="reference internal" href="tire.html#tire-pacejka"><span class="std std-ref">Pacejka (Magic Formula)</span></a>) and the second one is the nonlinear vehicle model (<a class="reference internal" href="simpleVehicleModels.html#vehicle-simple-3dof"><span class="std std-ref">Simple vehicle 3 DOF</span></a>).</p>
+<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">TireModel</span> <span class="p">=</span> <span class="n">TirePacejka</span><span class="p">();</span>                  <span class="c">% Choosing tire</span>
+<span class="n">VehicleModel</span> <span class="p">=</span> <span class="n">VehicleSimpleNonlinear</span><span class="p">();</span>    <span class="c">% Choosing vehicle</span>
+</pre></div>
+</div>
+<p>In this case, no parameter is defined. So, the default values are used. The default parameters of the vehicle and tire model can be seen in <a class="reference internal" href="api.html#module-VehicleSimpleNonlinear" title="VehicleSimpleNonlinear"><code class="xref py py-mod docutils literal"><span class="pre">VehicleSimpleNonlinear</span></code></a> and <a class="reference internal" href="api.html#module-TirePacejka" title="TirePacejka"><code class="xref py py-mod docutils literal"><span class="pre">TirePacejka</span></code></a>, respectively.</p>
+<p>Now, we have two variables defined.</p>
+<p>The system is completely defined once we attribute the chosen tire model to the vehicle object.</p>
+<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">VehicleModel</span><span class="p">.</span><span class="n">tire</span> <span class="p">=</span> <span class="n">TireModel</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>After this, we define the simulation time span</p>
+<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="p">=</span> <span class="mi">6</span><span class="p">;</span>                              <span class="c">% Total simulation time [s]</span>
+<span class="n">resol</span> <span class="p">=</span> <span class="mi">50</span><span class="p">;</span>                         <span class="c">% Resolution</span>
+<span class="n">TSPAN</span> <span class="p">=</span> <span class="mi">0</span><span class="p">:</span><span class="n">T</span><span class="o">/</span><span class="n">resol</span><span class="p">:</span><span class="n">T</span><span class="p">;</span>                <span class="c">% Time span [s]</span>
+</pre></div>
+</div>
+<p>To define a simulation object (<a class="reference internal" href="api.html#module-Simulator" title="Simulator"><code class="xref py py-mod docutils literal"><span class="pre">Simulator</span></code></a>) the arguments must be the vehicle object and the time span. This is,</p>
+<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">simulator</span> <span class="p">=</span> <span class="n">Simulator</span><span class="p">(</span><span class="n">VehicleModel</span><span class="p">,</span> <span class="n">TSPAN</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The default parameters of the simulation object can be found in <a class="reference internal" href="api.html#module-Simulator" title="Simulator"><code class="xref py py-mod docutils literal"><span class="pre">Simulator</span></code></a>. However, we are interested in changing the initial conditions of the simulation object. This can be done running</p>
+<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">simulator</span><span class="p">.</span><span class="n">ALPHAT0</span> <span class="p">=</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">;</span>           <span class="c">% Initial side slip angle [rad]</span>
+<span class="n">simulator</span><span class="p">.</span><span class="n">dPSI0</span> <span class="p">=</span> <span class="mf">0.7</span><span class="p">;</span>              <span class="c">% Initial yaw rate [rad/s]</span>
+</pre></div>
+</div>
+<p>Now, we have everything needed to run the simulation. For this, we use</p>
+<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">simulator</span><span class="p">.</span><span class="n">Simulate</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>The resulting time response of each state is stored in separate variables:</p>
+<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">XT</span> <span class="p">=</span> <span class="n">simulator</span><span class="p">.</span><span class="n">XT</span><span class="p">;</span>
+<span class="n">YT</span> <span class="p">=</span> <span class="n">simulator</span><span class="p">.</span><span class="n">YT</span><span class="p">;</span>
+<span class="n">PSI</span> <span class="p">=</span> <span class="n">simulator</span><span class="p">.</span><span class="n">PSI</span><span class="p">;</span>
+<span class="n">VEL</span> <span class="p">=</span> <span class="n">simulator</span><span class="p">.</span><span class="n">VEL</span><span class="p">;</span>
+<span class="n">ALPHAT</span> <span class="p">=</span> <span class="n">simulator</span><span class="p">.</span><span class="n">ALPHAT</span><span class="p">;</span>
+<span class="n">dPSI</span> <span class="p">=</span> <span class="n">simulator</span><span class="p">.</span><span class="n">dPSI</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The following lines plot the time response of each state of the model.</p>
+<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">f1</span> <span class="p">=</span> <span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">grid</span> <span class="n">on</span> <span class="p">;</span> <span class="n">box</span> <span class="n">on</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">TSPAN</span><span class="p">,</span><span class="n">XT</span><span class="p">,</span><span class="s">&#39;linewidth&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;time [s]&#39;</span><span class="p">)</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Distance in the x direction [m]&#39;</span><span class="p">)</span>
+
+<span class="n">f2</span> <span class="p">=</span> <span class="n">figure</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">grid</span> <span class="n">on</span> <span class="p">;</span> <span class="n">box</span> <span class="n">on</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">TSPAN</span><span class="p">,</span><span class="n">YT</span><span class="p">,</span><span class="s">&#39;linewidth&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;time [s]&#39;</span><span class="p">)</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Distance in the y direction [m]&#39;</span><span class="p">)</span>
+
+<span class="n">f3</span> <span class="p">=</span> <span class="n">figure</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">grid</span> <span class="n">on</span> <span class="p">;</span> <span class="n">box</span> <span class="n">on</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">TSPAN</span><span class="p">,</span><span class="n">PSI</span><span class="p">,</span><span class="s">&#39;linewidth&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;time [s]&#39;</span><span class="p">)</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Yaw angle [rad]&#39;</span><span class="p">)</span>
+
+<span class="n">f4</span> <span class="p">=</span> <span class="n">figure</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<span class="n">grid</span> <span class="n">on</span> <span class="p">;</span> <span class="n">box</span> <span class="n">on</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">TSPAN</span><span class="p">,</span><span class="n">VEL</span><span class="p">,</span><span class="s">&#39;linewidth&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;time [s]&#39;</span><span class="p">)</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Velocity [m/s]&#39;</span><span class="p">)</span>
+
+<span class="n">f5</span> <span class="p">=</span> <span class="n">figure</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="n">grid</span> <span class="n">on</span> <span class="p">;</span> <span class="n">box</span> <span class="n">on</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">TSPAN</span><span class="p">,</span><span class="n">ALPHAT</span><span class="p">,</span><span class="s">&#39;linewidth&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;time [s]&#39;</span><span class="p">)</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Vehicle slip angle [rad/s]&#39;</span><span class="p">)</span>
+
+<span class="n">f6</span> <span class="p">=</span> <span class="n">figure</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+<span class="n">grid</span> <span class="n">on</span> <span class="p">;</span> <span class="n">box</span> <span class="n">on</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">TSPAN</span><span class="p">,</span><span class="n">dPSI</span><span class="p">,</span><span class="s">&#39;linewidth&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;time [s]&#39;</span><span class="p">)</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Yaw rate [rad/s]&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The generated figures can be seen below.</p>
+<div class="figure align-center" id="id2">
+<a class="reference internal image-reference" href="_images/TemplateSimpleFig1.svg"><img alt="_images/TemplateSimpleFig1.svg" src="_images/TemplateSimpleFig1.svg" width="40%" /></a>
+<p class="caption"><span class="caption-number">Fig. 51 </span><span class="caption-text">Longitudinal position of the center of gravity of the system.</span></p>
+</div>
+<div class="figure align-center" id="id3">
+<a class="reference internal image-reference" href="_images/TemplateSimpleFig2.svg"><img alt="_images/TemplateSimpleFig2.svg" src="_images/TemplateSimpleFig2.svg" width="40%" /></a>
+<p class="caption"><span class="caption-number">Fig. 52 </span><span class="caption-text">Transversal position of the center of gravity of the system.</span></p>
+</div>
+<div class="figure align-center" id="id4">
+<a class="reference internal image-reference" href="_images/TemplateSimpleFig3.svg"><img alt="_images/TemplateSimpleFig3.svg" src="_images/TemplateSimpleFig3.svg" width="40%" /></a>
+<p class="caption"><span class="caption-number">Fig. 53 </span><span class="caption-text">Yaw angle of the vehicle</span></p>
+</div>
+<div class="figure align-center" id="id5">
+<a class="reference internal image-reference" href="_images/TemplateSimpleFig4.svg"><img alt="_images/TemplateSimpleFig4.svg" src="_images/TemplateSimpleFig4.svg" width="40%" /></a>
+<p class="caption"><span class="caption-number">Fig. 54 </span><span class="caption-text">Velocity of the center of gravity</span></p>
+</div>
+<div class="figure align-center" id="id6">
+<a class="reference internal image-reference" href="_images/TemplateSimpleFig5.svg"><img alt="_images/TemplateSimpleFig5.svg" src="_images/TemplateSimpleFig5.svg" width="40%" /></a>
+<p class="caption"><span class="caption-number">Fig. 55 </span><span class="caption-text">Vehicle slip angle</span></p>
+</div>
+<div class="figure align-center" id="id7">
+<a class="reference internal image-reference" href="_images/TemplateSimpleFig6.svg"><img alt="_images/TemplateSimpleFig6.svg" src="_images/TemplateSimpleFig6.svg" width="40%" /></a>
+<p class="caption"><span class="caption-number">Fig. 56 </span><span class="caption-text">Vehicle yaw rate</span></p>
+</div>
+<p>Frame and animation can be generated defining a graphic object (<a class="reference internal" href="api.html#module-Graphics" title="Graphics"><code class="xref py py-mod docutils literal"><span class="pre">Graphics</span></code></a>). The only argument of the graphic object is the simulator object after the simulation.</p>
+<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="p">=</span> <span class="n">Graphics</span><span class="p">(</span><span class="n">simulator</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>After that, just run</p>
+<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">g</span><span class="p">.</span><span class="n">Frame</span><span class="p">();</span>
+<span class="n">g</span><span class="p">.</span><span class="n">Animation</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Both graphics feature can be seen below.</p>
+<div class="figure align-center" id="id8">
+<a class="reference internal image-reference" href="_images/TemplateSimpleFrame.svg"><img alt="_images/TemplateSimpleFrame.svg" src="_images/TemplateSimpleFrame.svg" width="60%" /></a>
+<p class="caption"><span class="caption-number">Fig. 57 </span><span class="caption-text">Frame of the simple vehicle model.</span></p>
+</div>
+<div class="figure align-center" id="id9">
+<img alt="_images/TemplateSimpleAnimation.gif" src="_images/TemplateSimpleAnimation.gif" />
+<p class="caption"><span class="caption-number">Fig. 58 </span><span class="caption-text">Animation of the simple vehicle model.</span></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="exampleTemplateArticulatedSimulink.html"
+                          title="Previous page">&larr; Template Articulated Simulink</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="exampleTemplateSimpleSimulink.html"
+                          title="Next page">&rarr; Template Simple Simulink</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/exampleTemplateSimple.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="exampleTemplateSimpleSimulink.html" title="Template Simple Simulink"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="exampleTemplateArticulatedSimulink.html" title="Template Articulated Simulink"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="index.html">OpenVD  documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="example.html" >Examples</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, BSD 3-clause.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Sinusoidal Steering</title>
+<title>SinusoidalSteering</title>
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] },
@@ -20,7 +20,7 @@ body {
   padding-right: 7.5em;
 }
 pre, code {
-  max-width: 50em;
+  max-width: 60em;
   font-family: monospace;
 }
 pre.oct-code {
@@ -56,10 +56,10 @@ h2 a, h2 a:visited {
 </style>
 </head>
 <body>
-<h1>Sinusoidal Steering</h1>
-<p>Simulation of a simple vehicle with sinusoidal steering actuation.</p><img src="../illustrations/animation/SinusoidalSteeringAnimation.gif" alt="../illustrations/animation/SinusoidalSteeringAnimation.gif"><h2>Contents</h2><ul><li><a href="#node1">Results</a></li><li><a href="#node2">See Also</a></li></ul><p>Choosing simulation</p><pre class="oct-code">T = 4;                      <span class="comment">% Total simulation time [s]</span>
-resol = 50;                 <span class="comment">% Resolution</span>
-TSPAN = 0:T/resol:T;        <span class="comment">% Time span [s]</span>
+<p><b>Defining parameters</b></p><pre class="oct-code"><span class="comment">% Choosing simulation</span>
+T = 4;                              <span class="comment">% Total simulation time [s]</span>
+resol = 50;                         <span class="comment">% Resolution</span>
+TSPAN = 0:T/resol:T;                <span class="comment">% Time span [s]</span>
 
 <span class="comment">% Choosing tire</span>
 TireModel = TirePacejka();
@@ -73,10 +73,7 @@ System.tire = TireModel;
 System.muy = 1.0;
 
 
-simulator = Simulator(System, TSPAN);
-
-<span class="comment">% Simulation</span>
-simulator.Simulate();</pre><h2><a id="node1">Results</a></h2><pre class="oct-code"><span class="comment">% Retrieving states</span>
+simulator = Simulator(System, TSPAN);</pre><p><b>Run simulation</b></p><pre class="oct-code">simulator.Simulate();</pre><p><b>Results</b></p><pre class="oct-code"><span class="comment">% Retrieving states</span>
 XT = simulator.XT;
 YT = simulator.YT;
 PSI = simulator.PSI;
@@ -84,28 +81,24 @@ VEL = simulator.VEL;
 ALPHAT = simulator.ALPHAT;
 dPSI = simulator.dPSI;
 
-figure(1)
+f1 = figure(1);
 grid on ; box on;
 plot(TSPAN,180/pi*System.deltaf)
 xlabel(<span class="string">'time [s]'</span>)
 ylabel(<span class="string">'Steering angle [deg]'</span>)</pre><img width="500" src="../illustrations/plot/SinusoidalSteeringFig1.svg" alt="../illustrations/plot/SinusoidalSteeringFig1.svg"><p>Frame and animation</p><pre class="oct-code">g = Graphics(simulator);
 g.TractorColor = <span class="string">'r'</span>;
 
-g.Frame(<span class="string">'scalefig'</span>,3);</pre><img width="800" src="../illustrations/frame/SinusoidalSteeringFrame.svg" alt="../illustrations/frame/SinusoidalSteeringFrame.svg"><pre class="oct-code">g.Animation(<span class="string">'scalefig'</span>,3);</pre><img src="../illustrations/animation/SinusoidalSteeringAnimation.gif" alt="../illustrations/animation/SinusoidalSteeringAnimation.gif"><h2><a id="node2">See Also</a></h2><p><a href="../index.html">Home</a></p>
+g.Frame(<span class="string">'scalefig'</span>,3);</pre><img width="800" src="../illustrations/frame/SinusoidalSteeringFrame.svg" alt="../illustrations/frame/SinusoidalSteeringFrame.svg"><pre class="oct-code">g.Animation(<span class="string">'scalefig'</span>,3);</pre><img src="../illustrations/animation/SinusoidalSteeringAnimation.gif" alt="../illustrations/animation/SinusoidalSteeringAnimation.gif">
 <footer><hr><a href="http://www.octave.org">Published with GNU Octave 4.2.1</a></footer>
 <!--
 ##### SOURCE BEGIN #####
-%% Sinusoidal Steering
-% Simulation of a simple vehicle with sinusoidal steering actuation.
-%
-% <<../illustrations/animation/SinusoidalSteeringAnimation.gif>>
-%
 %%
-%
+% *Defining parameters*
+
 % Choosing simulation
-T = 4;                      % Total simulation time [s]
-resol = 50;                 % Resolution
-TSPAN = 0:T/resol:T;        % Time span [s]
+T = 4;                              % Total simulation time [s]
+resol = 50;                         % Resolution
+TSPAN = 0:T/resol:T;                % Time span [s]
 
 % Choosing tire
 TireModel = TirePacejka();
@@ -121,10 +114,15 @@ System.muy = 1.0;
 
 simulator = Simulator(System, TSPAN);
 
-% Simulation
+%%
+% *Run simulation*
+%
+
 simulator.Simulate();
 
-%% Results
+%%
+% *Results*
+%
 
 % Retrieving states
 XT = simulator.XT;
@@ -134,7 +132,7 @@ VEL = simulator.VEL;
 ALPHAT = simulator.ALPHAT;
 dPSI = simulator.dPSI;
 
-figure(1)
+f1 = figure(1);
 grid on ; box on;
 plot(TSPAN,180/pi*System.deltaf)
 xlabel('time [s]')
@@ -160,10 +158,6 @@ g.Animation('scalefig',3);
 
 %%
 % <<../illustrations/animation/SinusoidalSteeringAnimation.gif>>
-%
-%% See Also
-%
-% <../index.html Home>
 %
 ##### SOURCE END #####
 -->

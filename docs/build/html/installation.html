@@ -7,14 +7,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Installation &#8212; OpenVD a documentation</title>
+    <title>Installation &#8212; OpenVD  documentation</title>
     <link rel="stylesheet" href="_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     'a',
+        VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -52,7 +52,7 @@
         <li class="right" >
           <a href="index.html" title="OpenVD: Open Vehicle Dynamics"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="index.html">OpenVD a documentation</a> &#187;</li>
+    <li><a href="index.html">OpenVD  documentation</a> &#187;</li>
  
       </ul>
     </div>
@@ -69,9 +69,11 @@
 <div class="section" id="octave-users">
 <h2>Octave users<a class="headerlink" href="#octave-users" title="Permalink to this headline">¶</a></h2>
 <ul>
-<li><p class="first">Download the OpenVD repository by clicking <a class="reference external" href="https://github.com/andresmendes/openvd/archive/master.zip">here</a>.</p>
+<li><p class="first">Download the OpenVD package by clicking <a class="reference external" href="https://github.com/andresmendes/openvd/archive/master.zip">here</a>.</p>
 </li>
-<li><p class="first">Save the zip file in your package <em>path</em> and run:</p>
+<li><p class="first">Save the zip file in your package <em>path</em>.</p>
+</li>
+<li><p class="first">Open Octave, go to your package <em>path</em> and run (For more details see <a class="reference external" href="https://octave.sourceforge.io/octave/function/pkg.html">pkg function</a>.):</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pkg</span> <span class="n">install</span> <span class="n">openvd</span><span class="o">-</span><span class="n">master</span><span class="o">.</span><span class="n">zip</span>
 </pre></div>
 </div>
@@ -81,33 +83,45 @@
 </pre></div>
 </div>
 </li>
-</ul>
-<p>For more details see <a class="reference external" href="https://octave.sourceforge.io/octave/function/pkg.html">pkg function</a>.</p>
+<li><p class="first">To check the installation, change the current path with:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">openvd</span><span class="o">-</span><span class="mf">0.0</span><span class="o">.</span><span class="mi">0</span><span class="o">/</span><span class="n">docs</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="n">TemplateSimple</span><span class="o">/</span>
+</pre></div>
 </div>
-<div class="section" id="matlab-users">
-<h2>Matlab users<a class="headerlink" href="#matlab-users" title="Permalink to this headline">¶</a></h2>
-<ul>
-<li><p class="first">Download the OpenVD repository by clicking <a class="reference external" href="https://github.com/andresmendes/openvd/archive/master.zip">here</a>.</p>
 </li>
-<li><p class="first">Add the <em>inst</em> directory to the <em>paths list</em> with:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">addpath</span><span class="p">(</span><span class="s1">&#39;(Full Path)/inst&#39;</span><span class="p">)</span>
+<li><p class="first">and run the <a class="reference internal" href="exampleTemplateSimple.html#template-simple"><span class="std std-ref">Template Simple</span></a> example with:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">TemplateSimple</span>
 </pre></div>
 </div>
 </li>
 </ul>
-<p>For more details see <a class="reference external" href="http://www.mathworks.com/help/matlab/ref/path.html">help path</a>.</p>
+</div>
+<div class="section" id="matlab-users">
+<h2>Matlab users<a class="headerlink" href="#matlab-users" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Download the OpenVD package by clicking <a class="reference external" href="https://github.com/andresmendes/openvd/archive/master.zip">here</a>.</p>
+</li>
+<li><p class="first">Unzip the openvd-master.zip file in your current directory.</p>
+</li>
+<li><p class="first">Open Matlab and add the <em>inst</em> directory to the <em>paths list</em> with (For more details see <a class="reference external" href="http://www.mathworks.com/help/matlab/ref/path.html">help path</a>.):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">addpath</span><span class="p">(</span><span class="s1">&#39;openvd-master/inst&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">To check the installation, change the current path with:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">openvd</span><span class="o">-</span><span class="n">master</span><span class="o">/</span><span class="n">docs</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="n">TemplateSimple</span><span class="o">/</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">and run the <a class="reference internal" href="exampleTemplateSimple.html#template-simple"><span class="std std-ref">Template Simple</span></a> example with:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">TemplateSimple</span>
+</pre></div>
+</div>
+</li>
+</ul>
 </div>
 <div class="section" id="dependencies">
 <h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
-<p>To run the functions of the package and the examples from the repository a minimal Octave/Matlab version and/or Package/Toolbox is required.</p>
-<p>Dependencies of the class files:</p>
-<ul class="simple">
-<li>Octave 4.0 or Matlab v8.5</li>
-</ul>
-<p>Dependencies of the examples:</p>
-<ul class="simple">
-<li><a class="reference external" href="https://octave.sourceforge.io/control/index.html">Control package</a></li>
-</ul>
+<p>To run the functions of the package Octave &gt; 4.0 or Matlab &gt; v8.5 is required.</p>
 </div>
 </div>
 
@@ -193,7 +207,7 @@
         <li class="right" >
           <a href="index.html" title="OpenVD: Open Vehicle Dynamics"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="index.html">OpenVD a documentation</a> &#187;</li>
+    <li><a href="index.html">OpenVD  documentation</a> &#187;</li>
  
       </ul>
     </div>

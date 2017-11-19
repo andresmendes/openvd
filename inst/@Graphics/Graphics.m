@@ -11,6 +11,7 @@ classdef Graphics
             self.IsOctave = self.isOctave;       % Return true if the environment is Octave.
             % Default user options
             self.ScaleFig = 1;              % Scale 1 x 1 between x and y axis.
+            self.NextPlot = 'replace';              % Scale 1 x 1 between x and y axis.
         end
 
         function Animation(self, varargin)
@@ -418,6 +419,8 @@ classdef Graphics
                         self.SavePath = varargin{i+1}; i=i+2;
                     case 'scalefig'
                         self.ScaleFig = varargin{i+1}; i=i+2;
+                    case 'nextplot'
+                        self.NextPlot = varargin{i+1}; i=i+2;
                     otherwise
                         error('Unknown option: %s\n',varargin{i}); i=i+1;
                 end
@@ -558,7 +561,11 @@ classdef Graphics
             figHeight = Scale*figWidth*rangeY/rangeX;         % Height of the axes (axes position y) - Equivalent to axis
 
             % Defining figure
-            f999 = figure(999);
+            if strcmp(self.NextPlot,'add')
+                f999 = gcf;
+            else
+                f999 = figure(999);
+            end
             % Defining axes
             ax999=gca;
             set(ax999,'NextPlot','add')                 % hold on
@@ -865,6 +872,7 @@ classdef Graphics
         IsOctave
         SavePath
         ScaleFig
+        NextPlot
     end
 end
 

@@ -1,37 +1,53 @@
 Overview
 ************************
 
-The general structure of the package is illustrated below. All the classes of the package are categorized into Vehicle model, Tire model and Graphics. One Vehicle model and one Tire model are combined to form the System. The integration of the System, with the apropriate parameters and initial conditions, is performed through the standard `ode45 <https://octave.sourceforge.io/octave/function/ode45.html>`_ function of Octave/Matlab. The resulting data can be plotted as Frame and Animation with the Graphics features.
+The general structure of the package is illustrated in :numref:`generalStructure`. All the classes of the package are categorized into :ref:`tire-model`, :ref:`vehicle-model` and :ref:`graphics-feat`. One Vehicle model and one Tire model are combined to form the System. The integration of the System, with the appropriate parameters and initial conditions, is performed through the standard `ode45 <https://octave.sourceforge.io/octave/function/ode45.html>`_ function of Octave/Matlab. The resulting data can be plotted as Frame and Animation with the Graphics features.
 
 This package uses an object-oriented programming architecture. For more details see `Object-Oriented Programming in OCTAVE <https://www.gnu.org/software/octave/doc/interpreter/Object-Oriented-Programming.html>`_ or `Object-Oriented Programming in MATLAB <https://www.mathworks.com/discovery/object-oriented-programming.html>`_
 
-.. figure:: https://andresmendes.github.io/openvd/illustrations/fluxograma.svg
+.. _generalStructure:
+.. figure:: ../illustrations/misc/flowchart.svg
+    :align:   center
+
+    General structure of the package.
 
 The links to the description page of the available models and graphics are listed below.
+
+.. _tire-model:
 
 Tire model
 ========================
 
-The tire models are listed below.
+The tire models and the respective theoretical foundation and class/function are listed below.
 
-* `Tire linear <html/DocTireLinear.html>`_
-* `Tire Pacejka <html/DocTirePacejka.html>`_
-* `Tire polynomial <html/DocTirePolynomial.html>`_
+======================================= ======================================= =======================================
+Name                                    Theory                                  Class/Function
+======================================= ======================================= =======================================
+Tire Linear                             :ref:`tire-linear`                      :mod:`TireLinear`
+Tire Pacejka                            :ref:`tire-pacejka`                     :mod:`TirePacejka`
+Tire Polynomial                         :ref:`tire-polynomial`                  :mod:`TirePolynomial`
+======================================= ======================================= =======================================
+
+.. _vehicle-model:
 
 Vehicle model
 ========================
 
-The vehicle models are listed below.
+The vehicle models and the respective theoretical foundation and class/function are listed below.
 
-The theoretical foundation of vehicle models can be found in: `TheoryVehicleSimple <theory/vehicleSimple.pdf>`_, `TheoryVehicleSimple4DOF <theory/vehicleSimple4DOF.pdf>`_ and `TheoryVehicleArticulated <theory/vehicleArticulated.pdf>`_.
+======================================= ======================================= =======================================
+Name                                    Theory                                  Class/Function
+======================================= ======================================= =======================================
+Vehicle Articulated Linear              :ref:`vehicle-articulated-4dof`         :mod:`VehicleArticulatedLinear`
+Vehicle Articulated Nonlinear           :ref:`vehicle-articulated-4dof`         :mod:`VehicleArticulatedNonlinear`
+Vehicle Simple Linear                   :ref:`vehicle-simple-3dof`              :mod:`VehicleSimpleLinear`
+Vehicle Simple Nonlinear                :ref:`vehicle-simple-3dof`              :mod:`VehicleSimpleNonlinear`
+Vehicle Simple Nonlinear 4DOF           :ref:`vehicle-simple-4dof`              :mod:`VehicleSimpleNonlinear4DOF`
+======================================= ======================================= =======================================
 
-* `Vehicle Articulated Linear <html/DocVehicleArticulatedLinear.html>`_
-* `Vehicle Articulated Nonlinear <html/DocVehicleArticulatedNonlinear.html>`_
-* `Vehicle Simple Linear <html/DocVehicleSimpleLinear.html>`_
-* `Vehicle Simple Nonlinear <html/DocVehicleSimpleNonlinear.html>`_
-* `Vehicle Simple Nonlinear 4DOF <html/DocVehicleSimpleNonlinear4DOF.html>`_
+.. _graphics-feat:
 
 Graphics
 ========================
 
-* `Graphics <html/DocGraphics.html>`_
+:mod:`Graphics`

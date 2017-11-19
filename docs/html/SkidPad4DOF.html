@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>SkidPad 4DOF</title>
+<title>SkidPad4DOF</title>
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] },
@@ -20,7 +20,7 @@ body {
   padding-right: 7.5em;
 }
 pre, code {
-  max-width: 50em;
+  max-width: 60em;
   font-family: monospace;
 }
 pre.oct-code {
@@ -56,8 +56,7 @@ h2 a, h2 a:visited {
 </style>
 </head>
 <body>
-<h1>SkidPad 4DOF</h1>
-<p>Maneuver in circles of a <a href="DocVehicleSimpleNonlinear4DOF.html">nonlinear simple vehicle 4DOF</a> with Pacejka tire model.</p><img src="../illustrations/animation/SkidPad4DOFAnimation.gif" alt="../illustrations/animation/SkidPad4DOFAnimation.gif"><h2>Contents</h2><ul><li><a href="#node1">Results</a></li><li><a href="#node2">See Also</a></li></ul><p>A control law (rear-wheel-drive) is used to maintain a CG speed of 8 m/s.</p><pre class="oct-code"><span class="comment">% Choosing tire</span>
+<p><b>Defining parameters</b></p><pre class="oct-code"><span class="comment">% Choosing tire</span>
 TireModel = TirePacejka();
 <span class="comment">% Choosing vehicle</span>
 System = VehicleSimpleNonlinear4DOF();
@@ -74,11 +73,11 @@ System.FXFRONTLEFT = 0;
 System.FXFRONTRIGHT = 0;
 System.FXREARLEFT = @VelControl4DOF;
 System.FXREARRIGHT = @VelControl4DOF;
-System.K = 50000000; <span class="comment">% Rigidez torcional da massa suspensa</span>
+System.K = 50000000;                <span class="comment">% Torcional stiffness</span>
 System.C = 5000000;
 
-System.H = 0.6;                       <span class="comment">% CG height [m]</span>
-System.L = 0.6;                       <span class="comment">% track [m]</span>
+System.H = 0.6;                     <span class="comment">% CG height [m]</span>
+System.L = 0.6;                     <span class="comment">% track [m]</span>
 System.IXX = 12000;
 System.IYY = 65000;
 System.IZZ = 65000;
@@ -86,20 +85,15 @@ System.IXY = 1000;
 System.IXZ = 1000;
 System.IYZ = 1000;
 
-
-
 System.tire = TireModel;
 
 <span class="comment">% Choosing simulation</span>
-T = 30;                      <span class="comment">% Total simulation time [s]</span>
-resol = 200;                 <span class="comment">% Resolution</span>
-TSPAN = 0:T/resol:T;        <span class="comment">% Time span [s]</span>
+T = 20;                             <span class="comment">% Total simulation time [s]</span>
+resol = 200;                        <span class="comment">% Resolution</span>
+TSPAN = 0:T/resol:T;                <span class="comment">% Time span [s]</span>
 simulator = Simulator(System, TSPAN);
 
-simulator.V0 = 8;
-
-<span class="comment">% Simulation</span>
-simulator.Simulate();</pre><h2><a id="node1">Results</a></h2><pre class="oct-code"><span class="comment">% Retrieving states</span>
+simulator.V0 = 8;</pre><p><b>Run simulation</b></p><pre class="oct-code">simulator.Simulate();</pre><p><b>Results</b></p><pre class="oct-code"><span class="comment">% Retrieving states</span>
 XT = simulator.XT;
 YT = simulator.YT;
 PSI = simulator.PSI;
@@ -109,15 +103,14 @@ ALPHAT = simulator.ALPHAT;
 dPSI = simulator.dPSI;
 dTHETA = simulator.dTHETA;
 
-
 <span class="comment">% Retrieving data from vehicle</span>
 m = System.mT;
 a = System.a;
 b = System.b;
-K = 50000000; <span class="comment">% Rigidez torcional da massa suspensa</span>
+K = 50000000;                       <span class="comment">% Torcional stiffness of the sprung mass</span>
 CC = 5000000;
-h = 0.6;                       <span class="comment">% CG height [m]</span>
-l = 0.6;                       <span class="comment">% track [m]</span>
+h = 0.6;                            <span class="comment">% CG height [m]</span>
+l = 0.6;                            <span class="comment">% track [m]</span>
 g = 9.81;
 
 FzRight = (m*g*l/2 + K*THETA + CC*dTHETA)/l;
@@ -188,18 +181,12 @@ YY = YC + R*sin(angulo);
 hold on
 plot(XX,YY,<span class="string">'k'</span>)
 
-g.Animation();</pre><img src="../illustrations/animation/SkidPad4DOFAnimation.gif" alt="../illustrations/animation/SkidPad4DOFAnimation.gif"><p>Maneuver radius</p><pre class="oct-code">disp(num2str(R))</pre><h2><a id="node2">See Also</a></h2><p><a href="../index.html">Home</a></p>
+g.Animation();</pre><img src="../illustrations/animation/SkidPad4DOFAnimation.gif" alt="../illustrations/animation/SkidPad4DOFAnimation.gif"><p>Maneuver radius</p><pre class="oct-code">disp(num2str(R))</pre>
 <footer><hr><a href="http://www.octave.org">Published with GNU Octave 4.2.1</a></footer>
 <!--
 ##### SOURCE BEGIN #####
-%% SkidPad 4DOF
-% Maneuver in circles of a <DocVehicleSimpleNonlinear4DOF.html nonlinear simple vehicle 4DOF> with Pacejka tire model.
-%
-% <<../illustrations/animation/SkidPad4DOFAnimation.gif>>
-%
 %%
-% A control law (rear-wheel-drive) is used to maintain a CG speed of 8 m/s.
-%
+% *Defining parameters*
 
 % Choosing tire
 TireModel = TirePacejka();
@@ -218,11 +205,11 @@ System.FXFRONTLEFT = 0;
 System.FXFRONTRIGHT = 0;
 System.FXREARLEFT = @VelControl4DOF;
 System.FXREARRIGHT = @VelControl4DOF;
-System.K = 50000000; % Rigidez torcional da massa suspensa
+System.K = 50000000;                % Torcional stiffness
 System.C = 5000000;
 
-System.H = 0.6;                       % CG height [m]
-System.L = 0.6;                       % track [m]
+System.H = 0.6;                     % CG height [m]
+System.L = 0.6;                     % track [m]
 System.IXX = 12000;
 System.IYY = 65000;
 System.IZZ = 65000;
@@ -230,22 +217,25 @@ System.IXY = 1000;
 System.IXZ = 1000;
 System.IYZ = 1000;
 
-
-
 System.tire = TireModel;
 
 % Choosing simulation
-T = 30;                      % Total simulation time [s]
-resol = 200;                 % Resolution
-TSPAN = 0:T/resol:T;        % Time span [s]
+T = 20;                             % Total simulation time [s]
+resol = 200;                        % Resolution
+TSPAN = 0:T/resol:T;                % Time span [s]
 simulator = Simulator(System, TSPAN);
 
 simulator.V0 = 8;
 
-% Simulation
+%%
+% *Run simulation*
+%
+
 simulator.Simulate();
 
-%% Results
+%%
+% *Results*
+%
 
 % Retrieving states
 XT = simulator.XT;
@@ -257,15 +247,14 @@ ALPHAT = simulator.ALPHAT;
 dPSI = simulator.dPSI;
 dTHETA = simulator.dTHETA;
 
-
 % Retrieving data from vehicle
 m = System.mT;
 a = System.a;
 b = System.b;
-K = 50000000; % Rigidez torcional da massa suspensa
+K = 50000000;                       % Torcional stiffness of the sprung mass
 CC = 5000000;
-h = 0.6;                       % CG height [m]
-l = 0.6;                       % track [m]
+h = 0.6;                            % CG height [m]
+l = 0.6;                            % track [m]
 g = 9.81;
 
 FzRight = (m*g*l/2 + K*THETA + CC*dTHETA)/l;
@@ -417,11 +406,6 @@ g.Animation();
 % Maneuver radius
 
 disp(num2str(R))
-
-%% See Also
-%
-% <../index.html Home>
-%
 ##### SOURCE END #####
 -->
 </body>

@@ -8,7 +8,10 @@ OpenVD: Open Vehicle Dynamics
 
 Open source simulation package for Octave/Matlab.
 
-.. figure::  https://andresmendes.github.io/openvd/illustrations/animation/TemplateArticulatedAnimation.gif
+.. figure::  ../illustrations/animation/TemplateArticulatedAnimation.gif
+    :align:   center
+
+    Animation of the articulated vehicle model. Source: :ref:`template-articulated`
 
 This package is an open source initiative that provides vehicle models and graphics features for vehicle dynamics simulation of simple and articulated vehicles.
 
@@ -18,13 +21,11 @@ This package is an open source initiative that provides vehicle models and graph
 
    installation
    overview
-   gettingstarted
+   example
    theory
    api
    contributing
    publications
-   equations
-
 
 Indices and tables
 ===========================

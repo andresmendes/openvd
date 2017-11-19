@@ -1,3 +1,5 @@
+.. _api-doc:
+
 API
 ************************
 
@@ -61,6 +63,12 @@ Simple vehicles
     :members:
     :show-inheritance:
 
+.. automodule:: VehicleSimpleNonlinear4DOF
+
+.. autoclass:: VehicleSimpleNonlinear4DOF
+    :members:
+    :show-inheritance:
+
 .. automodule:: VehicleArticulated
 
 .. autoclass:: VehicleArticulated
@@ -78,3 +86,16 @@ Simple vehicles
 .. autoclass:: VehicleArticulatedNonlinear
     :members:
     :show-inheritance:
+
+
+.. automodule:: Graphics
+
+.. autoclass:: Graphics
+    :members:
+    :inherited-members:
+
+.. automodule:: Simulator
+
+.. autoclass:: Simulator
+    :members:
+    :inherited-members:

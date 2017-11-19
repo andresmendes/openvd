@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Template Articulated</title>
+<title>TemplateArticulated</title>
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] },
@@ -20,7 +20,7 @@ body {
   padding-right: 7.5em;
 }
 pre, code {
-  max-width: 50em;
+  max-width: 60em;
   font-family: monospace;
 }
 pre.oct-code {
@@ -56,8 +56,7 @@ h2 a, h2 a:visited {
 </style>
 </head>
 <body>
-<h1>Template Articulated</h1>
-<p>This template shows how to simulate an articulated vehicle and plot the results.</p><img src="../illustrations/animation/TemplateArticulatedAnimation.gif" alt="../illustrations/animation/TemplateArticulatedAnimation.gif"><h2>Contents</h2><ul><li><a href="#node1">Run simulation</a></li><li><a href="#node2">Results</a></li><li><a href="#node3">See Also</a></li></ul><p>Choosing tire and vehicle model. In this case, the parameters are defined by the user.</p><pre class="oct-code"><span class="comment">% Choosing tire</span>
+<p><b>Defining parameters</b></p><pre class="oct-code"><span class="comment">% Choosing tire</span>
 TireModel = TirePacejka();
 TireModel.a0 = 1;
 TireModel.a1 = 2;
@@ -91,29 +90,23 @@ VehicleModel.Fxf = 0;
 VehicleModel.Fxr = 0;
 VehicleModel.Fxm = 0;
 
-<span class="comment">% The System is completely defined once we atribute the chosen tire model to the vehicle object.</span>
-
-VehicleModel.tire = TireModel;</pre><p>Choosing simulation time span</p><pre class="oct-code">T = 7;                      <span class="comment">% Total simulation time [s]</span>
-resol = 50;                 <span class="comment">% Resolution</span>
-TSPAN = 0:T/resol:T;        <span class="comment">% Time span [s]</span>
-</pre><p>To define a simulation object (simulator) the arguments must be the vehicle object and the time span. The default parameters of the simulation object can be found in <a href="api/Simulator.html">Simulator</a>.</p><pre class="oct-code">simulator = Simulator(VehicleModel, TSPAN);</pre><p>Changing initial conditions of the simulation object</p><pre class="oct-code">simulator.ALPHAT0 = 0.3;              <span class="comment">% Initial tractor side slip angle [rad]</span>
-simulator.dPSI0 = 0.25;               <span class="comment">% Initial tractor yaw rate [rad/s]</span>
-simulator.dPHI0 = 0.25;        <span class="comment">% Initial articulation rate [rad/s]</span>
-</pre><h2><a id="node1">Run simulation</a></h2><p>To simulate the system we run the Simulate method of the simulation object.</p><pre class="oct-code">simulator.Simulate();</pre><h2><a id="node2">Results</a></h2><pre class="oct-code">g = Graphics(simulator);
+<span class="comment">% The System is completely defined once we attribute the chosen tire model to the vehicle object.</span>
+VehicleModel.tire = TireModel;</pre><p>Choosing simulation time span</p><pre class="oct-code">T = 7;                              <span class="comment">% Total simulation time [s]</span>
+resol = 50;                         <span class="comment">% Resolution</span>
+TSPAN = 0:T/resol:T;                <span class="comment">% Time span [s]</span>
+</pre><p>To define a simulation object (simulator) the arguments must be the vehicle object and the time span.</p><pre class="oct-code">simulator = Simulator(VehicleModel, TSPAN);</pre><p>Changing initial conditions of the simulation object</p><pre class="oct-code">simulator.ALPHAT0 = 0.3;            <span class="comment">% Initial tractor side slip angle [rad]</span>
+simulator.dPSI0 = 0.25;             <span class="comment">% Initial tractor yaw rate [rad/s]</span>
+simulator.dPHI0 = 0.25;             <span class="comment">% Initial articulation rate [rad/s]</span>
+</pre><p><b>Run simulation</b></p><p>To simulate the system we run the Simulate method of the simulation object.</p><pre class="oct-code">simulator.Simulate();</pre><p><b>Results</b></p><pre class="oct-code">g = Graphics(simulator);
 g.TractorColor = <span class="string">'r'</span>;
 g.SemitrailerColor = <span class="string">'g'</span>;
 g.Frame();
-g.Animation();</pre><img width="800" src="../illustrations/frame/TemplateArticulatedFrame.svg" alt="../illustrations/frame/TemplateArticulatedFrame.svg"><img src="../illustrations/animation/TemplateArticulatedAnimation.gif" alt="../illustrations/animation/TemplateArticulatedAnimation.gif"><h2><a id="node3">See Also</a></h2><p><a href="../index.html">Home</a> | <a href="TemplateSimple.html">TemplateSimple</a></p>
+g.Animation();</pre><img width="800" src="../illustrations/frame/TemplateArticulatedFrame.svg" alt="../illustrations/frame/TemplateArticulatedFrame.svg"><img src="../illustrations/animation/TemplateArticulatedAnimation.gif" alt="../illustrations/animation/TemplateArticulatedAnimation.gif">
 <footer><hr><a href="http://www.octave.org">Published with GNU Octave 4.2.1</a></footer>
 <!--
 ##### SOURCE BEGIN #####
-%% Template Articulated
-% This template shows how to simulate an articulated vehicle and plot the results.
-%
-% <<../illustrations/animation/TemplateArticulatedAnimation.gif>>
-%
 %%
-% Choosing tire and vehicle model. In this case, the parameters are defined by the user.
+% *Defining parameters*
 
 % Choosing tire
 TireModel = TirePacejka();
@@ -149,35 +142,37 @@ VehicleModel.Fxf = 0;
 VehicleModel.Fxr = 0;
 VehicleModel.Fxm = 0;
 
-% The System is completely defined once we atribute the chosen tire model to the vehicle object.
-
+% The System is completely defined once we attribute the chosen tire model to the vehicle object.
 VehicleModel.tire = TireModel;
 
 %%
 % Choosing simulation time span
 
-T = 7;                      % Total simulation time [s]
-resol = 50;                 % Resolution
-TSPAN = 0:T/resol:T;        % Time span [s]
+T = 7;                              % Total simulation time [s]
+resol = 50;                         % Resolution
+TSPAN = 0:T/resol:T;                % Time span [s]
 
 %%
-% To define a simulation object (simulator) the arguments must be the vehicle object and the time span. The default parameters of the simulation object can be found in <api/Simulator.html Simulator>.
+% To define a simulation object (simulator) the arguments must be the vehicle object and the time span.
 
 simulator = Simulator(VehicleModel, TSPAN);
 
 %%
 % Changing initial conditions of the simulation object
 
-simulator.ALPHAT0 = 0.3;              % Initial tractor side slip angle [rad]
-simulator.dPSI0 = 0.25;               % Initial tractor yaw rate [rad/s]
-simulator.dPHI0 = 0.25;        % Initial articulation rate [rad/s]
+simulator.ALPHAT0 = 0.3;            % Initial tractor side slip angle [rad]
+simulator.dPSI0 = 0.25;             % Initial tractor yaw rate [rad/s]
+simulator.dPHI0 = 0.25;             % Initial articulation rate [rad/s]
 
-%% Run simulation
+%%
+% *Run simulation*
+%
 % To simulate the system we run the Simulate method of the simulation object.
 
 simulator.Simulate();
 
-%% Results
+%%
+% *Results*
 %
 
 g = Graphics(simulator);
@@ -190,10 +185,6 @@ g.Animation();
 % <<../illustrations/frame/TemplateArticulatedFrame.svg>>
 %
 % <<../illustrations/animation/TemplateArticulatedAnimation.gif>>
-%
-%% See Also
-%
-% <../index.html Home> | <TemplateSimple.html TemplateSimple>
 %
 ##### SOURCE END #####
 -->

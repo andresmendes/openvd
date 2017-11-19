@@ -7,14 +7,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Articulated vehicle models &#8212; OpenVD a documentation</title>
+    <title>Articulated vehicle models &#8212; OpenVD  documentation</title>
     <link rel="stylesheet" href="_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     'a',
+        VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -52,7 +52,7 @@
         <li class="right" >
           <a href="simpleVehicleModels.html" title="Simple vehicle models"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="index.html">OpenVD a documentation</a> &#187;</li>
+    <li><a href="index.html">OpenVD  documentation</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="theory.html" accesskey="U">Theory of Vehicle Dynamics</a> &#187;</li> 
       </ul>
@@ -77,13 +77,13 @@ Bicycle model</p>
 <img alt="https://andresmendes.github.io/openvd/illustrations/modelArticulatedFreeBodyDiagram.svg" src="https://andresmendes.github.io/openvd/illustrations/modelArticulatedFreeBodyDiagram.svg" /></div>
 <p>The center of gravity of the tractor and semitrailer are located at the point <span class="math">\(T\)</span> and <span class="math">\(S\)</span>, respectively. The front and rear axles are located at the points <span class="math">\(F\)</span> and <span class="math">\(R\)</span>, respectively. <span class="math">\(A\)</span> is the articulation point and <span class="math">\(M\)</span> is the axle of the semitrailer. The constant <span class="math">\(a\)</span> measures the distance of point <span class="math">\(F\)</span> to <span class="math">\(T\)</span> and <span class="math">\(b\)</span> the distance of point <span class="math">\(T\)</span> to <span class="math">\(R\)</span>. The distance of the articulation from the rear axle of the tractor is given by <span class="math">\(c\)</span>. <span class="math">\(d\)</span> and <span class="math">\(e\)</span> are the distances from the semitrailer. The angles <span class="math">\(\alpha_F\)</span> e <span class="math">\(\alpha_R\)</span> are the front and rear slip angles, respectively. <span class="math">\(\alpha_T\)</span> is the vehicle side slip angle and <span class="math">\(\psi\)</span> is the vehicle yaw angle. <span class="math">\(\delta\)</span> is the steering angle.</p>
 <div class="figure">
-<img alt="https://andresmendes.github.io/openvd/illustrations/modelArticulated.svg" src="https://andresmendes.github.io/openvd/illustrations/modelArticulated.svg" /></div>
+<img alt="https://andresmendes.github.io/openvd/illustrations/misc/modelArticulated.svg" src="https://andresmendes.github.io/openvd/illustrations/misc/modelArticulated.svg" /></div>
 <p>Este modelo  escrito na forma:</p>
 <div class="math">
 \[{\bf M}({\bf x}) \dot{{\bf x}} = {\bf f}({\bf x})\]</div>
 <p>Where <span class="math">\({\bf x}\)</span> is the state vector, <span class="math">\({\bf M}({\bf x})\)</span> the mass matrix and <span class="math">\({\bf f}({\bf x})\)</span> is the vector function. Therefore, a function that allows the integration of the system with an explicit mass matrix is necessary. In this package the _ode45_ function is used. Details: <a class="reference external" href="http://www.mathworks.com/help/matlab/ref/ode45.html?searchHighlight=%22mass%20matrix%22">ode45 (Mass matrix)</a>.</p>
-<div class="section" id="articulated-vehicle-model">
-<h2>Articulated vehicle model<a class="headerlink" href="#articulated-vehicle-model" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="articulated-vehicle-4-dof">
+<span id="vehicle-articulated-4dof"></span><h2>Articulated vehicle 4 DOF<a class="headerlink" href="#articulated-vehicle-4-dof" title="Permalink to this headline">¶</a></h2>
 <p>O modelo físico do conjunto é ilustrado na figura ref{modelSimple}. Para caracterizar a dinâmica deste sistema é utilizada a base <span class="math">\(\Omega_{\rm O} = \{ {\rm O} {\bf i} {\bf j} {\bf k} \}\)</span> fixa no referencial inercial. A base <span class="math">\(\Omega_{\rm T} = \{ {\rm T} {\bf t}_x {\bf t}_y {\bf t}_z \}\)</span> é solidária ao caminhão-trator e a base <span class="math">\(\Omega_{\rm S} = \{ {\rm S} {\bf s}_x {\bf s}_y {\bf s}_z \}\)</span> é solidária ao semirreboque. Os versores <span class="math">\({\bf t}_x\)</span> e <span class="math">\({\bf s}_x\)</span> apontam para frente na direção longitudinal de ambos os módulos e os versores <span class="math">\({\bf t}_y\)</span> e <span class="math">\({\bf s}_y\)</span> apontam para a esquerda. Para auxiliar a descrição das grandezas no eixo dianteiro é definida a base <span class="math">\(\Omega_{\rm F} = \{ {\rm F} {\bf e}_x {\bf e}_y {\bf e}_z \}\)</span> solidária ao eixo dianteiro com o versor <span class="math">\({\bf e}_x\)</span> apontando para frente na direção longitudinal do pneu e <span class="math">\({\bf e}_y\)</span> apontando para a esquerda. Os pontos <span class="math">\({\rm T}\)</span> e <span class="math">\({\rm S}\)</span> localizam o centro da massa do caminhão-trator e do semirreboque, respectivamente. <span class="math">\({\rm F}\)</span> e <span class="math">\({\rm R}\)</span> localizam os eixos dianteiro e traseiro, respectivamente. <span class="math">\({\rm A}\)</span> é o ponto de articulação e <span class="math">\({\rm M}\)</span> é o eixo do semirreboque. O ponto <span class="math">\({\rm O}\)</span> é a origem do sistema e se encontra fixo no referencial inercial. A distância <span class="math">\(a\)</span> separa os pontos <span class="math">\({\rm F}\)</span> e <span class="math">\({\rm T}\)</span> e a distância <span class="math">\(b\)</span> separa os pontos <span class="math">\({\rm T}\)</span> e <span class="math">\({\rm R}\)</span>. <span class="math">\(c\)</span> separa os pontos <span class="math">\({\rm R}\)</span> e <span class="math">\({\rm A}\)</span>, <span class="math">\(d\)</span> separa os pontos <span class="math">\({\rm A}\)</span> e <span class="math">\({\rm S}\)</span> e <span class="math">\(e\)</span> separa os pontos <span class="math">\({\rm S}\)</span> e <span class="math">\({\rm M}\)</span>. Os vetores velocidade <span class="math">\({\bf v}\)</span> e os ângulos de deriva <span class="math">\(\alpha\)</span> recebem os subscritos referentes aos pontos aos quais eles estão associados.</p>
 <p>A modelagem do caminhão-trator e semirreboque consiste na utilização de dois corpos rígidos que se movimentam sobre um plano horizontal e são unidos por um ponto de articulação. Desta forma, o modelo apresenta quatro graus de liberdade. Portanto, as coordenadas generalizadas podem ser dadas por</p>
 <div class="math">
@@ -557,7 +557,7 @@ f_{6,lin} &amp;= \ddot{\psi} = - \frac{a K_{\rm F} - b K_{\rm R}}{I_{T}} \alpha_
     <h3><a href="index.html">Page contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Articulated vehicle models</a><ul>
-<li><a class="reference internal" href="#articulated-vehicle-model">Articulated vehicle model</a></li>
+<li><a class="reference internal" href="#articulated-vehicle-4-dof">Articulated vehicle 4 DOF</a></li>
 </ul>
 </li>
 </ul>
@@ -628,7 +628,7 @@ f_{6,lin} &amp;= \ddot{\psi} = - \frac{a K_{\rm F} - b K_{\rm R}}{I_{T}} \alpha_
         <li class="right" >
           <a href="simpleVehicleModels.html" title="Simple vehicle models"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="index.html">OpenVD a documentation</a> &#187;</li>
+    <li><a href="index.html">OpenVD  documentation</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="theory.html" >Theory of Vehicle Dynamics</a> &#187;</li> 
       </ul>

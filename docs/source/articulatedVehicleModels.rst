@@ -14,7 +14,7 @@ Free body diagram
 
 The center of gravity of the tractor and semitrailer are located at the point :math:`T` and :math:`S`, respectively. The front and rear axles are located at the points :math:`F` and :math:`R`, respectively. :math:`A` is the articulation point and :math:`M` is the axle of the semitrailer. The constant :math:`a` measures the distance of point :math:`F` to :math:`T` and :math:`b` the distance of point :math:`T` to :math:`R`. The distance of the articulation from the rear axle of the tractor is given by :math:`c`. :math:`d` and :math:`e` are the distances from the semitrailer. The angles :math:`\alpha_F` e :math:`\alpha_R` are the front and rear slip angles, respectively. :math:`\alpha_T` is the vehicle side slip angle and :math:`\psi` is the vehicle yaw angle. :math:`\delta` is the steering angle.
 
-.. figure:: https://andresmendes.github.io/openvd/illustrations/modelArticulated.svg
+.. figure:: https://andresmendes.github.io/openvd/illustrations/misc/modelArticulated.svg
 
 Este modelo  escrito na forma:
 
@@ -23,7 +23,9 @@ Este modelo  escrito na forma:
 
 Where :math:`{\bf x}` is the state vector, :math:`{\bf M}({\bf x})` the mass matrix and :math:`{\bf f}({\bf x})` is the vector function. Therefore, a function that allows the integration of the system with an explicit mass matrix is necessary. In this package the _ode45_ function is used. Details: `ode45 (Mass matrix) <http://www.mathworks.com/help/matlab/ref/ode45.html?searchHighlight=%22mass%20matrix%22>`_.
 
-Articulated vehicle model
+.. _vehicle-articulated-4dof:
+
+Articulated vehicle 4 DOF
 ================================================================================
 
 O modelo físico do conjunto é ilustrado na figura \ref{modelSimple}. Para caracterizar a dinâmica deste sistema é utilizada a base :math:`\Omega_{\rm O} = \{ {\rm O} {\bf i} {\bf j} {\bf k} \}` fixa no referencial inercial. A base :math:`\Omega_{\rm T} = \{ {\rm T} {\bf t}_x {\bf t}_y {\bf t}_z \}` é solidária ao caminhão-trator e a base :math:`\Omega_{\rm S} = \{ {\rm S} {\bf s}_x {\bf s}_y {\bf s}_z \}` é solidária ao semirreboque. Os versores :math:`{\bf t}_x` e :math:`{\bf s}_x` apontam para frente na direção longitudinal de ambos os módulos e os versores :math:`{\bf t}_y` e :math:`{\bf s}_y` apontam para a esquerda. Para auxiliar a descrição das grandezas no eixo dianteiro é definida a base :math:`\Omega_{\rm F} = \{ {\rm F} {\bf e}_x {\bf e}_y {\bf e}_z \}` solidária ao eixo dianteiro com o versor :math:`{\bf e}_x` apontando para frente na direção longitudinal do pneu e :math:`{\bf e}_y` apontando para a esquerda. Os pontos :math:`{\rm T}` e :math:`{\rm S}` localizam o centro da massa do caminhão-trator e do semirreboque, respectivamente. :math:`{\rm F}` e :math:`{\rm R}` localizam os eixos dianteiro e traseiro, respectivamente. :math:`{\rm A}` é o ponto de articulação e :math:`{\rm M}` é o eixo do semirreboque. O ponto :math:`{\rm O}` é a origem do sistema e se encontra fixo no referencial inercial. A distância :math:`a` separa os pontos :math:`{\rm F}` e :math:`{\rm T}` e a distância :math:`b` separa os pontos :math:`{\rm T}` e :math:`{\rm R}`. :math:`c` separa os pontos :math:`{\rm R}` e :math:`{\rm A}`, :math:`d` separa os pontos :math:`{\rm A}` e :math:`{\rm S}` e :math:`e` separa os pontos :math:`{\rm S}` e :math:`{\rm M}`. Os vetores velocidade :math:`{\bf v}` e os ângulos de deriva :math:`\alpha` recebem os subscritos referentes aos pontos aos quais eles estão associados.
@@ -671,7 +673,7 @@ Simplificando, temos que
 
 .. math::
     :label: slipAngleSimple
-    
+
     \alpha_{\rm F} &= \arctan \left( \frac{v_{\rm T} \sin \alpha_{\rm T} + a \dot{\psi}}{ v_{\rm T} \cos \alpha_{\rm T}} \right) - \delta \\
     \alpha_{\rm R} &= \arctan \left( \frac{v_{\rm T} \sin \alpha_{\rm T} - b \dot{\psi}}{ v_{\rm T} \cos \alpha_{\rm T}} \right) \\
     \alpha_{\rm M} &= ?

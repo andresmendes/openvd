@@ -6,10 +6,12 @@ The tire models describe the forces in the road-tire interactions according to t
 The typical relation between the lateral force and the slip angle can be observed in :numref:`lateralForce`. Besides, it is possible to verify the definition of slip angle.
 
 .. _lateralForce:
-.. figure:: _illustrations/lateralForce.png
+.. figure:: ../illustrations/misc/lateralForce.png
     :align:   center
 
     Tire lateral force and slip angle (Adapted from :cite:`Gillespie1992fundamentals`).
+
+.. _tire-linear:
 
 Linear
 ================================================================================
@@ -24,6 +26,7 @@ where :math:`F_y` is the lateral force, :math:`K` is the cornering stiffness and
 
 This model is only valid for small values of slip angle
 
+.. _tire-pacejka:
 
 Pacejka (Magic Formula)
 ================================================================================
@@ -63,6 +66,8 @@ The model implemented here converts the slip angle using the following equation
  _ALPHA = asin(sin(alpha));_
 
 This equation alters the slip angle in such way that the characteristic equation becames symmetric in relation to the vertical line at 90 degrees and the lateral force becomes zero at 180 degrees. The same analogy can be made with negative values of the slip angle. Thus, this model covers the whole range of slip angles (-180 to 180 degrees).
+
+.. _tire-polynomial:
 
 Polynomial
 ================================================================================

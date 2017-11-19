@@ -7,14 +7,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Tire models &#8212; OpenVD a documentation</title>
+    <title>Tire models &#8212; OpenVD  documentation</title>
     <link rel="stylesheet" href="_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     'a',
+        VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -52,7 +52,7 @@
         <li class="right" >
           <a href="introduction.html" title="Introduction"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="index.html">OpenVD a documentation</a> &#187;</li>
+    <li><a href="index.html">OpenVD  documentation</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="theory.html" accesskey="U">Theory of Vehicle Dynamics</a> &#187;</li> 
       </ul>
@@ -68,13 +68,13 @@
   <div class="section" id="tire-models">
 <h1>Tire models<a class="headerlink" href="#tire-models" title="Permalink to this headline">¶</a></h1>
 <p>The tire models describe the forces in the road-tire interactions according to the dynamic condition of the vehicle.</p>
-<p>The typical relation between the lateral force and the slip angle can be observed in <a class="reference internal" href="#lateralforce"><span class="std std-numref">Fig. 1</span></a>. Besides, it is possible to verify the definition of slip angle.</p>
+<p>The typical relation between the lateral force and the slip angle can be observed in <a class="reference internal" href="#lateralforce"><span class="std std-numref">Fig. 61</span></a>. Besides, it is possible to verify the definition of slip angle.</p>
 <div class="figure align-center" id="id6">
 <span id="lateralforce"></span><img alt="_images/lateralForce.png" src="_images/lateralForce.png" />
-<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Tire lateral force and slip angle (Adapted from <a class="reference internal" href="zreferences.html#gillespie1992fundamentals" id="id1">[Gil92]</a>).</span></p>
+<p class="caption"><span class="caption-number">Fig. 61 </span><span class="caption-text">Tire lateral force and slip angle (Adapted from <a class="reference internal" href="zreferences.html#gillespie1992fundamentals" id="id1">[Gil92]</a>).</span></p>
 </div>
 <div class="section" id="linear">
-<h2>Linear<a class="headerlink" href="#linear" title="Permalink to this headline">¶</a></h2>
+<span id="tire-linear"></span><h2>Linear<a class="headerlink" href="#linear" title="Permalink to this headline">¶</a></h2>
 <p>The linear tire model describes a linear relationship between tire lateral force and slip angle.</p>
 <p>The lateral force of the tire can be calculated as</p>
 <div class="math">
@@ -83,7 +83,7 @@
 <p>This model is only valid for small values of slip angle</p>
 </div>
 <div class="section" id="pacejka-magic-formula">
-<h2>Pacejka (Magic Formula)<a class="headerlink" href="#pacejka-magic-formula" title="Permalink to this headline">¶</a></h2>
+<span id="tire-pacejka"></span><h2>Pacejka (Magic Formula)<a class="headerlink" href="#pacejka-magic-formula" title="Permalink to this headline">¶</a></h2>
 <p>Nonlinear relationship between tire lateral force and slip angle expressed by a semi-empirical model with experimental coefficients <a class="reference internal" href="zreferences.html#bakker1989new" id="id2">[BPL89]</a>.</p>
 <p>The lateral force can be written as</p>
 <div class="math">
@@ -110,7 +110,7 @@ S_v &amp;= a_{11} F_z \gamma + a_{12} F_z + a_{13}\end{split}\]</div>
 <p>This equation alters the slip angle in such way that the characteristic equation becames symmetric in relation to the vertical line at 90 degrees and the lateral force becomes zero at 180 degrees. The same analogy can be made with negative values of the slip angle. Thus, this model covers the whole range of slip angles (-180 to 180 degrees).</p>
 </div>
 <div class="section" id="polynomial">
-<h2>Polynomial<a class="headerlink" href="#polynomial" title="Permalink to this headline">¶</a></h2>
+<span id="tire-polynomial"></span><h2>Polynomial<a class="headerlink" href="#polynomial" title="Permalink to this headline">¶</a></h2>
 <p>Nonlinear relation between tire lateral force and slip angle expressed by a third order polinomial equation.</p>
 <p>This model is used by several authors <a class="reference internal" href="zreferences.html#johnson1984nonlinear" id="id3">[JH84]</a><a class="reference internal" href="zreferences.html#sadri2013stability" id="id4">[SW13]</a><a class="reference internal" href="zreferences.html#samsundar1998estimating" id="id5">[SH98]</a>.</p>
 <p>The equation of the model is given by</p>
@@ -207,7 +207,7 @@ S_v &amp;= a_{11} F_z \gamma + a_{12} F_z + a_{13}\end{split}\]</div>
         <li class="right" >
           <a href="introduction.html" title="Introduction"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="index.html">OpenVD a documentation</a> &#187;</li>
+    <li><a href="index.html">OpenVD  documentation</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="theory.html" >Theory of Vehicle Dynamics</a> &#187;</li> 
       </ul>

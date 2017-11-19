@@ -7,14 +7,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>API &#8212; OpenVD a documentation</title>
+    <title>API &#8212; OpenVD  documentation</title>
     <link rel="stylesheet" href="_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     'a',
+        VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -52,7 +52,7 @@
         <li class="right" >
           <a href="zreferences.html" title="References"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="index.html">OpenVD a documentation</a> &#187;</li>
+    <li><a href="index.html">OpenVD  documentation</a> &#187;</li>
  
       </ul>
     </div>
@@ -65,7 +65,7 @@
           <div class="body" role="main">
             
   <div class="section" id="api">
-<h1>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h1>
+<span id="api-doc"></span><h1>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h1>
 <p>API Documentation is here. Help and documentation on-the-fly are available through the “doc” and “help” commands, as usual.</p>
 <p>Tires</p>
 <img src="_images/inheritance-f6a4cf287f833c1069283256642b7e53a8e2022e.png" alt="Inheritance diagram of Tire, TireLinear, TirePacejka, TirePolynomial" usemap="#inheritance24b4070f10" class="inheritance"/>
@@ -242,6 +242,31 @@
 
 </dd></dl>
 
+<span class="target" id="module-VehicleSimpleNonlinear4DOF"></span><dl class="class">
+<dt id="VehicleSimpleNonlinear4DOF.VehicleSimpleNonlinear4DOF">
+<em class="property">class </em><code class="descclassname">VehicleSimpleNonlinear4DOF.</code><code class="descname">VehicleSimpleNonlinear4DOF</code><a class="reference internal" href="_modules/VehicleSimpleNonlinear4DOF.html#VehicleSimpleNonlinear4DOF"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VehicleSimpleNonlinear4DOF.VehicleSimpleNonlinear4DOF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#VehicleSimple.VehicleSimple" title="VehicleSimple.VehicleSimple"><code class="xref py py-class docutils literal"><span class="pre">VehicleSimple.VehicleSimple</span></code></a></p>
+<p>TireLinear Linear tire model</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>k</strong> – Cornering stiffness [N/rad]</li>
+<li><strong>q</strong> – Cornering stiffness 2 [N/rad]</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="VehicleSimpleNonlinear4DOF.VehicleSimpleNonlinear4DOF.PlotTire">
+<code class="descname">PlotTire</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/VehicleSimpleNonlinear4DOF.html#VehicleSimpleNonlinear4DOF.PlotTire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VehicleSimpleNonlinear4DOF.VehicleSimpleNonlinear4DOF.PlotTire" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the handle of the curve</p>
+</dd></dl>
+
+</dd></dl>
+
 <span class="target" id="module-VehicleArticulated"></span><dl class="class">
 <dt id="VehicleArticulated.VehicleArticulated">
 <em class="property">class </em><code class="descclassname">VehicleArticulated.</code><code class="descname">VehicleArticulated</code><a class="reference internal" href="_modules/VehicleArticulated.html#VehicleArticulated"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VehicleArticulated.VehicleArticulated" title="Permalink to this definition">¶</a></dt>
@@ -309,6 +334,46 @@
 <dt id="VehicleArticulatedNonlinear.VehicleArticulatedNonlinear.PlotTire">
 <code class="descname">PlotTire</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/VehicleArticulatedNonlinear.html#VehicleArticulatedNonlinear.PlotTire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#VehicleArticulatedNonlinear.VehicleArticulatedNonlinear.PlotTire" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the handle of the curve</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-Graphics"></span><dl class="class">
+<dt id="Graphics.Graphics">
+<em class="property">class </em><code class="descclassname">Graphics.</code><code class="descname">Graphics</code><a class="reference internal" href="_modules/Graphics.html#Graphics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Graphics.Graphics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tire Tire abstract class This class must be inherited by tire models that will be used with the simulator. This class has no properties, since parameters of tire models differ significantly from one another.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><strong>param</strong> – Loucura</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="Graphics.Graphics.Characteristic">
+<code class="descname">Characteristic</code><span class="sig-paren">(</span><em>alpha</em>, <em>varargin</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Graphics.html#Graphics.Characteristic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Graphics.Graphics.Characteristic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tell my details.</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-Simulator"></span><dl class="class">
+<dt id="Simulator.Simulator">
+<em class="property">class </em><code class="descclassname">Simulator.</code><code class="descname">Simulator</code><a class="reference internal" href="_modules/Simulator.html#Simulator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Simulator.Simulator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tire Tire abstract class This class must be inherited by tire models that will be used with the simulator. This class has no properties, since parameters of tire models differ significantly from one another.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><strong>param</strong> – Loucura</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="Simulator.Simulator.Characteristic">
+<code class="descname">Characteristic</code><span class="sig-paren">(</span><em>alpha</em>, <em>varargin</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Simulator.html#Simulator.Characteristic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Simulator.Simulator.Characteristic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tell my details.</p>
 </dd></dl>
 
 </dd></dl>
@@ -386,7 +451,7 @@
         <li class="right" >
           <a href="zreferences.html" title="References"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="index.html">OpenVD a documentation</a> &#187;</li>
+    <li><a href="index.html">OpenVD  documentation</a> &#187;</li>
  
       </ul>
     </div>

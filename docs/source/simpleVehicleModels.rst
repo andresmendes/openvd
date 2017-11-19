@@ -3,6 +3,8 @@ Simple vehicle models
 
 Models of vehicles without articulation.
 
+.. _vehicle-simple-3dof:
+
 Simple vehicle 3 DOF
 ================================================================================
 
@@ -13,7 +15,7 @@ The simple vehicle model is illustrated in :numref:`modelSimple`. The vector bas
 The center of gravity of the vehicle is located at the point :math:`{\rm T}`. The front and rear axles are located at the points :math:`{\rm F}` and :math:`{\rm R}`, respectively. Point :math:`{\rm O}` is the origin. The constant :math:`a` measures the distance of point :math:`{\rm F}` to :math:`{\rm T}` and :math:`b` the distance of point :math:`{\rm T}` to :math:`{\rm R}`. The angles :math:`\alpha_{\rm F}` e :math:`\alpha_{\rm R}` are the front and rear slip angles, respectively. :math:`\alpha_{\rm T}` is the vehicle side slip angle and :math:`\psi` is the vehicle yaw angle. :math:`\delta` is the steering angle.
 
 .. _modelSimple:
-.. figure:: _illustrations/modelSimple.svg
+.. figure:: ../illustrations/misc/modelSimple.svg
     :align:   center
 
     Simple model.
@@ -412,6 +414,8 @@ or
 A popular model used in the literature considers just the last two rows of the model described in :eq:`linearModelMatrix` with only the steering angle as input. This is
 
 .. math:: \left[ \begin{array}{c} \dot{\alpha}_{\rm T} \\ \ddot{\psi} \end{array} \right] = \left[ \begin{array}{cccccc} - \frac{K_{\rm F} + K_{\rm R}}{m_{\rm T} v_{{\rm T},0}} & - \frac{m_{\rm T} v_{{\rm T},0} + \frac{a K_{\rm F} - b K_{\rm R}}{v_{{\rm T},0}}}{m_{\rm T} v_{{\rm T},0}} \\ - \frac{a K_{\rm F} - b K_{\rm R}}{I_{\rm T}} & - \frac{a^2 K_{\rm F} + b^2 K_{\rm R}}{I_{\rm T}  v_{{\rm T},0}} \end{array} \right] \left[ \begin{array}{c} \alpha_{\rm T} \\ \dot{\psi} \end{array} \right] + \left[ \begin{array}{ccccc} \frac{K_{\rm F}}{m_{\rm T} v_{{\rm T},0}} \\  \frac{a K_{\rm F}}{I_{\rm T}} \end{array} \right] \left[ \begin{array}{c} \delta \end{array} \right]
+
+.. _vehicle-simple-4dof:
 
 Simple vehicle 4 DOF
 ================================================================================

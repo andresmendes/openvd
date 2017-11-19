@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Skid pad</title>
+<title>SkidPad</title>
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] },
@@ -20,7 +20,7 @@ body {
   padding-right: 7.5em;
 }
 pre, code {
-  max-width: 50em;
+  max-width: 60em;
   font-family: monospace;
 }
 pre.oct-code {
@@ -56,10 +56,9 @@ h2 a, h2 a:visited {
 </style>
 </head>
 <body>
-<h1>Skid pad</h1>
-<p>Maneuver in circles of a nonlinear simple vehicle with Pacejka tire model.</p><img src="../illustrations/animation/SkidPadAnimation.gif" alt="../illustrations/animation/SkidPadAnimation.gif"><h2>Contents</h2><ul><li><a href="#node1">Model and parameters</a></li><li><a href="#node2">Simulation</a></li><li><a href="#node3">Results</a></li><li><a href="#node4">See Also</a></li></ul><h2><a id="node1">Model and parameters</a></h2><p>Simulation</p><pre class="oct-code">T = 10;                     <span class="comment">% Total simulation time [s]</span>
-resol = 100;                <span class="comment">% Resolution</span>
-TSPAN = 0:T/resol:T;        <span class="comment">% Time span [s]</span>
+<p><b>Defining parameters</b></p><pre class="oct-code">T = 10;                             <span class="comment">% Total simulation time [s]</span>
+resol = 100;                        <span class="comment">% Resolution</span>
+TSPAN = 0:T/resol:T;                <span class="comment">% Time span [s]</span>
 </pre><p>Tire (default)</p><pre class="oct-code">TireModel = TirePacejka();</pre><p>Vehicle</p><pre class="oct-code">System = VehicleSimpleNonlinear();
 
 <span class="comment">% Defining vehicle parameters</span>
@@ -77,7 +76,7 @@ System.Fxr = @VelControl;
 
 System.tire = TireModel;
 simulator = Simulator(System, TSPAN);
-simulator.V0 = 8.333;</pre><h2><a id="node2">Simulation</a></h2><pre class="oct-code">simulator.Simulate();</pre><h2><a id="node3">Results</a></h2><pre class="oct-code"><span class="comment">% Retrieving states</span>
+simulator.V0 = 8.333;</pre><p><b>Run simulation</b></p><pre class="oct-code">simulator.Simulate();</pre><p><b>Results</b></p><pre class="oct-code"><span class="comment">% Retrieving states</span>
 XT = simulator.XT;
 YT = simulator.YT;
 PSI = simulator.PSI;
@@ -123,22 +122,16 @@ hold on
 plot(XX,YY,<span class="string">'k'</span>)
 
 
-g.Animation();</pre><p>Maneuver radius</p><pre class="oct-code">disp(num2str(R))</pre><img src="../illustrations/animation/SkidPadAnimation.gif" alt="../illustrations/animation/SkidPadAnimation.gif"><h2><a id="node4">See Also</a></h2><p><a href="../index.html">Home</a></p>
+g.Animation();</pre><img src="../illustrations/animation/SkidPadAnimation.gif" alt="../illustrations/animation/SkidPadAnimation.gif"><p>Maneuver radius</p><pre class="oct-code">disp(num2str(R))</pre>
 <footer><hr><a href="http://www.octave.org">Published with GNU Octave 4.2.1</a></footer>
 <!--
 ##### SOURCE BEGIN #####
-%% Skid pad
-% Maneuver in circles of a nonlinear simple vehicle with Pacejka tire model.
-%
-% <<../illustrations/animation/SkidPadAnimation.gif>>
-%
-%% Model and parameters
-% Simulation
-%
+%%
+% *Defining parameters*
 
-T = 10;                     % Total simulation time [s]
-resol = 100;                % Resolution
-TSPAN = 0:T/resol:T;        % Time span [s]
+T = 10;                             % Total simulation time [s]
+resol = 100;                        % Resolution
+TSPAN = 0:T/resol:T;                % Time span [s]
 
 %%
 % Tire (default)
@@ -167,12 +160,14 @@ System.tire = TireModel;
 simulator = Simulator(System, TSPAN);
 simulator.V0 = 8.333;
 
-%% Simulation
+%%
+% *Run simulation*
 %
 
 simulator.Simulate();
 
-%% Results
+%%
+% *Results*
 %
 
 % Retrieving states
@@ -262,17 +257,12 @@ plot(XX,YY,'k')
 g.Animation();
 
 %%
+% <<../illustrations/animation/SkidPadAnimation.gif>>
+
+%%
 % Maneuver radius
 
 disp(num2str(R))
-
-%%
-% <<../illustrations/animation/SkidPadAnimation.gif>>
-%
-%% See Also
-%
-% <../index.html Home>
-%
 ##### SOURCE END #####
 -->
 </body>

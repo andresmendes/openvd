@@ -1,0 +1,393 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Template Simple Simulink &#8212; OpenVD  documentation</title>
+    <link rel="stylesheet" href="_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="_static/cloud.base.js"></script>
+    <script type="text/javascript" src="_static/cloud.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Theory of Vehicle Dynamics" href="theory.html" />
+    <link rel="prev" title="Template Simple" href="exampleTemplateSimple.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="theory.html" title="Theory of Vehicle Dynamics"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="exampleTemplateSimple.html" title="Template Simple"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="index.html">OpenVD  documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="example.html" accesskey="U">Examples</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="template-simple-simulink">
+<span id="id1"></span><h1>Template Simple Simulink<a class="headerlink" href="#template-simple-simulink" title="Permalink to this headline">¶</a></h1>
+<p>This template shows how to simulate a simple vehicle in Simulink using a s-function. The graphics are also plotted.</p>
+<p>This model uses the s-function SimpleVehicleSFunction.m in Simulink. The package and this s-function must be in Matlab path.</p>
+<p>The “SimpleVehicleSimulink.slx” available in the repository (“docs/examples/TemplateSimpleSimulink”) is illustrated below:</p>
+<div class="figure align-center" id="id2">
+<img alt="_images/SimpleVehicleSimulink.png" src="_images/SimpleVehicleSimulink.png" />
+<p class="caption"><span class="caption-number">Fig. 59 </span><span class="caption-text">Simple vehicle simulink S-Function</span></p>
+</div>
+<p>It can be seen that the longitudinal forces of the tire are zero for the entire simulation. The steering angle recieve a step input.</p>
+<div class="section" id="template">
+<h2>Template<a class="headerlink" href="#template" title="Permalink to this headline">¶</a></h2>
+<p>To simulate the model run</p>
+<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="p">(</span><span class="s">&#39;SimpleVehicleSimulink&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Each vehicle state variable goes to a scope. And the output of the model is saved in the workspace.</p>
+<p>To generate the graphics, the same model used in <a class="reference internal" href="#vehicle-simple-sfunction"><span class="std std-ref">Simple Vehicle S-Function</span></a> must be defined.</p>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<p class="last">Improve generation of graphics. Define parameters once -&gt; Run Simulink -&gt; Retrieve responses -&gt; Graphics</p>
+</div>
+<p>First, define the tire model.</p>
+<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">TireModel</span> <span class="p">=</span> <span class="n">TirePacejka</span><span class="p">();</span>          <span class="c">% Choosing tire model</span>
+</pre></div>
+</div>
+<p>Defining the tire parameters to match the parameters used in the S-Function.</p>
+<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">TireModel</span><span class="p">.</span><span class="n">a0</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">TireModel</span><span class="p">.</span><span class="n">a1</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">TireModel</span><span class="p">.</span><span class="n">a2</span> <span class="p">=</span> <span class="mi">800</span><span class="p">;</span>
+<span class="n">TireModel</span><span class="p">.</span><span class="n">a3</span> <span class="p">=</span> <span class="mi">3000</span><span class="p">;</span>
+<span class="n">TireModel</span><span class="p">.</span><span class="n">a4</span> <span class="p">=</span> <span class="mi">50</span><span class="p">;</span>
+<span class="n">TireModel</span><span class="p">.</span><span class="n">a5</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">TireModel</span><span class="p">.</span><span class="n">a6</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">TireModel</span><span class="p">.</span><span class="n">a7</span> <span class="p">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="n">TireModel</span><span class="p">.</span><span class="n">a8</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">TireModel</span><span class="p">.</span><span class="n">a9</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">TireModel</span><span class="p">.</span><span class="n">a10</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">TireModel</span><span class="p">.</span><span class="n">a11</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">TireModel</span><span class="p">.</span><span class="n">a12</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">TireModel</span><span class="p">.</span><span class="n">a13</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The vehicle model is defined as</p>
+<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">VehicleModel</span> <span class="p">=</span> <span class="n">VehicleSimpleNonlinear</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Defining the vehicle parameters to match the parameters used in the S-Function.</p>
+<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">VehicleModel</span><span class="p">.</span><span class="n">mF0</span> <span class="p">=</span> <span class="mi">700</span><span class="p">;</span>
+<span class="n">VehicleModel</span><span class="p">.</span><span class="n">mR0</span> <span class="p">=</span> <span class="mi">600</span><span class="p">;</span>
+<span class="n">VehicleModel</span><span class="p">.</span><span class="n">IT</span> <span class="p">=</span> <span class="mi">10000</span><span class="p">;</span>
+<span class="n">VehicleModel</span><span class="p">.</span><span class="n">lT</span> <span class="p">=</span> <span class="mf">3.5</span><span class="p">;</span>
+<span class="n">VehicleModel</span><span class="p">.</span><span class="n">nF</span> <span class="p">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="n">VehicleModel</span><span class="p">.</span><span class="n">nR</span> <span class="p">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="n">VehicleModel</span><span class="p">.</span><span class="n">wT</span> <span class="p">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="n">VehicleModel</span><span class="p">.</span><span class="n">muy</span> <span class="p">=</span> <span class="p">.</span><span class="mi">8</span><span class="p">;</span>
+<span class="n">VehicleModel</span><span class="p">.</span><span class="n">tire</span> <span class="p">=</span> <span class="n">TireModel</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Defining the simulation object.</p>
+<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">simulator</span> <span class="p">=</span> <span class="n">Simulator</span><span class="p">(</span><span class="n">VehicleModel</span><span class="p">,</span> <span class="n">tout</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Retrieving state responses from Simulink model</p>
+<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">simulator</span><span class="p">.</span><span class="n">XT</span> <span class="p">=</span> <span class="n">simout</span><span class="p">.</span><span class="n">Data</span><span class="p">(:,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">simulator</span><span class="p">.</span><span class="n">YT</span> <span class="p">=</span> <span class="n">simout</span><span class="p">.</span><span class="n">Data</span><span class="p">(:,</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">simulator</span><span class="p">.</span><span class="n">PSI</span> <span class="p">=</span> <span class="n">simout</span><span class="p">.</span><span class="n">Data</span><span class="p">(:,</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">simulator</span><span class="p">.</span><span class="n">VEL</span> <span class="p">=</span> <span class="n">simout</span><span class="p">.</span><span class="n">Data</span><span class="p">(:,</span><span class="mi">4</span><span class="p">);</span>
+<span class="n">simulator</span><span class="p">.</span><span class="n">ALPHAT</span> <span class="p">=</span> <span class="n">simout</span><span class="p">.</span><span class="n">Data</span><span class="p">(:,</span><span class="mi">5</span><span class="p">);</span>
+<span class="n">simulator</span><span class="p">.</span><span class="n">dPSI</span> <span class="p">=</span> <span class="n">simout</span><span class="p">.</span><span class="n">Data</span><span class="p">(:,</span><span class="mi">6</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Frame and animation can be generated defining a graphic object (<a class="reference internal" href="api.html#module-Graphics" title="Graphics"><code class="xref py py-mod docutils literal"><span class="pre">Graphics</span></code></a>). The only argument of the graphic object is the simulator object after the simulation.</p>
+<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="p">=</span> <span class="n">Graphics</span><span class="p">(</span><span class="n">simulator</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>To change the color of the vehicle run</p>
+<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">g</span><span class="p">.</span><span class="n">TractorColor</span> <span class="p">=</span> <span class="s">&#39;r&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>After that, just run</p>
+<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">g</span><span class="p">.</span><span class="n">Frame</span><span class="p">();</span>
+<span class="n">g</span><span class="p">.</span><span class="n">Animation</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Both graphics feature can be seen below.</p>
+<div class="figure align-center" id="id3">
+<a class="reference internal image-reference" href="_images/TemplateSimpleSimulinkFrame.jpeg"><img alt="_images/TemplateSimpleSimulinkFrame.jpeg" src="_images/TemplateSimpleSimulinkFrame.jpeg" style="width: 60%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 60 </span><span class="caption-text">Frame of the simple vehicle model in Simulink.</span></p>
+</div>
+<div class="admonition-todo admonition" id="index-1">
+<p class="first admonition-title">Todo</p>
+<p class="last">Include Template Articulated Simulink Animation</p>
+</div>
+<p>As expected the vehicle starts traveling in a straight line and starts a turn at (t = 1 , s) because of the step function.</p>
+</div>
+<div class="section" id="simple-vehicle-s-function">
+<span id="vehicle-simple-sfunction"></span><h2>Simple Vehicle S-Function<a class="headerlink" href="#simple-vehicle-s-function" title="Permalink to this headline">¶</a></h2>
+<p>The simple vehicle S-Function is depicted below.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="p">[</span><span class="n">sys</span><span class="p">,</span><span class="n">x0</span><span class="p">,</span><span class="nb">str</span><span class="p">,</span><span class="n">ts</span><span class="p">]</span> <span class="o">=</span> <span class="n">SimpleVehicleSFunction</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">flag</span><span class="p">)</span>
+<span class="o">%</span> <span class="n">This</span> <span class="n">file</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">s</span><span class="o">-</span><span class="n">function</span> <span class="n">template</span> <span class="k">for</span> <span class="n">simulating</span> <span class="n">the</span> <span class="n">simple</span> <span class="n">vehicle</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">Simulink</span><span class="o">.</span>
+
+<span class="o">%</span> <span class="n">Choosing</span> <span class="n">tire</span> <span class="n">model</span>
+<span class="n">TireModel</span> <span class="o">=</span> <span class="n">TirePacejka</span><span class="p">();</span>
+<span class="o">%</span> <span class="n">Defining</span> <span class="n">tire</span> <span class="n">parameters</span>
+<span class="n">TireModel</span><span class="o">.</span><span class="n">a0</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">TireModel</span><span class="o">.</span><span class="n">a1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">TireModel</span><span class="o">.</span><span class="n">a2</span> <span class="o">=</span> <span class="mi">800</span><span class="p">;</span>
+<span class="n">TireModel</span><span class="o">.</span><span class="n">a3</span> <span class="o">=</span> <span class="mi">3000</span><span class="p">;</span>
+<span class="n">TireModel</span><span class="o">.</span><span class="n">a4</span> <span class="o">=</span> <span class="mi">50</span><span class="p">;</span>
+<span class="n">TireModel</span><span class="o">.</span><span class="n">a5</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">TireModel</span><span class="o">.</span><span class="n">a6</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">TireModel</span><span class="o">.</span><span class="n">a7</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="n">TireModel</span><span class="o">.</span><span class="n">a8</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">TireModel</span><span class="o">.</span><span class="n">a9</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">TireModel</span><span class="o">.</span><span class="n">a10</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">TireModel</span><span class="o">.</span><span class="n">a11</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">TireModel</span><span class="o">.</span><span class="n">a12</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">TireModel</span><span class="o">.</span><span class="n">a13</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="o">%</span> <span class="n">Choosing</span> <span class="n">vehicle</span> <span class="n">model</span>
+<span class="n">VehicleModel</span> <span class="o">=</span> <span class="n">VehicleSimpleNonlinear</span><span class="p">();</span>
+<span class="o">%</span> <span class="n">Defining</span> <span class="n">vehicle</span> <span class="n">parameters</span>
+<span class="n">VehicleModel</span><span class="o">.</span><span class="n">mF0</span> <span class="o">=</span> <span class="mi">700</span><span class="p">;</span>
+<span class="n">VehicleModel</span><span class="o">.</span><span class="n">mR0</span> <span class="o">=</span> <span class="mi">600</span><span class="p">;</span>
+<span class="n">VehicleModel</span><span class="o">.</span><span class="n">IT</span> <span class="o">=</span> <span class="mi">10000</span><span class="p">;</span>
+<span class="n">VehicleModel</span><span class="o">.</span><span class="n">lT</span> <span class="o">=</span> <span class="mf">3.5</span><span class="p">;</span>
+<span class="n">VehicleModel</span><span class="o">.</span><span class="n">nF</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="n">VehicleModel</span><span class="o">.</span><span class="n">nR</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="n">VehicleModel</span><span class="o">.</span><span class="n">wT</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="n">VehicleModel</span><span class="o">.</span><span class="n">muy</span> <span class="o">=</span> <span class="o">.</span><span class="mi">8</span><span class="p">;</span>
+<span class="n">VehicleModel</span><span class="o">.</span><span class="n">tire</span> <span class="o">=</span> <span class="n">TireModel</span><span class="p">;</span>
+
+<span class="n">switch</span> <span class="n">flag</span><span class="p">,</span>
+
+  <span class="o">%%%%%%%%%%%%%%%%%%</span>
+  <span class="o">%</span> <span class="n">Initialization</span> <span class="o">%</span>
+  <span class="o">%%%%%%%%%%%%%%%%%%</span>
+  <span class="n">case</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">sys</span><span class="p">,</span><span class="n">x0</span><span class="p">,</span><span class="nb">str</span><span class="p">,</span><span class="n">ts</span><span class="p">]</span><span class="o">=</span><span class="n">mdlInitializeSizes</span><span class="p">();</span>
+
+  <span class="o">%%%%%%%%%%%%%%%</span>
+  <span class="o">%</span> <span class="n">Derivatives</span> <span class="o">%</span>
+  <span class="o">%%%%%%%%%%%%%%%</span>
+  <span class="n">case</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">sys</span><span class="o">=</span><span class="n">mdlDerivatives</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">VehicleModel</span><span class="p">);</span>
+
+  <span class="o">%%%%%%%%%%%</span>
+  <span class="o">%</span> <span class="n">Outputs</span> <span class="o">%</span>
+  <span class="o">%%%%%%%%%%%</span>
+  <span class="n">case</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="n">sys</span><span class="o">=</span><span class="n">mdlOutputs</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">VehicleModel</span><span class="p">);</span>
+
+  <span class="o">%%%%%%%%%%%%%%%%%%%</span>
+  <span class="o">%</span> <span class="n">Unhandled</span> <span class="n">flags</span> <span class="o">%</span>
+  <span class="o">%%%%%%%%%%%%%%%%%%%</span>
+  <span class="n">case</span> <span class="p">{</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span> <span class="p">},</span>
+    <span class="n">sys</span> <span class="o">=</span> <span class="p">[];</span>
+
+  <span class="o">%%%%%%%%%%%%%%%%%%%%</span>
+  <span class="o">%</span> <span class="n">Unexpected</span> <span class="n">flags</span> <span class="o">%</span>
+  <span class="o">%%%%%%%%%%%%%%%%%%%%</span>
+  <span class="n">otherwise</span>
+    <span class="n">DAStudio</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Simulink:blocks:unhandledFlag&#39;</span><span class="p">,</span> <span class="n">num2str</span><span class="p">(</span><span class="n">flag</span><span class="p">));</span>
+
+<span class="n">end</span>
+<span class="o">%</span> <span class="n">end</span> <span class="n">csfunc</span>
+
+<span class="o">%</span>
+<span class="o">%=============================================================================</span>
+<span class="o">%</span> <span class="n">mdlInitializeSizes</span>
+<span class="o">%</span> <span class="n">Return</span> <span class="n">the</span> <span class="n">sizes</span><span class="p">,</span> <span class="n">initial</span> <span class="n">conditions</span><span class="p">,</span> <span class="ow">and</span> <span class="n">sample</span> <span class="n">times</span> <span class="k">for</span> <span class="n">the</span> <span class="n">S</span><span class="o">-</span><span class="n">function</span><span class="o">.</span>
+<span class="o">%=============================================================================</span>
+<span class="o">%</span>
+<span class="n">function</span> <span class="p">[</span><span class="n">sys</span><span class="p">,</span><span class="n">x0</span><span class="p">,</span><span class="nb">str</span><span class="p">,</span><span class="n">ts</span><span class="p">]</span><span class="o">=</span><span class="n">mdlInitializeSizes</span><span class="p">()</span>
+
+<span class="o">%</span> <span class="n">Definitions</span>
+<span class="n">sizes</span> <span class="o">=</span> <span class="n">simsizes</span><span class="p">;</span>
+<span class="n">sizes</span><span class="o">.</span><span class="n">NumContStates</span>  <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+<span class="n">sizes</span><span class="o">.</span><span class="n">NumDiscStates</span>  <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">sizes</span><span class="o">.</span><span class="n">NumOutputs</span>     <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+<span class="n">sizes</span><span class="o">.</span><span class="n">NumInputs</span>      <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="n">sizes</span><span class="o">.</span><span class="n">DirFeedthrough</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">sizes</span><span class="o">.</span><span class="n">NumSampleTimes</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="n">sys</span> <span class="o">=</span> <span class="n">simsizes</span><span class="p">(</span><span class="n">sizes</span><span class="p">);</span>
+
+<span class="o">%</span> <span class="n">Setting</span> <span class="n">initial</span> <span class="n">conditions</span>
+<span class="n">x0</span>  <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">20</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">];</span>
+<span class="nb">str</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="n">ts</span>  <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">0</span><span class="p">];</span>
+
+<span class="o">%</span> <span class="n">end</span> <span class="n">mdlInitializeSizes</span>
+<span class="o">%</span>
+<span class="o">%=============================================================================</span>
+<span class="o">%</span> <span class="n">mdlDerivatives</span>
+<span class="o">%</span> <span class="n">Return</span> <span class="n">the</span> <span class="n">derivatives</span> <span class="k">for</span> <span class="n">the</span> <span class="n">continuous</span> <span class="n">states</span><span class="o">.</span>
+<span class="o">%=============================================================================</span>
+<span class="o">%</span>
+
+
+<span class="n">function</span> <span class="n">sys</span> <span class="o">=</span> <span class="n">mdlDerivatives</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">vehicle</span><span class="p">)</span>
+
+<span class="o">%</span> <span class="n">Defining</span> <span class="nb">input</span>
+<span class="n">vehicle</span><span class="o">.</span><span class="n">deltaf</span> <span class="o">=</span> <span class="n">u</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">vehicle</span><span class="o">.</span><span class="n">Fxf</span> <span class="o">=</span> <span class="n">u</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">vehicle</span><span class="o">.</span><span class="n">Fxr</span> <span class="o">=</span> <span class="n">u</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+
+<span class="o">%</span> <span class="n">Getting</span> <span class="n">the</span> <span class="n">vehicle</span> <span class="n">model</span> <span class="n">function</span> <span class="p">(</span><span class="n">state</span> <span class="n">equations</span><span class="p">)</span>
+<span class="n">ModelFunction</span> <span class="o">=</span> <span class="nd">@vehicle</span><span class="o">.</span><span class="n">Model</span><span class="p">;</span>
+
+<span class="n">sys</span> <span class="o">=</span> <span class="n">ModelFunction</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+
+<span class="o">%</span> <span class="n">end</span> <span class="n">mdlDerivatives</span>
+<span class="o">%</span>
+<span class="o">%=============================================================================</span>
+<span class="o">%</span> <span class="n">mdlOutputs</span>
+<span class="o">%</span> <span class="n">Return</span> <span class="n">the</span> <span class="n">block</span> <span class="n">outputs</span><span class="o">.</span>
+<span class="o">%=============================================================================</span>
+<span class="o">%</span>
+<span class="n">function</span> <span class="n">sys</span><span class="o">=</span><span class="n">mdlOutputs</span><span class="p">(</span><span class="o">~</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="o">~</span><span class="p">,</span><span class="o">~</span><span class="p">)</span>
+
+<span class="o">%</span> <span class="n">Output</span> <span class="n">are</span> <span class="nb">all</span> <span class="n">state</span> <span class="n">variables</span>
+<span class="n">sys</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+
+<span class="o">%</span> <span class="n">end</span> <span class="n">mdlOutputs</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Template Simple Simulink</a><ul>
+<li><a class="reference internal" href="#template">Template</a></li>
+<li><a class="reference internal" href="#simple-vehicle-s-function">Simple Vehicle S-Function</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="exampleTemplateSimple.html"
+                          title="Previous page">&larr; Template Simple</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="theory.html"
+                          title="Next page">&rarr; Theory of Vehicle Dynamics</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/exampleTemplateSimpleSimulink.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="theory.html" title="Theory of Vehicle Dynamics"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="exampleTemplateSimple.html" title="Template Simple"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="index.html">OpenVD  documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="example.html" >Examples</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, BSD 3-clause.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>
