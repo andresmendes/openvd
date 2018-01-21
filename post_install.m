@@ -12,8 +12,13 @@ cd(pkgdir)
 cd ..
 
 unzip('openvd-master.zip');
+<<<<<<< HEAD
 movefile('openvd-master/docs','openvd-0.0.0/');
 rmdir('openvd-master','s');
+=======
+movefile('openvd/docs','openvd-0.0.0/');
+rmdir('openvd','s');
+>>>>>>> e2818c78712b61a8f768eee77a89e05cec5b9c9d
 delete('openvd-master.zip')
 
 cd(currentdir)
