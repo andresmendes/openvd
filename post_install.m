@@ -11,10 +11,10 @@ mkdir(pkgdir);
 cd(pkgdir)
 cd ..
 
-unzip('openvd.zip');
-movefile('openvd/docs','openvd-0.0.0/');
-rmdir('openvd','s');
-delete('openvd.zip')
+unzip('openvd-master.zip');
+movefile('openvd-master/docs','openvd-0.0.0/');
+rmdir('openvd-master','s');
+delete('openvd-master.zip')
 
 cd(currentdir)
 
