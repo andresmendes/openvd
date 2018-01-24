@@ -12,7 +12,9 @@ Creating new examples
 Creating new tire and vehicle models
 
 
+Push from docs to gh-pages branch
 
+    git subtree push --prefix docs origin gh-pages
 
 
 Instructions
