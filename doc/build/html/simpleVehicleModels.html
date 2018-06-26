@@ -6,21 +6,13 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Simple vehicle models &#8212; OpenVD  documentation</title>
     <link rel="stylesheet" href="_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
@@ -33,8 +25,7 @@
     <link rel="next" title="Articulated vehicle models" href="articulatedVehicleModels.html" />
     <link rel="prev" title="Tire models" href="tire.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -43,9 +34,6 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="articulatedVehicleModels.html" title="Articulated vehicle models"
              accesskey="N">next</a> &nbsp; &nbsp;</li>
@@ -71,123 +59,123 @@
 <div class="section" id="simple-vehicle-3-dof">
 <span id="vehicle-simple-3dof"></span><h2>Simple vehicle 3 DOF<a class="headerlink" href="#simple-vehicle-3-dof" title="Permalink to this headline">¶</a></h2>
 <p>The linear version of this model is described by equations ?? and the nonlinear version of this model is described by equations ??.</p>
-<p>The simple vehicle model is illustrated in <a class="reference internal" href="#modelsimple"><span class="std std-numref">Fig. 62</span></a>. The vector basis <span class="math">\(\{ {\rm O} {\bf i} {\bf j} {\bf k} \}\)</span> is fixed to the inertial reference frame. The vector basis <span class="math">\(\{ {\rm T} {\bf t}_x {\bf t}_y {\bf t}_z \}\)</span> is fixed to the simple vehicle. The vector basis <span class="math">\(\{ {\rm F} {\bf e}_x {\bf e}_y {\bf e}_z \}\)</span> is fixed to the front axle.</p>
-<p>The center of gravity of the vehicle is located at the point <span class="math">\({\rm T}\)</span>. The front and rear axles are located at the points <span class="math">\({\rm F}\)</span> and <span class="math">\({\rm R}\)</span>, respectively. Point <span class="math">\({\rm O}\)</span> is the origin. The constant <span class="math">\(a\)</span> measures the distance of point <span class="math">\({\rm F}\)</span> to <span class="math">\({\rm T}\)</span> and <span class="math">\(b\)</span> the distance of point <span class="math">\({\rm T}\)</span> to <span class="math">\({\rm R}\)</span>. The angles <span class="math">\(\alpha_{\rm F}\)</span> e <span class="math">\(\alpha_{\rm R}\)</span> are the front and rear slip angles, respectively. <span class="math">\(\alpha_{\rm T}\)</span> is the vehicle side slip angle and <span class="math">\(\psi\)</span> is the vehicle yaw angle. <span class="math">\(\delta\)</span> is the steering angle.</p>
+<p>The simple vehicle model is illustrated in <a class="reference internal" href="#modelsimple"><span class="std std-numref">Fig. 62</span></a>. The vector basis <span class="math notranslate nohighlight">\(\{ {\rm O} {\bf i} {\bf j} {\bf k} \}\)</span> is fixed to the inertial reference frame. The vector basis <span class="math notranslate nohighlight">\(\{ {\rm T} {\bf t}_x {\bf t}_y {\bf t}_z \}\)</span> is fixed to the simple vehicle. The vector basis <span class="math notranslate nohighlight">\(\{ {\rm F} {\bf e}_x {\bf e}_y {\bf e}_z \}\)</span> is fixed to the front axle.</p>
+<p>The center of gravity of the vehicle is located at the point <span class="math notranslate nohighlight">\({\rm T}\)</span>. The front and rear axles are located at the points <span class="math notranslate nohighlight">\({\rm F}\)</span> and <span class="math notranslate nohighlight">\({\rm R}\)</span>, respectively. Point <span class="math notranslate nohighlight">\({\rm O}\)</span> is the origin. The constant <span class="math notranslate nohighlight">\(a\)</span> measures the distance of point <span class="math notranslate nohighlight">\({\rm F}\)</span> to <span class="math notranslate nohighlight">\({\rm T}\)</span> and <span class="math notranslate nohighlight">\(b\)</span> the distance of point <span class="math notranslate nohighlight">\({\rm T}\)</span> to <span class="math notranslate nohighlight">\({\rm R}\)</span>. The angles <span class="math notranslate nohighlight">\(\alpha_{\rm F}\)</span> e <span class="math notranslate nohighlight">\(\alpha_{\rm R}\)</span> are the front and rear slip angles, respectively. <span class="math notranslate nohighlight">\(\alpha_{\rm T}\)</span> is the vehicle side slip angle and <span class="math notranslate nohighlight">\(\psi\)</span> is the vehicle yaw angle. <span class="math notranslate nohighlight">\(\delta\)</span> is the steering angle.</p>
 <div class="figure align-center" id="id1">
 <span id="modelsimple"></span><img alt="_images/modelSimple.svg" src="_images/modelSimple.svg" /><p class="caption"><span class="caption-number">Fig. 62 </span><span class="caption-text">Simple model.</span></p>
 </div>
 <div class="section" id="equations-of-motion">
 <h3>Equations of Motion<a class="headerlink" href="#equations-of-motion" title="Permalink to this headline">¶</a></h3>
 <p>The generalized coordinates are</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[\begin{split}q_1 &amp;= x     \\
 q_2 &amp;= y     \\
 q_3 &amp;= \psi, \\\end{split}\]</div>
-<p>where <span class="math">\(x\)</span> and <span class="math">\(y\)</span> are the coordinates of the CG of the vehicle. <span class="math">\(\psi\)</span> is the yaw angle.</p>
-<p>The position of the CG in relation to the origin <span class="math">\({\rm O}\)</span> is</p>
-<div class="math" id="equation-positionVehicle">
-<span class="eqno">(1)<a class="headerlink" href="#equation-positionVehicle" title="Permalink to this equation">¶</a></span>\[{\bf p}_{{\rm T}/{\rm O}} = x \, {\bf i} + y \, {\bf j}.\]</div>
-<p>The time derivative of equation <a class="reference internal" href="#equation-positionVehicle">(1)</a> gives the velocity</p>
-<div class="math">
+<p>where <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> are the coordinates of the CG of the vehicle. <span class="math notranslate nohighlight">\(\psi\)</span> is the yaw angle.</p>
+<p>The position of the CG in relation to the origin <span class="math notranslate nohighlight">\({\rm O}\)</span> is</p>
+<div class="math notranslate nohighlight" id="equation-positionvehicle">
+<span class="eqno">(2)<a class="headerlink" href="#equation-positionvehicle" title="Permalink to this equation">¶</a></span>\[{\bf p}_{{\rm T}/{\rm O}} = x \, {\bf i} + y \, {\bf j}.\]</div>
+<p>The time derivative of equation <a class="reference internal" href="#equation-positionvehicle">(2)</a> gives the velocity</p>
+<div class="math notranslate nohighlight">
 \[{\bf v}_{\rm T} = \dot{x} \, {\bf i} + \dot{y} \, {\bf j}.\]</div>
 <p>The velocity of the front axle is</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[{\bf v}_{\rm F} = {\bf v}_{\rm T} + {\bf r} \wedge {\bf p}_{{\rm F}/{\rm T}},\]</div>
-<p>where <span class="math">\({\bf p}_{{\rm F}/{\rm T}}\)</span> is the position of point <span class="math">\({\rm F}\)</span> in relation to point <span class="math">\({\rm T}\)</span> and <span class="math">\({\bf r} = \dot{\psi} \, {\bf k}\)</span>. Thus,</p>
-<div class="math" id="equation-simpleVehicleVelocityVectorFront">
-<span class="eqno">(2)<a class="headerlink" href="#equation-simpleVehicleVelocityVectorFront" title="Permalink to this equation">¶</a></span>\[{\bf v}_{\rm F} = \left( \dot{x} - a \dot{\psi} \sin \psi \right) {\bf i} + \left( \dot{y} + a \dot{\psi} \cos \psi \right) {\bf j}.\]</div>
+<p>where <span class="math notranslate nohighlight">\({\bf p}_{{\rm F}/{\rm T}}\)</span> is the position of point <span class="math notranslate nohighlight">\({\rm F}\)</span> in relation to point <span class="math notranslate nohighlight">\({\rm T}\)</span> and <span class="math notranslate nohighlight">\({\bf r} = \dot{\psi} \, {\bf k}\)</span>. Thus,</p>
+<div class="math notranslate nohighlight" id="equation-simplevehiclevelocityvectorfront">
+<span class="eqno">(3)<a class="headerlink" href="#equation-simplevehiclevelocityvectorfront" title="Permalink to this equation">¶</a></span>\[{\bf v}_{\rm F} = \left( \dot{x} - a \dot{\psi} \sin \psi \right) {\bf i} + \left( \dot{y} + a \dot{\psi} \cos \psi \right) {\bf j}.\]</div>
 <p>the velocity of the rear axle is</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[{\bf v}_{\rm R} = {\bf v}_{\rm T} + {\bf r} \wedge {\bf p}_{{\rm R}/{\rm T}},\]</div>
-<p>where <span class="math">\({\bf p}_{{\rm R}/{\rm T}}\)</span> is the position of point <span class="math">\({\rm R}\)</span> in relation to point <span class="math">\({\rm T}\)</span>. Thus,</p>
-<div class="math" id="equation-simpleVehicleVelocityVectorRear">
-<span class="eqno">(3)<a class="headerlink" href="#equation-simpleVehicleVelocityVectorRear" title="Permalink to this equation">¶</a></span>\[{\bf v}_{\rm R} = \left( \dot{x} + b \dot{\psi} \sin \psi \right) {\bf i} + \left( \dot{y} -b \dot{\psi} \cos \psi \right) {\bf j}.\]</div>
-<p>Using equations <a class="reference internal" href="#equation-simpleVehicleVelocityVectorFront">(2)</a> and <a class="reference internal" href="#equation-simpleVehicleVelocityVectorRear">(3)</a>, the slip angles can be written as</p>
-<div class="math" id="equation-simpleVehicleSlipAngle">
-<span class="eqno">(4)<a class="headerlink" href="#equation-simpleVehicleSlipAngle" title="Permalink to this equation">¶</a></span>\[\begin{split}\alpha_{\rm F} &amp;= \arctan \left( \frac{\dot{y} + a \dot{\psi} \cos \psi}{ \dot{x} - a \dot{\psi} \sin \psi} \right) - \left( \delta + \psi \right) \\
+<p>where <span class="math notranslate nohighlight">\({\bf p}_{{\rm R}/{\rm T}}\)</span> is the position of point <span class="math notranslate nohighlight">\({\rm R}\)</span> in relation to point <span class="math notranslate nohighlight">\({\rm T}\)</span>. Thus,</p>
+<div class="math notranslate nohighlight" id="equation-simplevehiclevelocityvectorrear">
+<span class="eqno">(4)<a class="headerlink" href="#equation-simplevehiclevelocityvectorrear" title="Permalink to this equation">¶</a></span>\[{\bf v}_{\rm R} = \left( \dot{x} + b \dot{\psi} \sin \psi \right) {\bf i} + \left( \dot{y} -b \dot{\psi} \cos \psi \right) {\bf j}.\]</div>
+<p>Using equations <a class="reference internal" href="#equation-simplevehiclevelocityvectorfront">(3)</a> and <a class="reference internal" href="#equation-simplevehiclevelocityvectorrear">(4)</a>, the slip angles can be written as</p>
+<div class="math notranslate nohighlight" id="equation-simplevehicleslipangle">
+<span class="eqno">(5)<a class="headerlink" href="#equation-simplevehicleslipangle" title="Permalink to this equation">¶</a></span>\[\begin{split}\alpha_{\rm F} &amp;= \arctan \left( \frac{\dot{y} + a \dot{\psi} \cos \psi}{ \dot{x} - a \dot{\psi} \sin \psi} \right) - \left( \delta + \psi \right) \\
 \alpha_{\rm R} &amp;= \arctan \left( \frac{\dot{y} - b \dot{\psi} \cos \psi}{ \dot{x} + b \dot{\psi} \sin \psi} \right) - \psi\end{split}\]</div>
 <p>The force vector at the front axle is</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[{\bf F}_{\rm F} = F_{x,{\rm F}} \, {\bf e}_x + F_{y,{\rm F}} \, {\bf e}_x,\]</div>
 <p>It can be also written as</p>
-<div class="math" id="equation-ForceAtFront">
-<span class="eqno">(5)<a class="headerlink" href="#equation-ForceAtFront" title="Permalink to this equation">¶</a></span>\[{\bf F}_{\rm F} = \left[ F_{x,{\rm F}} \cos \left( \psi + \delta \right) - F_{y,{\rm F}} \sin \left( \psi + \delta \right) \right] {\bf i} + \left[ F_{x,{\rm F}} \sin \left( \psi + \delta \right) + F_{y,{\rm F}} \cos \left( \psi + \delta \right) \right] {\bf j}.\]</div>
+<div class="math notranslate nohighlight" id="equation-forceatfront">
+<span class="eqno">(6)<a class="headerlink" href="#equation-forceatfront" title="Permalink to this equation">¶</a></span>\[{\bf F}_{\rm F} = \left[ F_{x,{\rm F}} \cos \left( \psi + \delta \right) - F_{y,{\rm F}} \sin \left( \psi + \delta \right) \right] {\bf i} + \left[ F_{x,{\rm F}} \sin \left( \psi + \delta \right) + F_{y,{\rm F}} \cos \left( \psi + \delta \right) \right] {\bf j}.\]</div>
 <p>The force vector at the rear axle is</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[{\bf F}_{\rm R} = F_{x,{\rm R}} {\bf t}_x + F_{y,{\rm R}} {\bf t}_y\]</div>
 <p>or</p>
-<div class="math" id="equation-ForceAtRear">
-<span class="eqno">(6)<a class="headerlink" href="#equation-ForceAtRear" title="Permalink to this equation">¶</a></span>\[{\bf F}_{\rm R} = \left[ F_{x,{\rm R}} \cos \psi - F_{y,{\rm R}} \sin \psi \right] {\bf i} + \left[ F_{x,{\rm R}} \sin \psi + F_{y,{\rm R}} \cos \psi \right] {\bf j}.\]</div>
+<div class="math notranslate nohighlight" id="equation-forceatrear">
+<span class="eqno">(7)<a class="headerlink" href="#equation-forceatrear" title="Permalink to this equation">¶</a></span>\[{\bf F}_{\rm R} = \left[ F_{x,{\rm R}} \cos \psi - F_{y,{\rm R}} \sin \psi \right] {\bf i} + \left[ F_{x,{\rm R}} \sin \psi + F_{y,{\rm R}} \cos \psi \right] {\bf j}.\]</div>
 <p>The generalized forces are</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[Q_k = \sum_{j = 1} ^p {\bf F}_j \cdot \frac{\partial {\bf p}_j}{\partial q_k}\]</div>
 <p>In the model</p>
-<div class="math" id="equation-simpleVehicleGeneralizedForces">
-<span class="eqno">(7)<a class="headerlink" href="#equation-simpleVehicleGeneralizedForces" title="Permalink to this equation">¶</a></span>\[\begin{split}Q_1 &amp;= {\bf F}_{\rm F} \cdot \frac{\partial {\bf p}_{{\rm F}/{\rm O}}}{\partial q_1} + {\bf F}_{\rm R} \cdot \frac{\partial {\bf p}_{{\rm R}/{\rm O}}}{\partial q_1} \\
+<div class="math notranslate nohighlight" id="equation-simplevehiclegeneralizedforces">
+<span class="eqno">(8)<a class="headerlink" href="#equation-simplevehiclegeneralizedforces" title="Permalink to this equation">¶</a></span>\[\begin{split}Q_1 &amp;= {\bf F}_{\rm F} \cdot \frac{\partial {\bf p}_{{\rm F}/{\rm O}}}{\partial q_1} + {\bf F}_{\rm R} \cdot \frac{\partial {\bf p}_{{\rm R}/{\rm O}}}{\partial q_1} \\
 Q_2 &amp;= {\bf F}_{\rm F} \cdot \frac{\partial {\bf p}_{{\rm F}/{\rm O}}}{\partial q_2} + {\bf F}_{\rm R} \cdot \frac{\partial {\bf p}_{{\rm R}/{\rm O}}}{\partial q_2} \\
 Q_3 &amp;= {\bf F}_{\rm F} \cdot \frac{\partial {\bf p}_{{\rm F}/{\rm O}}}{\partial q_3} + {\bf F}_{\rm R} \cdot \frac{\partial {\bf p}_{{\rm R}/{\rm O}}}{\partial q_3},\end{split}\]</div>
 <p>where</p>
-<div class="math" id="equation-simpleVehicleTermGenFor1">
-<span class="eqno">(8)<a class="headerlink" href="#equation-simpleVehicleTermGenFor1" title="Permalink to this equation">¶</a></span>\[\begin{split}\frac{\partial {\bf p}_{{\rm F}/{\rm O}}}{\partial q_1} &amp;= \frac{\partial {\bf p}_{{\rm F}/{\rm O}}}{\partial x} = {\bf i} \\
+<div class="math notranslate nohighlight" id="equation-simplevehicletermgenfor1">
+<span class="eqno">(9)<a class="headerlink" href="#equation-simplevehicletermgenfor1" title="Permalink to this equation">¶</a></span>\[\begin{split}\frac{\partial {\bf p}_{{\rm F}/{\rm O}}}{\partial q_1} &amp;= \frac{\partial {\bf p}_{{\rm F}/{\rm O}}}{\partial x} = {\bf i} \\
 \frac{\partial {\bf p}_{{\rm F}/{\rm O}}}{\partial q_2} &amp;= \frac{\partial {\bf p}_{{\rm F}/{\rm O}}}{\partial y} = {\bf j} \\
 \frac{\partial {\bf p}_{{\rm F}/{\rm O}}}{\partial q_3} &amp;= \frac{\partial {\bf p}_{{\rm F}/{\rm O}}}{\partial \psi} = - a \sin \psi \, {\bf i} + a \cos \psi \, {\bf j}\end{split}\]</div>
 <p>and</p>
-<div class="math" id="equation-simpleVehicleTermGenFor2">
-<span class="eqno">(9)<a class="headerlink" href="#equation-simpleVehicleTermGenFor2" title="Permalink to this equation">¶</a></span>\[\begin{split}\frac{\partial {\bf p}_{{\rm R}/{\rm O}}}{\partial q_1} &amp;= \frac{\partial {\bf p}_{{\rm R}/{\rm O}}}{\partial x} = {\bf i} \\
+<div class="math notranslate nohighlight" id="equation-simplevehicletermgenfor2">
+<span class="eqno">(10)<a class="headerlink" href="#equation-simplevehicletermgenfor2" title="Permalink to this equation">¶</a></span>\[\begin{split}\frac{\partial {\bf p}_{{\rm R}/{\rm O}}}{\partial q_1} &amp;= \frac{\partial {\bf p}_{{\rm R}/{\rm O}}}{\partial x} = {\bf i} \\
 \frac{\partial {\bf p}_{{\rm R}/{\rm O}}}{\partial q_2} &amp;= \frac{\partial {\bf p}_{{\rm R}/{\rm O}}}{\partial y} = {\bf j} \\
 \frac{\partial {\bf p}_{{\rm R}/{\rm O}}}{\partial q_3} &amp;= \frac{\partial {\bf p}_{{\rm R}/{\rm O}}}{\partial \psi} = b \sin \psi \, {\bf i} - b \cos \psi \, {\bf j}\end{split}\]</div>
-<p>Substituting equations <a class="reference internal" href="#equation-ForceAtFront">(5)</a>, <a class="reference internal" href="#equation-ForceAtRear">(6)</a>, <a class="reference internal" href="#equation-simpleVehicleTermGenFor1">(8)</a> and <a class="reference internal" href="#equation-simpleVehicleTermGenFor2">(9)</a> in equations <a class="reference internal" href="#equation-simpleVehicleGeneralizedForces">(7)</a> we have</p>
-<div class="math">
+<p>Substituting equations <a class="reference internal" href="#equation-forceatfront">(6)</a>, <a class="reference internal" href="#equation-forceatrear">(7)</a>, <a class="reference internal" href="#equation-simplevehicletermgenfor1">(9)</a> and <a class="reference internal" href="#equation-simplevehicletermgenfor2">(10)</a> in equations <a class="reference internal" href="#equation-simplevehiclegeneralizedforces">(8)</a> we have</p>
+<div class="math notranslate nohighlight">
 \[\begin{split}Q_1 &amp;= F_{x,{\rm F}} \cos \left( \psi + \delta \right) + F_{x,{\rm R}} \cos \psi - F_{y,{\rm F}} \sin \left( \psi + \delta \right) - F_{y,{\rm R}} \sin \psi \\
 Q_2 &amp;= F_{x,{\rm F}} \sin \left( \psi + \delta \right)+ F_{x,{\rm R}} \sin \psi + F_{y,{\rm F}} \cos \left( \psi + \delta \right) + F_{y,{\rm R}} \cos \psi \\
 Q_3 &amp;=  F_{x,{\rm F}} a \sin \delta  + F_{y,{\rm F}} a \cos \delta - F_{y,{\rm R}} b.\end{split}\]</div>
 <p>The kinetic energy of the system is given by</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[T = \frac{1}{2} m_{\rm T} {\bf v}_{\rm T} \cdot {\bf v}_{\rm T} + \frac{1}{2} I_{\rm T} \dot{\psi}^2.\]</div>
 <p>or</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[T = \frac{1}{2} m_{\rm T} \left( \dot{x}^2 + \dot{y}^2 \right) + \frac{1}{2} I_{\rm T} \dot{\psi}^2.\]</div>
 <p>The Lagrange formulation is given by</p>
-<div class="math" id="equation-simpleVehicleLagrange">
-<span class="eqno">(10)<a class="headerlink" href="#equation-simpleVehicleLagrange" title="Permalink to this equation">¶</a></span>\[\frac{d}{dt} \left( \frac{\partial T}{\partial \dot{q}_k} \right) - \frac{\partial T}{\partial q_k} = Q_k.\]</div>
+<div class="math notranslate nohighlight" id="equation-simplevehiclelagrange">
+<span class="eqno">(11)<a class="headerlink" href="#equation-simplevehiclelagrange" title="Permalink to this equation">¶</a></span>\[\frac{d}{dt} \left( \frac{\partial T}{\partial \dot{q}_k} \right) - \frac{\partial T}{\partial q_k} = Q_k.\]</div>
 <p>For the three generalized coordinates of the system</p>
-<div class="math" id="equation-lagrangeSecond">
-<span class="eqno">(11)<a class="headerlink" href="#equation-lagrangeSecond" title="Permalink to this equation">¶</a></span>\[\begin{split}\frac{\partial T}{\partial q_1} &amp;= \frac{\partial T}{\partial x} = 0 \\
+<div class="math notranslate nohighlight" id="equation-lagrangesecond">
+<span class="eqno">(12)<a class="headerlink" href="#equation-lagrangesecond" title="Permalink to this equation">¶</a></span>\[\begin{split}\frac{\partial T}{\partial q_1} &amp;= \frac{\partial T}{\partial x} = 0 \\
 \frac{\partial T}{\partial q_2} &amp;= \frac{\partial T}{\partial y} = 0 \\
 \frac{\partial T}{\partial q_3} &amp;= \frac{\partial T}{\partial \psi} = 0\end{split}\]</div>
 <p>and</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[\begin{split}\frac{\partial T}{\partial \dot{q}_1} &amp;= \frac{\partial T}{\partial \dot{x}} = m_{\rm T} \dot{x} \\
 \frac{\partial T}{\partial \dot{q}_2} &amp;= \frac{\partial T}{\partial \dot{y}} = m_{\rm T} \dot{y} \\
 \frac{\partial T}{\partial \dot{q}_3} &amp;= \frac{\partial T}{\partial \dot{\psi}} = I_{\rm T} \dot{\psi}.\end{split}\]</div>
 <p>The time derivative is given by</p>
-<div class="math" id="equation-lagrangeFirst">
-<span class="eqno">(12)<a class="headerlink" href="#equation-lagrangeFirst" title="Permalink to this equation">¶</a></span>\[\begin{split}\frac{d}{dt} \left( \frac{\partial T}{\partial \dot{q}_1} \right) &amp;= \frac{d}{dt} \left( \frac{\partial T}{\partial \dot{x}} \right) = m_{\rm T} \ddot{x} \\
+<div class="math notranslate nohighlight" id="equation-lagrangefirst">
+<span class="eqno">(13)<a class="headerlink" href="#equation-lagrangefirst" title="Permalink to this equation">¶</a></span>\[\begin{split}\frac{d}{dt} \left( \frac{\partial T}{\partial \dot{q}_1} \right) &amp;= \frac{d}{dt} \left( \frac{\partial T}{\partial \dot{x}} \right) = m_{\rm T} \ddot{x} \\
 \frac{d}{dt} \left( \frac{\partial T}{\partial \dot{q}_2} \right) &amp;= \frac{d}{dt} \left( \frac{\partial T}{\partial \dot{y}} \right) = m_{\rm T} \ddot{y} \\
 \frac{d}{dt} \left( \frac{\partial T}{\partial \dot{q}_3} \right) &amp;= \frac{d}{dt} \left( \frac{\partial T}{\partial \dot{\psi}} \right) = I_{\rm T} \ddot{\psi}.\end{split}\]</div>
-<p>Substituting equations <a class="reference internal" href="#equation-lagrangeSecond">(11)</a> and <a class="reference internal" href="#equation-lagrangeFirst">(12)</a> in <a class="reference internal" href="#equation-simpleVehicleLagrange">(10)</a> the equations of motion become</p>
-<div class="math">
+<p>Substituting equations <a class="reference internal" href="#equation-lagrangesecond">(12)</a> and <a class="reference internal" href="#equation-lagrangefirst">(13)</a> in <a class="reference internal" href="#equation-simplevehiclelagrange">(11)</a> the equations of motion become</p>
+<div class="math notranslate nohighlight">
 \[\begin{split}m_{\rm T} \ddot{x} &amp;= F_{x,{\rm F}} \cos \left( \psi + \delta \right) + F_{x,{\rm R}} \cos \psi - F_{y,{\rm F}} \sin \left( \psi + \delta \right) - F_{y,{\rm R}} \sin \psi \\
 m_{\rm T} \ddot{y} &amp;= F_{x,{\rm F}} \sin \left( \psi + \delta \right)+ F_{x,{\rm R}} \sin \psi + F_{y,{\rm F}} \cos \left( \psi + \delta \right) + F_{y,{\rm R}} \cos \psi \\
 I_{\rm T} \ddot{\psi} &amp;= F_{x,{\rm F}} a \sin \delta  + F_{y,{\rm F}} a \cos \delta - F_{y,{\rm R}} b,\end{split}\]</div>
 <p>this is,</p>
-<div class="math" id="equation-simpleVehicleEquationOfMotion">
-<span class="eqno">(13)<a class="headerlink" href="#equation-simpleVehicleEquationOfMotion" title="Permalink to this equation">¶</a></span>\[\begin{split}\ddot{x} &amp;= \frac{F_{x,{\rm F}} \cos \left( \psi + \delta \right) + F_{x,{\rm R}} \cos \psi - F_{y,{\rm F}} \sin \left( \psi + \delta \right) - F_{y,{\rm R}} \sin \psi}{m_{\rm T}} \\
+<div class="math notranslate nohighlight" id="equation-simplevehicleequationofmotion">
+<span class="eqno">(14)<a class="headerlink" href="#equation-simplevehicleequationofmotion" title="Permalink to this equation">¶</a></span>\[\begin{split}\ddot{x} &amp;= \frac{F_{x,{\rm F}} \cos \left( \psi + \delta \right) + F_{x,{\rm R}} \cos \psi - F_{y,{\rm F}} \sin \left( \psi + \delta \right) - F_{y,{\rm R}} \sin \psi}{m_{\rm T}} \\
 \ddot{y} &amp;= \frac{F_{x,{\rm F}} \sin \left( \psi + \delta \right)+ F_{x,{\rm R}} \sin \psi + F_{y,{\rm F}} \cos \left( \psi + \delta \right) + F_{y,{\rm R}} \cos \psi}{m_{\rm T}} \\
 \ddot{\psi} &amp;= \frac{F_{x,{\rm F}} a \sin \delta  + F_{y,{\rm F}} a \cos \delta - F_{y,{\rm R}} b}{I_{\rm T}}.\end{split}\]</div>
 </div>
 <div class="section" id="state-equations">
 <h3>State Equations<a class="headerlink" href="#state-equations" title="Permalink to this headline">¶</a></h3>
 <p>The chosen state vector is</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[\begin{split}{\rm z}_1 &amp;= x \\
 {\rm z}_2 &amp;= y \\
 {\rm z}_3 &amp;= \psi \\
 {\rm z}_4 &amp;= \dot{x} \\
 {\rm z}_5 &amp;= \dot{y} \\
 {\rm z}_6 &amp;= \dot{\psi}\end{split}\]</div>
-<p>Thus, considering the equation of motion in equation <a class="reference internal" href="#equation-simpleVehicleEquationOfMotion">(13)</a>, the state equation is given by</p>
-<div class="math">
+<p>Thus, considering the equation of motion in equation <a class="reference internal" href="#equation-simplevehicleequationofmotion">(14)</a>, the state equation is given by</p>
+<div class="math notranslate nohighlight">
 \[\begin{split}\dot{{\rm z}}_1 &amp;= {\rm z}_4 \\
 \dot{{\rm z}}_2 &amp;= {\rm z}_5 \\
 \dot{{\rm z}}_3 &amp;= {\rm z}_6 \\
@@ -195,39 +183,39 @@ I_{\rm T} \ddot{\psi} &amp;= F_{x,{\rm F}} a \sin \delta  + F_{y,{\rm F}} a \cos
 \dot{{\rm z}}_5 &amp;= \frac{F_{x,{\rm F}} \sin \left( {\rm z}_3 + \delta \right)+ F_{x,{\rm R}} \sin {\rm z}_3 + F_{y,{\rm F}} \cos \left( {\rm z}_3 + \delta \right) + F_{y,{\rm R}} \cos {\rm z}_3}{m_{\rm T}} \\
 \dot{{\rm z}}_6 &amp;= \frac{F_{x,{\rm F}} a \sin \delta  + F_{y,{\rm F}} a \cos \delta - F_{y,{\rm R}} b}{I_{\rm T}}\end{split}\]</div>
 <p>With the slip angles</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[\begin{split}\alpha_{\rm F} &amp;= \arctan \left( \frac{{\rm z}_5 + a {\rm z}_6 \cos {\rm z}_3}{ {\rm z}_4 - a {\rm z}_6 \sin {\rm z}_3} \right) - \left( \delta + {\rm z}_3 \right) \\
 \alpha_{\rm R} &amp;= \arctan \left( \frac{{\rm z}_5 - b {\rm z}_6 \cos {\rm z}_3}{ {\rm z}_4 + b {\rm z}_6 \sin {\rm z}_3} \right) - {\rm z}_3,\end{split}\]</div>
-<p>see equation <a class="reference internal" href="#equation-simpleVehicleSlipAngle">(4)</a>.</p>
-<p>However, in many occasions it is more convenint to use the states <span class="math">\(v_{\rm T}\)</span> e <span class="math">\(\alpha_{\rm T}\)</span> instead of <span class="math">\(\dot{x}\)</span> e <span class="math">\(\dot{y}\)</span>.</p>
+<p>see equation <a class="reference internal" href="#equation-simplevehicleslipangle">(5)</a>.</p>
+<p>However, in many occasions it is more convenint to use the states <span class="math notranslate nohighlight">\(v_{\rm T}\)</span> e <span class="math notranslate nohighlight">\(\alpha_{\rm T}\)</span> instead of <span class="math notranslate nohighlight">\(\dot{x}\)</span> e <span class="math notranslate nohighlight">\(\dot{y}\)</span>.</p>
 <p>The relation between this pair of states is given by</p>
-<div class="math" id="equation-simpleVehicleStateSubstitution">
-<span class="eqno">(14)<a class="headerlink" href="#equation-simpleVehicleStateSubstitution" title="Permalink to this equation">¶</a></span>\[\begin{split}\dot{x} &amp;= v_{\rm T} \cos \left( \psi + \alpha_{\rm T} \right) \\
+<div class="math notranslate nohighlight" id="equation-simplevehiclestatesubstitution">
+<span class="eqno">(15)<a class="headerlink" href="#equation-simplevehiclestatesubstitution" title="Permalink to this equation">¶</a></span>\[\begin{split}\dot{x} &amp;= v_{\rm T} \cos \left( \psi + \alpha_{\rm T} \right) \\
 \dot{y} &amp;= v_{\rm T} \sin \left( \psi + \alpha_{\rm T} \right).\end{split}\]</div>
-<p>The time derivative o equation <a class="reference internal" href="#equation-simpleVehicleStateSubstitution">(14)</a> is given by</p>
-<div class="math" id="equation-simpleVehicleStateDiffSubstitution">
-<span class="eqno">(15)<a class="headerlink" href="#equation-simpleVehicleStateDiffSubstitution" title="Permalink to this equation">¶</a></span>\[\begin{split}\ddot{x} &amp;= \dot{v}_{\rm T} \cos \left( \psi + \alpha_{\rm T} \right) - v_{\rm T} \left( \dot{\psi} + \dot{\alpha}_{\rm T} \right) \sin \left( \psi + \alpha_{\rm T} \right) \\
+<p>The time derivative o equation <a class="reference internal" href="#equation-simplevehiclestatesubstitution">(15)</a> is given by</p>
+<div class="math notranslate nohighlight" id="equation-simplevehiclestatediffsubstitution">
+<span class="eqno">(16)<a class="headerlink" href="#equation-simplevehiclestatediffsubstitution" title="Permalink to this equation">¶</a></span>\[\begin{split}\ddot{x} &amp;= \dot{v}_{\rm T} \cos \left( \psi + \alpha_{\rm T} \right) - v_{\rm T} \left( \dot{\psi} + \dot{\alpha}_{\rm T} \right) \sin \left( \psi + \alpha_{\rm T} \right) \\
 \ddot{y} &amp;= \dot{v}_{\rm T} \sin \left( \psi + \alpha_{\rm T} \right) + v_{\rm T} \left( \dot{\psi} + \dot{\alpha}_{\rm T} \right) \cos \left( \psi + \alpha_{\rm T} \right).\end{split}\]</div>
-<p>Substituting equation <a class="reference internal" href="#equation-simpleVehicleStateDiffSubstitution">(15)</a> in the equations of motion <a class="reference internal" href="#equation-simpleVehicleEquationOfMotion">(13)</a> we have</p>
-<div class="math">
+<p>Substituting equation <a class="reference internal" href="#equation-simplevehiclestatediffsubstitution">(16)</a> in the equations of motion <a class="reference internal" href="#equation-simplevehicleequationofmotion">(14)</a> we have</p>
+<div class="math notranslate nohighlight">
 \[\begin{split}\dot{v}_{\rm T} \cos \left( \psi + \alpha_{\rm T} \right) - v_{\rm T} \left( \dot{\psi} + \dot{\alpha}_{\rm T} \right) \sin \left( \psi + \alpha_{\rm T} \right) &amp;= \frac{F_{x,{\rm F}} \cos \left( \psi + \delta \right) + F_{x,{\rm R}} \cos \psi - F_{y,{\rm F}} \sin \left( \psi + \delta \right) - F_{y,{\rm R}} \sin \psi}{m_{\rm T}} \\
 \dot{v}_{\rm T} \sin \left( \psi + \alpha_{\rm T} \right) + v_{\rm T} \left( \dot{\psi} + \dot{\alpha}_{\rm T} \right) \cos \left( \psi + \alpha_{\rm T} \right) &amp;= \frac{F_{x,{\rm F}} \sin \left( \psi + \delta \right)+ F_{x,{\rm R}} \sin \psi + F_{y,{\rm F}} \cos \left( \psi + \delta \right) + F_{y,{\rm R}} \cos \psi}{m_{\rm T}} \\
 \ddot{\psi} &amp;= \frac{F_{x,{\rm F}} a \sin \delta  + F_{y,{\rm F}} a \cos \delta - F_{y,{\rm R}} b}{I_{\rm T}}.\end{split}\]</div>
 <p>Manipulating and simplifying</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[\begin{split}\dot{v}_{\rm T} &amp;= \frac{F_{x,{\rm F}} \cos \left( \alpha_{\rm T} - \delta \right) + F_{x,{\rm R}} \cos \alpha_{\rm T} + F_{y,{\rm F}} \sin \left( \alpha_{\rm T} - \delta \right) + F_{y,{\rm R}} \sin \alpha_{\rm T}}{m_{\rm T}} \\
 \dot{\alpha}_{\rm T} &amp;=  \frac{- F_{x,{\rm F}} \sin \left( \alpha_{\rm T} - \delta \right) - F_{x,{\rm R}} \sin \alpha_{\rm T} + F_{y,{\rm F}} \cos \left( \alpha_{\rm T} - \delta \right) + F_{y,{\rm R}} \cos \alpha_{\rm T} - m_{\rm T} v \dot{\psi}}{m_{\rm T} v_{\rm T}} \\
 \ddot{\psi} &amp;= \frac{F_{x,{\rm F}} a \sin \delta  + F_{y,{\rm F}} a \cos \delta - F_{y,{\rm R}} b}{I_{\rm T}}.\end{split}\]</div>
 <p>The slip angles become</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[\begin{split}\alpha_{\rm F} &amp;= \arctan \left( \frac{v_{\rm T} \sin \left( \psi + \alpha_{\rm T} \right) + a \dot{\psi} \cos \psi}{ v_{\rm T} \cos \left( \psi + \alpha_{\rm T} \right) - a \dot{\psi} \sin \psi} \right) - \left( \delta + \psi \right) \\
 \alpha_{\rm R} &amp;= \arctan \left( \frac{v_{\rm T} \sin \left( \psi + \alpha_{\rm T} \right) - b \dot{\psi} \cos \psi}{ v_{\rm T} \cos \left( \psi + \alpha_{\rm T} \right) + b \dot{\psi} \sin \psi} \right) - \psi.\end{split}\]</div>
 <p>Simplifying</p>
-<div class="math" id="equation-simpleVehicleSlipAngleSimple">
-<span class="eqno">(16)<a class="headerlink" href="#equation-simpleVehicleSlipAngleSimple" title="Permalink to this equation">¶</a></span>\[\begin{split}\alpha_{\rm F} &amp;= \arctan \left( \frac{v_{\rm T} \sin \alpha_{\rm T} + a \dot{\psi}}{ v_{\rm T} \cos \alpha_{\rm T}} \right) - \delta \\
+<div class="math notranslate nohighlight" id="equation-simplevehicleslipanglesimple">
+<span class="eqno">(17)<a class="headerlink" href="#equation-simplevehicleslipanglesimple" title="Permalink to this equation">¶</a></span>\[\begin{split}\alpha_{\rm F} &amp;= \arctan \left( \frac{v_{\rm T} \sin \alpha_{\rm T} + a \dot{\psi}}{ v_{\rm T} \cos \alpha_{\rm T}} \right) - \delta \\
 \alpha_{\rm R} &amp;= \arctan \left( \frac{v_{\rm T} \sin \alpha_{\rm T} - b \dot{\psi}}{ v_{\rm T} \cos \alpha_{\rm T}} \right)\end{split}\]</div>
 <p>Therefore, the new set of states is</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[\begin{split}{\rm x}_1 &amp;= x \\
 {\rm x}_2 &amp;= y \\
 {\rm x}_3 &amp;= \psi \\
@@ -235,84 +223,84 @@ I_{\rm T} \ddot{\psi} &amp;= F_{x,{\rm F}} a \sin \delta  + F_{y,{\rm F}} a \cos
 {\rm x}_5 &amp;= \alpha_{\rm T} \\
 {\rm x}_6 &amp;= \dot{\psi}\end{split}\]</div>
 <p>and the state equation is</p>
-<div class="math" id="equation-stateEquationX">
-<span class="eqno">(17)<a class="headerlink" href="#equation-stateEquationX" title="Permalink to this equation">¶</a></span>\[\begin{split}\dot{{\rm x}}_1 &amp;= {\rm x}_4 \cos \left( {\rm x}_3 + {\rm x}_5 \right) \\
+<div class="math notranslate nohighlight" id="equation-stateequationx">
+<span class="eqno">(18)<a class="headerlink" href="#equation-stateequationx" title="Permalink to this equation">¶</a></span>\[\begin{split}\dot{{\rm x}}_1 &amp;= {\rm x}_4 \cos \left( {\rm x}_3 + {\rm x}_5 \right) \\
 \dot{{\rm x}}_2 &amp;= {\rm x}_4 \sin \left( {\rm x}_3 + {\rm x}_5 \right) \\
 \dot{{\rm x}}_3 &amp;= {\rm x}_6 \\
 \dot{{\rm x}}_4 &amp;= \frac{F_{x,{\rm F}} \cos \left( {\rm x}_5 - \delta \right) + F_{x,{\rm R}} \cos {\rm x}_5 + F_{y,{\rm F}} \sin \left( {\rm x}_5 - \delta \right) + F_{y,{\rm R}} \sin {\rm x}_5}{m_{\rm T}} \\
 \dot{{\rm x}}_5 &amp;= \frac{- F_{x,{\rm F}} \sin \left( {\rm x}_5 - \delta \right) - F_{x,{\rm R}} \sin {\rm x}_5 + F_{y,{\rm F}} \cos \left( {\rm x}_5 - \delta \right) + F_{y,{\rm R}} \cos \alpha_{\rm T} - m_{\rm T} {\rm x}_4 {\rm x}_6}{m_{\rm T} {\rm x}_4} \\
 \dot{{\rm x}}_6 &amp;= \frac{F_{x,{\rm F}} a \sin \delta  + F_{y,{\rm F}} a \cos \delta - F_{y,{\rm R}} b}{I_{\rm T}}\end{split}\]</div>
-<p>The nonlinear model of the package uses the equations <a class="reference internal" href="#equation-simpleVehicleSlipAngleSimple">(16)</a> and <a class="reference internal" href="#equation-stateEquationX">(17)</a></p>
+<p>The nonlinear model of the package uses the equations <a class="reference internal" href="#equation-simplevehicleslipanglesimple">(17)</a> and <a class="reference internal" href="#equation-stateequationx">(18)</a></p>
 </div>
 <div class="section" id="linearization">
 <h3>Linearization<a class="headerlink" href="#linearization" title="Permalink to this headline">¶</a></h3>
-<p>The state equation <a class="reference internal" href="#equation-stateEquationX">(17)</a> describes the nonlinear version of the model. It can be written as</p>
-<div class="math">
+<p>The state equation <a class="reference internal" href="#equation-stateequationx">(18)</a> describes the nonlinear version of the model. It can be written as</p>
+<div class="math notranslate nohighlight">
 \[\dot{{\bf x}} = {\bf f} \left( {\bf x}, {\bf u} \right),\]</div>
 <p>where the state vector is given by</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[\begin{split}{\bf x} = \left[ \begin{array}{c} {\rm x}_1 \\ {\rm x}_2 \\ {\rm x}_3 \\ {\rm x}_4 \\ {\rm x}_5 \\ {\rm x}_6 \end{array} \right] = \left[ \begin{array}{c} x \\ y \\ \psi \\ v_{\rm T} \\ \alpha_{\rm T} \\ \dot{\psi} \end{array} \right],\end{split}\]</div>
 <p>the input vector is</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[\begin{split}{\bf u} = \left[ \begin{array}{c} \delta \\ F_{x,{\rm F}} \\ F_{x,{\rm R}} \\ F_{y,{\rm F}} \\ F_{y,{\rm R}} \end{array} \right]\end{split}\]</div>
-<p>and the vector function <span class="math">\({\bf f}\)</span> is</p>
-<div class="math">
+<p>and the vector function <span class="math notranslate nohighlight">\({\bf f}\)</span> is</p>
+<div class="math notranslate nohighlight">
 \[\begin{split}{\bf f} = \left[ \begin{array}{c} {\rm f}_1 \\ {\rm f}_2 \\ {\rm f}_3 \\ {\rm f}_4 \\ {\rm f}_5 \\ {\rm f}_6 \end{array} \right] = \left[ \begin{array}{c} \dot{{\rm x}}_1 \\ \dot{{\rm x}}_2 \\ \dot{{\rm x}}_3 \\ \dot{{\rm x}}_4 \\ \dot{{\rm x}}_5 \\ \dot{{\rm x}}_6 \end{array} \right].\end{split}\]</div>
 <p>The linearization can be made choosing an operating point that represents the vehicle traveling in a straight line with a constant forward velocity</p>
-<p>A linearização deste sistema pode ser feita para um veículo se movimentando em linha reta com uma determinada velocidade <span class="math">\(v_{{\rm T},0} &gt; 0\)</span>. In this case, the operating point of each state are</p>
-<div class="math">
+<p>A linearização deste sistema pode ser feita para um veículo se movimentando em linha reta com uma determinada velocidade <span class="math notranslate nohighlight">\(v_{{\rm T},0} &gt; 0\)</span>. In this case, the operating point of each state are</p>
+<div class="math notranslate nohighlight">
 \[\begin{split}{\rm x}_{1,op} &amp;= x_{op} \\
 {\rm x}_{2,op} &amp;= y_{op} \\
 {\rm x}_{3,op} &amp;= \psi_{op} = 0 \\
 {\rm x}_{4,op} &amp;= v_{{\rm T},op} = v_{{\rm T},0} \\
 {\rm x}_{5,op} &amp;= \alpha_{{\rm T},op} = 0 \\
 {\rm x}_{6,op} &amp;= \dot{\psi}_{op} = 0,\end{split}\]</div>
-<p>As we are going to see below, the operating point of the states <span class="math">\(x\)</span> e <span class="math">\(y\)</span> do not have to be defined. They do not influence the dynamics of the linear system.</p>
+<p>As we are going to see below, the operating point of the states <span class="math notranslate nohighlight">\(x\)</span> e <span class="math notranslate nohighlight">\(y\)</span> do not have to be defined. They do not influence the dynamics of the linear system.</p>
 <p>The vector of the states operating points is</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[\begin{split}{\bf x}_{op} = \left[ \begin{array}{c} {\rm x}_{1,op} \\ {\rm x}_{2,op} \\ {\rm x}_{3,op} \\ {\rm x}_{4,op} \\ {\rm x}_{5,op} \\ {\rm x}_{6,op} \end{array} \right].\end{split}\]</div>
 <p>The operating point of the inputs is</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[\begin{split}\delta_{op} &amp;= 0 \\
 F_{x,{\rm F},op} &amp;= 0 \\
 F_{x,{\rm R},op} &amp;= 0 \\
 F_{y,{\rm F},op} &amp;= 0 \\
 F_{y,{\rm R},op} &amp;= 0.\end{split}\]</div>
 <p>The vector of the input operating points is</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[\begin{split}{\bf u}_{op} = \left[ \begin{array}{c} \delta_{op} \\ F_{x,{\rm F},op} \\ F_{x,{\rm R},op} \\ F_{y,{\rm F},op} \\ F_{y,{\rm R},op} \end{array} \right].\end{split}\]</div>
 <p>Expanding the system in a Taylor series and neglecting the higher order terms, we have</p>
-<div class="math" id="equation-simpleVehicleTaylorSeries">
-<span class="eqno">(18)<a class="headerlink" href="#equation-simpleVehicleTaylorSeries" title="Permalink to this equation">¶</a></span>\[\begin{split}{\bf f}_{lin}\left( {\bf x}, {\bf u} \right) = {\bf f} \left( {\bf x}_{op}, {\bf u}_{op} \right) + \nabla{\bf f}\left( {\bf x}_{op}, {\bf u}_{op} \right) \left[ \begin{array}{c} {\bf x} - {\bf x}_{op} \\ {\bf u} - {\bf u}_{op} \end{array} \right].\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-simplevehicletaylorseries">
+<span class="eqno">(19)<a class="headerlink" href="#equation-simplevehicletaylorseries" title="Permalink to this equation">¶</a></span>\[\begin{split}{\bf f}_{lin}\left( {\bf x}, {\bf u} \right) = {\bf f} \left( {\bf x}_{op}, {\bf u}_{op} \right) + \nabla{\bf f}\left( {\bf x}_{op}, {\bf u}_{op} \right) \left[ \begin{array}{c} {\bf x} - {\bf x}_{op} \\ {\bf u} - {\bf u}_{op} \end{array} \right].\end{split}\]</div>
 <p>where</p>
-<div class="math" id="equation-functionOP">
-<span class="eqno">(19)<a class="headerlink" href="#equation-functionOP" title="Permalink to this equation">¶</a></span>\[\begin{split}{\bf f} \left( {\bf x}_{op}, {\bf u}_{op} \right) = \left[ \begin{array}{c} 0 \\ 0 \\ 0 \\ v_{{\rm T},0} \\0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0  \end{array}\right].\end{split}\]</div>
-<p>The gradient of <span class="math">\({\bf f}\)</span> is</p>
-<div class="math">
+<div class="math notranslate nohighlight" id="equation-functionop">
+<span class="eqno">(20)<a class="headerlink" href="#equation-functionop" title="Permalink to this equation">¶</a></span>\[\begin{split}{\bf f} \left( {\bf x}_{op}, {\bf u}_{op} \right) = \left[ \begin{array}{c} 0 \\ 0 \\ 0 \\ v_{{\rm T},0} \\0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0  \end{array}\right].\end{split}\]</div>
+<p>The gradient of <span class="math notranslate nohighlight">\({\bf f}\)</span> is</p>
+<div class="math notranslate nohighlight">
 \[\begin{split}\nabla {\bf f} = \left[ \begin{array}{ccccccccccc} \frac{ \partial f_1 }{ \partial x } &amp; \frac{ \partial f_1 }{ \partial y } &amp; \frac{ \partial f_1 }{ \partial \psi } &amp; \frac{ \partial f_1 }{ \partial v } &amp; \frac{ \partial f_1 }{ \partial \alpha_{\rm T} } &amp; \frac{ \partial f_1 }{ \partial \dot{\psi} } &amp; \frac{ \partial f_1 }{ \partial \delta } &amp; \frac{ \partial f_1 }{ \partial F_{x, {\rm F}} } &amp; \frac{ \partial f_1 }{ \partial F_{x, {\rm R}} } &amp; \frac{\partial f_1}{F_{y,{\rm F}}} &amp; \frac{\partial f_1}{\partial F_{y,{\rm R}}}  \\ \frac{ \partial f_2 }{ \partial x } &amp; \frac{ \partial f_2 }{ \partial y } &amp; \frac{ \partial f_2 }{ \partial \psi } &amp; \frac{ \partial f_2 }{ \partial v } &amp; \frac{ \partial f_2 }{ \partial \alpha_{\rm T} } &amp; \frac{ \partial f_2 }{ \partial \dot{\psi} } &amp; \frac{ \partial f_2 }{ \partial \delta } &amp; \frac{ \partial f_2 }{ \partial F_{x, {\rm F}} } &amp; \frac{ \partial f_2 }{ \partial F_{x, {\rm R}} } &amp; \frac{\partial f_2}{F_{y,{\rm F}}} &amp; \frac{\partial f_2}{\partial F_{y,{\rm R}}}  \\ \frac{ \partial f_3 }{ \partial x } &amp; \frac{ \partial f_3 }{ \partial y } &amp; \frac{ \partial f_3 }{ \partial \psi } &amp; \frac{ \partial f_3 }{ \partial v } &amp; \frac{ \partial f_3 }{ \partial \alpha_{\rm T} } &amp; \frac{ \partial f_3 }{ \partial \dot{\psi} } &amp; \frac{ \partial f_3 }{ \partial \delta } &amp; \frac{ \partial f_3 }{ \partial F_{x, {\rm F}} } &amp; \frac{ \partial f_3 }{ \partial F_{x, {\rm R}} } &amp; \frac{\partial f_3}{F_{y,{\rm F}}} &amp; \frac{\partial f_3}{\partial F_{y,{\rm R}}}  \\ \frac{ \partial f_4 }{ \partial x } &amp; \frac{ \partial f_4 }{ \partial y } &amp; \frac{ \partial f_4 }{ \partial \psi } &amp; \frac{ \partial f_4 }{ \partial v } &amp; \frac{ \partial f_4 }{ \partial \alpha_{\rm T} } &amp; \frac{ \partial f_4 }{ \partial \dot{\psi} } &amp; \frac{ \partial f_4 }{ \partial \delta } &amp; \frac{ \partial f_4 }{ \partial F_{x, {\rm F}} } &amp; \frac{ \partial f_4 }{ \partial F_{x, {\rm R}} } &amp; \frac{\partial f_4}{F_{y,{\rm F}}} &amp; \frac{\partial f_4}{\partial F_{y,{\rm R}}}  \\ \frac{ \partial f_5 }{ \partial x } &amp; \frac{ \partial f_5 }{ \partial y } &amp; \frac{ \partial f_5 }{ \partial \psi } &amp; \frac{ \partial f_5 }{ \partial v } &amp; \frac{ \partial f_5 }{ \partial \alpha_{\rm T} } &amp; \frac{ \partial f_5 }{ \partial \dot{\psi} } &amp; \frac{ \partial f_5 }{ \partial \delta } &amp; \frac{ \partial f_5 }{ \partial F_{x, {\rm F}} } &amp; \frac{ \partial f_5 }{ \partial F_{x, {\rm R}} } &amp; \frac{\partial f_5}{F_{y,{\rm F}}} &amp; \frac{\partial f_5}{\partial F_{y,{\rm R}}}  \\ \frac{ \partial f_6 }{ \partial x } &amp; \frac{ \partial f_6 }{ \partial y } &amp; \frac{ \partial f_6 }{ \partial \psi } &amp; \frac{ \partial f_6 }{ \partial v } &amp; \frac{ \partial f_6 }{ \partial \alpha_{\rm T} } &amp; \frac{ \partial f_6 }{ \partial \dot{\psi} } &amp; \frac{ \partial f_6 }{ \partial \delta } &amp; \frac{ \partial f_6 }{ \partial F_{x, {\rm F}} } &amp; \frac{ \partial f_6 }{ \partial F_{x, {\rm R}} } &amp; \frac{\partial f_6}{F_{y,{\rm F}}} &amp; \frac{\partial f_6}{\partial F_{y,{\rm R}}} \end{array} \right].\end{split}\]</div>
 <p>Calculating the partial derivatives,</p>
-<div class="math" id="equation-jacobian">
-<span class="eqno">(20)<a class="headerlink" href="#equation-jacobian" title="Permalink to this equation">¶</a></span>\[\begin{split}\nabla {\bf f}\left( {\bf x}_{op}, {\bf u}_{op} \right) = \left[ \begin{array}{ccccccccccc} 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; v_{{\rm T},0} &amp; 0 &amp; v_{{\rm T},0} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \frac{1}{m_{\rm T}} &amp; \frac{1}{m_{\rm T}} &amp; 0  &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; -1 &amp; 0 &amp; 0 &amp; 0 &amp; \frac{1}{m_{\rm T} v_{{\rm T},0}} &amp; \frac{1}{m_{\rm T} v_{{\rm T},0}} \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \frac{a}{I_{{\rm T}}} &amp; - \frac{b}{I_{{\rm T}}} \end{array} \right]\end{split}\]</div>
-<p>Substituting equations <a class="reference internal" href="#equation-functionOP">(19)</a> and <a class="reference internal" href="#equation-jacobian">(20)</a> in <a class="reference internal" href="#equation-simpleVehicleTaylorSeries">(18)</a> the linearized system becomes</p>
-<div class="math" id="equation-linearModel">
-<span class="eqno">(21)<a class="headerlink" href="#equation-linearModel" title="Permalink to this equation">¶</a></span>\[\begin{split}f_{1,lin} &amp;= \dot{x} = v_{\rm T}  \\
+<div class="math notranslate nohighlight" id="equation-jacobian">
+<span class="eqno">(21)<a class="headerlink" href="#equation-jacobian" title="Permalink to this equation">¶</a></span>\[\begin{split}\nabla {\bf f}\left( {\bf x}_{op}, {\bf u}_{op} \right) = \left[ \begin{array}{ccccccccccc} 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; v_{{\rm T},0} &amp; 0 &amp; v_{{\rm T},0} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \frac{1}{m_{\rm T}} &amp; \frac{1}{m_{\rm T}} &amp; 0  &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; -1 &amp; 0 &amp; 0 &amp; 0 &amp; \frac{1}{m_{\rm T} v_{{\rm T},0}} &amp; \frac{1}{m_{\rm T} v_{{\rm T},0}} \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \frac{a}{I_{{\rm T}}} &amp; - \frac{b}{I_{{\rm T}}} \end{array} \right]\end{split}\]</div>
+<p>Substituting equations <a class="reference internal" href="#equation-functionop">(20)</a> and <a class="reference internal" href="#equation-jacobian">(21)</a> in <a class="reference internal" href="#equation-simplevehicletaylorseries">(19)</a> the linearized system becomes</p>
+<div class="math notranslate nohighlight" id="equation-linearmodel">
+<span class="eqno">(22)<a class="headerlink" href="#equation-linearmodel" title="Permalink to this equation">¶</a></span>\[\begin{split}f_{1,lin} &amp;= \dot{x} = v_{\rm T}  \\
 f_{2,lin} &amp;= \dot{y} = v_{{\rm T},0} \left( \psi + \alpha_{{\rm T}}\right) \\
 f_{3,lin} &amp;= \dot{\psi} = \dot{\psi} \\
 f_{4,lin} &amp;= \dot{v}_{\rm T} = \frac{F_{x,{\rm F}} + F_{x,{\rm R}}}{m_{\rm T}} \\
 f_{5,lin} &amp;= \dot{\alpha}_{\rm T} = \frac{F_{y,{\rm F}} + F_{y,{\rm R}}}{m_{\rm T} v_{{\rm T},0}} - \dot{\psi} \\
 f_{6,lin} &amp;= \ddot{\psi} = \frac{a F_{y,{\rm F}} -  b F_{y,{\rm R}}}{I_{\rm T}}\end{split}\]</div>
-<p>It is important to note that if the longitudinal forces of the tire, <span class="math">\(F_{x,{\rm F}}\)</span> and <span class="math">\(F_{x,{\rm R}}\)</span>, are zero, the state <span class="math">\(v_{\rm T}\)</span> is constant.</p>
-<p>In the same operating point, the linear slip angles from equation <a class="reference internal" href="#equation-simpleVehicleSlipAngleSimple">(16)</a> become</p>
-<div class="math" id="equation-linearSlipAngles">
-<span class="eqno">(22)<a class="headerlink" href="#equation-linearSlipAngles" title="Permalink to this equation">¶</a></span>\[\begin{split}\alpha_{{\rm F},lin} &amp;= \alpha_{{\rm T}} + \frac{a}{v_{{\rm T},0}} \dot{\psi} - \delta \\
+<p>It is important to note that if the longitudinal forces of the tire, <span class="math notranslate nohighlight">\(F_{x,{\rm F}}\)</span> and <span class="math notranslate nohighlight">\(F_{x,{\rm R}}\)</span>, are zero, the state <span class="math notranslate nohighlight">\(v_{\rm T}\)</span> is constant.</p>
+<p>In the same operating point, the linear slip angles from equation <a class="reference internal" href="#equation-simplevehicleslipanglesimple">(17)</a> become</p>
+<div class="math notranslate nohighlight" id="equation-linearslipangles">
+<span class="eqno">(23)<a class="headerlink" href="#equation-linearslipangles" title="Permalink to this equation">¶</a></span>\[\begin{split}\alpha_{{\rm F},lin} &amp;= \alpha_{{\rm T}} + \frac{a}{v_{{\rm T},0}} \dot{\psi} - \delta \\
 \alpha_{{\rm F},lin} &amp;= \alpha_{{\rm T}} - \frac{b}{v_{{\rm T},0}} \dot{\psi}.\end{split}\]</div>
-<p>The linear model of the package uses equations <a class="reference internal" href="#equation-linearModel">(21)</a> and <a class="reference internal" href="#equation-linearSlipAngles">(22)</a>.</p>
+<p>The linear model of the package uses equations <a class="reference internal" href="#equation-linearmodel">(22)</a> and <a class="reference internal" href="#equation-linearslipangles">(23)</a>.</p>
 <p>Finally, a linear tire model</p>
-<div class="math" id="equation-simpleVehicleLinearTire">
-<span class="eqno">(23)<a class="headerlink" href="#equation-simpleVehicleLinearTire" title="Permalink to this equation">¶</a></span>\[\begin{split}F_{y,{\rm F}} &amp;= - K_{\rm F} \alpha_{\rm F} = - K_{\rm F} \alpha_{{\rm T}} - \frac{a K_{\rm F}}{v_{{\rm T},0}} \dot{\psi} + K_{\rm F} \delta \\
+<div class="math notranslate nohighlight" id="equation-simplevehiclelineartire">
+<span class="eqno">(24)<a class="headerlink" href="#equation-simplevehiclelineartire" title="Permalink to this equation">¶</a></span>\[\begin{split}F_{y,{\rm F}} &amp;= - K_{\rm F} \alpha_{\rm F} = - K_{\rm F} \alpha_{{\rm T}} - \frac{a K_{\rm F}}{v_{{\rm T},0}} \dot{\psi} + K_{\rm F} \delta \\
 F_{y,{\rm R}} &amp;= - K_{\rm R} \alpha_{\rm R} =  - K_{\rm R} \alpha_{{\rm T}} + \frac{b K_{\rm R}}{v_{{\rm T},0}} \dot{\psi}\end{split}\]</div>
-<p>can be used in the linearized equations <a class="reference internal" href="#equation-linearModel">(21)</a>. In this case</p>
-<div class="math">
+<p>can be used in the linearized equations <a class="reference internal" href="#equation-linearmodel">(22)</a>. In this case</p>
+<div class="math notranslate nohighlight">
 \[\begin{split}f_{1,lin} &amp;= \dot{x} = v_{\rm T} \\
 f_{2,lin} &amp;= \dot{y} = v_{{\rm T},0} \left( \psi + \alpha_{{\rm T}}\right) \\
 f_{3,lin} &amp;= \dot{\psi} = \dot{\psi} \\
@@ -320,13 +308,13 @@ f_{4,lin} &amp;= \dot{v}_{\rm T} = \frac{F_{x,{\rm F}} + F_{x,{\rm R}}}{m_{\rm T
 f_{5,lin} &amp;= \dot{\alpha}_{{\rm T}} = - \frac{K_{\rm F} + K_{\rm R}}{m_{\rm T} v_{{\rm T},0}} \alpha_{{\rm T}} - \frac{m_{\rm T} v_{{\rm T},0} + \frac{a K_{\rm F} - b K_{\rm R}}{v_{{\rm T},0}}}{m_{\rm T} v_{{\rm T},0}} \dot{\psi} + \frac{K_{\rm F}}{m_{\rm T} v_{{\rm T},0}} \delta \\
 f_{6,lin} &amp;= \ddot{\psi} = - \frac{a K_{\rm F} - b K_{\rm R}}{I_{\rm T}} \alpha_{{\rm T}} - \frac{a^2 K_{\rm F} + b^2 K_{\rm R}}{I_{\rm T}  v_{{\rm T},0}} \dot{\psi} + \frac{a K_{\rm F}}{I_{\rm T}} \delta\end{split}\]</div>
 <p>In the matrix form</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[\dot{{\bf x}} = {\bf A} {\bf x} + {\bf B} {\bf \hat{u}}\]</div>
 <p>or</p>
-<div class="math" id="equation-linearModelMatrix">
-<span class="eqno">(24)<a class="headerlink" href="#equation-linearModelMatrix" title="Permalink to this equation">¶</a></span>\[\begin{split}\left[ \begin{array}{c} \dot{x} \\ \dot{y} \\ \dot{\psi} \\ \dot{v}_{\rm T} \\ \dot{\alpha}_{\rm T} \\ \ddot{\psi} \end{array} \right] = \left[ \begin{array}{cccccc} 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; v_{{\rm T},0} &amp; 0 &amp; v_{{\rm T},0} &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; - \frac{K_{\rm F} + K_{\rm R}}{m_{\rm T} v_{{\rm T},0}} &amp; - \frac{m_{\rm T} v_{{\rm T},0} + \frac{a K_{\rm F} - b K_{\rm R}}{v_{{\rm T},0}}}{m_{\rm T} v_{{\rm T},0}} \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; - \frac{a K_{\rm F} - b K_{\rm R}}{I_{\rm T}} &amp; - \frac{a^2 K_{\rm F} + b^2 K_{\rm R}}{I_{\rm T}  v_{{\rm T},0}} \end{array} \right] \left[ \begin{array}{c} x \\ y \\ \psi \\ v_{\rm T} \\ \alpha_{\rm T} \\ \dot{\psi} \end{array} \right] + \left[ \begin{array}{ccccc} 0 &amp; 0 &amp; 0 &amp; \\ 0 &amp; 0 &amp; 0 &amp; \\ 0 &amp; 0 &amp; 0 &amp; \\ 0 &amp; \frac{1}{m_{\rm T}} &amp; \frac{1}{m_{\rm T}} &amp; \\ \frac{K_{\rm F}}{m_{\rm T} v_{{\rm T},0}} &amp; 0 &amp; 0 &amp; \\  \frac{a K_{\rm F}}{I_{\rm T}} &amp; 0 &amp; 0 \end{array} \right] \left[ \begin{array}{c} \delta \\ F_{x,{\rm F}} \\ F_{x,{\rm R}} \end{array} \right]\end{split}\]</div>
-<p>A popular model used in the literature considers just the last two rows of the model described in <a class="reference internal" href="#equation-linearModelMatrix">(24)</a> with only the steering angle as input. This is</p>
-<div class="math">
+<div class="math notranslate nohighlight" id="equation-linearmodelmatrix">
+<span class="eqno">(25)<a class="headerlink" href="#equation-linearmodelmatrix" title="Permalink to this equation">¶</a></span>\[\begin{split}\left[ \begin{array}{c} \dot{x} \\ \dot{y} \\ \dot{\psi} \\ \dot{v}_{\rm T} \\ \dot{\alpha}_{\rm T} \\ \ddot{\psi} \end{array} \right] = \left[ \begin{array}{cccccc} 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; v_{{\rm T},0} &amp; 0 &amp; v_{{\rm T},0} &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; - \frac{K_{\rm F} + K_{\rm R}}{m_{\rm T} v_{{\rm T},0}} &amp; - \frac{m_{\rm T} v_{{\rm T},0} + \frac{a K_{\rm F} - b K_{\rm R}}{v_{{\rm T},0}}}{m_{\rm T} v_{{\rm T},0}} \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; - \frac{a K_{\rm F} - b K_{\rm R}}{I_{\rm T}} &amp; - \frac{a^2 K_{\rm F} + b^2 K_{\rm R}}{I_{\rm T}  v_{{\rm T},0}} \end{array} \right] \left[ \begin{array}{c} x \\ y \\ \psi \\ v_{\rm T} \\ \alpha_{\rm T} \\ \dot{\psi} \end{array} \right] + \left[ \begin{array}{ccccc} 0 &amp; 0 &amp; 0 &amp; \\ 0 &amp; 0 &amp; 0 &amp; \\ 0 &amp; 0 &amp; 0 &amp; \\ 0 &amp; \frac{1}{m_{\rm T}} &amp; \frac{1}{m_{\rm T}} &amp; \\ \frac{K_{\rm F}}{m_{\rm T} v_{{\rm T},0}} &amp; 0 &amp; 0 &amp; \\  \frac{a K_{\rm F}}{I_{\rm T}} &amp; 0 &amp; 0 \end{array} \right] \left[ \begin{array}{c} \delta \\ F_{x,{\rm F}} \\ F_{x,{\rm R}} \end{array} \right]\end{split}\]</div>
+<p>A popular model used in the literature considers just the last two rows of the model described in <a class="reference internal" href="#equation-linearmodelmatrix">(25)</a> with only the steering angle as input. This is</p>
+<div class="math notranslate nohighlight">
 \[\begin{split}\left[ \begin{array}{c} \dot{\alpha}_{\rm T} \\ \ddot{\psi} \end{array} \right] = \left[ \begin{array}{cccccc} - \frac{K_{\rm F} + K_{\rm R}}{m_{\rm T} v_{{\rm T},0}} &amp; - \frac{m_{\rm T} v_{{\rm T},0} + \frac{a K_{\rm F} - b K_{\rm R}}{v_{{\rm T},0}}}{m_{\rm T} v_{{\rm T},0}} \\ - \frac{a K_{\rm F} - b K_{\rm R}}{I_{\rm T}} &amp; - \frac{a^2 K_{\rm F} + b^2 K_{\rm R}}{I_{\rm T}  v_{{\rm T},0}} \end{array} \right] \left[ \begin{array}{c} \alpha_{\rm T} \\ \dot{\psi} \end{array} \right] + \left[ \begin{array}{ccccc} \frac{K_{\rm F}}{m_{\rm T} v_{{\rm T},0}} \\  \frac{a K_{\rm F}}{I_{\rm T}} \end{array} \right] \left[ \begin{array}{c} \delta \end{array} \right]\end{split}\]</div>
 </div>
 </div>
@@ -335,7 +323,7 @@ f_{6,lin} &amp;= \ddot{\psi} = - \frac{a K_{\rm F} - b K_{\rm R}}{I_{\rm T}} \al
 <p>The linear version of this model is described by equations ?? and the nonlinear version of this model is described by equations ??.</p>
 <p>Nonlinear bicycle model nonlinear with 4 degrees of freedom.</p>
 <p>Description</p>
-<p>The center of gravity of the vehicle is located at the point <span class="math">\(T\)</span>. The front and rear axles are located at the points <span class="math">\(F\)</span> and <span class="math">\(R\)</span>, respectively. The constant <span class="math">\(a\)</span> measures the distance of point <span class="math">\(F\)</span> to <span class="math">\(T\)</span> and <span class="math">\(b\)</span> the distance of point <span class="math">\(T\)</span> to <span class="math">\(R\)</span>. The angles <span class="math">\(\alpha_F\)</span> e <span class="math">\(\alpha_R\)</span> are the front and rear slip angles, respectively. <span class="math">\(\alpha_T\)</span> is the vehicle side slip angle and <span class="math">\(\psi\)</span> is the vehicle yaw angle. <span class="math">\(\delta\)</span> is the steering angle.</p>
+<p>The center of gravity of the vehicle is located at the point <span class="math notranslate nohighlight">\(T\)</span>. The front and rear axles are located at the points <span class="math notranslate nohighlight">\(F\)</span> and <span class="math notranslate nohighlight">\(R\)</span>, respectively. The constant <span class="math notranslate nohighlight">\(a\)</span> measures the distance of point <span class="math notranslate nohighlight">\(F\)</span> to <span class="math notranslate nohighlight">\(T\)</span> and <span class="math notranslate nohighlight">\(b\)</span> the distance of point <span class="math notranslate nohighlight">\(T\)</span> to <span class="math notranslate nohighlight">\(R\)</span>. The angles <span class="math notranslate nohighlight">\(\alpha_F\)</span> e <span class="math notranslate nohighlight">\(\alpha_R\)</span> are the front and rear slip angles, respectively. <span class="math notranslate nohighlight">\(\alpha_T\)</span> is the vehicle side slip angle and <span class="math notranslate nohighlight">\(\psi\)</span> is the vehicle yaw angle. <span class="math notranslate nohighlight">\(\delta\)</span> is the steering angle.</p>
 <div class="figure">
 <img alt="https://andresmendes.github.io/openvd/illustrations/modelSimple4DOF.svg" src="https://andresmendes.github.io/openvd/illustrations/modelSimple4DOF.svg" /></div>
 </div>
@@ -381,12 +369,14 @@ f_{6,lin} &amp;= \ddot{\psi} = - \frac{a K_{\rm F} - b K_{\rm R}}{I_{\rm T}} \al
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -419,9 +409,6 @@ f_{6,lin} &amp;= \ddot{\psi} = - \frac{a K_{\rm F} - b K_{\rm R}}{I_{\rm T}} \al
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> &nbsp; &nbsp;</li>
-        <li class="right" >
           <a href="articulatedVehicleModels.html" title="Articulated vehicle models"
              >next</a> &nbsp; &nbsp;</li>
         <li class="right" >
@@ -436,7 +423,7 @@ f_{6,lin} &amp;= \ddot{\psi} = - \frac{a K_{\rm F} - b K_{\rm R}}{I_{\rm T}} \al
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, BSD 3-clause.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

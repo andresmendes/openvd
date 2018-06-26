@@ -19,7 +19,7 @@
 #
 # import os
 import sys
-sys.path.insert(0, "/home/asm/MEGA/Repos/openvd/pyvd/")
+sys.path.insert(0, "N:\_RTC\openvd\pyvd")
 
 
 # -- General configuration ------------------------------------------------
@@ -34,7 +34,6 @@ sys.path.insert(0, "/home/asm/MEGA/Repos/openvd/pyvd/")
 extensions = ['sphinx.ext.mathjax',
               'sphinx.ext.inheritance_diagram',
               'sphinx.ext.autodoc',
-              'sphinxcontrib.bibtex',
               'sphinx.ext.todo',
               'sphinx.ext.coverage',
               'sphinx.ext.viewcode']

@@ -6,21 +6,13 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Steering Control &#8212; OpenVD  documentation</title>
     <link rel="stylesheet" href="_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
@@ -33,8 +25,7 @@
     <link rel="next" title="Template Articulated" href="exampleTemplateArticulated.html" />
     <link rel="prev" title="SkidPad 4DOF" href="exampleSkidPad4DOF.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -72,11 +63,11 @@
 <div class="section" id="steeringcontrol-m">
 <h2>SteeringControl.m<a class="headerlink" href="#steeringcontrol-m" title="Permalink to this headline">¶</a></h2>
 <p>First, we choose the tire model</p>
-<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">TirePac</span> <span class="p">=</span> <span class="n">TirePacejka</span><span class="p">();</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">TirePac</span> <span class="p">=</span> <span class="n">TirePacejka</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>and define the tire parameters</p>
-<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">Fz</span> <span class="p">=</span> <span class="mf">4e+03</span><span class="p">;</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">Fz</span> <span class="p">=</span> <span class="mf">4e+03</span><span class="p">;</span>
 <span class="n">camber</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="n">TirePac</span><span class="p">.</span><span class="n">a0</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
 <span class="n">TirePac</span><span class="p">.</span><span class="n">a1</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -95,11 +86,11 @@
 </pre></div>
 </div>
 <p>The plant model is defined with</p>
-<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">VehiclePlant</span> <span class="p">=</span> <span class="n">VehicleSimpleNonlinear</span><span class="p">();</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">VehiclePlant</span> <span class="p">=</span> <span class="n">VehicleSimpleNonlinear</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>The vehicle parameters are</p>
-<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">VehiclePlant</span><span class="p">.</span><span class="n">mF0</span> <span class="p">=</span> <span class="mi">700</span><span class="p">;</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">VehiclePlant</span><span class="p">.</span><span class="n">mF0</span> <span class="p">=</span> <span class="mi">700</span><span class="p">;</span>
 <span class="n">VehiclePlant</span><span class="p">.</span><span class="n">mR0</span> <span class="p">=</span> <span class="mi">600</span><span class="p">;</span>
 <span class="n">VehiclePlant</span><span class="p">.</span><span class="n">IT</span> <span class="p">=</span> <span class="mi">10000</span><span class="p">;</span>
 <span class="n">VehiclePlant</span><span class="p">.</span><span class="n">lT</span> <span class="p">=</span> <span class="mf">3.5</span><span class="p">;</span>
@@ -110,33 +101,33 @@
 </pre></div>
 </div>
 <p>Attributing the chosen tire model to the vehicle object we have</p>
-<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">VehiclePlant</span><span class="p">.</span><span class="n">tire</span> <span class="p">=</span> <span class="n">TirePac</span><span class="p">;</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">VehiclePlant</span><span class="p">.</span><span class="n">tire</span> <span class="p">=</span> <span class="n">TirePac</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>The input steering angle is given by the control law within the <a class="reference internal" href="#control-law-steering-control"><span class="std std-ref">ControlLaw.m</span></a> function.</p>
-<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">VehiclePlant</span><span class="p">.</span><span class="n">deltaf</span> <span class="p">=</span> <span class="p">@</span><span class="n">ControlLaw</span><span class="p">;</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">VehiclePlant</span><span class="p">.</span><span class="n">deltaf</span> <span class="p">=</span> <span class="p">@</span><span class="n">ControlLaw</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>After this, we define the simulation time span</p>
-<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="p">=</span> <span class="mi">12</span><span class="p">;</span>                             <span class="c">% Total simulation time [s]</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="p">=</span> <span class="mi">12</span><span class="p">;</span>                             <span class="c">% Total simulation time [s]</span>
 <span class="n">resol</span> <span class="p">=</span> <span class="mi">500</span><span class="p">;</span>                        <span class="c">% Resolution</span>
 <span class="n">TSPAN</span> <span class="p">=</span> <span class="mi">0</span><span class="p">:</span><span class="n">T</span><span class="o">/</span><span class="n">resol</span><span class="p">:</span><span class="n">T</span><span class="p">;</span>                <span class="c">% Time span [s]</span>
 </pre></div>
 </div>
-<p>To define a simulation object (<a class="reference internal" href="api.html#module-Simulator" title="Simulator"><code class="xref py py-mod docutils literal"><span class="pre">Simulator</span></code></a>) the arguments must be the vehicle object and the time span. This is,</p>
-<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">simulator</span> <span class="p">=</span> <span class="n">Simulator</span><span class="p">(</span><span class="n">VehiclePlant</span><span class="p">,</span> <span class="n">TSPAN</span><span class="p">);</span>
+<p>To define a simulation object (<a class="reference internal" href="api.html#module-Simulator" title="Simulator"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Simulator</span></code></a>) the arguments must be the vehicle object and the time span. This is,</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">simulator</span> <span class="p">=</span> <span class="n">Simulator</span><span class="p">(</span><span class="n">VehiclePlant</span><span class="p">,</span> <span class="n">TSPAN</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>The default parameters of the simulation object can be found in <a class="reference internal" href="api.html#module-Simulator" title="Simulator"><code class="xref py py-mod docutils literal"><span class="pre">Simulator</span></code></a>. However, we are interested in changing the initial velocity of the vehicle. This can be done running</p>
-<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">simulator</span><span class="p">.</span><span class="n">V0</span> <span class="p">=</span> <span class="mf">16.7</span><span class="p">;</span>
+<p>The default parameters of the simulation object can be found in <a class="reference internal" href="api.html#module-Simulator" title="Simulator"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Simulator</span></code></a>. However, we are interested in changing the initial velocity of the vehicle. This can be done running</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">simulator</span><span class="p">.</span><span class="n">V0</span> <span class="p">=</span> <span class="mf">16.7</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Now, we have everything needed to run the simulation. For this, we use</p>
-<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">simulator</span><span class="p">.</span><span class="n">Simulate</span><span class="p">();</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">simulator</span><span class="p">.</span><span class="n">Simulate</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>The resulting time response of each state is stored in separate variables:</p>
-<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">XT</span> <span class="p">=</span> <span class="n">simulator</span><span class="p">.</span><span class="n">XT</span><span class="p">;</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">XT</span> <span class="p">=</span> <span class="n">simulator</span><span class="p">.</span><span class="n">XT</span><span class="p">;</span>
 <span class="n">YT</span> <span class="p">=</span> <span class="n">simulator</span><span class="p">.</span><span class="n">YT</span><span class="p">;</span>
 <span class="n">PSI</span> <span class="p">=</span> <span class="n">simulator</span><span class="p">.</span><span class="n">PSI</span><span class="p">;</span>
 <span class="n">VEL</span> <span class="p">=</span> <span class="n">simulator</span><span class="p">.</span><span class="n">VEL</span><span class="p">;</span>
@@ -147,18 +138,18 @@
 </pre></div>
 </div>
 <p>Preallocating the control input array</p>
-<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">u</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">TSPAN</span><span class="p">),</span><span class="mi">1</span><span class="p">);</span> <span class="c">% ??</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">u</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">TSPAN</span><span class="p">),</span><span class="mi">1</span><span class="p">);</span> <span class="c">% ??</span>
 <span class="n">controlEffort</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">TSPAN</span><span class="p">),</span><span class="mi">1</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Retrieving the control input of the system based on the simulation results</p>
-<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">ii</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">TSPAN</span><span class="p">)</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">ii</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">TSPAN</span><span class="p">)</span>
     <span class="n">controlEffort</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span> <span class="p">=</span> <span class="n">ControlLaw</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="n">ii</span><span class="p">,:));</span>
 <span class="k">end</span>
 </pre></div>
 </div>
 <p>The steering input can be plotted with</p>
-<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">f1</span> <span class="p">=</span> <span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">f1</span> <span class="p">=</span> <span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
 <span class="n">hold</span> <span class="n">on</span><span class="p">;</span> <span class="n">box</span> <span class="n">on</span><span class="p">;</span> <span class="n">grid</span> <span class="n">on</span>
 <span class="n">plot</span><span class="p">(</span><span class="n">TSPAN</span><span class="p">,</span><span class="n">controlEffort</span><span class="o">*</span><span class="mi">180</span><span class="o">/</span><span class="nb">pi</span><span class="p">,</span><span class="s">&#39;k&#39;</span><span class="p">)</span>
 <span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Time [s]&#39;</span><span class="p">);</span>
@@ -170,16 +161,16 @@
 <a class="reference internal image-reference" href="_images/SteeringControlFig1.svg"><img alt="_images/SteeringControlFig1.svg" src="_images/SteeringControlFig1.svg" width="50%" /></a>
 <p class="caption"><span class="caption-number">Fig. 44 </span><span class="caption-text">Control input of the vehicle.</span></p>
 </div>
-<p>Frame and animation can be generated defining a graphic object (<a class="reference internal" href="api.html#module-Graphics" title="Graphics"><code class="xref py py-mod docutils literal"><span class="pre">Graphics</span></code></a>). The only argument of the graphic object is the simulator object after the simulation.</p>
-<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="p">=</span> <span class="n">Graphics</span><span class="p">(</span><span class="n">simulator</span><span class="p">);</span>
+<p>Frame and animation can be generated defining a graphic object (<a class="reference internal" href="api.html#module-Graphics" title="Graphics"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Graphics</span></code></a>). The only argument of the graphic object is the simulator object after the simulation.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="p">=</span> <span class="n">Graphics</span><span class="p">(</span><span class="n">simulator</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>To generate the frame/animation with a different horizontal and vertical scale run</p>
-<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">g</span><span class="p">.</span><span class="n">Frame</span><span class="p">(</span><span class="s">&#39;scalefig&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">g</span><span class="p">.</span><span class="n">Frame</span><span class="p">(</span><span class="s">&#39;scalefig&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>The track limits can be added to the plot with the following code</p>
-<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">carWidth</span> <span class="p">=</span> <span class="mi">2</span><span class="p">;</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">carWidth</span> <span class="p">=</span> <span class="mi">2</span><span class="p">;</span>
 <span class="n">LaneOffset</span> <span class="p">=</span> <span class="mf">3.5</span><span class="p">;</span>
 
 <span class="n">section1width</span> <span class="p">=</span> <span class="mf">1.1</span><span class="o">*</span><span class="n">carWidth</span> <span class="o">+</span> <span class="mf">0.25</span><span class="p">;</span>
@@ -219,7 +210,7 @@
 <p class="caption"><span class="caption-number">Fig. 45 </span><span class="caption-text">Frame of the steering control example.</span></p>
 </div>
 <p>The animation is generated with</p>
-<div class="highlight-matlab"><div class="highlight"><pre><span></span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 <p>g.Animation(‘scalefig’,3);</p>
@@ -233,10 +224,10 @@
 <span id="control-law-steering-control"></span><h2>ControlLaw.m<a class="headerlink" href="#controllaw-m" title="Permalink to this headline">¶</a></h2>
 <p>The vehicle model used in the control design is based on the <a class="reference internal" href="simpleVehicleModels.html#vehicle-simple-4dof"><span class="std std-ref">Simple vehicle 4 DOF</span></a>.</p>
 <p>The state vector is given by</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[\begin{split}{\bf x} = \left[ \begin{array}{c} {\rm x}_1 \\ {\rm x}_2 \\ {\rm x}_3 \\ {\rm x}_4 \\ {\rm x}_5 \\ {\rm x}_6 \end{array} \right] = \left[ \begin{array}{c} x \\ y \\ \psi \\ v_{\rm T} \\ \alpha_{\rm T} \\ \dot{\psi} \end{array} \right]\end{split}\]</div>
 <p>The state equation is</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[\begin{split}\dot{{\rm x}}_1 &amp;= {\rm x}_4 \cos \left( {\rm x}_3 + {\rm x}_5 \right) \\
 \dot{{\rm x}}_2 &amp;= {\rm x}_4 \sin \left( {\rm x}_3 + {\rm x}_5 \right) \\
 \dot{{\rm x}}_3 &amp;= {\rm x}_6 \\
@@ -244,26 +235,26 @@
 \dot{{\rm x}}_5 &amp;= \frac{F_{y,{\rm F}} \cos \left( {\rm x}_5 - \delta \right) + F_{y,{\rm R}} \cos \alpha_{\rm T} - m_{T} {\rm   }_4 {\rm x}_6}{m_{T} {\rm x}_4} \\
 \dot{{\rm x}}_6 &amp;= \frac{F_{y,{\rm F}} a \cos \delta - F_{y,{\rm R}} b}{I_{T}} \\\end{split}\]</div>
 <p>and the slip angles are</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[\begin{split}\alpha_{\rm F} &amp;= \arctan \left( \frac{v_{\rm T} \sin \alpha_{\rm T} + a \dot{\psi}}{ v_{\rm T} \cos \alpha_{\rm T}} \right) - \delta \\
 \alpha_{\rm R} &amp;= \arctan \left( \frac{v_{\rm T} \sin \alpha_{\rm T} - b \dot{\psi}}{ v_{\rm T} \cos \alpha_{\rm T}} \right) \\\end{split}\]</div>
 <p>Thus, the linearized model can be written as</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[\begin{split}\dot{x} &amp;= v_{\rm T} \\
 \dot{y} &amp;= v_{{\rm T},0} \left( \psi + \alpha_{{\rm T}}\right) \\
 \dot{\psi} &amp;= \dot{\psi} \\
 \dot{v}_{\rm T} &amp;= 0 \\
 \dot{\alpha}_{\rm T} &amp;= \frac{F_{y,{\rm F}} + F_{y,{\rm R}}}{m_{T} v_{{\rm T},0}} - \dot{\psi} \\
 \ddot{\psi} &amp;= \frac{a F_{y,{\rm F}} -  b F_{y,{\rm R}}}{I_{T}} \\\end{split}\]</div>
-<p>Neglecting equations of <span class="math">\(x\)</span> and <span class="math">\(v_T\)</span>, using the linear tire model (<a class="reference internal" href="tire.html#tire-linear"><span class="std std-ref">Linear</span></a>) and writting the state equation in the matrix form we have</p>
-<div class="math" id="equation-control-model-example">
+<p>Neglecting equations of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(v_T\)</span>, using the linear tire model (<a class="reference internal" href="tire.html#tire-linear"><span class="std std-ref">Linear</span></a>) and writting the state equation in the matrix form we have</p>
+<div class="math notranslate nohighlight" id="equation-control-model-example">
 <span class="eqno">(1)<a class="headerlink" href="#equation-control-model-example" title="Permalink to this equation">¶</a></span>\[\begin{split}\left[ \begin{array}{c} \dot{y} \\ \dot{\psi} \\ \dot{\alpha}_T \\ \ddot{\psi} \end{array} \right] = \left[ \begin{array}{cccc} 0 &amp; v_{T,0} &amp; v_{T,0} &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; -\frac{K_F+K_R}{m_T v_{T,0}} &amp; - \frac{m_T v_{T,0} + \frac{a K_F - b K_R}{v_{T,0}}}{m_T v_{T,0}} \\ 0 &amp; 0 &amp; - \frac{a K_F - b K_R}{I_T} &amp; - \frac{a^2 K_F + b^2 K_R}{I_T v_{T,0}} \end{array} \right] \left[ \begin{array}{c} y \\ \psi \\ \alpha_T \\ \dot{\psi} \end{array} \right] + \left[ \begin{array}{c} 0 \\ 0 \\ \frac{K_F}{m_T v_{T,0}} \\ \frac{a K_F}{I_T}  \end{array} \right] \delta\end{split}\]</div>
 <p>Finally, the linearized slip angles are</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[\begin{split}\alpha_{{\rm F},lin} &amp;= \alpha_{{\rm T}} + \frac{a}{v_{{\rm T},0}} \dot{\psi} - \delta \\
 \alpha_{{\rm F},lin} &amp;= \alpha_{{\rm T}} - \frac{b}{v_{{\rm T},0}} \dot{\psi} \\\end{split}\]</div>
 <p>The cornering stiffness of the chosen tire model for small values of slip angles is calculated as</p>
-<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">muy0</span> <span class="p">=</span> <span class="n">TirePac</span><span class="p">.</span><span class="n">a1</span> <span class="o">*</span> <span class="n">Fz</span><span class="o">/</span><span class="mi">1000</span> <span class="o">+</span> <span class="n">TirePac</span><span class="p">.</span><span class="n">a2</span><span class="p">;</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">muy0</span> <span class="p">=</span> <span class="n">TirePac</span><span class="p">.</span><span class="n">a1</span> <span class="o">*</span> <span class="n">Fz</span><span class="o">/</span><span class="mi">1000</span> <span class="o">+</span> <span class="n">TirePac</span><span class="p">.</span><span class="n">a2</span><span class="p">;</span>
 <span class="n">D</span> <span class="p">=</span> <span class="n">muy0</span> <span class="o">*</span> <span class="n">Fz</span><span class="o">/</span><span class="mi">1000</span><span class="p">;</span>
 <span class="n">BCD</span> <span class="p">=</span> <span class="n">TirePac</span><span class="p">.</span><span class="n">a3</span> <span class="o">*</span> <span class="nb">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nb">atan</span><span class="p">(</span><span class="n">Fz</span><span class="o">/</span><span class="mi">1000</span><span class="o">/</span><span class="n">TirePac</span><span class="p">.</span><span class="n">a4</span><span class="p">))</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">TirePac</span><span class="p">.</span><span class="n">a5</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">camber</span><span class="p">));</span>
 
@@ -271,7 +262,7 @@
 </pre></div>
 </div>
 <p>So, the parameters of equation <a class="reference internal" href="#equation-control-model-example">(1)</a> used for the design of the controller are</p>
-<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">mT</span> <span class="p">=</span> <span class="mi">1300</span><span class="p">;</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">mT</span> <span class="p">=</span> <span class="mi">1300</span><span class="p">;</span>
 <span class="n">IT</span> <span class="p">=</span> <span class="mi">10000</span><span class="p">;</span>
 <span class="n">a</span> <span class="p">=</span> <span class="mf">1.6154</span><span class="p">;</span>
 <span class="n">b</span> <span class="p">=</span> <span class="mf">1.8846</span><span class="p">;</span>
@@ -281,7 +272,7 @@
 </pre></div>
 </div>
 <p>The linear state space system (Equation <a class="reference internal" href="#equation-control-model-example">(1)</a>) is defined as</p>
-<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="p">=</span> <span class="p">[</span>      <span class="mi">0</span>   <span class="n">vT0</span>            <span class="n">vT0</span>                         <span class="mi">0</span>                       <span class="p">;</span><span class="c">...</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="p">=</span> <span class="p">[</span>      <span class="mi">0</span>   <span class="n">vT0</span>            <span class="n">vT0</span>                         <span class="mi">0</span>                       <span class="p">;</span><span class="c">...</span>
            <span class="mi">0</span>    <span class="mi">0</span>              <span class="mi">0</span>                          <span class="mi">1</span>                       <span class="p">;</span><span class="c">...</span>
            <span class="mi">0</span>    <span class="mi">0</span>      <span class="o">-</span><span class="p">(</span><span class="n">KF</span><span class="o">+</span><span class="n">KR</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">mT</span><span class="o">*</span><span class="n">vT0</span><span class="p">)</span>  <span class="o">-</span><span class="p">(</span><span class="n">mT</span><span class="o">*</span><span class="n">vT0</span><span class="o">+</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">KF</span><span class="o">-</span><span class="n">b</span><span class="o">*</span><span class="n">KR</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">vT0</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="n">mT</span><span class="o">*</span><span class="n">vT0</span><span class="p">)</span>    <span class="p">;</span><span class="c">...</span>
            <span class="mi">0</span>    <span class="mi">0</span>      <span class="o">-</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">KF</span><span class="o">-</span><span class="n">b</span><span class="o">*</span><span class="n">KR</span><span class="p">)</span><span class="o">/</span><span class="n">IT</span>    <span class="o">-</span><span class="p">(</span><span class="n">a</span>^<span class="mi">2</span><span class="o">*</span><span class="n">KF</span><span class="o">+</span><span class="n">b</span>^<span class="mi">2</span><span class="o">*</span><span class="n">KR</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">IT</span><span class="o">*</span><span class="n">vT0</span><span class="p">)</span>               <span class="p">];</span>
@@ -301,14 +292,14 @@
 <p class="last">Add illustration of the closed loop system.</p>
 </div>
 <p>The control law is given by</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[\delta = - {\bf K} {\bf z} + K_1 r\]</div>
-<p>The double Lane change maneuver is achieved with a step reference point in the lateral position <span class="math">\(y\)</span>. Reference become <span class="math">\(r = 2 m\)</span>.</p>
+<p>The double Lane change maneuver is achieved with a step reference point in the lateral position <span class="math notranslate nohighlight">\(y\)</span>. Reference become <span class="math notranslate nohighlight">\(r = 2 m\)</span>.</p>
 <p>The maximum value of the steering angle is limited, i.e., the control input can be saturated.</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[\delta_{max} = \pm 70 deg\]</div>
 <p>The weight matrices for the LQR design are</p>
-<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">Q</span> <span class="p">=</span> <span class="p">[</span>   <span class="mi">3</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="p">;</span><span class="c">...</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span> <span class="p">=</span> <span class="p">[</span>   <span class="mi">3</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="p">;</span><span class="c">...</span>
         <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="p">;</span><span class="c">...</span>
         <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="p">;</span><span class="c">...</span>
         <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="p">];</span>
@@ -317,46 +308,10 @@
 </pre></div>
 </div>
 <p>The control gains are calculated using the <a class="reference external" href="https://octave.sourceforge.io/control/function/lqr.html">lqr</a> function.</p>
-<div class="highlight-matlab"><div class="highlight"><pre><span></span><span class="n">Klqr</span> <span class="p">=</span> <span class="n">lqr</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">Q</span><span class="p">,</span><span class="n">R</span><span class="p">);</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">Klqr</span> <span class="p">=</span> <span class="n">lqr</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">Q</span><span class="p">,</span><span class="n">R</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>The control law of the lateral dynamics is implemented in the code below.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="n">controlEffort</span> <span class="o">=</span> <span class="n">ControlLaw</span><span class="p">(</span><span class="n">sysData</span><span class="p">,</span><span class="o">~</span><span class="p">)</span>
-    <span class="o">%</span> <span class="n">sysData</span> <span class="n">are</span> <span class="n">the</span> <span class="n">informations</span> <span class="n">of</span> <span class="n">the</span> <span class="n">system</span> <span class="n">necessary</span> <span class="n">to</span> <span class="n">generate</span> <span class="n">the</span> <span class="n">control</span> <span class="n">effort</span>
-    <span class="o">%</span> <span class="n">controlEffort</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">control</span> <span class="nb">input</span> <span class="n">of</span> <span class="n">the</span> <span class="n">system</span>
-
-    <span class="o">%</span> <span class="n">In</span> <span class="n">this</span> <span class="n">case</span><span class="p">,</span> <span class="n">the</span> <span class="n">sysData</span> <span class="n">contains</span> <span class="n">the</span> <span class="n">simple</span> <span class="n">vehicle</span> <span class="n">state</span> <span class="n">variables</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">sysData</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span><span class="n">sysData</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span><span class="n">sysData</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span><span class="n">sysData</span><span class="p">(</span><span class="mi">6</span><span class="p">)];</span>
-
-    <span class="o">%</span> <span class="n">Vehicle</span> <span class="n">longitudinal</span> <span class="n">position</span>
-    <span class="n">X</span> <span class="o">=</span> <span class="n">sysData</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-
-    <span class="o">%</span> <span class="n">Lateral</span> <span class="n">displacement</span>
-    <span class="n">LateralDisp</span> <span class="o">=</span> <span class="mf">3.6</span><span class="p">;</span>
-
-    <span class="o">%</span> <span class="n">Reference</span> <span class="n">signal</span> <span class="p">(</span><span class="n">Double</span> <span class="n">lane</span> <span class="n">change</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">X</span> <span class="o">&lt;=</span> <span class="mi">15</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="n">end</span>
-    <span class="k">if</span> <span class="n">X</span> <span class="o">&gt;</span> <span class="mi">15</span> <span class="o">&amp;&amp;</span> <span class="n">X</span> <span class="o">&lt;=</span> <span class="mi">70</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="n">LateralDisp</span><span class="p">;</span>
-    <span class="n">end</span>
-    <span class="k">if</span> <span class="n">X</span> <span class="o">&gt;</span> <span class="mi">70</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="n">end</span>
-
-    <span class="o">%</span> <span class="n">Control</span> <span class="n">gains</span>
-    <span class="n">K</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.7936</span>    <span class="mf">6.6882</span>    <span class="mf">1.6107</span>    <span class="mf">0.5090</span><span class="p">];</span>
-    <span class="n">u</span> <span class="o">=</span> <span class="o">-</span> <span class="n">K</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">K</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">r</span><span class="p">;</span>
-
-    <span class="o">%</span> <span class="n">Saturation</span> <span class="n">of</span> <span class="n">the</span> <span class="n">control</span> <span class="n">effort</span>
-    <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">42</span><span class="o">*</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span>
-        <span class="n">controlEffort</span> <span class="o">=</span> <span class="n">u</span><span class="p">;</span>
-    <span class="k">else</span>
-        <span class="n">controlEffort</span> <span class="o">=</span> <span class="n">sign</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="o">*</span><span class="mi">42</span><span class="o">*</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">;</span>
-    <span class="n">end</span>
-</pre></div>
-</div>
 </div>
 </div>
 
@@ -395,12 +350,14 @@
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -450,7 +407,7 @@
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, BSD 3-clause.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

@@ -6,21 +6,13 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Articulated vehicle models &#8212; OpenVD  documentation</title>
     <link rel="stylesheet" href="_static/cloud.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
@@ -33,8 +25,7 @@
     <link rel="next" title="References" href="zreferences.html" />
     <link rel="prev" title="Simple vehicle models" href="simpleVehicleModels.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
+  </head><body>
     <div class="relbar-top">
         
     <div class="related" role="navigation" aria-label="related navigation">
@@ -43,9 +34,6 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="zreferences.html" title="References"
              accesskey="N">next</a> &nbsp; &nbsp;</li>
@@ -75,74 +63,74 @@ Bicycle model</p>
 <p>Free body diagram</p>
 <div class="figure">
 <img alt="https://andresmendes.github.io/openvd/illustrations/modelArticulatedFreeBodyDiagram.svg" src="https://andresmendes.github.io/openvd/illustrations/modelArticulatedFreeBodyDiagram.svg" /></div>
-<p>The center of gravity of the tractor and semitrailer are located at the point <span class="math">\(T\)</span> and <span class="math">\(S\)</span>, respectively. The front and rear axles are located at the points <span class="math">\(F\)</span> and <span class="math">\(R\)</span>, respectively. <span class="math">\(A\)</span> is the articulation point and <span class="math">\(M\)</span> is the axle of the semitrailer. The constant <span class="math">\(a\)</span> measures the distance of point <span class="math">\(F\)</span> to <span class="math">\(T\)</span> and <span class="math">\(b\)</span> the distance of point <span class="math">\(T\)</span> to <span class="math">\(R\)</span>. The distance of the articulation from the rear axle of the tractor is given by <span class="math">\(c\)</span>. <span class="math">\(d\)</span> and <span class="math">\(e\)</span> are the distances from the semitrailer. The angles <span class="math">\(\alpha_F\)</span> e <span class="math">\(\alpha_R\)</span> are the front and rear slip angles, respectively. <span class="math">\(\alpha_T\)</span> is the vehicle side slip angle and <span class="math">\(\psi\)</span> is the vehicle yaw angle. <span class="math">\(\delta\)</span> is the steering angle.</p>
+<p>The center of gravity of the tractor and semitrailer are located at the point <span class="math notranslate nohighlight">\(T\)</span> and <span class="math notranslate nohighlight">\(S\)</span>, respectively. The front and rear axles are located at the points <span class="math notranslate nohighlight">\(F\)</span> and <span class="math notranslate nohighlight">\(R\)</span>, respectively. <span class="math notranslate nohighlight">\(A\)</span> is the articulation point and <span class="math notranslate nohighlight">\(M\)</span> is the axle of the semitrailer. The constant <span class="math notranslate nohighlight">\(a\)</span> measures the distance of point <span class="math notranslate nohighlight">\(F\)</span> to <span class="math notranslate nohighlight">\(T\)</span> and <span class="math notranslate nohighlight">\(b\)</span> the distance of point <span class="math notranslate nohighlight">\(T\)</span> to <span class="math notranslate nohighlight">\(R\)</span>. The distance of the articulation from the rear axle of the tractor is given by <span class="math notranslate nohighlight">\(c\)</span>. <span class="math notranslate nohighlight">\(d\)</span> and <span class="math notranslate nohighlight">\(e\)</span> are the distances from the semitrailer. The angles <span class="math notranslate nohighlight">\(\alpha_F\)</span> e <span class="math notranslate nohighlight">\(\alpha_R\)</span> are the front and rear slip angles, respectively. <span class="math notranslate nohighlight">\(\alpha_T\)</span> is the vehicle side slip angle and <span class="math notranslate nohighlight">\(\psi\)</span> is the vehicle yaw angle. <span class="math notranslate nohighlight">\(\delta\)</span> is the steering angle.</p>
 <div class="figure">
 <img alt="https://andresmendes.github.io/openvd/illustrations/misc/modelArticulated.svg" src="https://andresmendes.github.io/openvd/illustrations/misc/modelArticulated.svg" /></div>
 <p>Este modelo  escrito na forma:</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[{\bf M}({\bf x}) \dot{{\bf x}} = {\bf f}({\bf x})\]</div>
-<p>Where <span class="math">\({\bf x}\)</span> is the state vector, <span class="math">\({\bf M}({\bf x})\)</span> the mass matrix and <span class="math">\({\bf f}({\bf x})\)</span> is the vector function. Therefore, a function that allows the integration of the system with an explicit mass matrix is necessary. In this package the _ode45_ function is used. Details: <a class="reference external" href="http://www.mathworks.com/help/matlab/ref/ode45.html?searchHighlight=%22mass%20matrix%22">ode45 (Mass matrix)</a>.</p>
+<p>Where <span class="math notranslate nohighlight">\({\bf x}\)</span> is the state vector, <span class="math notranslate nohighlight">\({\bf M}({\bf x})\)</span> the mass matrix and <span class="math notranslate nohighlight">\({\bf f}({\bf x})\)</span> is the vector function. Therefore, a function that allows the integration of the system with an explicit mass matrix is necessary. In this package the _ode45_ function is used. Details: <a class="reference external" href="http://www.mathworks.com/help/matlab/ref/ode45.html?searchHighlight=%22mass%20matrix%22">ode45 (Mass matrix)</a>.</p>
 <div class="section" id="articulated-vehicle-4-dof">
 <span id="vehicle-articulated-4dof"></span><h2>Articulated vehicle 4 DOF<a class="headerlink" href="#articulated-vehicle-4-dof" title="Permalink to this headline">¶</a></h2>
-<p>O modelo físico do conjunto é ilustrado na figura ref{modelSimple}. Para caracterizar a dinâmica deste sistema é utilizada a base <span class="math">\(\Omega_{\rm O} = \{ {\rm O} {\bf i} {\bf j} {\bf k} \}\)</span> fixa no referencial inercial. A base <span class="math">\(\Omega_{\rm T} = \{ {\rm T} {\bf t}_x {\bf t}_y {\bf t}_z \}\)</span> é solidária ao caminhão-trator e a base <span class="math">\(\Omega_{\rm S} = \{ {\rm S} {\bf s}_x {\bf s}_y {\bf s}_z \}\)</span> é solidária ao semirreboque. Os versores <span class="math">\({\bf t}_x\)</span> e <span class="math">\({\bf s}_x\)</span> apontam para frente na direção longitudinal de ambos os módulos e os versores <span class="math">\({\bf t}_y\)</span> e <span class="math">\({\bf s}_y\)</span> apontam para a esquerda. Para auxiliar a descrição das grandezas no eixo dianteiro é definida a base <span class="math">\(\Omega_{\rm F} = \{ {\rm F} {\bf e}_x {\bf e}_y {\bf e}_z \}\)</span> solidária ao eixo dianteiro com o versor <span class="math">\({\bf e}_x\)</span> apontando para frente na direção longitudinal do pneu e <span class="math">\({\bf e}_y\)</span> apontando para a esquerda. Os pontos <span class="math">\({\rm T}\)</span> e <span class="math">\({\rm S}\)</span> localizam o centro da massa do caminhão-trator e do semirreboque, respectivamente. <span class="math">\({\rm F}\)</span> e <span class="math">\({\rm R}\)</span> localizam os eixos dianteiro e traseiro, respectivamente. <span class="math">\({\rm A}\)</span> é o ponto de articulação e <span class="math">\({\rm M}\)</span> é o eixo do semirreboque. O ponto <span class="math">\({\rm O}\)</span> é a origem do sistema e se encontra fixo no referencial inercial. A distância <span class="math">\(a\)</span> separa os pontos <span class="math">\({\rm F}\)</span> e <span class="math">\({\rm T}\)</span> e a distância <span class="math">\(b\)</span> separa os pontos <span class="math">\({\rm T}\)</span> e <span class="math">\({\rm R}\)</span>. <span class="math">\(c\)</span> separa os pontos <span class="math">\({\rm R}\)</span> e <span class="math">\({\rm A}\)</span>, <span class="math">\(d\)</span> separa os pontos <span class="math">\({\rm A}\)</span> e <span class="math">\({\rm S}\)</span> e <span class="math">\(e\)</span> separa os pontos <span class="math">\({\rm S}\)</span> e <span class="math">\({\rm M}\)</span>. Os vetores velocidade <span class="math">\({\bf v}\)</span> e os ângulos de deriva <span class="math">\(\alpha\)</span> recebem os subscritos referentes aos pontos aos quais eles estão associados.</p>
+<p>O modelo físico do conjunto é ilustrado na figura ref{modelSimple}. Para caracterizar a dinâmica deste sistema é utilizada a base <span class="math notranslate nohighlight">\(\Omega_{\rm O} = \{ {\rm O} {\bf i} {\bf j} {\bf k} \}\)</span> fixa no referencial inercial. A base <span class="math notranslate nohighlight">\(\Omega_{\rm T} = \{ {\rm T} {\bf t}_x {\bf t}_y {\bf t}_z \}\)</span> é solidária ao caminhão-trator e a base <span class="math notranslate nohighlight">\(\Omega_{\rm S} = \{ {\rm S} {\bf s}_x {\bf s}_y {\bf s}_z \}\)</span> é solidária ao semirreboque. Os versores <span class="math notranslate nohighlight">\({\bf t}_x\)</span> e <span class="math notranslate nohighlight">\({\bf s}_x\)</span> apontam para frente na direção longitudinal de ambos os módulos e os versores <span class="math notranslate nohighlight">\({\bf t}_y\)</span> e <span class="math notranslate nohighlight">\({\bf s}_y\)</span> apontam para a esquerda. Para auxiliar a descrição das grandezas no eixo dianteiro é definida a base <span class="math notranslate nohighlight">\(\Omega_{\rm F} = \{ {\rm F} {\bf e}_x {\bf e}_y {\bf e}_z \}\)</span> solidária ao eixo dianteiro com o versor <span class="math notranslate nohighlight">\({\bf e}_x\)</span> apontando para frente na direção longitudinal do pneu e <span class="math notranslate nohighlight">\({\bf e}_y\)</span> apontando para a esquerda. Os pontos <span class="math notranslate nohighlight">\({\rm T}\)</span> e <span class="math notranslate nohighlight">\({\rm S}\)</span> localizam o centro da massa do caminhão-trator e do semirreboque, respectivamente. <span class="math notranslate nohighlight">\({\rm F}\)</span> e <span class="math notranslate nohighlight">\({\rm R}\)</span> localizam os eixos dianteiro e traseiro, respectivamente. <span class="math notranslate nohighlight">\({\rm A}\)</span> é o ponto de articulação e <span class="math notranslate nohighlight">\({\rm M}\)</span> é o eixo do semirreboque. O ponto <span class="math notranslate nohighlight">\({\rm O}\)</span> é a origem do sistema e se encontra fixo no referencial inercial. A distância <span class="math notranslate nohighlight">\(a\)</span> separa os pontos <span class="math notranslate nohighlight">\({\rm F}\)</span> e <span class="math notranslate nohighlight">\({\rm T}\)</span> e a distância <span class="math notranslate nohighlight">\(b\)</span> separa os pontos <span class="math notranslate nohighlight">\({\rm T}\)</span> e <span class="math notranslate nohighlight">\({\rm R}\)</span>. <span class="math notranslate nohighlight">\(c\)</span> separa os pontos <span class="math notranslate nohighlight">\({\rm R}\)</span> e <span class="math notranslate nohighlight">\({\rm A}\)</span>, <span class="math notranslate nohighlight">\(d\)</span> separa os pontos <span class="math notranslate nohighlight">\({\rm A}\)</span> e <span class="math notranslate nohighlight">\({\rm S}\)</span> e <span class="math notranslate nohighlight">\(e\)</span> separa os pontos <span class="math notranslate nohighlight">\({\rm S}\)</span> e <span class="math notranslate nohighlight">\({\rm M}\)</span>. Os vetores velocidade <span class="math notranslate nohighlight">\({\bf v}\)</span> e os ângulos de deriva <span class="math notranslate nohighlight">\(\alpha\)</span> recebem os subscritos referentes aos pontos aos quais eles estão associados.</p>
 <p>A modelagem do caminhão-trator e semirreboque consiste na utilização de dois corpos rígidos que se movimentam sobre um plano horizontal e são unidos por um ponto de articulação. Desta forma, o modelo apresenta quatro graus de liberdade. Portanto, as coordenadas generalizadas podem ser dadas por</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[\begin{split}q_1 &amp;= x \\
 q_2 &amp;= y \\
 q_3 &amp;= \psi \\
 q_4 &amp;= \phi,\end{split}\]</div>
-<p>onde <span class="math">\(x\)</span> e <span class="math">\(y\)</span> são as coordenadas longitudinal e transversal do centro de massa do caminhão-trator, respectivamente. <span class="math">\(\psi\)</span> é o ângulo de orientação absoluta do caminhão-trator e <span class="math">\(\phi\)</span> é o ângulo de orientação relativa do semirreboque.</p>
+<p>onde <span class="math notranslate nohighlight">\(x\)</span> e <span class="math notranslate nohighlight">\(y\)</span> são as coordenadas longitudinal e transversal do centro de massa do caminhão-trator, respectivamente. <span class="math notranslate nohighlight">\(\psi\)</span> é o ângulo de orientação absoluta do caminhão-trator e <span class="math notranslate nohighlight">\(\phi\)</span> é o ângulo de orientação relativa do semirreboque.</p>
 <p><em>Modelo não linear</em></p>
-<p>O vetor posição do centro de massa do caminhão-trator em relação ao ponto <span class="math">\(O\)</span> é</p>
-<div class="math" id="equation-positionTractor">
-<span class="eqno">(1)<a class="headerlink" href="#equation-positionTractor" title="Permalink to this equation">¶</a></span>\[{\bf p}_{{\rm T}/{\rm O}} = x {\bf i} + y {\bf j}.\]</div>
+<p>O vetor posição do centro de massa do caminhão-trator em relação ao ponto <span class="math notranslate nohighlight">\(O\)</span> é</p>
+<div class="math notranslate nohighlight" id="equation-positiontractor">
+<span class="eqno">(26)<a class="headerlink" href="#equation-positiontractor" title="Permalink to this equation">¶</a></span>\[{\bf p}_{{\rm T}/{\rm O}} = x {\bf i} + y {\bf j}.\]</div>
 <p>O vetor posição do centro de massa do semirreboque é</p>
-<div class="math" id="equation-positionSemitrailer">
-<span class="eqno">(2)<a class="headerlink" href="#equation-positionSemitrailer" title="Permalink to this equation">¶</a></span>\[{\bf p}_{{\rm S}/{\rm O}} = \left[ x - \left( b + c \right) \cos \psi - d \cos \left( \psi - \phi \right) \right] {\bf i} + \left[ y - \left( b + c \right) \sin \psi - d \sin \left( \psi - \phi \right) \right] {\bf j}.\]</div>
-<p>Derivando a equação <a class="reference internal" href="#equation-positionTractor">(1)</a> em relação ao tempo temos</p>
-<div class="math" id="equation-velocityTractor">
-<span class="eqno">(3)<a class="headerlink" href="#equation-velocityTractor" title="Permalink to this equation">¶</a></span>\[{\bf v}_{\rm T} = \dot{x} {\bf i} + \dot{y} {\bf j}.\]</div>
-<p>Derivando a equação <a class="reference internal" href="#equation-positionSemitrailer">(2)</a> em relação ao tempo temos</p>
-<div class="math" id="equation-velocitySemitrailer">
-<span class="eqno">(4)<a class="headerlink" href="#equation-velocitySemitrailer" title="Permalink to this equation">¶</a></span>\[\begin{split}{\bf v}_{\rm S} &amp;= \left[ \dot{x} + \left( b + c \right) \dot{\psi} \sin \psi + d \left( \dot{\psi} - \dot{\phi} \right) \sin \left( \psi - \phi \right) \right] {\bf i} + ... \\
+<div class="math notranslate nohighlight" id="equation-positionsemitrailer">
+<span class="eqno">(27)<a class="headerlink" href="#equation-positionsemitrailer" title="Permalink to this equation">¶</a></span>\[{\bf p}_{{\rm S}/{\rm O}} = \left[ x - \left( b + c \right) \cos \psi - d \cos \left( \psi - \phi \right) \right] {\bf i} + \left[ y - \left( b + c \right) \sin \psi - d \sin \left( \psi - \phi \right) \right] {\bf j}.\]</div>
+<p>Derivando a equação <a class="reference internal" href="#equation-positiontractor">(26)</a> em relação ao tempo temos</p>
+<div class="math notranslate nohighlight" id="equation-velocitytractor">
+<span class="eqno">(28)<a class="headerlink" href="#equation-velocitytractor" title="Permalink to this equation">¶</a></span>\[{\bf v}_{\rm T} = \dot{x} {\bf i} + \dot{y} {\bf j}.\]</div>
+<p>Derivando a equação <a class="reference internal" href="#equation-positionsemitrailer">(27)</a> em relação ao tempo temos</p>
+<div class="math notranslate nohighlight" id="equation-velocitysemitrailer">
+<span class="eqno">(29)<a class="headerlink" href="#equation-velocitysemitrailer" title="Permalink to this equation">¶</a></span>\[\begin{split}{\bf v}_{\rm S} &amp;= \left[ \dot{x} + \left( b + c \right) \dot{\psi} \sin \psi + d \left( \dot{\psi} - \dot{\phi} \right) \sin \left( \psi - \phi \right) \right] {\bf i} + ... \\
  ... &amp;+ \left[ \dot{y} - \left( b + c \right) \dot{\psi} \cos \psi - d \left( \dot{\psi} - \dot{\phi} \right) \cos \left( \psi - \phi \right) \right] {\bf j}. \\\end{split}\]</div>
 <p>O vetor velocidade angular do caminhão-trator é</p>
-<div class="math" id="equation-angulaVelTrailer">
-<span class="eqno">(5)<a class="headerlink" href="#equation-angulaVelTrailer" title="Permalink to this equation">¶</a></span>\[{\bf w}_T = \dot{\psi} {\bf k}.\]</div>
+<div class="math notranslate nohighlight" id="equation-angulaveltrailer">
+<span class="eqno">(30)<a class="headerlink" href="#equation-angulaveltrailer" title="Permalink to this equation">¶</a></span>\[{\bf w}_T = \dot{\psi} {\bf k}.\]</div>
 <p>O vetor velocidade angular do semirreboque é</p>
-<div class="math" id="equation-angulaVelSemir">
-<span class="eqno">(6)<a class="headerlink" href="#equation-angulaVelSemir" title="Permalink to this equation">¶</a></span>\[{\bf w}_S = \left( \dot{\psi} - \dot{\phi} \right) {\bf k}\]</div>
+<div class="math notranslate nohighlight" id="equation-angulavelsemir">
+<span class="eqno">(31)<a class="headerlink" href="#equation-angulavelsemir" title="Permalink to this equation">¶</a></span>\[{\bf w}_S = \left( \dot{\psi} - \dot{\phi} \right) {\bf k}\]</div>
 <p>A energia cinética do sistema é</p>
-<div class="math" id="equation-kinEnergyGeneral">
-<span class="eqno">(7)<a class="headerlink" href="#equation-kinEnergyGeneral" title="Permalink to this equation">¶</a></span>\[T = \frac{1}{2} m_{T} {\bf v}_{\rm T} \cdot {\bf v}_{\rm T} + \frac{1}{2} m_{S} {\bf v}_{\rm S} \cdot {\bf v}_{\rm S} + \frac{1}{2} \left\{ {\bf w}_T \right\}^T \left[ {\bf J}_T \right] \left\{ {\bf w}_T \right\} + \frac{1}{2} \left\{ {\bf w}_S \right\}^T \left[ {\bf J}_S \right] \left\{ {\bf w}_S \right\}.\]</div>
-<p>Substituindo as equações <a class="reference internal" href="#equation-velocityTractor">(3)</a>, <a class="reference internal" href="#equation-velocitySemitrailer">(4)</a>, <a class="reference internal" href="#equation-angulaVelTrailer">(5)</a>, <a class="reference internal" href="#equation-angulaVelSemir">(6)</a> em <a class="reference internal" href="#equation-kinEnergyGeneral">(7)</a> temos</p>
-<div class="math" id="equation-kinEnergyCoord">
-<span class="eqno">(8)<a class="headerlink" href="#equation-kinEnergyCoord" title="Permalink to this equation">¶</a></span>\[T = \frac{1}{2} m_{T} \left( \dot{x}^2 + \dot{y}^2 \right) + \frac{1}{2} m_{S} \left( C_1^2 + C_2^2 \right) + \frac{1}{2} I_{T} \dot{\psi}^2 + \frac{1}{2} I_{S} \left( \dot{\psi} - \dot{\psi} \right)^2,\]</div>
+<div class="math notranslate nohighlight" id="equation-kinenergygeneral">
+<span class="eqno">(32)<a class="headerlink" href="#equation-kinenergygeneral" title="Permalink to this equation">¶</a></span>\[T = \frac{1}{2} m_{T} {\bf v}_{\rm T} \cdot {\bf v}_{\rm T} + \frac{1}{2} m_{S} {\bf v}_{\rm S} \cdot {\bf v}_{\rm S} + \frac{1}{2} \left\{ {\bf w}_T \right\}^T \left[ {\bf J}_T \right] \left\{ {\bf w}_T \right\} + \frac{1}{2} \left\{ {\bf w}_S \right\}^T \left[ {\bf J}_S \right] \left\{ {\bf w}_S \right\}.\]</div>
+<p>Substituindo as equações <a class="reference internal" href="#equation-velocitytractor">(28)</a>, <a class="reference internal" href="#equation-velocitysemitrailer">(29)</a>, <a class="reference internal" href="#equation-angulaveltrailer">(30)</a>, <a class="reference internal" href="#equation-angulavelsemir">(31)</a> em <a class="reference internal" href="#equation-kinenergygeneral">(32)</a> temos</p>
+<div class="math notranslate nohighlight" id="equation-kinenergycoord">
+<span class="eqno">(33)<a class="headerlink" href="#equation-kinenergycoord" title="Permalink to this equation">¶</a></span>\[T = \frac{1}{2} m_{T} \left( \dot{x}^2 + \dot{y}^2 \right) + \frac{1}{2} m_{S} \left( C_1^2 + C_2^2 \right) + \frac{1}{2} I_{T} \dot{\psi}^2 + \frac{1}{2} I_{S} \left( \dot{\psi} - \dot{\psi} \right)^2,\]</div>
 <p>onde</p>
-<div class="math" id="equation-constants">
-<span class="eqno">(9)<a class="headerlink" href="#equation-constants" title="Permalink to this equation">¶</a></span>\[\begin{split}C_1 &amp;= \dot{x} + \left( b + c \right) \dot{\psi} \sin \psi + d \left( \dot{\psi} - \dot{\phi} \right) \sin \left( \psi - \phi \right) \\
+<div class="math notranslate nohighlight" id="equation-constants">
+<span class="eqno">(34)<a class="headerlink" href="#equation-constants" title="Permalink to this equation">¶</a></span>\[\begin{split}C_1 &amp;= \dot{x} + \left( b + c \right) \dot{\psi} \sin \psi + d \left( \dot{\psi} - \dot{\phi} \right) \sin \left( \psi - \phi \right) \\
 C_2 &amp;= \dot{y} - \left( b + c \right) \dot{\psi} \cos \psi - d \left( \dot{\psi} - \dot{\phi} \right) \cos \left( \psi - \phi \right).\end{split}\]</div>
-<p>Derivando a equação <a class="reference internal" href="#equation-constants">(9)</a> temos</p>
-<div class="math" id="equation-constantsTimeDiff">
-<span class="eqno">(10)<a class="headerlink" href="#equation-constantsTimeDiff" title="Permalink to this equation">¶</a></span>\[\begin{split}\dot{C}_1 &amp;= \ddot{x} + \left( b + c \right) \ddot{\psi} \sin \psi + \left( b + c \right) \dot{\psi}^2 \cos \psi + d \left( \ddot{\psi} - \ddot{\phi} \right) \sin \left( \psi - \phi \right) + d \left( \dot{\psi} - \dot{\phi} \right)^2 \cos \left( \psi - \phi \right) \\
+<p>Derivando a equação <a class="reference internal" href="#equation-constants">(34)</a> temos</p>
+<div class="math notranslate nohighlight" id="equation-constantstimediff">
+<span class="eqno">(35)<a class="headerlink" href="#equation-constantstimediff" title="Permalink to this equation">¶</a></span>\[\begin{split}\dot{C}_1 &amp;= \ddot{x} + \left( b + c \right) \ddot{\psi} \sin \psi + \left( b + c \right) \dot{\psi}^2 \cos \psi + d \left( \ddot{\psi} - \ddot{\phi} \right) \sin \left( \psi - \phi \right) + d \left( \dot{\psi} - \dot{\phi} \right)^2 \cos \left( \psi - \phi \right) \\
 \dot{C}_2 &amp;= \ddot{y} - \left( b + c \right) \ddot{\psi} \cos \psi + \left( b + c \right) \dot{\psi}^2 \sin \psi - d \left( \ddot{\psi} - \ddot{\phi} \right) \cos \left( \psi - \phi \right) + d \left( \dot{\psi} - \dot{\phi} \right)^2 \sin \left( \psi - \phi \right)\end{split}\]</div>
-<p>As derivadas parciais da energia cinética do sistema (equação <a class="reference internal" href="#equation-kinEnergyCoord">(8)</a>) em relação às coordenadas generalizadas são</p>
-<div class="math" id="equation-lagrangePartialTerm">
-<span class="eqno">(11)<a class="headerlink" href="#equation-lagrangePartialTerm" title="Permalink to this equation">¶</a></span>\[\begin{split}\frac{\partial T}{\partial q_1} &amp;= \frac{\partial T}{\partial x} = 0 \\
+<p>As derivadas parciais da energia cinética do sistema (equação <a class="reference internal" href="#equation-kinenergycoord">(33)</a>) em relação às coordenadas generalizadas são</p>
+<div class="math notranslate nohighlight" id="equation-lagrangepartialterm">
+<span class="eqno">(36)<a class="headerlink" href="#equation-lagrangepartialterm" title="Permalink to this equation">¶</a></span>\[\begin{split}\frac{\partial T}{\partial q_1} &amp;= \frac{\partial T}{\partial x} = 0 \\
 \frac{\partial T}{\partial q_2} &amp;= \frac{\partial T}{\partial y} = 0 \\
 \frac{\partial T}{\partial q_3} &amp;= \frac{\partial T}{\partial \psi} &amp;=&amp; m_S C_1 \left[ \left( b + c \right) \dot{\psi} \cos \psi + d \left( \dot{\psi} - \dot{\phi} \right) \cos \left( \psi - \phi \right) \right] + ... \\
 ... &amp;+ m_S C_2 \left[ \left( b + c \right) \dot{\psi} \sin \psi + d \left( \dot{\psi} - \dot{\phi} \right) \sin \left( \psi - \phi \right) \right] \\
 \frac{\partial T}{\partial q_4} &amp;= \frac{\partial T}{\partial \phi} = m_S C_1 \left[ - d \left( \dot{\psi} - \dot{\phi} \right) \cos \left( \psi - \phi \right) \right] + m_S C_2 \left[ - d \left( \dot{\psi} - \dot{\phi} \right) \sin \left( \psi - \phi \right) \right].\end{split}\]</div>
 <p>As derivadas parciais da energia cinética do sistema em relação às derivadas temporais das coordenadas generalizadas são</p>
-<div class="math" id="equation-partialDiff">
-<span class="eqno">(12)<a class="headerlink" href="#equation-partialDiff" title="Permalink to this equation">¶</a></span>\[\begin{split}\frac{\partial T}{\partial \dot{q}_1} &amp;= \frac{\partial T}{\partial \dot{x}} = m_{T} \dot{x} + m_S C_1 \\
+<div class="math notranslate nohighlight" id="equation-partialdiff">
+<span class="eqno">(37)<a class="headerlink" href="#equation-partialdiff" title="Permalink to this equation">¶</a></span>\[\begin{split}\frac{\partial T}{\partial \dot{q}_1} &amp;= \frac{\partial T}{\partial \dot{x}} = m_{T} \dot{x} + m_S C_1 \\
 \frac{\partial T}{\partial \dot{q}_2} &amp;= \frac{\partial T}{\partial \dot{y}} = m_{T} \dot{y} + m_S C_2 \\
 \frac{\partial T}{\partial q_3} &amp;= \frac{\partial T}{\partial \dot{\psi}} &amp;=&amp; m_S C_1 \left[ \left( b + c \right) \sin \psi + d \sin \left( \psi - \phi \right) \right] + ... \\
 ... &amp;+ m_S C_2 \left[ - \left( b + c \right) \cos \psi - d \cos \left( \psi - \phi \right) \right] + I_T \dot{\psi} + I_S \left( \dot{\psi} - \dot{\phi} \right) \\
 \frac{\partial T}{\partial q_4} &amp;= \frac{\partial T}{\partial \dot{\phi}} = m_S C_1 \left[ - d \sin \left( \psi - \phi \right) \right] + m_S C_2 \left[ d \cos \left( \psi - \phi \right) \right] - I_S \left( \dot{\psi} - \dot{\phi} \right).\end{split}\]</div>
-<p>Derivando as equações <a class="reference internal" href="#equation-partialDiff">(12)</a> em relação ao tempo temos</p>
-<div class="math" id="equation-lagrangeTimeTerm">
-<span class="eqno">(13)<a class="headerlink" href="#equation-lagrangeTimeTerm" title="Permalink to this equation">¶</a></span>\[\begin{split}\frac{d}{dt} \left( \frac{\partial T}{\partial \dot{q}_1} \right) &amp;= \frac{d}{dt} \left( \frac{\partial T}{\partial \dot{x}} \right) = m_{T} \ddot{x} + m_S \dot{C}_1 \\
+<p>Derivando as equações <a class="reference internal" href="#equation-partialdiff">(37)</a> em relação ao tempo temos</p>
+<div class="math notranslate nohighlight" id="equation-lagrangetimeterm">
+<span class="eqno">(38)<a class="headerlink" href="#equation-lagrangetimeterm" title="Permalink to this equation">¶</a></span>\[\begin{split}\frac{d}{dt} \left( \frac{\partial T}{\partial \dot{q}_1} \right) &amp;= \frac{d}{dt} \left( \frac{\partial T}{\partial \dot{x}} \right) = m_{T} \ddot{x} + m_S \dot{C}_1 \\
 \frac{d}{dt} \left( \frac{\partial T}{\partial \dot{q}_2} \right) &amp;= \frac{d}{dt} \left( \frac{\partial T}{\partial \dot{y}} \right) = m_{T} \ddot{y} + m_S \dot{C}_2 \\
 \frac{d}{dt} \left( \frac{\partial T}{\partial \dot{q}_3} \right) &amp;= \frac{d}{dt} \left( \frac{\partial T}{\partial \dot{\psi}} \right) &amp;=&amp; m_S \dot{C}_1 \left[ \left( b + c \right) \sin \psi + d \sin \left( \psi - \phi \right) \right] + ... \\
 ... &amp;+ m_S C_1 \left[ \left( b + c \right) \dot{\psi} \cos \psi + d \left( \dot{\psi} - \dot{\phi} \right) \cos \left( \psi - \phi \right) \right] + ... \\
@@ -153,63 +141,63 @@ C_2 &amp;= \dot{y} - \left( b + c \right) \dot{\psi} \cos \psi - d \left( \dot{\
 ... &amp;+&amp; m_S \dot{C}_2 \left[ d \cos \left( \psi - \phi \right) \right] + m_S C_2 \left[ - d \left( \dot{\psi} - \dot{\phi} \right) \sin \left( \psi - \phi \right) \right] - ... \\
 ... &amp;+ - I_S \left( \ddot{\psi} - \ddot{\phi} \right)\end{split}\]</div>
 <p>A força no eixo dianteiro é dadas por</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \begin{equation}
     {\bf F}_{\rm F} = F_{x,{\rm F}} {\bf e}_x + F_{y,{\rm F}} {\bf e}_x,
 \end{equation}</div><p>que pode ser escrita como</p>
-<div class="math" id="equation-ForceFront">
-<span class="eqno">(14)<a class="headerlink" href="#equation-ForceFront" title="Permalink to this equation">¶</a></span>\[{\bf F}_{\rm F} = \left[ F_{x,{\rm F}} \cos \left( \psi + \delta \right) - F_{y,{\rm F}} \sin \left( \psi + \delta \right) \right] {\bf i} + \left[ F_{x,{\rm F}} \sin \left( \psi + \delta \right) + F_{y,{\rm F}} \cos \left( \psi + \delta \right) \right] {\bf j}.\]</div>
+<div class="math notranslate nohighlight" id="equation-forcefront">
+<span class="eqno">(39)<a class="headerlink" href="#equation-forcefront" title="Permalink to this equation">¶</a></span>\[{\bf F}_{\rm F} = \left[ F_{x,{\rm F}} \cos \left( \psi + \delta \right) - F_{y,{\rm F}} \sin \left( \psi + \delta \right) \right] {\bf i} + \left[ F_{x,{\rm F}} \sin \left( \psi + \delta \right) + F_{y,{\rm F}} \cos \left( \psi + \delta \right) \right] {\bf j}.\]</div>
 <p>A força no eixo traseiro é</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \begin{equation}
     {\bf F}_{\rm R} = F_{x,{\rm R}} {\bf t}_x + F_{y,{\rm R}} {\bf t}_y
 \end{equation}</div><p>ou</p>
-<div class="math" id="equation-ForceRear">
-<span class="eqno">(15)<a class="headerlink" href="#equation-ForceRear" title="Permalink to this equation">¶</a></span>\[{\bf F}_{\rm R} = \left[ F_{x,{\rm R}} \cos \psi - F_{y,{\rm R}} \sin \psi \right] {\bf i} + \left[ F_{x,{\rm R}} \sin \psi + F_{y,{\rm R}} \cos \psi \right] {\bf j}.\]</div>
+<div class="math notranslate nohighlight" id="equation-forcerear">
+<span class="eqno">(40)<a class="headerlink" href="#equation-forcerear" title="Permalink to this equation">¶</a></span>\[{\bf F}_{\rm R} = \left[ F_{x,{\rm R}} \cos \psi - F_{y,{\rm R}} \sin \psi \right] {\bf i} + \left[ F_{x,{\rm R}} \sin \psi + F_{y,{\rm R}} \cos \psi \right] {\bf j}.\]</div>
 <p>A força no eixo do semirreboque é</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \begin{equation}
     {\bf F}_{\rm M} = F_{x,{\rm M}} {\bf s}_x + F_{y,{\rm M}} {\bf s}_y
 \end{equation}</div><p>ou</p>
-<div class="math" id="equation-ForceSemi">
-<span class="eqno">(16)<a class="headerlink" href="#equation-ForceSemi" title="Permalink to this equation">¶</a></span>\[{\bf F}_{\rm M} = \left[ F_{x,{\rm M}} \cos \left( \psi - \phi \right) - F_{y,{\rm M}} \sin \left( \psi - \phi \right) \right] {\bf i} + \left[ F_{x,{\rm M}} \sin \left( \psi - \phi \right) + F_{y,{\rm M}} \cos \left( \psi - \phi \right) \right] {\bf j}.\]</div>
+<div class="math notranslate nohighlight" id="equation-forcesemi">
+<span class="eqno">(41)<a class="headerlink" href="#equation-forcesemi" title="Permalink to this equation">¶</a></span>\[{\bf F}_{\rm M} = \left[ F_{x,{\rm M}} \cos \left( \psi - \phi \right) - F_{y,{\rm M}} \sin \left( \psi - \phi \right) \right] {\bf i} + \left[ F_{x,{\rm M}} \sin \left( \psi - \phi \right) + F_{y,{\rm M}} \cos \left( \psi - \phi \right) \right] {\bf j}.\]</div>
 <p>As forças generalizadas são</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \begin{equation}
     Q_k = \sum_{j = 1} ^p {\bf F}_j \cdot \frac{\partial {\bf p}_j}{\partial q_k} \qquad \qquad \begin{array}{c} k = 1, 2, 3, 4 \\ j = {\rm F}, {\rm R}, {\rm M} \end{array}.
 \end{equation}</div><p>Ou seja,</p>
-<div class="math" id="equation-generalizedForces">
-<span class="eqno">(17)<a class="headerlink" href="#equation-generalizedForces" title="Permalink to this equation">¶</a></span>\[\begin{split}Q_1 &amp;= {\bf F}_{\rm F} \cdot \frac{\partial {\bf p}_{{\rm F}/{\rm O}}}{\partial q_1} + {\bf F}_{\rm R} \cdot \frac{\partial {\bf p}_{{\rm R}/{\rm O}}}{\partial q_1} + {\bf F}_{\rm M} \cdot \frac{\partial {\bf p}_{{\rm M}/{\rm O}}}{\partial q_1} \\
+<div class="math notranslate nohighlight" id="equation-generalizedforces">
+<span class="eqno">(42)<a class="headerlink" href="#equation-generalizedforces" title="Permalink to this equation">¶</a></span>\[\begin{split}Q_1 &amp;= {\bf F}_{\rm F} \cdot \frac{\partial {\bf p}_{{\rm F}/{\rm O}}}{\partial q_1} + {\bf F}_{\rm R} \cdot \frac{\partial {\bf p}_{{\rm R}/{\rm O}}}{\partial q_1} + {\bf F}_{\rm M} \cdot \frac{\partial {\bf p}_{{\rm M}/{\rm O}}}{\partial q_1} \\
 Q_2 &amp;= {\bf F}_{\rm F} \cdot \frac{\partial {\bf p}_{{\rm F}/{\rm O}}}{\partial q_2} + {\bf F}_{\rm R} \cdot \frac{\partial {\bf p}_{{\rm R}/{\rm O}}}{\partial q_2} + {\bf F}_{\rm M} \cdot \frac{\partial {\bf p}_{{\rm M}/{\rm O}}}{\partial q_2} \\
 Q_3 &amp;= {\bf F}_{\rm F} \cdot \frac{\partial {\bf p}_{{\rm F}/{\rm O}}}{\partial q_3} + {\bf F}_{\rm R} \cdot \frac{\partial {\bf p}_{{\rm R}/{\rm O}}}{\partial q_3} + {\bf F}_{\rm M} \cdot \frac{\partial {\bf p}_{{\rm M}/{\rm O}}}{\partial q_3}, \\
 Q_4 &amp;= {\bf F}_{\rm F} \cdot \frac{\partial {\bf p}_{{\rm F}/{\rm O}}}{\partial q_4} + {\bf F}_{\rm R} \cdot \frac{\partial {\bf p}_{{\rm R}/{\rm O}}}{\partial q_4} + {\bf F}_{\rm M} \cdot \frac{\partial {\bf p}_{{\rm M}/{\rm O}}}{\partial q_4}.\end{split}\]</div>
 <p>Os pontos de aplicação das forças são localizados por</p>
-<div class="math" id="equation-positionForce">
-<span class="eqno">(18)<a class="headerlink" href="#equation-positionForce" title="Permalink to this equation">¶</a></span>\[\begin{split}{\bf p}_{{\rm F}/{\rm O}} &amp;= \left( x + a \cos \psi \right) {\bf i} + \left( y + a \sin \psi \right) {\bf j}. \\
+<div class="math notranslate nohighlight" id="equation-positionforce">
+<span class="eqno">(43)<a class="headerlink" href="#equation-positionforce" title="Permalink to this equation">¶</a></span>\[\begin{split}{\bf p}_{{\rm F}/{\rm O}} &amp;= \left( x + a \cos \psi \right) {\bf i} + \left( y + a \sin \psi \right) {\bf j}. \\
 {\bf p}_{{\rm R}/{\rm O}} &amp;= \left( x - b \cos \psi \right) {\bf i} + \left( y - b \sin \psi \right) {\bf j}. \\
 {\bf p}_{{\rm M}/{\rm O}} &amp;= \left[ x - \left( b + c \right) \cos \psi - \left( d + e \right) \cos \left( \psi - \phi \right) \right] {\bf i} + ... \\
 ... &amp;+ \left[ y - \left( b + c \right) \sin \psi - \left( d + e \right) \sin \left( \psi - \phi \right) \right] {\bf j}.\end{split}\]</div>
 <p>Logo, as derivadas parciais</p>
-<div class="math" id="equation-termGenFor1">
-<span class="eqno">(19)<a class="headerlink" href="#equation-termGenFor1" title="Permalink to this equation">¶</a></span>\[\begin{split}\frac{\partial {\bf p}_{{\rm F}/{\rm O}}}{\partial q_1} &amp;= \frac{\partial {\bf p}_{{\rm F}/{\rm O}}}{\partial x} = {\bf i} \\
+<div class="math notranslate nohighlight" id="equation-termgenfor1">
+<span class="eqno">(44)<a class="headerlink" href="#equation-termgenfor1" title="Permalink to this equation">¶</a></span>\[\begin{split}\frac{\partial {\bf p}_{{\rm F}/{\rm O}}}{\partial q_1} &amp;= \frac{\partial {\bf p}_{{\rm F}/{\rm O}}}{\partial x} = {\bf i} \\
 \frac{\partial {\bf p}_{{\rm F}/{\rm O}}}{\partial q_2} &amp;= \frac{\partial {\bf p}_{{\rm F}/{\rm O}}}{\partial y} = {\bf j} \\
 \frac{\partial {\bf p}_{{\rm F}/{\rm O}}}{\partial q_3} &amp;= \frac{\partial {\bf p}_{{\rm F}/{\rm O}}}{\partial \psi} = - a \sin \psi {\bf i} + a \cos \psi {\bf j} \\
 \frac{\partial {\bf p}_{{\rm F}/{\rm O}}}{\partial q_4} &amp;= \frac{\partial {\bf p}_{{\rm F}/{\rm O}}}{\partial \phi} = 0,\end{split}\]</div>
-<div class="math" id="equation-termGenFor2">
-<span class="eqno">(20)<a class="headerlink" href="#equation-termGenFor2" title="Permalink to this equation">¶</a></span>\[\begin{split}\frac{\partial {\bf p}_{{\rm R}/{\rm O}}}{\partial q_1} &amp;= \frac{\partial {\bf p}_{{\rm R}/{\rm O}}}{\partial x} = {\bf i} \\
+<div class="math notranslate nohighlight" id="equation-termgenfor2">
+<span class="eqno">(45)<a class="headerlink" href="#equation-termgenfor2" title="Permalink to this equation">¶</a></span>\[\begin{split}\frac{\partial {\bf p}_{{\rm R}/{\rm O}}}{\partial q_1} &amp;= \frac{\partial {\bf p}_{{\rm R}/{\rm O}}}{\partial x} = {\bf i} \\
 \frac{\partial {\bf p}_{{\rm R}/{\rm O}}}{\partial q_2} &amp;= \frac{\partial {\bf p}_{{\rm R}/{\rm O}}}{\partial y} = {\bf j} \\
 \frac{\partial {\bf p}_{{\rm R}/{\rm O}}}{\partial q_3} &amp;= \frac{\partial {\bf p}_{{\rm R}/{\rm O}}}{\partial \psi} = b \sin \psi {\bf i} - b \cos \psi {\bf j} \\
 \frac{\partial {\bf p}_{{\rm R}/{\rm O}}}{\partial q_4} &amp;= \frac{\partial {\bf p}_{{\rm R}/{\rm O}}}{\partial \phi} = 0\end{split}\]</div>
 <p>e</p>
-<div class="math" id="equation-termGenFor3">
-<span class="eqno">(21)<a class="headerlink" href="#equation-termGenFor3" title="Permalink to this equation">¶</a></span>\[\begin{split}\frac{\partial {\bf p}_{{\rm M}/{\rm O}}}{\partial q_1} &amp;= \frac{\partial {\bf p}_{{\rm M}/{\rm O}}}{\partial x} = {\bf i} \\
+<div class="math notranslate nohighlight" id="equation-termgenfor3">
+<span class="eqno">(46)<a class="headerlink" href="#equation-termgenfor3" title="Permalink to this equation">¶</a></span>\[\begin{split}\frac{\partial {\bf p}_{{\rm M}/{\rm O}}}{\partial q_1} &amp;= \frac{\partial {\bf p}_{{\rm M}/{\rm O}}}{\partial x} = {\bf i} \\
 \frac{\partial {\bf p}_{{\rm M}/{\rm O}}}{\partial q_2} &amp;= \frac{\partial {\bf p}_{{\rm M}/{\rm O}}}{\partial y} = {\bf j} \\
 \frac{\partial {\bf p}_{{\rm M}/{\rm O}}}{\partial q_3} &amp;= \frac{\partial {\bf p}_{{\rm M}/{\rm O}}}{\partial \psi} &amp;=&amp; \left[ \left( b + c \right) \sin \psi + \left( d + e \right) \sin \left( \psi - \phi \right) \right] {\bf i} + ...\\
 ... &amp;+ \left[ - \left( b + c \right) \cos \psi - \left( d + e \right) \cos \left( \psi - \phi \right) \right] {\bf j} \\
 \frac{\partial {\bf p}_{{\rm M}/{\rm O}}}{\partial q_4} &amp;= \frac{\partial {\bf p}_{{\rm M}/{\rm O}}}{\partial \phi} = \left[ - \left( d + e \right) \sin \left( \psi - \phi \right) \right] {\bf i} + \left[ \left( d + e \right) \cos \left( \psi - \phi \right) \right] {\bf j}\end{split}\]</div>
-<p>Substituindo as equações <a class="reference internal" href="#equation-ForceFront">(14)</a>, <a class="reference internal" href="#equation-ForceRear">(15)</a>, <a class="reference internal" href="#equation-ForceSemi">(16)</a>, <a class="reference internal" href="#equation-termGenFor1">(19)</a>, <a class="reference internal" href="#equation-termGenFor2">(20)</a> e  <a class="reference internal" href="#equation-termGenFor3">(21)</a> nas equações <a class="reference internal" href="#equation-generalizedForces">(17)</a> temos</p>
-<div class="math" id="equation-generForces">
-<span class="eqno">(22)<a class="headerlink" href="#equation-generForces" title="Permalink to this equation">¶</a></span>\[\begin{split}Q_1 &amp;= F_{x,{\rm F}} \cos \left( \psi + \delta \right) + F_{x,{\rm R}} \cos \psi + F_{x,{\rm M}} \cos \left( \psi - \phi \right) -...\\
+<p>Substituindo as equações <a class="reference internal" href="#equation-forcefront">(39)</a>, <a class="reference internal" href="#equation-forcerear">(40)</a>, <a class="reference internal" href="#equation-forcesemi">(41)</a>, <a class="reference internal" href="#equation-termgenfor1">(44)</a>, <a class="reference internal" href="#equation-termgenfor2">(45)</a> e  <a class="reference internal" href="#equation-termgenfor3">(46)</a> nas equações <a class="reference internal" href="#equation-generalizedforces">(42)</a> temos</p>
+<div class="math notranslate nohighlight" id="equation-generforces">
+<span class="eqno">(47)<a class="headerlink" href="#equation-generforces" title="Permalink to this equation">¶</a></span>\[\begin{split}Q_1 &amp;= F_{x,{\rm F}} \cos \left( \psi + \delta \right) + F_{x,{\rm R}} \cos \psi + F_{x,{\rm M}} \cos \left( \psi - \phi \right) -...\\
 ... &amp;- F_{y,{\rm F}} \sin \left( \psi + \delta \right) - F_{y,{\rm R}} \sin \psi - F_{y,{\rm M}} \sin \left( \psi - \phi \right) \\
 Q_2 &amp;= F_{x,{\rm F}} \sin \left( \psi + \delta \right) + F_{x,{\rm R}} \sin \psi + F_{x,{\rm M}} \sin \left( \psi - \phi \right) + ... \\
 ... &amp;- F_{y,{\rm F}} \cos \left( \psi + \delta \right) + F_{y,{\rm R}} \cos \psi + F_{y,{\rm M}} \cos \left( \psi - \phi \right) \\
@@ -217,17 +205,17 @@ Q_3 &amp;=  F_{x,{\rm F}} a \sin \delta + F_{x,{\rm M}} \left( b + c \right) \si
 ... &amp;+ F_{y,{\rm F}} a \cos \delta - F_{y,{\rm R}} b - F_{y,{\rm M}} \left[ \left( b + c \right) \cos \phi + \left( d + e \right) \right] \\
 Q_4 &amp;=  F_{y,{\rm M}} \left( d + e \right)\end{split}\]</div>
 <p>A formulação de Euler-Lagrange para este sistema é dada por</p>
-<div class="math" id="equation-lagrange">
-<span class="eqno">(23)<a class="headerlink" href="#equation-lagrange" title="Permalink to this equation">¶</a></span>\[\frac{d}{dt} \left( \frac{\partial T}{\partial \dot{q}_k} \right) - \frac{\partial T}{\partial q_k} = Q_k \qquad \qquad k = 1, 2, 3, 4,\]</div>
-<p>Substituindo as equações <a class="reference internal" href="#equation-lagrangePartialTerm">(11)</a>, <a class="reference internal" href="#equation-lagrangeTimeTerm">(13)</a> e <a class="reference internal" href="#equation-generForces">(22)</a> em <a class="reference internal" href="#equation-lagrange">(23)</a> temos</p>
-<div class="math">
+<div class="math notranslate nohighlight" id="equation-lagrange">
+<span class="eqno">(48)<a class="headerlink" href="#equation-lagrange" title="Permalink to this equation">¶</a></span>\[\frac{d}{dt} \left( \frac{\partial T}{\partial \dot{q}_k} \right) - \frac{\partial T}{\partial q_k} = Q_k \qquad \qquad k = 1, 2, 3, 4,\]</div>
+<p>Substituindo as equações <a class="reference internal" href="#equation-lagrangepartialterm">(36)</a>, <a class="reference internal" href="#equation-lagrangetimeterm">(38)</a> e <a class="reference internal" href="#equation-generforces">(47)</a> em <a class="reference internal" href="#equation-lagrange">(48)</a> temos</p>
+<div class="math notranslate nohighlight">
 \[\begin{split}m_{T} \ddot{x} + m_S \dot{C}_1 = Q_1 \\
 m_{T} \ddot{y} + m_S \dot{C}_2 = Q_2 \\
 m_S \dot{C}_1 \left[ \left( b + c \right) \sin \psi + d \sin \left( \psi - \phi \right) \right] + m_S \dot{C}_2 \left[ - \left( b + c \right) \cos \psi - d \cos \left( \psi - \phi \right) \right] + &amp;...&amp; \\
 ... + I_T \ddot{\psi} + I_S \left( \ddot{\psi} - \ddot{\phi} \right) &amp;=&amp; Q_3 \\
 m_S \dot{C}_1 \left[ - d \sin \left( \psi - \phi \right) \right] + m_S \dot{C}_2 \left[ d \cos \left( \psi - \phi \right) \right] - I_S \left( \ddot{\psi} - \ddot{\phi} \right) = Q_4\end{split}\]</div>
-<div class="math" id="equation-equationOfMotionXY">
-<span class="eqno">(24)<a class="headerlink" href="#equation-equationOfMotionXY" title="Permalink to this equation">¶</a></span>\[\begin{split}m_{T} \ddot{x} + m_S \dot{C}_1 &amp;=&amp; F_{x,{\rm F}} \cos \left( \psi + \delta \right) + F_{x,{\rm R}} \cos \psi + F_{x,{\rm M}} \cos \left( \psi - \phi \right) - ...\\
+<div class="math notranslate nohighlight" id="equation-equationofmotionxy">
+<span class="eqno">(49)<a class="headerlink" href="#equation-equationofmotionxy" title="Permalink to this equation">¶</a></span>\[\begin{split}m_{T} \ddot{x} + m_S \dot{C}_1 &amp;=&amp; F_{x,{\rm F}} \cos \left( \psi + \delta \right) + F_{x,{\rm R}} \cos \psi + F_{x,{\rm M}} \cos \left( \psi - \phi \right) - ...\\
 ... &amp;-&amp;  F_{y,{\rm F}} \sin \left( \psi + \delta \right) - F_{y,{\rm R}} \sin \psi - F_{y,{\rm M}} \sin \left( \psi - \phi \right) \\
 m_{T} \ddot{y} + m_S \dot{C}_2 &amp;=&amp; F_{x,{\rm F}} \sin \left( \psi + \delta \right) + F_{x,{\rm R}} \sin \psi + F_{x,{\rm M}} \sin \left( \psi - \phi \right) + ...\\
  ... &amp;-&amp; F_{y,{\rm F}} \cos \left( \psi + \delta \right) + F_{y,{\rm R}} \cos \psi + F_{y,{\rm M}} \cos \left( \psi - \phi \right) \\
@@ -235,9 +223,9 @@ m_S \dot{C}_1 \left[ \left( b + c \right) \sin \psi + d \sin \left( \psi - \phi 
 ... + I_T \ddot{\psi} + I_S \left( \ddot{\psi} - \ddot{\phi} \right) = \\
 F_{x,{\rm F}} a \sin \delta + F_{x,{\rm M}} \left( b + c \right) \sin \phi + F_{y,{\rm F}} a \cos \delta - F_{y,{\rm R}} b - F_{y,{\rm M}} \left[ \left( b + c \right) \cos \phi + \left( d + e \right) \right] \\
 m_S \dot{C}_1 \left[ - d \sin \left( \psi - \phi \right) \right] + m_S \dot{C}_2 \left[ d \cos \left( \psi - \phi \right) \right] - I_S \left( \ddot{\psi} - \ddot{\phi} \right) = F_{y,{\rm M}} \left( d + e \right)\end{split}\]</div>
-<p>Substituindo as equações <a class="reference internal" href="#equation-constantsTimeDiff">(10)</a> em <a class="reference internal" href="#equation-equationOfMotionXY">(24)</a></p>
-<div class="math" id="equation-eqMotSem">
-<span class="eqno">(25)<a class="headerlink" href="#equation-eqMotSem" title="Permalink to this equation">¶</a></span>\[\begin{split}\left( m_{T} + m_S \right) \ddot{x} + m_S \left[ \left( b + c \right) \sin \psi + d \sin \left( \psi - \phi \right) \right] \ddot{\psi} - m_S d \sin \left( \psi - \phi \right) \ddot{\phi} =  \\
+<p>Substituindo as equações <a class="reference internal" href="#equation-constantstimediff">(35)</a> em <a class="reference internal" href="#equation-equationofmotionxy">(49)</a></p>
+<div class="math notranslate nohighlight" id="equation-eqmotsem">
+<span class="eqno">(50)<a class="headerlink" href="#equation-eqmotsem" title="Permalink to this equation">¶</a></span>\[\begin{split}\left( m_{T} + m_S \right) \ddot{x} + m_S \left[ \left( b + c \right) \sin \psi + d \sin \left( \psi - \phi \right) \right] \ddot{\psi} - m_S d \sin \left( \psi - \phi \right) \ddot{\phi} =  \\
 F_{x,{\rm F}} \cos \left( \psi + \delta \right) + F_{x,{\rm R}} \cos \psi + F_{x,{\rm M}} \cos \left( \psi - \phi \right) - ... \\
 ... - F_{y,{\rm F}} \sin \left( \psi + \delta \right) - F_{y,{\rm R}} \sin \psi - F_{y,{\rm M}} \sin \left( \psi - \phi \right) \\
 - m_S \left( b + c \right) \dot{\psi}^2 \cos \psi - m_S d \left( \dot{\psi} - \dot{\phi} \right)^2 \cos \left( \psi - \phi \right) \\
@@ -254,7 +242,7 @@ m_S \left[ \left( b + c \right) \sin \psi + d \sin \left( \psi - \phi \right) \r
 \left( m_S d^2 + I_S \right) \ddot{\phi} = ... \\
 ... F_{y,{\rm M}} \left( d + e \right) - m_S \left( b + c \right) d \dot{\psi}^2 \sin \phi \\\end{split}\]</div>
 <p>Os estado podem ser escolhidos como</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[\begin{split}{\rm z}_1 &amp;= x \\
 {\rm z}_2 &amp;= y \\
 {\rm z}_3 &amp;= \psi \\
@@ -285,17 +273,17 @@ m_S left[ left( b + c right) sin {rm z}_3 + d sin left( {rm z}_3 - {rm z}_4 righ
 - m_S d sin left( psi - phi right) dot{{rm z}}_5 + m_S d cos left( psi - phi right) dot{{rm z}}_6 - left{ m_S left[ d^2 + left( b + c right) d cos phi right] + I_S right} dot{{rm z}}_7 + … \
 left( m_S d^2 + I_S right) dot{{rm z}}_8 = … \
 … F_{y,{rm M}} left( d + e right) - m_S left( b + c right) d dot{psi}^2 sin phi \</div></blockquote>
-<p>Em muitas ocasiões é conveniente fazer a substituição dos estados <span class="math">\(\dot{x}\)</span> e <span class="math">\(\dot{y}\)</span> por <span class="math">\(v_{\rm T}\)</span> e <span class="math">\(\alpha_{\rm T}\)</span>. A relação entre estes pares de estados é</p>
-<div class="math" id="equation-stateSubstitution">
-<span class="eqno">(26)<a class="headerlink" href="#equation-stateSubstitution" title="Permalink to this equation">¶</a></span>\[\begin{split}\dot{x} &amp;= v_{\rm T} \cos \left( \psi + \alpha_{\rm T} \right) \\
+<p>Em muitas ocasiões é conveniente fazer a substituição dos estados <span class="math notranslate nohighlight">\(\dot{x}\)</span> e <span class="math notranslate nohighlight">\(\dot{y}\)</span> por <span class="math notranslate nohighlight">\(v_{\rm T}\)</span> e <span class="math notranslate nohighlight">\(\alpha_{\rm T}\)</span>. A relação entre estes pares de estados é</p>
+<div class="math notranslate nohighlight" id="equation-statesubstitution">
+<span class="eqno">(51)<a class="headerlink" href="#equation-statesubstitution" title="Permalink to this equation">¶</a></span>\[\begin{split}\dot{x} &amp;= v_{\rm T} \cos \left( \psi + \alpha_{\rm T} \right) \\
 \dot{y} &amp;= v_{\rm T} \sin \left( \psi + \alpha_{\rm T} \right).\end{split}\]</div>
-<p>Derivando em relação ao tempo a equação <a class="reference internal" href="#equation-stateSubstitution">(26)</a> temos</p>
-<div class="math" id="equation-stateDiffSubstitution">
-<span class="eqno">(27)<a class="headerlink" href="#equation-stateDiffSubstitution" title="Permalink to this equation">¶</a></span>\[\begin{split}\ddot{x} &amp;= \dot{v}_{\rm T} \cos \left( \psi + \alpha_{\rm T} \right) - v_{\rm T} \left( \dot{\psi} + \dot{\alpha}_{\rm T} \right) \sin \left( \psi + \alpha_{\rm T} \right) \\
+<p>Derivando em relação ao tempo a equação <a class="reference internal" href="#equation-statesubstitution">(51)</a> temos</p>
+<div class="math notranslate nohighlight" id="equation-statediffsubstitution">
+<span class="eqno">(52)<a class="headerlink" href="#equation-statediffsubstitution" title="Permalink to this equation">¶</a></span>\[\begin{split}\ddot{x} &amp;= \dot{v}_{\rm T} \cos \left( \psi + \alpha_{\rm T} \right) - v_{\rm T} \left( \dot{\psi} + \dot{\alpha}_{\rm T} \right) \sin \left( \psi + \alpha_{\rm T} \right) \\
 \ddot{y} &amp;= \dot{v}_{\rm T} \sin \left( \psi + \alpha_{\rm T} \right) + v_{\rm T} \left( \dot{\psi} + \dot{\alpha}_{\rm T} \right) \cos \left( \psi + \alpha_{\rm T} \right).\end{split}\]</div>
-<p>Desta forma, substituindo as equações <a class="reference internal" href="#equation-stateDiffSubstitution">(27)</a> nas equações <a class="reference internal" href="#equation-eqMotSem">(25)</a> temos</p>
-<div class="math" id="equation-eqMovSubs">
-<span class="eqno">(28)<a class="headerlink" href="#equation-eqMovSubs" title="Permalink to this equation">¶</a></span>\[\begin{split}\left( m_{T} + m_S \right) \cos \left( \psi + \alpha_{\rm T} \right) \dot{v}_{\rm T} - \left( m_{T} + m_S \right) v_{\rm T} \sin \left( \psi + \alpha_{\rm T} \right) \dot{\alpha}_{\rm T} + ... \\
+<p>Desta forma, substituindo as equações <a class="reference internal" href="#equation-statediffsubstitution">(52)</a> nas equações <a class="reference internal" href="#equation-eqmotsem">(50)</a> temos</p>
+<div class="math notranslate nohighlight" id="equation-eqmovsubs">
+<span class="eqno">(53)<a class="headerlink" href="#equation-eqmovsubs" title="Permalink to this equation">¶</a></span>\[\begin{split}\left( m_{T} + m_S \right) \cos \left( \psi + \alpha_{\rm T} \right) \dot{v}_{\rm T} - \left( m_{T} + m_S \right) v_{\rm T} \sin \left( \psi + \alpha_{\rm T} \right) \dot{\alpha}_{\rm T} + ... \\
 + m_S \left[ \left( b + c \right) \sin \psi + d \sin \left( \psi - \phi \right) \right] \ddot{\psi} - m_S d \sin \left( \psi - \phi \right) \ddot{\phi} =  \\
 F_{x,{\rm F}} \cos \left( \psi + \delta \right) + F_{x,{\rm R}} \cos \psi + F_{x,{\rm M}} \cos \left( \psi - \phi \right) - ... \\
 ... - F_{y,{\rm F}} \sin \left( \psi + \delta \right) - F_{y,{\rm R}} \sin \psi - F_{y,{\rm M}} \sin \left( \psi - \phi \right) \\
@@ -313,7 +301,7 @@ m_S d \sin \left( \alpha_{\rm T} + \phi \right) \dot{v}_{\rm T} + m_S d v_{\rm T
 ... + \left( m_S d^2 + I_S \right) \ddot{\phi} = ... \\
 ... F_{y,{\rm M}} \left( d + e \right) - m_S \left( b + c \right) d \dot{\psi}^2 \sin \phi - m_S d v_{\rm T} \cos \left( \alpha_{\rm T} + \phi \right) \dot{\psi}\end{split}\]</div>
 <p>Os estados podem ser escolhidos como</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[\begin{split}{\rm x}_1 &amp;= x \\
 {\rm x}_2 &amp;= y \\
 {\rm x}_3 &amp;= \psi \\
@@ -322,21 +310,21 @@ m_S d \sin \left( \alpha_{\rm T} + \phi \right) \dot{v}_{\rm T} + m_S d v_{\rm T
 {\rm x}_6 &amp;= \dot{\alpha}_{\rm T} \\
 {\rm x}_7 &amp;= \dot{\psi} \\
 {\rm x}_8 &amp;= \dot{\phi}\end{split}\]</div>
-<p>Na forma matricial o sistema da equação <a class="reference internal" href="#equation-eqMovSubs">(28)</a> pode ser escrito como</p>
-<div class="math" id="equation-eqMovMatrix">
-<span class="eqno">(29)<a class="headerlink" href="#equation-eqMovMatrix" title="Permalink to this equation">¶</a></span>\[{\bf M} \left( {\bf x} \right) \dot{{\bf x}} = {\bf f} \left( {\bf x}, {\bf u} \right),\]</div>
+<p>Na forma matricial o sistema da equação <a class="reference internal" href="#equation-eqmovsubs">(53)</a> pode ser escrito como</p>
+<div class="math notranslate nohighlight" id="equation-eqmovmatrix">
+<span class="eqno">(54)<a class="headerlink" href="#equation-eqmovmatrix" title="Permalink to this equation">¶</a></span>\[{\bf M} \left( {\bf x} \right) \dot{{\bf x}} = {\bf f} \left( {\bf x}, {\bf u} \right),\]</div>
 <p>onde o vetor de estados é</p>
-<div class="math" id="equation-stateVector">
-<span class="eqno">(30)<a class="headerlink" href="#equation-stateVector" title="Permalink to this equation">¶</a></span>\[\begin{split}{\bf x} = \left[ \begin{array}{c} {\rm x}_{1} \\ {\rm x}_{2} \\ {\rm x}_{3} \\ {\rm x}_{4} \\ {\rm x}_{5} \\ {\rm x}_{6} \\ {\rm x}_{7} \\ {\rm x}_{8} \end{array} \right]\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-statevector">
+<span class="eqno">(55)<a class="headerlink" href="#equation-statevector" title="Permalink to this equation">¶</a></span>\[\begin{split}{\bf x} = \left[ \begin{array}{c} {\rm x}_{1} \\ {\rm x}_{2} \\ {\rm x}_{3} \\ {\rm x}_{4} \\ {\rm x}_{5} \\ {\rm x}_{6} \\ {\rm x}_{7} \\ {\rm x}_{8} \end{array} \right]\end{split}\]</div>
 <p>e o vetor de entradas é</p>
-<div class="math" id="equation-inputVector">
-<span class="eqno">(31)<a class="headerlink" href="#equation-inputVector" title="Permalink to this equation">¶</a></span>\[\begin{split}{\bf u} = \left[ \begin{array}{c} \delta \\ F_{x,{\rm F}} \\ F_{x,{\rm R}} \\ F_{x,{\rm M}} \\ F_{y,{\rm F}} \\ F_{y,{\rm R}} \\ F_{y,{\rm M}} \end{array} \right].\end{split}\]</div>
-<p>A matriz <span class="math">\({\bf M}\)</span> é dada por</p>
-<div class="math" id="equation-leftMatrix">
-<span class="eqno">(32)<a class="headerlink" href="#equation-leftMatrix" title="Permalink to this equation">¶</a></span>\[\begin{split}{\bf M} = \left[ \begin{array}{ccccccccc} 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; M_{55} &amp; M_{56} &amp; M_{57} &amp; M_{58} \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; M_{65} &amp; M_{66} &amp; M_{67} &amp; M_{68} \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; M_{75} &amp; M_{76} &amp; M_{77} &amp; M_{78} \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; M_{85} &amp; M_{86} &amp; M_{87} &amp; M_{88} \end{array} \right],\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-inputvector">
+<span class="eqno">(56)<a class="headerlink" href="#equation-inputvector" title="Permalink to this equation">¶</a></span>\[\begin{split}{\bf u} = \left[ \begin{array}{c} \delta \\ F_{x,{\rm F}} \\ F_{x,{\rm R}} \\ F_{x,{\rm M}} \\ F_{y,{\rm F}} \\ F_{y,{\rm R}} \\ F_{y,{\rm M}} \end{array} \right].\end{split}\]</div>
+<p>A matriz <span class="math notranslate nohighlight">\({\bf M}\)</span> é dada por</p>
+<div class="math notranslate nohighlight" id="equation-leftmatrix">
+<span class="eqno">(57)<a class="headerlink" href="#equation-leftmatrix" title="Permalink to this equation">¶</a></span>\[\begin{split}{\bf M} = \left[ \begin{array}{ccccccccc} 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; M_{55} &amp; M_{56} &amp; M_{57} &amp; M_{58} \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; M_{65} &amp; M_{66} &amp; M_{67} &amp; M_{68} \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; M_{75} &amp; M_{76} &amp; M_{77} &amp; M_{78} \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; M_{85} &amp; M_{86} &amp; M_{87} &amp; M_{88} \end{array} \right],\end{split}\]</div>
 <p>onde os elementros são</p>
-<div class="math" id="equation-leftMatrixElements">
-<span class="eqno">(33)<a class="headerlink" href="#equation-leftMatrixElements" title="Permalink to this equation">¶</a></span>\[\begin{split}M_{55} &amp;= \left( m_{T} + m_S \right) \cos \left( \psi + \alpha_{\rm T} \right) \\
+<div class="math notranslate nohighlight" id="equation-leftmatrixelements">
+<span class="eqno">(58)<a class="headerlink" href="#equation-leftmatrixelements" title="Permalink to this equation">¶</a></span>\[\begin{split}M_{55} &amp;= \left( m_{T} + m_S \right) \cos \left( \psi + \alpha_{\rm T} \right) \\
 M_{56} &amp;= - \left( m_{T} + m_S \right) v_{\rm T} \sin \left( \psi + \alpha_{\rm T} \right) \\
 M_{57} &amp;= m_S \left[ \left( b + c \right) \sin \psi + d \sin \left( \psi - \phi \right) \right] \\
 M_{58} &amp;= - m_S d \sin \left( \psi - \phi \right) \\
@@ -353,11 +341,11 @@ M_{86} &amp;= m_S d v_{\rm T} \cos \left( \alpha_{\rm T} + \phi \right) \\
 M_{87} &amp;= - m_S \left[ d^2 + \left( b + c \right) d \cos \phi \right] + I_S \\
 M_{88} &amp;= \left( m_S d^2 + I_S \right)\end{split}\]</div>
 <p>As funções são dadas por</p>
-<div class="math" id="equation-functionNonlinear">
-<span class="eqno">(34)<a class="headerlink" href="#equation-functionNonlinear" title="Permalink to this equation">¶</a></span>\[\begin{split}{\bf f} = \left[ \begin{array}{c} v_{\rm T} \cos \left(\psi + \alpha_{\rm T} \right) \\ v_{\rm T} \sin \left(\psi + \alpha_{\rm T} \right) \\ \dot{\psi} \\ \dot{\phi} \\ f_5 \\ f_6 \\ f_7 \\ f_8 \\  \end{array} \right],\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-functionnonlinear">
+<span class="eqno">(59)<a class="headerlink" href="#equation-functionnonlinear" title="Permalink to this equation">¶</a></span>\[\begin{split}{\bf f} = \left[ \begin{array}{c} v_{\rm T} \cos \left(\psi + \alpha_{\rm T} \right) \\ v_{\rm T} \sin \left(\psi + \alpha_{\rm T} \right) \\ \dot{\psi} \\ \dot{\phi} \\ f_5 \\ f_6 \\ f_7 \\ f_8 \\  \end{array} \right],\end{split}\]</div>
 <p>onde</p>
-<div class="math" id="equation-functionNonlinearElements">
-<span class="eqno">(35)<a class="headerlink" href="#equation-functionNonlinearElements" title="Permalink to this equation">¶</a></span>\[\begin{split}f_{5} &amp;=&amp; F_{x,{\rm F}} \cos \left( \psi + \delta \right) + F_{x,{\rm R}} \cos \psi + F_{x,{\rm M}} \cos \left( \psi - \phi \right) - ... \\
+<div class="math notranslate nohighlight" id="equation-functionnonlinearelements">
+<span class="eqno">(60)<a class="headerlink" href="#equation-functionnonlinearelements" title="Permalink to this equation">¶</a></span>\[\begin{split}f_{5} &amp;=&amp; F_{x,{\rm F}} \cos \left( \psi + \delta \right) + F_{x,{\rm R}} \cos \psi + F_{x,{\rm M}} \cos \left( \psi - \phi \right) - ... \\
 ... &amp;-&amp; F_{y,{\rm F}} \sin \left( \psi + \delta \right) - F_{y,{\rm R}} \sin \psi - F_{y,{\rm M}} \sin \left( \psi - \phi \right) - ...\\
 ... &amp;-&amp; m_S \left( b + c \right) \dot{\psi}^2 \cos \psi - m_S d \left( \dot{\psi} - \dot{\phi} \right)^2 \cos \left( \psi - \phi \right) + \left( m_{T} + m_S \right) v_{\rm T} \sin \left( \psi + \alpha_{\rm T} \right) \dot{\psi} \\
 f_{6} &amp;=&amp; F_{x,{\rm F}} \sin \left( \psi + \delta \right) + F_{x,{\rm R}} \sin \psi + F_{x,{\rm M}} \sin \left( \psi - \phi \right) + ... \\
@@ -368,14 +356,14 @@ f_{7} &amp;=&amp; F_{x,{\rm F}} a \sin \delta + F_{x,{\rm M}} \left( b + c \righ
 ... &amp;-&amp; m_S \left( b + c \right) d \left( \dot{\psi} - \dot{\phi} \right)^2 \sin \phi + m_S \left( b + c \right) d \dot{\psi}^2 \sin \phi + ... \\
 ... &amp;+&amp; m_S \left[ \left( b + c \right) v_{\rm T} \cos \alpha_{\rm T} + d v_{\rm T} \cos \left( \alpha_{\rm T} + \phi \right) \right] \dot{\psi}\\
 f_{8} = F_{y,{\rm M}} \left( d + e \right) - m_S \left( b + c \right) d \dot{\psi}^2 \sin \phi - m_S d v_{\rm T} \cos \left( \alpha_{\rm T} + \phi \right) \dot{\psi}.\end{split}\]</div>
-<p>Portanto, o modelo não linear de veículo articulado é dado pelas equações <a class="reference internal" href="#equation-eqMovMatrix">(29)</a>, <a class="reference internal" href="#equation-stateVector">(30)</a>, <a class="reference internal" href="#equation-inputVector">(31)</a>, <a class="reference internal" href="#equation-leftMatrix">(32)</a>, <a class="reference internal" href="#equation-leftMatrixElements">(33)</a>, <a class="reference internal" href="#equation-functionNonlinear">(34)</a> e <a class="reference internal" href="#equation-functionNonlinearElements">(35)</a>.</p>
+<p>Portanto, o modelo não linear de veículo articulado é dado pelas equações <a class="reference internal" href="#equation-eqmovmatrix">(54)</a>, <a class="reference internal" href="#equation-statevector">(55)</a>, <a class="reference internal" href="#equation-inputvector">(56)</a>, <a class="reference internal" href="#equation-leftmatrix">(57)</a>, <a class="reference internal" href="#equation-leftmatrixelements">(58)</a>, <a class="reference internal" href="#equation-functionnonlinear">(59)</a> e <a class="reference internal" href="#equation-functionnonlinearelements">(60)</a>.</p>
 <p><em>Linearization</em></p>
-<p>A equação não linear <a class="reference internal" href="#equation-eqMovMatrix">(29)</a> pode ser linearizada e escrita na forma matricial</p>
-<div class="math" id="equation-linearEq">
-<span class="eqno">(36)<a class="headerlink" href="#equation-linearEq" title="Permalink to this equation">¶</a></span>\[{\bf E}\dot{{\bf x}} = {\bf A} {\bf x} + {\bf B} {\bf u}.\]</div>
-<p>A linearização deste sistema pode ser feita para um veículo se movimentando em linha reta com uma determinada velocidade <span class="math">\(v_{\rm T} &gt; 0\)</span>. Neste caso, os estados no ponto de operação são dados por</p>
-<div class="math" id="equation-opStates">
-<span class="eqno">(37)<a class="headerlink" href="#equation-opStates" title="Permalink to this equation">¶</a></span>\[\begin{split}{\rm x}_{1,op} &amp;= x_{op} = ? \\
+<p>A equação não linear <a class="reference internal" href="#equation-eqmovmatrix">(54)</a> pode ser linearizada e escrita na forma matricial</p>
+<div class="math notranslate nohighlight" id="equation-lineareq">
+<span class="eqno">(61)<a class="headerlink" href="#equation-lineareq" title="Permalink to this equation">¶</a></span>\[{\bf E}\dot{{\bf x}} = {\bf A} {\bf x} + {\bf B} {\bf u}.\]</div>
+<p>A linearização deste sistema pode ser feita para um veículo se movimentando em linha reta com uma determinada velocidade <span class="math notranslate nohighlight">\(v_{\rm T} &gt; 0\)</span>. Neste caso, os estados no ponto de operação são dados por</p>
+<div class="math notranslate nohighlight" id="equation-opstates">
+<span class="eqno">(62)<a class="headerlink" href="#equation-opstates" title="Permalink to this equation">¶</a></span>\[\begin{split}{\rm x}_{1,op} &amp;= x_{op} = ? \\
 {\rm x}_{2,op} &amp;= y_{op} = ? \\
 {\rm x}_{3,op} &amp;= \psi_{op} = 0 \\
 {\rm x}_{4,op} &amp;= \phi_{op} = 0 \\
@@ -383,13 +371,13 @@ f_{8} = F_{y,{\rm M}} \left( d + e \right) - m_S \left( b + c \right) d \dot{\ps
 {\rm x}_{6,op} &amp;= \alpha_{{\rm T},op} = 0 \\
 {\rm x}_{7,op} &amp;= \dot{\psi}_{op} = 0, \\
 {\rm x}_{8,op} &amp;= \dot{\phi}_{op} = 0.\end{split}\]</div>
-<p>OBS: Os estados <span class="math">\(x\)</span> e <span class="math">\(y\)</span> não influenciam a dinâmica do sistema.</p>
+<p>OBS: Os estados <span class="math notranslate nohighlight">\(x\)</span> e <span class="math notranslate nohighlight">\(y\)</span> não influenciam a dinâmica do sistema.</p>
 <p>O vetor do ponto de operação dos estados é</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[\begin{split}{\bf x}_{op} = \left[ \begin{array}{c} {\rm x}_{1,op} \\ {\rm x}_{2,op} \\ {\rm x}_{3,op} \\ {\rm x}_{4,op} \\ {\rm x}_{5,op} \\ {\rm x}_{6,op} \\ {\rm x}_{7,op} \\ {\rm x}_{8,op} \end{array} \right].\end{split}\]</div>
 <p>Neste ponto de operação dos estados, o ponto de operação da derivada dos estados é dada por</p>
-<div class="math" id="equation-opDiffStates">
-<span class="eqno">(38)<a class="headerlink" href="#equation-opDiffStates" title="Permalink to this equation">¶</a></span>\[\begin{split}\dot{{\rm x}}_{1,op} &amp;= \dot{x}_{op} = v_{{\rm T},0} \\
+<div class="math notranslate nohighlight" id="equation-opdiffstates">
+<span class="eqno">(63)<a class="headerlink" href="#equation-opdiffstates" title="Permalink to this equation">¶</a></span>\[\begin{split}\dot{{\rm x}}_{1,op} &amp;= \dot{x}_{op} = v_{{\rm T},0} \\
 \dot{{\rm x}}_{2,op} &amp;= \dot{y}_{op} = 0 \\
 \dot{{\rm x}}_{3,op} &amp;= \dot{\psi}_{op} = 0 \\
 \dot{{\rm x}}_{4,op} &amp;= \dot{\phi}_{op} = 0 \\
@@ -398,11 +386,11 @@ f_{8} = F_{y,{\rm M}} \left( d + e \right) - m_S \left( b + c \right) d \dot{\ps
 \dot{{\rm x}}_{7,op} &amp;= \ddot{\psi}_{op} = 0, \\
 \dot{{\rm x}}_{8,op} &amp;= \ddot{\phi}_{op} = 0.\end{split}\]</div>
 <p>O vetor do ponto de operação da derivada dos estados é</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[\begin{split}\dot{{\bf x}}_{op} = \left[ \begin{array}{c} \dot{{\rm x}}_{1,op} \\ \dot{{\rm x}}_{2,op} \\ \dot{{\rm x}}_{3,op} \\ \dot{{\rm x}}_{4,op} \\ \dot{{\rm x}}_{5,op} \\ \dot{{\rm x}}_{6,op} \\ \dot{{\rm x}}_{7,op} \\ \dot{{\rm x}}_{8,op} \end{array} \right].\end{split}\]</div>
 <p>O ponto de operação das entradas é</p>
-<div class="math" id="equation-opInput">
-<span class="eqno">(39)<a class="headerlink" href="#equation-opInput" title="Permalink to this equation">¶</a></span>\[\begin{split}\delta_{op} &amp;= 0 \\
+<div class="math notranslate nohighlight" id="equation-opinput">
+<span class="eqno">(64)<a class="headerlink" href="#equation-opinput" title="Permalink to this equation">¶</a></span>\[\begin{split}\delta_{op} &amp;= 0 \\
 F_{x,{\rm F},op} &amp;= 0 \\
 F_{x,{\rm R},op} &amp;= 0 \\
 F_{x,{\rm M},op} &amp;= 0 \\
@@ -410,32 +398,32 @@ F_{y,{\rm F},op} &amp;= 0 \\
 F_{y,{\rm R},op} &amp;= 0 \\
 F_{y,{\rm M},op} &amp;= 0.\end{split}\]</div>
 <p>O vetor do ponto de operação das entradas é</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[\begin{split}{\bf u}_{op} = \left[ \begin{array}{c} \delta_{op} \\ F_{x,{\rm F},op} \\ F_{x,{\rm R},op} \\ F_{y,{\rm F},op} \\ F_{y,{\rm R},op} \end{array} \right].\end{split}\]</div>
-<p>Expandindo em série de Taylor a equação <a class="reference internal" href="#equation-eqMovMatrix">(29)</a> e truncando nos termos de primeira ordem temos</p>
-<div class="math" id="equation-TaylorSeries">
-<span class="eqno">(40)<a class="headerlink" href="#equation-TaylorSeries" title="Permalink to this equation">¶</a></span>\[\begin{split}\nabla{\bf g}\left( {\bf x}_{op}, \dot{{\bf x}}_{op},  {\bf u}_{op} \right) \left[ \begin{array}{c} {\bf x} - {\bf x}_{op} \\ \dot{{\bf x}} - \dot{{\bf x}}_{op} \\ {\bf u} - {\bf u}_{op} \end{array} \right] = \nabla{\bf f}\left( {\bf x}_{op}, \dot{{\bf x}}_{op},  {\bf u}_{op} \right) \left[ \begin{array}{c} {\bf x} - {\bf x}_{op} \\ \dot{{\bf x}} - \dot{{\bf x}}_{op} \\ {\bf u} - {\bf u}_{op} \end{array} \right],\end{split}\]</div>
+<p>Expandindo em série de Taylor a equação <a class="reference internal" href="#equation-eqmovmatrix">(54)</a> e truncando nos termos de primeira ordem temos</p>
+<div class="math notranslate nohighlight" id="equation-taylorseries">
+<span class="eqno">(65)<a class="headerlink" href="#equation-taylorseries" title="Permalink to this equation">¶</a></span>\[\begin{split}\nabla{\bf g}\left( {\bf x}_{op}, \dot{{\bf x}}_{op},  {\bf u}_{op} \right) \left[ \begin{array}{c} {\bf x} - {\bf x}_{op} \\ \dot{{\bf x}} - \dot{{\bf x}}_{op} \\ {\bf u} - {\bf u}_{op} \end{array} \right] = \nabla{\bf f}\left( {\bf x}_{op}, \dot{{\bf x}}_{op},  {\bf u}_{op} \right) \left[ \begin{array}{c} {\bf x} - {\bf x}_{op} \\ \dot{{\bf x}} - \dot{{\bf x}}_{op} \\ {\bf u} - {\bf u}_{op} \end{array} \right],\end{split}\]</div>
 <p>onde</p>
-<div class="math" id="equation-functiong">
-<span class="eqno">(41)<a class="headerlink" href="#equation-functiong" title="Permalink to this equation">¶</a></span>\[\begin{split}{\bf g} = \left[ \begin{array}{c} {\rm g}_1 \\ {\rm g}_2 \\ {\rm g}_3 \\ {\rm g}_4 \\ {\rm g}_5 \\ {\rm g}_6 \\ {\rm g}_7 \\ {\rm g}_8 \end{array} \right].\end{split}\]</div>
-<p>é o lado esquerdo da equação <a class="reference internal" href="#equation-eqMovMatrix">(29)</a>, enquanto que o lado direito é dado por</p>
-<div class="math" id="equation-functionf">
-<span class="eqno">(42)<a class="headerlink" href="#equation-functionf" title="Permalink to this equation">¶</a></span>\[\begin{split}{\bf f} = \left[ \begin{array}{c} {\rm f}_1 \\ {\rm f}_2 \\ {\rm f}_3 \\ {\rm f}_4 \\ {\rm f}_5 \\ {\rm f}_6 \\ {\rm f}_7 \\ {\rm f}_8 \end{array} \right].\end{split}\]</div>
-<p>O jacobiano das funções <a class="reference internal" href="#equation-functiong">(41)</a> e <a class="reference internal" href="#equation-functionf">(42)</a> é</p>
-<div class="math">
+<div class="math notranslate nohighlight" id="equation-functiong">
+<span class="eqno">(66)<a class="headerlink" href="#equation-functiong" title="Permalink to this equation">¶</a></span>\[\begin{split}{\bf g} = \left[ \begin{array}{c} {\rm g}_1 \\ {\rm g}_2 \\ {\rm g}_3 \\ {\rm g}_4 \\ {\rm g}_5 \\ {\rm g}_6 \\ {\rm g}_7 \\ {\rm g}_8 \end{array} \right].\end{split}\]</div>
+<p>é o lado esquerdo da equação <a class="reference internal" href="#equation-eqmovmatrix">(54)</a>, enquanto que o lado direito é dado por</p>
+<div class="math notranslate nohighlight" id="equation-functionf">
+<span class="eqno">(67)<a class="headerlink" href="#equation-functionf" title="Permalink to this equation">¶</a></span>\[\begin{split}{\bf f} = \left[ \begin{array}{c} {\rm f}_1 \\ {\rm f}_2 \\ {\rm f}_3 \\ {\rm f}_4 \\ {\rm f}_5 \\ {\rm f}_6 \\ {\rm f}_7 \\ {\rm f}_8 \end{array} \right].\end{split}\]</div>
+<p>O jacobiano das funções <a class="reference internal" href="#equation-functiong">(66)</a> e <a class="reference internal" href="#equation-functionf">(67)</a> é</p>
+<div class="math notranslate nohighlight">
 \[\begin{split}\nabla {\bf g} &amp;= \left[ \begin{array}{ccccccc} \frac{ \partial g_1 }{ \partial x } &amp; \hdots &amp; \frac{ \partial g_1 }{ \partial \dot{x} } &amp; \hdots &amp;\frac{ \partial g_1 }{ \partial \delta } &amp; \hdots &amp; \frac{\partial g_1}{\partial F_{y,{\rm R}}} \\ \vdots &amp;  &amp; \vdots &amp;  &amp; \vdots &amp;  &amp; \vdots  \\ \frac{ \partial g_8 }{ \partial x } &amp; \hdots &amp; \frac{ \partial g_8 }{ \partial \dot{x} } &amp; \hdots &amp;\frac{ \partial g_8 }{ \partial \delta } &amp; \hdots &amp; \frac{\partial g_8}{\partial F_{y,{\rm R}}} \end{array} \right] \\
 \nabla {\bf f} &amp;= \left[ \begin{array}{ccccccc} \frac{ \partial f_1 }{ \partial x } &amp; \hdots &amp; \frac{ \partial f_1 }{ \partial \dot{x} } &amp; \hdots &amp;\frac{ \partial f_1 }{ \partial \delta } &amp; \hdots &amp; \frac{\partial f_1}{\partial F_{y,{\rm R}}} \\ \vdots &amp;  &amp; \vdots &amp;  &amp; \vdots &amp;  &amp; \vdots  \\ \frac{ \partial f_8 }{ \partial x } &amp; \hdots &amp; \frac{ \partial f_8 }{ \partial \dot{x} } &amp; \hdots &amp;\frac{ \partial f_8 }{ \partial \delta } &amp; \hdots &amp; \frac{\partial f_8}{\partial F_{y,{\rm R}}} \end{array} \right].\end{split}\]</div>
 <p>Logo, as equações de movimento linearizadas são dadas por</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[\begin{split}(m_T + m_S) \dot{v}_{\rm T} &amp;= F_{x,{\rm F}} + F_{x,{\rm R}} + F_{x,{\rm M}} \\
 (m_T + m_S) v_{{\rm T},0} \dot{\alpha}_{\rm T} - m_S (b + c + d) \ddot{\psi} + m_S d \ddot{\phi} &amp;= F_{y,{\rm F}} + F_{y,{\rm R}} + F_{y,{\rm M}} -  (m_S + m_T) v_{{\rm T},0} \dot{\psi} \\
 - m_S (b + c + c) v_{{\rm T},0} \dot{\alpha}_{\rm T} + \left[ I_T + I_S + m_S  (b + c + d)^2 \right] \ddot{\psi} - \left[ I_S + m_S (d^2 + (b + c) d) \right] \ddot{\phi} = \\
 F_{y,{\rm F}} a - F_{y,{\rm R}} b - F_{y,{\rm M}} (b + c + d + e) + m_S (b + c + d) v_{{\rm T},0} \dot{\psi} \\
 m_S d v_{{\rm T},0} \dot{\alpha}_{\rm T} - (I_S + m_S (d^2 + (b + c) d)) \ddot{\psi} + (m_S d^2 + I_S) \ddot{\phi} = F_{y,{\rm M}} (d + e) - m_S d v_{{\rm T},0} \dot{\psi}\end{split}\]</div>
-<p>É possível notar que quando o somatório das forças longitudinais é zero a velocidade <span class="math">\(v_{\rm T}\)</span> se mantém constante.</p>
+<p>É possível notar que quando o somatório das forças longitudinais é zero a velocidade <span class="math notranslate nohighlight">\(v_{\rm T}\)</span> se mantém constante.</p>
 <p>As equações de estado são dadas por</p>
-<div class="math" id="equation-linearEqMot">
-<span class="eqno">(43)<a class="headerlink" href="#equation-linearEqMot" title="Permalink to this equation">¶</a></span>\[\begin{split}\dot{\rm x}_1 &amp;= {\rm x}_5 \\
+<div class="math notranslate nohighlight" id="equation-lineareqmot">
+<span class="eqno">(68)<a class="headerlink" href="#equation-lineareqmot" title="Permalink to this equation">¶</a></span>\[\begin{split}\dot{\rm x}_1 &amp;= {\rm x}_5 \\
 \dot{\rm x}_2 &amp;= ({\rm x}_3 + {\rm x}_6) v_{{\rm T},0} \\
 \dot{\rm x}_3 &amp;= {\rm x}_7 \\
 \dot{\rm x}_4 &amp;= {\rm x}_8 \\
@@ -444,11 +432,11 @@ m_S d v_{{\rm T},0} \dot{\alpha}_{\rm T} - (I_S + m_S (d^2 + (b + c) d)) \ddot{\
 - m_S (b + c + c) v_{{\rm T},0} \dot{\rm x}_6 + \left[ I_T + I_S + m_S  (b + c + d)^2 \right] \dot{\rm x}_7 - \left[ I_S + m_S (d^2 + (b + c) d) \right] \dot{\rm x}_8 = \\
 F_{y,{\rm F}} a - F_{y,{\rm R}} b - F_{y,{\rm M}} (b + c + d + e) + m_S (b + c + d) v_{{\rm T},0} {\rm x} \\
 m_S d v_{{\rm T},0} \dot{\rm x}_6 - (I_S + m_S (d^2 + (b + c) d)) \dot{\rm x}_7 + (m_S d^2 + I_S) \dot{\rm x}_8 = F_{y,{\rm M}} (d + e) - m_S d v_{{\rm T},0} {\rm x}_7\end{split}\]</div>
-<p>Escrevendo a equação <a class="reference internal" href="#equation-linearEqMot">(43)</a> na forma matricial da pela equação <a class="reference internal" href="#equation-linearEq">(36)</a> a matriz <span class="math">\({\bf E}\)</span> é dada por</p>
-<div class="math" id="equation-matrixE">
-<span class="eqno">(44)<a class="headerlink" href="#equation-matrixE" title="Permalink to this equation">¶</a></span>\[\begin{split}{\bf E} = \left[ \begin{array}{ccccccccc} 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; E_{55} &amp; E_{56} &amp; E_{57} &amp; E_{58} \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; E_{65} &amp; E_{66} &amp; E_{67} &amp; E_{68} \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; E_{75} &amp; E_{76} &amp; E_{77} &amp; E_{78} \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; E_{85} &amp; E_{86} &amp; E_{87} &amp; E_{88} \end{array} \right],\end{split}\]</div>
+<p>Escrevendo a equação <a class="reference internal" href="#equation-lineareqmot">(68)</a> na forma matricial da pela equação <a class="reference internal" href="#equation-lineareq">(61)</a> a matriz <span class="math notranslate nohighlight">\({\bf E}\)</span> é dada por</p>
+<div class="math notranslate nohighlight" id="equation-matrixe">
+<span class="eqno">(69)<a class="headerlink" href="#equation-matrixe" title="Permalink to this equation">¶</a></span>\[\begin{split}{\bf E} = \left[ \begin{array}{ccccccccc} 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; E_{55} &amp; E_{56} &amp; E_{57} &amp; E_{58} \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; E_{65} &amp; E_{66} &amp; E_{67} &amp; E_{68} \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; E_{75} &amp; E_{76} &amp; E_{77} &amp; E_{78} \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; E_{85} &amp; E_{86} &amp; E_{87} &amp; E_{88} \end{array} \right],\end{split}\]</div>
 <p>onde os elementros são</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[\begin{split}E_{55} &amp;= \left( m_{T} + m_S \right) \\
 E_{56} &amp;= 0 \\
 E_{57} &amp;= 0 \\
@@ -466,8 +454,8 @@ E_{86} &amp;= d m_S v_{{\rm T},0} \\
 E_{87} &amp;= - I_S - m_S \left[ d^2 + (b + c) d \right] \\
 E_{88} &amp;= m_S d^2 + I_S\end{split}\]</div>
 <p>A matriz dinâmica do sistema é dada por</p>
-<div class="math" id="equation-matrixA">
-<span class="eqno">(45)<a class="headerlink" href="#equation-matrixA" title="Permalink to this equation">¶</a></span>\[\begin{split}{\bf A} = \left[ \begin{array}{cccccccc} 0 &amp; 0 &amp;  0 &amp; 0 &amp; 1 &amp;  0 &amp;                 0 &amp; 0 \\
+<div class="math notranslate nohighlight" id="equation-matrixa">
+<span class="eqno">(70)<a class="headerlink" href="#equation-matrixa" title="Permalink to this equation">¶</a></span>\[\begin{split}{\bf A} = \left[ \begin{array}{cccccccc} 0 &amp; 0 &amp;  0 &amp; 0 &amp; 1 &amp;  0 &amp;                 0 &amp; 0 \\
                             0 &amp; 0 &amp; v_{{\rm T},0} &amp; 0 &amp; 0 &amp; v_{{\rm T},0} &amp;                 0 &amp; 0 \\
                             0 &amp; 0 &amp;  0 &amp; 0 &amp; 0 &amp;  0 &amp;                 1 &amp; 0 \\
                             0 &amp; 0 &amp;  0 &amp; 0 &amp; 0 &amp;  0 &amp;                 0 &amp; 1 \\
@@ -475,8 +463,8 @@ E_{88} &amp;= m_S d^2 + I_S\end{split}\]</div>
                             0 &amp; 0 &amp;  0 &amp; 0 &amp; 0 &amp;  0 &amp;     -(m_S + m_T) v_{{\rm T},0} &amp; 0 \\
                             0 &amp; 0 &amp;  0 &amp; 0 &amp; 0 &amp;  0 &amp; m_S (b + c + d) v_{{\rm T},0} &amp; 0 \\
                             0 &amp; 0 &amp;  0 &amp; 0 &amp; 0 &amp;  0 &amp;          - m_S d v_{{\rm T},0} &amp; 0 \end{array} \right]\end{split}\]</div>
-<div class="math" id="equation-matrixB">
-<span class="eqno">(46)<a class="headerlink" href="#equation-matrixB" title="Permalink to this equation">¶</a></span>\[\begin{split}{\bf B} = \left[ \begin{array}{cccccccc}
+<div class="math notranslate nohighlight" id="equation-matrixb">
+<span class="eqno">(71)<a class="headerlink" href="#equation-matrixb" title="Permalink to this equation">¶</a></span>\[\begin{split}{\bf B} = \left[ \begin{array}{cccccccc}
     0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp;  0 &amp;               0 \\
     0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp;  0 &amp;               0 \\
     0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp;  0 &amp;               0 \\
@@ -485,54 +473,54 @@ E_{88} &amp;= m_S d^2 + I_S\end{split}\]</div>
     0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp;  1 &amp;               1 \\
     0 &amp; 0 &amp; 0 &amp; 0 &amp; a &amp; - b &amp; - (b + c + d + e) \\
     0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp;  0 &amp;           d + e \end{array} \right]\end{split}\]</div>
-<p>Portanto, o modelo linear de veículo articulado é dado pela equação <a class="reference internal" href="#equation-linearEq">(36)</a> com as matrizes dadas pelas equações <a class="reference internal" href="#equation-matrixE">(44)</a>, <a class="reference internal" href="#equation-matrixA">(45)</a> e <a class="reference internal" href="#equation-matrixB">(46)</a>.</p>
+<p>Portanto, o modelo linear de veículo articulado é dado pela equação <a class="reference internal" href="#equation-lineareq">(61)</a> com as matrizes dadas pelas equações <a class="reference internal" href="#equation-matrixe">(69)</a>, <a class="reference internal" href="#equation-matrixa">(70)</a> e <a class="reference internal" href="#equation-matrixb">(71)</a>.</p>
 <p><em>Slip angles</em></p>
 <p>A velocidade no eixo dianteiro é dada por</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[{\bf v}_{\rm F} = {\bf v}_{\rm T} + {\bf w}_T \wedge {\bf r}_{{\rm F}/{\rm T}},\]</div>
-<p>onde <span class="math">\({\bf r}_{{\rm F}/{\rm T}}\)</span> é o vetor posição do ponto <span class="math">\({\rm F}\)</span> em relação ao ponto <span class="math">\({\rm T}\)</span>. Logo,</p>
-<div class="math" id="equation-velocityVectorFront">
-<span class="eqno">(47)<a class="headerlink" href="#equation-velocityVectorFront" title="Permalink to this equation">¶</a></span>\[{\bf v}_{\rm F} = \left( \dot{x} - a \dot{\psi} \sin \psi \right) {\bf i} + \left( \dot{y} + a \dot{\psi} \cos \psi \right) {\bf j}.\]</div>
+<p>onde <span class="math notranslate nohighlight">\({\bf r}_{{\rm F}/{\rm T}}\)</span> é o vetor posição do ponto <span class="math notranslate nohighlight">\({\rm F}\)</span> em relação ao ponto <span class="math notranslate nohighlight">\({\rm T}\)</span>. Logo,</p>
+<div class="math notranslate nohighlight" id="equation-velocityvectorfront">
+<span class="eqno">(72)<a class="headerlink" href="#equation-velocityvectorfront" title="Permalink to this equation">¶</a></span>\[{\bf v}_{\rm F} = \left( \dot{x} - a \dot{\psi} \sin \psi \right) {\bf i} + \left( \dot{y} + a \dot{\psi} \cos \psi \right) {\bf j}.\]</div>
 <p>A velocidade no eixo traseiro é</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[{\bf v}_{\rm R} = {\bf v}_{\rm T} + {\bf w}_T \wedge {\bf r}_{{\rm R}/{\rm T}},\]</div>
-<p>onde <span class="math">\({\bf r}_{{\rm R}/{\rm T}}\)</span> é o vetor posição do ponto <span class="math">\({\rm R}\)</span> em relação ao ponto <span class="math">\({\rm T}\)</span>. Logo,</p>
-<div class="math" id="equation-velocityVectorRear">
-<span class="eqno">(48)<a class="headerlink" href="#equation-velocityVectorRear" title="Permalink to this equation">¶</a></span>\[{\bf v}_{\rm R} = \left( \dot{x} + b \dot{\psi} \sin \psi \right) {\bf i} + \left( \dot{y} -b \dot{\psi} \cos \psi \right) {\bf j}\]</div>
+<p>onde <span class="math notranslate nohighlight">\({\bf r}_{{\rm R}/{\rm T}}\)</span> é o vetor posição do ponto <span class="math notranslate nohighlight">\({\rm R}\)</span> em relação ao ponto <span class="math notranslate nohighlight">\({\rm T}\)</span>. Logo,</p>
+<div class="math notranslate nohighlight" id="equation-velocityvectorrear">
+<span class="eqno">(73)<a class="headerlink" href="#equation-velocityvectorrear" title="Permalink to this equation">¶</a></span>\[{\bf v}_{\rm R} = \left( \dot{x} + b \dot{\psi} \sin \psi \right) {\bf i} + \left( \dot{y} -b \dot{\psi} \cos \psi \right) {\bf j}\]</div>
 <p>De maneira análoga, a velocidade do eixo do semirreboque é</p>
-<div class="math" id="equation-velocitySemi">
-<span class="eqno">(49)<a class="headerlink" href="#equation-velocitySemi" title="Permalink to this equation">¶</a></span>\[\begin{split}{\bf v}_{\rm M} &amp;=&amp; \left[ \dot{x} + \left( b + c \right) \dot{\psi} \sin \psi + \left( d + e \right) \left( \dot{\psi} - \dot{\phi} \right) \sin \left( \psi - \phi \right) \right] {\bf i} + ... \\
+<div class="math notranslate nohighlight" id="equation-velocitysemi">
+<span class="eqno">(74)<a class="headerlink" href="#equation-velocitysemi" title="Permalink to this equation">¶</a></span>\[\begin{split}{\bf v}_{\rm M} &amp;=&amp; \left[ \dot{x} + \left( b + c \right) \dot{\psi} \sin \psi + \left( d + e \right) \left( \dot{\psi} - \dot{\phi} \right) \sin \left( \psi - \phi \right) \right] {\bf i} + ... \\
 ... &amp;+&amp; \left[ \dot{y} - \left( b + c \right) \dot{\psi} \cos \psi - \left( d + e \right) \left( \dot{\psi} - \dot{\phi} \right) \cos \left( \psi - \phi \right) \right] {\bf j}.\end{split}\]</div>
-<p>Utilizando as equações <a class="reference internal" href="#equation-velocityVectorFront">(47)</a>, <a class="reference internal" href="#equation-velocityVectorRear">(48)</a> e <a class="reference internal" href="#equation-velocitySemi">(49)</a>, os ângulos de deriva podem ser escritos como</p>
-<div class="math" id="equation-slipAngleFront">
-<span class="eqno">(50)<a class="headerlink" href="#equation-slipAngleFront" title="Permalink to this equation">¶</a></span>\[\alpha_{\rm F} = \arctan \left( \frac{\dot{y} + a \dot{\psi} \cos \psi}{ \dot{x} - a \dot{\psi} \sin \psi} \right) - \left( \delta + \psi \right)\]</div>
-<div class="math">
+<p>Utilizando as equações <a class="reference internal" href="#equation-velocityvectorfront">(72)</a>, <a class="reference internal" href="#equation-velocityvectorrear">(73)</a> e <a class="reference internal" href="#equation-velocitysemi">(74)</a>, os ângulos de deriva podem ser escritos como</p>
+<div class="math notranslate nohighlight" id="equation-slipanglefront">
+<span class="eqno">(75)<a class="headerlink" href="#equation-slipanglefront" title="Permalink to this equation">¶</a></span>\[\alpha_{\rm F} = \arctan \left( \frac{\dot{y} + a \dot{\psi} \cos \psi}{ \dot{x} - a \dot{\psi} \sin \psi} \right) - \left( \delta + \psi \right)\]</div>
+<div class="math notranslate nohighlight">
 \[\alpha_{\rm R} = \arctan \left( \frac{\dot{y} - b \dot{\psi} \cos \psi}{ \dot{x} + b \dot{\psi} \sin \psi} \right) - \psi\]</div>
-<div class="math" id="equation-slipAngleRear">
-<span class="eqno">(51)<a class="headerlink" href="#equation-slipAngleRear" title="Permalink to this equation">¶</a></span>\[\alpha_{\rm R} = \arctan \left( \frac{\dot{y} - \left( b + c \right) \dot{\psi} \cos \psi - \left( d + e \right) \left( \dot{\psi} - \dot{\phi} \right) \cos \left( \psi - \phi \right)}{ \dot{x} + \left( b + c \right) \dot{\psi} \sin \psi + \left( d + e \right) \left( \dot{\psi} - \dot{\phi} \right) \sin \left( \psi - \phi \right)} \right) - \left(\psi - \phi \right)\]</div>
-<p>Realizando a mudança de varíaveis proposta na equação <a class="reference internal" href="#equation-stateSubstitution">(26)</a>, os ângulos de deriva passam a ser</p>
-<div class="math">
+<div class="math notranslate nohighlight" id="equation-slipanglerear">
+<span class="eqno">(76)<a class="headerlink" href="#equation-slipanglerear" title="Permalink to this equation">¶</a></span>\[\alpha_{\rm R} = \arctan \left( \frac{\dot{y} - \left( b + c \right) \dot{\psi} \cos \psi - \left( d + e \right) \left( \dot{\psi} - \dot{\phi} \right) \cos \left( \psi - \phi \right)}{ \dot{x} + \left( b + c \right) \dot{\psi} \sin \psi + \left( d + e \right) \left( \dot{\psi} - \dot{\phi} \right) \sin \left( \psi - \phi \right)} \right) - \left(\psi - \phi \right)\]</div>
+<p>Realizando a mudança de varíaveis proposta na equação <a class="reference internal" href="#equation-statesubstitution">(51)</a>, os ângulos de deriva passam a ser</p>
+<div class="math notranslate nohighlight">
 \[\begin{split}\alpha_{\rm F} &amp;= \arctan \left( \frac{v_{\rm T} \sin \left( \psi + \alpha_{\rm T} \right) + a \dot{\psi} \cos \psi}{ v_{\rm T} \cos \left( \psi + \alpha_{\rm T} \right) - a \dot{\psi} \sin \psi} \right) - \left( \delta + \psi \right) \\
 \alpha_{\rm R} &amp;= \arctan \left( \frac{v_{\rm T} \sin \left( \psi + \alpha_{\rm T} \right) - b \dot{\psi} \cos \psi}{ v_{\rm T} \cos \left( \psi + \alpha_{\rm T} \right) + b \dot{\psi} \sin \psi} \right) - \psi \\
 \alpha_{\rm M} &amp;=\end{split}\]</div>
 <p>Simplificando, temos que</p>
-<div class="math" id="equation-slipAngleSimple">
-<span class="eqno">(52)<a class="headerlink" href="#equation-slipAngleSimple" title="Permalink to this equation">¶</a></span>\[\begin{split}\alpha_{\rm F} &amp;= \arctan \left( \frac{v_{\rm T} \sin \alpha_{\rm T} + a \dot{\psi}}{ v_{\rm T} \cos \alpha_{\rm T}} \right) - \delta \\
+<div class="math notranslate nohighlight" id="equation-slipanglesimple">
+<span class="eqno">(77)<a class="headerlink" href="#equation-slipanglesimple" title="Permalink to this equation">¶</a></span>\[\begin{split}\alpha_{\rm F} &amp;= \arctan \left( \frac{v_{\rm T} \sin \alpha_{\rm T} + a \dot{\psi}}{ v_{\rm T} \cos \alpha_{\rm T}} \right) - \delta \\
 \alpha_{\rm R} &amp;= \arctan \left( \frac{v_{\rm T} \sin \alpha_{\rm T} - b \dot{\psi}}{ v_{\rm T} \cos \alpha_{\rm T}} \right) \\
 \alpha_{\rm M} &amp;= ?\end{split}\]</div>
-<p>Linearizando em torno do ponto de operação dado pelas equações <a class="reference internal" href="#equation-opStates">(37)</a>, <a class="reference internal" href="#equation-opDiffStates">(38)</a> e <a class="reference internal" href="#equation-opInput">(39)</a> temos</p>
-<div class="math">
+<p>Linearizando em torno do ponto de operação dado pelas equações <a class="reference internal" href="#equation-opstates">(62)</a>, <a class="reference internal" href="#equation-opdiffstates">(63)</a> e <a class="reference internal" href="#equation-opinput">(64)</a> temos</p>
+<div class="math notranslate nohighlight">
 \[\begin{split}\alpha_{{\rm F},lin} &amp;= \alpha_{{\rm T}} + \frac{a}{v_{{\rm T},0}} \dot{\psi} - \delta \\
 \alpha_{{\rm F},lin} &amp;= \alpha_{{\rm T}} - \frac{b}{v_{{\rm T},0}} \dot{\psi}. \\
 \alpha_{{\rm M},lin} &amp;=\end{split}\]</div>
 <p><em>Linear tire</em></p>
-<p>Linearizando o valor do dos ângulos de deriva em <a class="reference internal" href="#equation-slipAngleSimple">(52)</a> no mesmo ponto de operação temos</p>
+<p>Linearizando o valor do dos ângulos de deriva em <a class="reference internal" href="#equation-slipanglesimple">(77)</a> no mesmo ponto de operação temos</p>
 <p>Supondo uma lei de força linear para os pneu temos</p>
-<div class="math" id="equation-linearTire">
-<span class="eqno">(53)<a class="headerlink" href="#equation-linearTire" title="Permalink to this equation">¶</a></span>\[\begin{split}F_{y,{\rm F}} &amp;= - K_{\rm F} \alpha_{\rm F} = - K_{\rm F} \alpha_{{\rm T}} - \frac{a K_{\rm F}}{v_{{\rm T},0}} \dot{\psi} + K_{\rm F} \delta \\
+<div class="math notranslate nohighlight" id="equation-lineartire">
+<span class="eqno">(78)<a class="headerlink" href="#equation-lineartire" title="Permalink to this equation">¶</a></span>\[\begin{split}F_{y,{\rm F}} &amp;= - K_{\rm F} \alpha_{\rm F} = - K_{\rm F} \alpha_{{\rm T}} - \frac{a K_{\rm F}}{v_{{\rm T},0}} \dot{\psi} + K_{\rm F} \delta \\
 F_{y,{\rm R}} &amp;= - K_{\rm R} \alpha_{\rm R} =  - K_{\rm R} \alpha_{{\rm T}} + \frac{b K_{\rm R}}{v_{{\rm T},0}} \dot{\psi}\end{split}\]</div>
-<p>Substituir as equações <a class="reference internal" href="#equation-linearTire">(53)</a> nas equações linearizadas em <a class="reference internal" href="simpleVehicleModels.html#equation-linearModel">(21)</a> temos</p>
-<div class="math">
+<p>Substituir as equações <a class="reference internal" href="#equation-lineartire">(78)</a> nas equações linearizadas em <a class="reference internal" href="simpleVehicleModels.html#equation-linearmodel">(22)</a> temos</p>
+<div class="math notranslate nohighlight">
 \[\begin{split}f_{1,lin} &amp;= \dot{x} = v_{\rm T} \\
 f_{2,lin} &amp;= \dot{y} = v_{{\rm T},0} \left( \psi + \alpha_{{\rm T}}\right) \\
 f_{3,lin} &amp;= \dot{\psi} = \dot{\psi} \\
@@ -540,10 +528,10 @@ f_{4,lin} &amp;= \dot{v}_{\rm T} = \frac{F_{x,{\rm F}} + F_{x,{\rm R}}}{m_{T}} \
 f_{5,lin} &amp;= \dot{\alpha}_{{\rm T}} = - \frac{K_{\rm F} + K_{\rm R}}{m_{T} v_{{\rm T},0}} \alpha_{{\rm T}} - \frac{m_{T} v_{{\rm T},0} + \frac{a K_{\rm F} - b K_{\rm R}}{v_{{\rm T},0}}}{m_{T} v_{{\rm T},0}} \dot{\psi} + \frac{K_{\rm F}}{m_{T} v_{{\rm T},0}} \delta \\
 f_{6,lin} &amp;= \ddot{\psi} = - \frac{a K_{\rm F} - b K_{\rm R}}{I_{T}} \alpha_{{\rm T}} - \frac{a^2 K_{\rm F} + b^2 K_{\rm R}}{I_{T}  v_{{\rm T},0}} \dot{\psi} + \frac{a K_{\rm F}}{I_{T}} \delta\end{split}\]</div>
 <p>Na forma matricial</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[\dot{{\bf x}} = {\bf A} {\bf x} + {\bf B} {\bf \hat{u}}\]</div>
 <p>Ou ainda</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[\begin{split}\left[ \begin{array}{c} \dot{x} \\ \dot{y} \\ \dot{\psi} \\ \dot{v}_{\rm T} \\ \dot{\alpha}_{\rm T} \\ \ddot{\psi} \end{array} \right] = \left[ \begin{array}{cccccc} 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; v_{{\rm T},0} &amp; 0 &amp; v_{{\rm T},0} &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; - \frac{K_{\rm F} + K_{\rm R}}{m_{T} v_{{\rm T},0}} &amp; - \frac{m_{T} v_{{\rm T},0} + \frac{a K_{\rm F} - b K_{\rm R}}{v_{{\rm T},0}}}{m_{T} v_{{\rm T},0}} \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; - \frac{a K_{\rm F} - b K_{\rm R}}{I_{T}} &amp; - \frac{a^2 K_{\rm F} + b^2 K_{\rm R}}{I_{T}  v_{{\rm T},0}} \end{array} \right] \left[ \begin{array}{c} x \\ y \\ \psi \\ v_{\rm T} \\ \alpha_{\rm T} \\ \dot{\psi} \end{array} \right] + \left[ \begin{array}{ccccc} 0 &amp; 0 &amp; 0 &amp; \\ 0 &amp; 0 &amp; 0 &amp; \\ 0 &amp; 0 &amp; 0 &amp; \\ 0 &amp; \frac{1}{m_{T}} &amp; \frac{1}{m_{T}} &amp; \\ \frac{K_{\rm F}}{m_{T} v_{{\rm T},0}} &amp; 0 &amp; 0 &amp; \\  \frac{a K_{\rm F}}{I_{T}} &amp; 0 &amp; 0 \end{array} \right] \left[ \begin{array}{c} \delta \\ F_{x,{\rm F}} \\ F_{x,{\rm R}} \end{array} \right]\end{split}\]</div>
 </div>
 </div>
@@ -582,12 +570,14 @@ f_{6,lin} &amp;= \ddot{\psi} = - \frac{a K_{\rm F} - b K_{\rm R}}{I_{T}} \alpha_
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -620,9 +610,6 @@ f_{6,lin} &amp;= \ddot{\psi} = - \frac{a K_{\rm F} - b K_{\rm R}}{I_{T}} \alpha_
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> &nbsp; &nbsp;</li>
-        <li class="right" >
           <a href="zreferences.html" title="References"
              >next</a> &nbsp; &nbsp;</li>
         <li class="right" >
@@ -637,7 +624,7 @@ f_{6,lin} &amp;= \ddot{\psi} = - \frac{a K_{\rm F} - b K_{\rm R}}{I_{T}} \alpha_
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, BSD 3-clause.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

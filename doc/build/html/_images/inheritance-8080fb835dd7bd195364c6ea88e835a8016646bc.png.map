@@ -1,0 +1,5 @@
+<map id="inheritance9f5757d628" name="inheritance9f5757d628">
+<area shape="rect" id="node1" href="#VehicleSimple.VehicleSimple" target="_top" title="Vehicle Abstract class " alt="" coords="5,31,111,56"/>
+<area shape="rect" id="node2" href="#VehicleSimpleLinear.VehicleSimpleLinear" target="_top" title="TireLinear Linear tire model" alt="" coords="168,5,308,31"/>
+<area shape="rect" id="node3" href="#VehicleSimpleNonlinear.VehicleSimpleNonlinear" target="_top" title="TireLinear Linear tire model" alt="" coords="159,55,317,80"/>
+</map>
