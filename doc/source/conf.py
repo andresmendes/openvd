@@ -36,6 +36,7 @@ sys.path.insert(0, pyvdloc)
 extensions = ['sphinx.ext.mathjax',
               'sphinx.ext.inheritance_diagram',
               'sphinx.ext.autodoc',
+              'sphinxcontrib.bibtex',
               'sphinx.ext.todo',
               'sphinx.ext.coverage',
               'sphinx.ext.viewcode']
