@@ -4,20 +4,20 @@ import Tire
 class TirePacejka(Tire.Tire):
     '''TirePacejka tire model
 
-    :var a0: Shape factor [-]
-    :var a1: Load dependency of lateral friction (1000) [1/kN]
-    :var a2: Lateral friction level (1000) [-]
-    :var a3: Maximum cornering stiffness [N/deg]
-    :var a4: Load at maximum cornering stiffness [kN]
-    :var a5: Camber sensitivity of cornering stiffness
-    :var a6: Load dependency of curvature factor
-    :var a7: Curvature factor level
-    :var a8: Camber sensitivity of horizontal shift
-    :var a9: Load dependency of horizontal shift
-    :var a10: Horizontal shift level
-    :var a11: Combined load and camber sensitivity of vertical shift
-    :var a12: Load dependency of vertical shift
-    :var a13: Vertical shift level
+    :var a0: Shape factor [-] (default = 1)
+    :var a1: Load dependency of lateral friction (1000) [1/kN] (default = 0)
+    :var a2: Lateral friction level (1000) [-] (default = 800)
+    :var a3: Maximum cornering stiffness [N/deg] (default = 3000)
+    :var a4: Load at maximum cornering stiffness [kN] (default = 50)
+    :var a5: Camber sensitivity of cornering stiffness (default = 0)
+    :var a6: Load dependency of curvature factor  (default = 0)
+    :var a7: Curvature factor level  (default = -1)
+    :var a8: Camber sensitivity of horizontal shift  (default = 0)
+    :var a9: Load dependency of horizontal shift (default = 0)
+    :var a10: Horizontal shift level (default = 0)
+    :var a11: Combined load and camber sensitivity of vertical shift (default = 0)
+    :var a12: Load dependency of vertical shift (default = 0)
+    :var a13: Vertical shift level (default = 0)
 
     '''
 
@@ -39,6 +39,8 @@ class TirePacejka(Tire.Tire):
         self.a13 = 0
 
     def PlotTire(self, Fz, muy):
+        ''' Plots
+        '''
         # % Returns the handle of the curve
         # alpha = (0:0.1:15)*pi/180;
         # Fy = - self.Characteristic(alpha, Fz, muy);
@@ -49,6 +51,14 @@ class TirePacejka(Tire.Tire):
         pass
 
     def Characteristic(self, alpha, Fz, muy):
+        ''' Returns the lateral force F_y 
+        Requires:
+        - slip angle
+        - Normal force 
+        - :var muy: Lateral friction coefficient
+
+        Returns Fy
+        '''
         #            % Input
         #            % alpha - slip angle [rad]
         #            % Fz    - Load [N]

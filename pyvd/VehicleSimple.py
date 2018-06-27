@@ -3,7 +3,6 @@ class VehicleSimple(object):
     
     This class must be inherited by Vehicle models that will be used with the simulator. 
 
-    :var param: Loucura
     :var  mT:  Mass of the car (tractor) [kg]
     :var   IT:  Moment of inertia the car (tractor) [kg * m2]
     :var   a :  Distance from front axle of the car (tractor) to the center of mass of the car (tractor) [m]
