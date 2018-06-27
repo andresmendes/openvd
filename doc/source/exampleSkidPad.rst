@@ -225,7 +225,7 @@ VelControl.m
 
 The control law of the longitudinal system is depicted below.
 
-.. literalinclude:: ../../docs/examples/SkidPad/VelControl.m
+.. literalinclude:: ../../doc/examples/SkidPad/VelControl.m
 
 .. _circfit-skidpad:
 
@@ -234,4 +234,4 @@ circfit.m
 
 The function used do fit a circle is depicted below.
 
-.. literalinclude:: ../../docs/examples/SkidPad/circfit.m
+.. literalinclude:: ../../doc/examples/SkidPad/circfit.m
