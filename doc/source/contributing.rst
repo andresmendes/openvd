@@ -35,21 +35,24 @@ To push your contribution see the following steps:
 Instructions documentation contribution for windows with anaconda
 ================================================================================
 
-To prepare the system:
+To prepare the system open up a terminal and install:
 
-* open up a terminal and in install 
-
-    * cloud_sptheme
+* cloud_sptheme
 
 .. code-block::  none
-    conda install -c conda-forge cloud_sptheme 
 
-    * sphinxcontrib-bibtex
+    conda install -c conda-forge cloud_sptheme 
+ 
+* sphinxcontrib-bibtex
+
 .. code-block:: none 
+
     conda install -c conda-forge sphinxcontrib-bibtex 
 
-    * pybtex (optional)
+* pybtex (optional)
+
 .. code-block:: none 
+
     conda install -c omnia pybtex 
 
 The workflow for updating and pushing your contribution see the following steps:
