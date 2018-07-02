@@ -334,5 +334,5 @@ The control gains are calculated using the `lqr <https://octave.sourceforge.io/c
     
 The control law of the lateral dynamics is implemented in the code below.
 
-.. literalinclude:: ../../docs/examples/SteeringControl/ControlLaw.m
+.. literalinclude:: ../../doc/examples/SteeringControl/ControlLaw.m
 

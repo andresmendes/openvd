@@ -131,4 +131,4 @@ Simple Vehicle S-Function
 
 The simple vehicle S-Function is depicted below.
 
-.. literalinclude:: ../../docs/examples/TemplateSimpleSimulink/SimpleVehicleSFunction.m
+.. literalinclude:: ../../doc/examples/TemplateSimpleSimulink/SimpleVehicleSFunction.m

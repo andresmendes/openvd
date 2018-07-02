@@ -4,8 +4,7 @@ import Tire
 class TireLinear(Tire.Tire):
     '''TireLinear Linear tire model
 
-    :var k: Cornering stiffness [N/rad]
-    :var q: Cornering stiffness 2 [N/rad]
+    :var k: Cornering stiffness [N/rad] (default: 40000)
 
     '''
 

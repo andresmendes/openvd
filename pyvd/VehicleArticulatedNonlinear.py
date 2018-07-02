@@ -2,11 +2,7 @@ import VehicleArticulated
 
 
 class VehicleArticulatedNonlinear(VehicleArticulated.VehicleArticulated):
-    '''TireLinear Linear tire model
-
-    :var k: Cornering stiffness [N/rad]
-    :var q: Cornering stiffness 2 [N/rad]
-
+    ''' Tell my details
     '''
 
     def __init__(self):

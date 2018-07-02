@@ -1,6 +1,6 @@
 class VehicleArticulated(object):
-    '''Tire Tire abstract class This class must be inherited by tire models that will be used with the simulator. This class has no properties, since parameters of tire models differ significantly from one another.
-
+    '''VehicleArticulated  This is an abstract class for an articulated vehicle (i.e. a truck hauling a cargo container).
+    
     :var param: Loucura
 
     '''
