@@ -1,0 +1,335 @@
+\documentclass[sublist,a4paper,twoside,11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{a4wide}
+%%% Various other
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+}
+
+\urlstyle{same}
+
+\usepackage{amsmath}
+\usepackage{breqn}
+\usepackage{amssymb}
+\usepackage{tabularx}
+\usepackage{xltxtra}
+%\usepackage{xgreek}
+\usepackage{graphicx}
+
+\usepackage{amsthm}
+
+\author{André de Souza Mendes, N. Papadakis}
+\title{Simple vehicle model 4dof }
+
+\makeindex
+
+\begin{document}
+\maketitle
+\tableofcontents
+\section*{Nomeclature}
+
+\begin{itemize}
+\item [0]: Initial.
+\item [A]: The Dynamic Matrix of the linear system.
+\item [$\alpha$]: Distance from the point to [m].
+\item [a]: Vector linear acceleration.
+\item [B]: Matrix of linear system inputs.
+\item [b]: Distance from the point[m].
+\item [C]: Matrix of linear system outputs.
+\item [D]: Linear system direct transmission matrix.
+\item [E]: Observer sizing matrix (reference system)?
+\item [e]: Observer error vector.
+\item [C]: Damping [Ns / rad].
+\item [ext]: External
+\item [K]: lateral slope rigidity [Nm / rad].
+\item [k]: Tire bend rigidity [N / rad]
+\item [F]: force force module [N]
+\item [F]: F force Vector
+\item [f ]: Vector function.
+\item [FD]: Reference to the point that locates the right front tire
+\item [FE]: Reference point that locates the left front tire
+\item [g]: Acceleration of gravity [m / s 2]
+\item [h]: Height of the center of mass of the vehicle [m].
+\item [I]: element of Inertial tersor [kgm 2].
+\item [I]: Inertia Tensor.
+\item [L]: Distance between tires on the same axle [m].
+\item [M]: moment vector 
+\item [M]: Mass [kg].
+\item [n?]: Unit vector of the orthonormal base attached to the non-suspended element
+\item [O]: The Point that locates the origin.
+\item [P]: Weight force vector
+\item [P]: Matrix transformation.
+\item [P]: A point that locates a particular particle.
+\item [r]: Vector position.
+\item [RD]: Refererence to the point that locates the right rear tire.
+\item [RE]: Refer to the point that locates the left rear tire.
+\item [s]: Unit vector of the orthonormal base attached to the suspended mass.
+\item [T]: Point that locates the center of mass of the vehicle.
+\item [t]: Unit vector of the orthonormal basis fixed to the inertial frame
+\item [U]: Input vector
+\item [V]: Any matrix
+\item [u]: Speed vector module [m / s].
+\item [v]: Linear velocity vector.
+\item [w]: Vector of the unobservable part.
+\item [w]: Angular velocity vector.
+\item [x]: Refers to the longitudinal direction.
+\item [x]: Vector of states.
+\item [y]: Referring to the transverse direction.
+\item [Y]: And Vector of outputs.
+\item [z]: Referring to vertical direction
+\item [b]: State vector of the observer (estimate)
+\item [$\alpha$]: Drift angle [rad].
+\item [$\delta$]: Steering angle [rad].
+\item [$\Phi$]: Solidarity base the suspended mass
+\item [$\phi$]: Tilt angle of vehicle [rad].
+\item [$\Omega$]: Fixed base in the inertial frame.
+\item [$\Psi$]: Solidarity base to the non-suspended element.
+\item [$\psi$]: Vehicle orientation angle [rad].
+\end{itemize}
+
+
+\section{MODEL}
+\subsection{Tire Model}
+The tire model used relates linearly the lateral force of the tire to its drift angle. That is
+\[ F=-k*\alpha\]
+
+\subsection{Vehicle Model}
+The physical vehicle model used is shown in figure . The system has Four degrees of freedom: 
+\begin{itemize}
+\item two coordinates positioning the point P, 
+\item the orientation of the vehicle in the horizontal plane $\psi$ 
+\item and the slope angle $\phi$.
+\end{itemize}
+	
+	Figure 1 - Model of the vehicle
+	
+	
+The bases used are $\Omega = \{O,t_x, t_y, t_z \}$, $\Psi = \{P, n_x, n_y, n_z \}$ and $\Phi = \{P,s_x s_y,s_z\}$. A base $\{O,t_x, t_y,t_z \}$ is fixed to the inertial frame. The origin is given by the point 0 and the vectors $t_x, t_y$ and $t_z$ point to the longitudinal, transverse and vertical directions, respectively. Reference system $\{P, n_x, n_y, n_z\}$ is coupled to the non-suspended element. The origin coincides with point P which exists in the plane defined by vectors $t_x$ and $t_y$. The vector $n_x$ forms an angle $\psi$ with the vector $t_x$ and the vector $t_z$ is parallel to the vector $n_z$. The base = $\{P,s_x, s_y,s_z\}$. also has origin coincident with point P. The vector $n_x$ is parallel to the vector $s_x$. The vector $s_z$ forms an angle $\phi$ with respect to the vector $n_z$. The angular coordinate $\alpha_P$ indicates the orientation of the velocity vector $v_P$ with respect to the axis longitudinal direction of the non-suspended element.
+	
+\subsubsection{Non-linearity}
+
+The velocity vector of the point P is given by
+
+\[
+V_P = v_p\cdot \cos(\alpha_Pn_x) + v_p\cdot \sin(\alpha_P n_y)
+\]
+And the position vectors of the points that locate the four tires of the vehicle (FD, FE, RD and RE) with respect to point P are given by
+
+\begin{subequations}
+	\begin{equation}
+	r_{FD/P} = \alpha n_x - \frac{l}{2}n_y
+	\end{equation}
+	\begin{equation}
+		r_{FE/P} = \alpha n_x  + \frac{l}{2}n_y
+	\end{equation}
+	\begin{equation}
+		r_{RD/P} = -b n_x - \frac{l}{2}n_y
+	\end{equation}
+	\begin{equation}
+		r_{RE/P} = -b n_x - \frac{l}{2}n_y
+	\end{equation}
+\end{subequations}
+
+
+The velocity vectors on each wheel can be written as
+
+\begin{eqnarray*}
+\mathbf{v}_{FD}=v_P+w_\Psi \times r_{FD/P}\\
+\mathbf{v}_{FE}=v_P+w_\Psi \times r_{FE/P}\\
+\mathbf{v}_{RD}=v_P+w_\Psi \times r_{RD/P}\\
+\mathbf{v}_{RE}=v_P+w_\Psi \times r_{RE/P}\\
+\end{eqnarray*}
+
+
+Substituting the equations in (3) into (4), results in 
+
+\begin{eqnarray*}
+	\mathbf{v}_{FD}=\left(v_P \cos(\alpha_P) +\frac{l}{2}\dot{\psi}\right)n_x +\left(v_P \sin(\alpha_P) +\alpha \dot{\psi}\right)n_y\\
+	\mathbf{v}_{FE}=\left(v_P \cos(\alpha_P) -\frac{l}{2}\dot{\psi}\right)n_x +\left(v_P \sin(\alpha_P) +\alpha \dot{\psi}\right)n_y\\
+	\mathbf{v}_{RD}=\left(v_P \cos(\alpha_P) +\frac{l}{2}\dot{\psi}\right)n_x +\left(v_P \sin(\alpha_P) -b \dot{\psi}\right)n_y\\
+	\mathbf{v}_{RE}=\left(v_P \cos(\alpha_P) -\frac{l}{2}\dot{\psi}\right)n_x +\left(v_P \sin(\alpha_P) -b \dot{\psi}\right)n_y\\
+\end{eqnarray*}
+
+
+Therefore, the drift angles in each tire are given by	
+\begin{eqnarray*}
+	a_{FD}&=&\arctan\left(\frac{v_P \sin(\alpha_P) +\alpha \dot{\psi}}{v_P \cos(\alpha_P) +\frac{l}{2}\dot{\psi}}  \right)-\delta \\
+	a_{FE}&=&\arctan\left(\frac{v_P \sin(\alpha_P) +\alpha \dot{\psi}}{v_P \cos(\alpha_P) -\frac{l}{2}\dot{\psi}}  \right)-\delta \\
+	a_{RD}&=&\arctan\left(\frac{v_P \sin(\alpha_P) -b\dot{\psi}}{v_P \cos(\alpha_P) +\frac{l}{2}\dot{\psi}}  \right)\\
+	a_{RE}&=&\arctan\left(\frac{v_P \sin(\alpha_P)  -b\dot{\psi}}{v_P \cos(\alpha_P) -\frac{l}{2}\dot{\psi}}  \right) 
+\end{eqnarray*}
+
+The velocity vector of the center of mass is given by
+
+\[v_T = v_P + \omega_\Phi\times r_{T/P}\]
+
+Where the orientation change of the base $\Phi$ is given by
+
+\[\omega_\Phi = \dot{\phi} n_x + 0 n_y+ \dot{\psi} n_z\]
+
+The change of orientation of the base $\Phi$ is given by	
+
+\[\omega_\Psi = \dot{\psi} n_z\]
+
+Then the velocity vector of point T is
+
+\[v_T = (v_P \cdot \cos(\alpha_P) +\dot{\psi} h \sin(\phi)   )nx +
+(v_P \cdot \sin(\alpha_P) - \dot{\phi} h \cos(\phi))ny
++(-\dot{\phi} h  sin(\phi))nz\]
+
+
+By differentiating equation (10) we obtain 
+
+\begin{dmath}
+a_T = (\dot{v}_P \cos(\alpha_P) - v_P(\dot{\psi}+\dot{\alpha}_P)\sin(\alpha_p)+ \ddot{\psi} h \sin(\phi) + 2h\dot{\psi}\dot{\phi})nx +
+%
+(\dot{v}_P \sin(\alpha_P) + v_P(\dot{\psi}+\dot{\alpha}_P)\sin(\alpha_p) -  \ddot{\phi} h \cos(\phi) +  h (\dot{\psi}^2+\dot{\phi}^2)\sin(\phi))ny
+%
++(-h\ddot{\phi}\sin(\phi) - h\dot{\phi}^2\cos(\phi) )nz
+\end{dmath}
+
+
+The forces on the four tires are given by
+
+At this point it is important to note that the vertical force in each tire is the bonding force that maintains the contact point of the tires contained in the horizontal plane.
+The theorem of the barycentre movement is given by
+
+Substituting equations (11) and (12) into (13), in the nx direction we have	
+
+And in the direction n y we have	
+
+The position of the point T in relation to the point P in the base Φ is
+
+In addition, the acceleration of the point P is obtained by deriving with respect to time equation (2). Writing the result on the basis Φ we have
+
+The vector w Φ written on the basis Φ is given by	
+
+By differentiating equation (18) with respect to time we have
+
+The moments of the external forces with respect to point P are given by
+
+Substituting equations (3) and (12) into (20) and writing the result into the base
+
+The momentum generated by the force weight is given by
+And the moment generated by the torsional spring is
+
+Finally, the momentum generated by the damping is
+
+The inertia tensor with respect to point P and written on the basis Φ is given by
+
+The theorem of the variation of the amount of angular motion in relation to the point P is given, in matrix form, by
+
+
+Where the simple underline notation indicates a double column and underline matrix indicates a square matrix. The square matrices representing vectors follow the following construction
+
+Where q are the unit vectors of any base.
+Then, by substituting equations 16, 17, 18, 19, 21, 22, 23, 24 and 25 in (26) we obtain in the direction sx
+
+And in the direction sz
+
+Therefore, the equations of motion of the system are given by equations (14), (15), (28) and (29)
+
+\subsection{Linearisation}
+This model presents the variables and time derivatives $\dot{\psi} ,\ddot{\psi} u,\dot{u}, \phi,\dot{\phi},\ddot{\phi},a_P$  and $\dot{a}_p$.  Therefore, the dynamic equations (14), (15), (28) and (29) can be used to write explicitly the Temporal derivatives $\ddot{\psi}, \dot{u}, \dot{a}_p$ and $\dot{\phi}$ as a function of the other variables and derivatives. So the model becomes:
+
+\begin{equation}
+\begin{bmatrix} a_p\\ v\\ \ddot{\phi} \\ \ddot{\psi} \end{bmatrix}=f( \dot{\psi},v,\phi,\dot{\phi}, a_P )     
+\end{equation}
+
+
+Then the model is linearized at a given point of operation. In this report, all the inputs, $F_(FD,x), F_(FE,x), F_(RD,x), F_(RE,x)$, and $\delta$ are considered zero. Then, linearization is performed by truncating the Taylor series expansion of equation (30). In this form, the velocity vector module $u_P$ remains constant, so in the differential equation the corresponding to $\dot{u}_P$ is discarded.
+The linearized model can be written in state space. In matrix form
+
+Where states are given by
+
+The output vector consists of the two angular accelerations, $\ddot{\psi}$ and $\ddot{\phi}$, which are the two measured quantities of the system. That is, the matrix C is composed of lines 2 and 3 of matrix A, so it has a 2 × 4 dimension.
+The data used in the numerical integration are presented in table 1. The eigenvalues of the system, in this case are given by
+-9.6448 + 6.1884i
+-9.6448 - 6.1884i
+-9.3713 + 0.0000i
+-2.3273 + 0.0000i
+Moreover, in this situation, the para (A, C) is completely observable, since the observability matrix
+
+presents full position.
+Table 1 - Vehicle parameters
+
+Item Description Value Unit
+M Vehicle mass 1000 kg
+A Distance between the point P and the front axle 1.2 m
+B Distance between the point P and the rear axle 1 m
+H Height of center of mass 0.5 m
+L Distance between tires on the same axle 0.8 m
+K Rigidity of lateral tilt 100,000 N · m / rad
+C Sidewall damping 10,000 N · s / rad
+K Coefficient of curve stiffness 10,000 N / rad
+I xx Moment of inertia 800 kg · m 2
+I yy Moment of inertia 1000 kg · m 2
+I zz Moment of inertia 1000 kg · m 2
+I xy Product of inertia 200 kg · m 2
+I xz Product of inertia 200 kg · m 2
+I yz Product of inertia 200 kg · m 2
+V P P-point speed 10 m / s
+The evolution of the states to an initial condition given by
+
+is shown in figure 2. In this figure it is possible to observe that all states converge to zero at a simulation time of less than two seconds.
+
+Figure 2 - Evolution of the states for a given initial condition
+
+\section{OBSERVER IDENTITY}
+The configuration of the states of a given dynamic system can be obtained from the measurement of the system variables through sensors. However, in many practical situations, direct measurement of states is not possible because of its inaccessible condition. To circumvent this limitation we apply the so-called state observers. These mathematical models estimate the configuration of the states from the measurements that were made. In Figure 3 it is possible to observe the block diagram of the identity state observer. This observer estimates, from the measurements, the dynamic condition of the states that compose the system 
+
+Figure 3 - Block diagram of the plant with the observer identity
+
+It is possible to observe that the dynamic equation of the observer is given by
+
+where y is the vector of measured variables of the system(planta) and u is the input vector. In this case, both are considered inputs from the observer model.
+Comparing equations (31) and (35) it is possible to show that
+
+
+That is, e is equal to the estimation error. Through the matrix E, arbitrary, the eigenvalues of (A - EC) are adjusted. When the poles of equation (36) lie to the left of the imaginary axis the error converges to zero. The poles of the identity observer were chosen:
+-96.4481 +61.8839i
+-96.4481 -61.8839i
+-93.7131 + 0.0000i
+-23.2730 + 0.0000i
+The matrix E is obtained by the place command of the Matlab program.
+O desempenho do observador identidade pode ser observado na figura 4. Nesta figura, as linhas cheias representam a evolução dos estados para a mesma integração apresentada na  figura 2 e as linhas tracejadas indicam as estimativas dos estados z obtidas integrando a equação (35) com entrada u nula e y com as informações de medição da planta. É possível observar que em menos de 0,2 segundos os estados estimados assumem os mesmos valores dos estados da integração do modelo linear que simula a planta.	The performance of the identity observer can be observed in figure 4. In this figure, the full lines represent the evolution of the states for the same integration shown in figure 2 and the dashed lines indicate the estimates of the states z obtained integrating the equation (35) with input u null and y with the system (planta) measurement information. It is possible to observe that in less than 0.2 seconds the estimated states assume the same values of the integration states of the linear model that simulates the system.
+
+
+Figure 4- Performance of the observer identity. The dashed lines are the state estimates
+
+
+\section{REDUCED ORDER OBSERVER}
+Another approach is to use an observer of reduced order, due to the degree of redundancy that exists in the observer identity. As two measurements are performed, only two states need to be estimated. For this, a variable transformation is performed through the matrix
+
+Where V must be chosen in such a way that the matrix P has the same size as A and is reversible.
+The new transformed vector is
+
+The dynamic equation of the observer is given by
+
+The vector z is obtained by integrating equation (39) (with zero initial conditions) with only y as input. In this way, the estimate of w can be calculated as 
+
+The estimated transformed variable is given by
+
+Finally, the estimation of the states of the system can be obtained by equation
+
+The detailed description of this type of observer can be found in Luenberger (1979).
+In this technique, the observer dynamics is also adjusted by the matrix E. The eigenvalues of ($\bar{A}_11-E \bar{A} _{21}$) are chosen as
+-96.4481 +61.8839i
+-96.4481 -61.8839i
+And the matrix E is obtained by the place command of the Matlab program.
+The performance of the observer is shown in figure 5 for the same integration as in figure 2. In less than 0.1 seconds the estimated states converge to the values of the states of the linear model representing the system. 
+
+
+
+Figure 5 Performance of the Luenberger observer. The dashed lines are the state estimates
+
+
+
+
+\bibliography{referencias}
+
+\end{document}
