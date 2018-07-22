@@ -1,7 +1,7 @@
 \documentclass[sublist]{fei}
 \usepackage[utf8]{inputenc}
 
-\author{André de Souza Mendes}
+\author{André de Souza Mendes, Nikolaos Papadakis}
 \title{Articulated vehicle model}
 %\subtitulo{subtítulo}
 %\cidade{cidade}
@@ -56,7 +56,7 @@
 
 O modelo físico do conjunto é ilustrado na figura \ref{modelSimple}. Para caracterizar a dinâmica deste sistema é utilizada a base \( \Omega_{\rm O} = \{ {\rm O} {\bf i} {\bf j} {\bf k} \}\) fixa no referencial inercial. A base \( \Omega_{\rm T} = \{ {\rm T} {\bf t}_x {\bf t}_y {\bf t}_z \}\) é solidária ao caminhão-trator e a base \( \Omega_{\rm S} = \{ {\rm S} {\bf s}_x {\bf s}_y {\bf s}_z \}\) é solidária ao semirreboque. Os versores \({\bf t}_x\) e \({\bf s}_x\) apontam para frente na direção longitudinal de ambos os módulos e os versores \({\bf t}_y\) e \({\bf s}_y\) apontam para a esquerda. Para auxiliar a descrição das grandezas no eixo dianteiro é definida a base \( \Omega_{\rm F} = \{ {\rm F} {\bf e}_x {\bf e}_y {\bf e}_z \}\) solidária ao eixo dianteiro com o versor \({\bf e}_x\) apontando para frente na direção longitudinal do pneu e \({\bf e}_y\) apontando para a esquerda. Os pontos \({\rm T}\) e \({\rm S}\) localizam o centro da massa do caminhão-trator e do semirreboque, respectivamente. \({\rm F}\) e \({\rm R}\) localizam os eixos dianteiro e traseiro, respectivamente. \({\rm A}\) é o ponto de articulação e \({\rm M}\) é o eixo do semirreboque. O ponto \({\rm O}\) é a origem do sistema e se encontra fixo no referencial inercial. A distância \(a\) separa os pontos \({\rm F}\) e \({\rm T}\) e a distância \(b\) separa os pontos \({\rm T}\) e \({\rm R}\). \(c\) separa os pontos \({\rm R}\) e \({\rm A}\), \(d\) separa os pontos \({\rm A}\) e \({\rm S}\) e \(e\) separa os pontos \({\rm S}\) e \({\rm M}\). Os vetores velocidade \({\bf v}\) e os ângulos de deriva \(\alpha\) recebem os subscritos referentes aos pontos aos quais eles estão associados.
 
-A modelagem do caminhão-trator e semirreboque consiste na utilização de dois corpos rígidos que se movimentam sobre um plano horizontal e são unidos por um ponto de articulação. Desta forma, o modelo apresenta quatro graus de liberdade. Portanto, as coordenadas generalizadas podem ser dadas por
+The modeling of the tractor-trailer and semi-trailer consists of the use of two rigid bodies that move on a horizontal plane and are joined by a point of articulation. In this way, the model has four degrees of freedom. Therefore, generalized coordinates can be given by
 
 \begin{subequations}
 \begin{equation}
@@ -72,8 +72,7 @@ A modelagem do caminhão-trator e semirreboque consiste na utilização de dois 
     q_4 = \phi,
 \end{equation}
 \end{subequations}
-onde \(x\) e \(y\) são as coordenadas longitudinal e transversal do centro de massa do caminhão-trator, respectivamente. \(\psi\) é o ângulo de orientação absoluta do caminhão-trator e \(\phi\) é o ângulo de orientação relativa do semirreboque.
-
+where \(x \) and \(y \) are the longitudinal and transverse coordinates of the center of mass of the tractor-truck, respectively. \(\psi \) is the absolute orientation angle of the tractor-trailer and \(\phi \) is the relative orientation angle of the semi-trailer.
 \begin{figure}
     \begin{center}
     %\includegraphics{../illustrations/modelArticulated.pdf}
@@ -81,27 +80,27 @@ onde \(x\) e \(y\) são as coordenadas longitudinal e transversal do centro de m
     \end{center}
 \end{figure}
 
-\subsection{Modelo não linear}
+\subsection{Nonlinear Model}
 
-O vetor posição do centro de massa do caminhão-trator em relação ao ponto \(O\) é
+The vector position of the tractor-truck center-of-mass in relation to the point \(O \) is
 
 \begin{equation} \label{positionTractor}
     {\bf p}_{{\rm T}/{\rm O}} = x {\bf i} + y {\bf j}.
 \end{equation}
 
-O vetor posição do centro de massa do semirreboque é
+The position vector of the center of mass of the semi-trailer is
 
 \begin{equation} \label{positionSemitrailer}
     {\bf p}_{{\rm S}/{\rm O}} = \left[ x - \left( b + c \right) \cos \psi - d \cos \left( \psi - \phi \right) \right] {\bf i} + \left[ y - \left( b + c \right) \sin \psi - d \sin \left( \psi - \phi \right) \right] {\bf j}.
 \end{equation}
 
-Derivando a equação \eqref{positionTractor} em relação ao tempo temos
+Differentiating the equation \eqref {positionTractor} with respect to time we have
 
 \begin{equation} \label{velocityTractor}
     {\bf v}_{\rm T} = \dot{x} {\bf i} + \dot{y} {\bf j}.
 \end{equation}
 
-Derivando a equação \eqref{positionSemitrailer} em relação ao tempo temos
+Deriving the equation \eqref {positionSemitrailer} with respect to time we have
 
 \begin{eqnarray} \label{velocitySemitrailer}
     \nonumber
@@ -111,30 +110,31 @@ Derivando a equação \eqref{positionSemitrailer} em relação ao tempo temos
 \end{eqnarray}
 
 
-O vetor velocidade angular do caminhão-trator é
+The angular velocity vector of the tractor-truck is:
 
 \begin{equation} \label{angulaVelTrailer}
     {\bf w}_T = \dot{\psi} {\bf k}.
 \end{equation}
 
-O vetor velocidade angular do semirreboque é
+The angular velocity vector of the semi-trailer is
 
 \begin{equation} \label{angulaVelSemir}
     {\bf w}_S = \left( \dot{\psi} - \dot{\phi} \right) {\bf k}
 \end{equation}
 
-A energia cinética do sistema é
+The kinetic energy of the system is:
 
 \begin{equation} \label{kinEnergyGeneral}
     T = \frac{1}{2} m_{T} {\bf v}_{\rm T} \cdot {\bf v}_{\rm T} + \frac{1}{2} m_{S} {\bf v}_{\rm S} \cdot {\bf v}_{\rm S} + \frac{1}{2} \left\{ {\bf w}_T \right\}^T \left[ {\bf J}_T \right] \left\{ {\bf w}_T \right\} + \frac{1}{2} \left\{ {\bf w}_S \right\}^T \left[ {\bf J}_S \right] \left\{ {\bf w}_S \right\}.
 \end{equation}
 
-Substituindo as equações \eqref{velocityTractor}, \eqref{velocitySemitrailer}, \eqref{angulaVelTrailer}, \eqref{angulaVelSemir} em \eqref{kinEnergyGeneral} temos
+Substituting the equations \eqref {velocityTractor}, \eqref {velocitySemitrailer}, \eqref {angulaVelTrailer}, \eqref {angulaVelSemir} in \eqref {kinEnergyGeneral}
 
 \begin{equation} \label{kinEnergyCoord}
     T = \frac{1}{2} m_{T} \left( \dot{x}^2 + \dot{y}^2 \right) + \frac{1}{2} m_{S} \left( C_1^2 + C_2^2 \right) + \frac{1}{2} I_{T} \dot{\psi}^2 + \frac{1}{2} I_{S} \left( \dot{\psi} - \dot{\psi} \right)^2,
 \end{equation}
-onde
+
+where 
 
 \begin{subequations} \label{constants}
 \begin{equation}
@@ -145,7 +145,7 @@ onde
 \end{equation}
 \end{subequations}
 
-Derivando a equação \eqref{constants} temos
+Deriving the equation \eqref {constants} we have
 
 \begin{subequations} \label{constantsTimeDiff}
 \begin{equation}
@@ -156,7 +156,7 @@ Derivando a equação \eqref{constants} temos
 \end{equation}
 \end{subequations}
 
-As derivadas parciais da energia cinética do sistema (equação \eqref{kinEnergyCoord}) em relação às coordenadas generalizadas são
+The partial derivatives of the system's kinetic energy  (equation \eqref {kinEnergyCoord}) with respect to the generalized coordinates are:
 
 \begin{subequations} \label{lagrangePartialTerm}
 \begin{equation}
@@ -176,7 +176,7 @@ As derivadas parciais da energia cinética do sistema (equação \eqref{kinEnerg
 \end{equation}
 \end{subequations}
 
-As derivadas parciais da energia cinética do sistema em relação às derivadas temporais das coordenadas generalizadas são
+The partial derivatives of the kinetic energy of the system in relation to the temporal derivatives of the generalized coordinates are:
 
 \begin{subequations} \label{partialDiff}
 \begin{equation}
@@ -196,7 +196,7 @@ As derivadas parciais da energia cinética do sistema em relação às derivadas
 \end{equation}
 \end{subequations}
 
-Derivando as equações \eqref{partialDiff} em relação ao tempo temos
+Deriving the equations \eqref{partialDiff} with respect to time we have
 
 \begin{subequations} \label{lagrangeTimeTerm}
 \begin{equation}
@@ -227,46 +227,49 @@ Derivando as equações \eqref{partialDiff} em relação ao tempo temos
 \end{eqnarray}
 \end{subequations}
 
-A força no eixo dianteiro é dadas por
+The force on the front axle is given by:
 
 \begin{equation}
     {\bf F}_{\rm F} = F_{x,{\rm F}} {\bf e}_x + F_{y,{\rm F}} {\bf e}_x,
 \end{equation}
-que pode ser escrita como
+
+which can be written as
 
 \begin{equation} \label{ForceFront}
     {\bf F}_{\rm F} = \left[ F_{x,{\rm F}} \cos \left( \psi + \delta \right) - F_{y,{\rm F}} \sin \left( \psi + \delta \right) \right] {\bf i} + \left[ F_{x,{\rm F}} \sin \left( \psi + \delta \right) + F_{y,{\rm F}} \cos \left( \psi + \delta \right) \right] {\bf j}.
 \end{equation}
 
-A força no eixo traseiro é
+The force on the rear axle is:
 
 \begin{equation}
     {\bf F}_{\rm R} = F_{x,{\rm R}} {\bf t}_x + F_{y,{\rm R}} {\bf t}_y
 \end{equation}
-ou
+
+or
 
 \begin{equation} \label{ForceRear}
     {\bf F}_{\rm R} = \left[ F_{x,{\rm R}} \cos \psi - F_{y,{\rm R}} \sin \psi \right] {\bf i} + \left[ F_{x,{\rm R}} \sin \psi + F_{y,{\rm R}} \cos \psi \right] {\bf j}.
 \end{equation}
 
-A força no eixo do semirreboque é
+The force on the semi-trailer shaft is
 
 \begin{equation}
     {\bf F}_{\rm M} = F_{x,{\rm M}} {\bf s}_x + F_{y,{\rm M}} {\bf s}_y
 \end{equation}
-ou
+
+or
 
 \begin{equation} \label{ForceSemi}
     {\bf F}_{\rm M} = \left[ F_{x,{\rm M}} \cos \left( \psi - \phi \right) - F_{y,{\rm M}} \sin \left( \psi - \phi \right) \right] {\bf i} + \left[ F_{x,{\rm M}} \sin \left( \psi - \phi \right) + F_{y,{\rm M}} \cos \left( \psi - \phi \right) \right] {\bf j}.
 \end{equation}
 
-As forças generalizadas são
+The generalized forces are
 
 \begin{equation}
     Q_k = \sum_{j = 1} ^p {\bf F}_j \cdot \frac{\partial {\bf p}_j}{\partial q_k} \qquad \qquad \begin{array}{c} k = 1, 2, 3, 4 \\ j = {\rm F}, {\rm R}, {\rm M} \end{array}.
 \end{equation}
 
-Ou seja,
+That is equivalent to:
 
 \begin{subequations} \label{generalizedForces}
 \begin{equation}
@@ -283,7 +286,7 @@ Ou seja,
 \end{equation}
 \end{subequations}
 
-Os pontos de aplicação das forças são localizados por
+The application points of the forces are located at:
 
 \begin{subequations} \label{positionForce}
 \begin{equation}
@@ -300,7 +303,7 @@ Os pontos de aplicação das forças são localizados por
 \end{eqnarray}
 \end{subequations}
 
-Logo, as derivadas parciais
+Therefore, the partial derivatives:
 
 \begin{subequations} \label{termGenFor1}
 \begin{equation}
@@ -331,7 +334,8 @@ Logo, as derivadas parciais
     \frac{\partial {\bf p}_{{\rm R}/{\rm O}}}{\partial q_4} = \frac{\partial {\bf p}_{{\rm R}/{\rm O}}}{\partial \phi} = 0
 \end{equation}
 \end{subequations}
-e
+
+and
 
 \begin{subequations} \label{termGenFor3}
 \begin{equation}
@@ -352,7 +356,7 @@ e
 \end{subequations}
 
 
-Substituindo as equações \eqref{ForceFront}, \eqref{ForceRear}, \eqref{ForceSemi}, \eqref{termGenFor1}, \eqref{termGenFor2} e  \eqref{termGenFor3} nas equações \eqref{generalizedForces} temos
+Substituting the equations \eqref {ForceFront}, \eqref {ForceRear}, \eqref {ForceSemi}, \eqref{termGenFor1}, \eqref{termGenFor2} and \eqref{termGenFor3} in the equations \eqref{generalizedForces} we have:
 
 \begin{subequations} \label{generForces}
 \begin{eqnarray}
@@ -379,14 +383,13 @@ Substituindo as equações \eqref{ForceFront}, \eqref{ForceRear}, \eqref{ForceSe
 \end{subequations}
 
 
-A formulação de Euler-Lagrange para este sistema é dada por
+The Euler-Lagrange formulation for this system is given by:
 
 \begin{equation} \label{lagrange}
     \frac{d}{dt} \left( \frac{\partial T}{\partial \dot{q}_k} \right) - \frac{\partial T}{\partial q_k} = Q_k \qquad \qquad k = 1, 2, 3, 4,
 \end{equation}
 
-Substituindo as equações \eqref{lagrangePartialTerm}, \eqref{lagrangeTimeTerm} e \eqref{generForces} em \eqref{lagrange} temos
-
+Substituting the equations \eqref{lagrangePartialTerm}, \eqref{lagrangeTimeTerm} and \eqref{generForces} into \eqref{lagrange}
 % \begin{subequations}
 % \begin{equation}
 %     m_{T} \ddot{x} + m_S \dot{C}_1 = Q_1
@@ -431,7 +434,7 @@ Substituindo as equações \eqref{lagrangePartialTerm}, \eqref{lagrangeTimeTerm}
 \end{eqnarray}
 \end{subequations}
 
-Substituindo as equações \eqref{constantsTimeDiff} em \eqref{equationOfMotionXY}
+Substituting the equations \eqref{constantsTimeDiff} into \eqref{equationOfMotionXY}:
 
 \begin{subequations} \label{eqMotSem}
 \begin{eqnarray}
@@ -477,7 +480,7 @@ Substituindo as equações \eqref{constantsTimeDiff} em \eqref{equationOfMotionX
 \end{subequations}
 
 
-Os estado podem ser escolhidos como
+The states can be chosen as:
 
 \begin{subequations}
 \begin{equation}
@@ -506,7 +509,7 @@ Os estado podem ser escolhidos como
 \end{equation}
 \end{subequations}
 
-Logo, as equações de estado são
+Therefore, the state equations are:
 
 \begin{subequations}
 \begin{equation}
@@ -563,7 +566,7 @@ Logo, as equações de estado são
 \end{eqnarray}
 \end{subequations}
 
-Em muitas ocasiões é conveniente fazer a substituição dos estados \(\dot{x}\) e \(\dot{y}\) por \(v_{\rm T}\) e \(\alpha_{\rm T}\). A relação entre estes pares de estados é
+In many instances it is convenient to replace the states \(\dot{x} \) and \(\dot{y}\) with \( v_{T} \) and \(a_T \). The relationship between these pairs of states is:
 
 \begin{subequations} \label{stateSubstitution}
 \begin{equation}
@@ -574,7 +577,7 @@ Em muitas ocasiões é conveniente fazer a substituição dos estados \(\dot{x}\
 \end{equation}
 \end{subequations}
 
-Derivando em relação ao tempo a equação \eqref{stateSubstitution} temos
+Differentiating with respect to time the equation \eqref{stateSubstitution} we have
 
 \begin{subequations} \label{stateDiffSubstitution}
 \begin{equation}
@@ -585,7 +588,7 @@ Derivando em relação ao tempo a equação \eqref{stateSubstitution} temos
 \end{equation}
 \end{subequations}
 
-Desta forma, substituindo as equações \eqref{stateDiffSubstitution} nas equações \eqref{eqMotSem} temos
+Thus, by substituting the equations \eqref{stateDiffSubstitution} in the equations \eqref {eqMotSem} we have:
 
 \begin{subequations} \label{eqMovSubs}
 \begin{eqnarray}
@@ -632,7 +635,7 @@ Desta forma, substituindo as equações \eqref{stateDiffSubstitution} nas equaç
 \end{eqnarray}
 \end{subequations}
 
-Os estados podem ser escolhidos como
+The states can be chosen as
 
 \begin{subequations}
 \begin{equation}
@@ -661,28 +664,31 @@ Os estados podem ser escolhidos como
 \end{equation}
 \end{subequations}
 
-Na forma matricial o sistema da equação \eqref{eqMovSubs} pode ser escrito como
+In the system's matrix form of the equation \eqref{eqMovSubs} can be written as:
 
 \begin{equation} \label{eqMovMatrix}
     {\bf M} \left( {\bf x} \right) \dot{{\bf x}} = {\bf f} \left( {\bf x}, {\bf u} \right),
 \end{equation}
-onde o vetor de estados é
+
+where the state vector is:
 
 \begin{equation} \label{stateVector}
     {\bf x} = \left[ \begin{array}{c} {\rm x}_{1} \\ {\rm x}_{2} \\ {\rm x}_{3} \\ {\rm x}_{4} \\ {\rm x}_{5} \\ {\rm x}_{6} \\ {\rm x}_{7} \\ {\rm x}_{8} \end{array} \right]
 \end{equation}
-e o vetor de entradas é
+
+and the input vector is:
 
 \begin{equation} \label{inputVector}
     {\bf u} = \left[ \begin{array}{c} \delta \\ F_{x,{\rm F}} \\ F_{x,{\rm R}} \\ F_{x,{\rm M}} \\ F_{y,{\rm F}} \\ F_{y,{\rm R}} \\ F_{y,{\rm M}} \end{array} \right].
 \end{equation}
 
-A matriz \({\bf M}\) é dada por
+The matrix \({\ bf M} \) is given by
 
 \begin{equation} \label{leftMatrix}
     {\bf M} = \left[ \begin{array}{ccccccccc} 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & M_{55} & M_{56} & M_{57} & M_{58} \\ 0 & 0 & 0 & 0 & M_{65} & M_{66} & M_{67} & M_{68} \\ 0 & 0 & 0 & 0 & M_{75} & M_{76} & M_{77} & M_{78} \\ 0 & 0 & 0 & 0 & M_{85} & M_{86} & M_{87} & M_{88} \end{array} \right],
 \end{equation}
-onde os elementros são
+
+where the elements are
 
 \begin{subequations} \label{leftMatrixElements}
 \begin{equation}
@@ -735,12 +741,13 @@ onde os elementros são
 \end{equation}
 \end{subequations}
 
-As funções são dadas por
+Functions are given by:
 
 \begin{equation} \label{functionNonlinear}
     {\bf f} = \left[ \begin{array}{c} v_{\rm T} \cos \left(\psi + \alpha_{\rm T} \right) \\ v_{\rm T} \sin \left(\psi + \alpha_{\rm T} \right) \\ \dot{\psi} \\ \dot{\phi} \\ f_5 \\ f_6 \\ f_7 \\ f_8 \\  \end{array} \right],
 \end{equation}
-onde
+
+where
 
 \begin{subequations} \label{functionNonlinearElements}
 \begin{eqnarray}
@@ -774,17 +781,18 @@ onde
 \end{equation}
 \end{subequations}
 
-Portanto, o modelo não linear de veículo articulado é dado pelas equações \eqref{eqMovMatrix}, \eqref{stateVector}, \eqref{inputVector}, \eqref{leftMatrix}, \eqref{leftMatrixElements}, \eqref{functionNonlinear} e \eqref{functionNonlinearElements}.
+Therefore, the nonlinear articulated vehicle model is given by the equations \eqref{eqMovMatrix}, \eqref{stateVector}, \eqref{inputVector}, \eqref{leftMatrix}, \eqref{leftMatrixElements}, \eqref{functionNonlinear}, and \eqref{functionNonlinearElements}.
 
-\section{Modelo linearizado}
+\section{Linearized model}
 
-A equação não linear \eqref{eqMovMatrix} pode ser linearizada e escrita na forma matricial
+The nonlinear equation \eqref{eqMovMatrix} can be linearized and written in the matrix form
 
 \begin{equation} \label{linearEq}
     {\bf E}\dot{{\bf x}} = {\bf A} {\bf x} + {\bf B} {\bf u}.
 \end{equation}
 
-A linearização deste sistema pode ser feita para um veículo se movimentando em linha reta com uma determinada velocidade \(v_{\rm T} > 0\). Neste caso, os estados no ponto de operação são dados por
+
+The linearization of this system can be performed for a vehicle moving in a straight line with a certain velocity \(v_{\rm T}> 0 \). In this case, the states at the point of operation are given by:
 
 \begin{subequations} \label{opStates}
 \begin{equation}
@@ -813,15 +821,15 @@ A linearização deste sistema pode ser feita para um veículo se movimentando e
 \end{equation}
 \end{subequations}
 
-OBS: Os estados \(x\) e \(y\) não influenciam a dinâmica do sistema.
+NOTE: The states \(x \) and \(y \) do not influence the system dynamics.
 
-O vetor do ponto de operação dos estados é
+The state operating point vector is:
 
 \begin{equation}
     {\bf x}_{op} = \left[ \begin{array}{c} {\rm x}_{1,op} \\ {\rm x}_{2,op} \\ {\rm x}_{3,op} \\ {\rm x}_{4,op} \\ {\rm x}_{5,op} \\ {\rm x}_{6,op} \\ {\rm x}_{7,op} \\ {\rm x}_{8,op} \end{array} \right].
 \end{equation}
 
-Neste ponto de operação dos estados, o ponto de operação da derivada dos estados é dada por
+At this point of operation of the states, the operating point of the states derivative is given by:
 
 \begin{subequations} \label{opDiffStates}
 \begin{equation}
@@ -850,13 +858,13 @@ Neste ponto de operação dos estados, o ponto de operação da derivada dos est
 \end{equation}
 \end{subequations}
 
-O vetor do ponto de operação da derivada dos estados é
+The vector of the operation point of the states derivative is:
 
 \begin{equation}
     \dot{{\bf x}}_{op} = \left[ \begin{array}{c} \dot{{\rm x}}_{1,op} \\ \dot{{\rm x}}_{2,op} \\ \dot{{\rm x}}_{3,op} \\ \dot{{\rm x}}_{4,op} \\ \dot{{\rm x}}_{5,op} \\ \dot{{\rm x}}_{6,op} \\ \dot{{\rm x}}_{7,op} \\ \dot{{\rm x}}_{8,op} \end{array} \right].
 \end{equation}
 
-O ponto de operação das entradas é
+The operating point of the inputs is:
 
 \begin{subequations} \label{opInput}
 \begin{equation}
@@ -882,29 +890,31 @@ O ponto de operação das entradas é
 \end{equation}
 \end{subequations}
 
-O vetor do ponto de operação das entradas é
+The input point vector of inputs is:
 
 \begin{equation}
     {\bf u}_{op} = \left[ \begin{array}{c} \delta_{op} \\ F_{x,{\rm F},op} \\ F_{x,{\rm R},op} \\ F_{y,{\rm F},op} \\ F_{y,{\rm R},op} \end{array} \right].
 \end{equation}
 
-Expandindo em série de Taylor a equação \eqref{eqMovMatrix} e truncando nos termos de primeira ordem temos
+Use the Taylor's series to expand the equation \ eqref {eqMovMatrix} and truncating (beyond ?) the first order terms, we obtain:
 
 \begin{equation} \label{TaylorSeries}
     \nabla{\bf g}\left( {\bf x}_{op}, \dot{{\bf x}}_{op},  {\bf u}_{op} \right) \left[ \begin{array}{c} {\bf x} - {\bf x}_{op} \\ \dot{{\bf x}} - \dot{{\bf x}}_{op} \\ {\bf u} - {\bf u}_{op} \end{array} \right] = \nabla{\bf f}\left( {\bf x}_{op}, \dot{{\bf x}}_{op},  {\bf u}_{op} \right) \left[ \begin{array}{c} {\bf x} - {\bf x}_{op} \\ \dot{{\bf x}} - \dot{{\bf x}}_{op} \\ {\bf u} - {\bf u}_{op} \end{array} \right],
 \end{equation}
-onde
+
+where:
 
 \begin{equation} \label{functiong}
     {\bf g} = \left[ \begin{array}{c} {\rm g}_1 \\ {\rm g}_2 \\ {\rm g}_3 \\ {\rm g}_4 \\ {\rm g}_5 \\ {\rm g}_6 \\ {\rm g}_7 \\ {\rm g}_8 \end{array} \right].
 \end{equation}
-é o lado esquerdo da equação \eqref{eqMovMatrix}, enquanto que o lado direito é dado por
+
+is the left side of the equation \eqref {eqMovMatrix}, while the right side is given by
 
 \begin{equation} \label{functionf}
     {\bf f} = \left[ \begin{array}{c} {\rm f}_1 \\ {\rm f}_2 \\ {\rm f}_3 \\ {\rm f}_4 \\ {\rm f}_5 \\ {\rm f}_6 \\ {\rm f}_7 \\ {\rm f}_8 \end{array} \right].
 \end{equation}
 
-O jacobiano das funções \eqref{functiong} e \eqref{functionf} é
+The Jacobian of the functions \eqref{functiong} and \eqref{functionf} faith
 
 \begin{subequations}
 \begin{equation}
@@ -915,7 +925,7 @@ O jacobiano das funções \eqref{functiong} e \eqref{functionf} é
 \end{equation}
 \end{subequations}
 
-Logo, as equações de movimento linearizadas são dadas por
+Therefore, linearized equations of motion are given by:
 
 \begin{subequations}
 \begin{equation}
@@ -935,9 +945,10 @@ Logo, as equações de movimento linearizadas são dadas por
 \end{equation}
 \end{subequations}
 
-É possível notar que quando o somatório das forças longitudinais é zero a velocidade \(v_{\rm T}\) se mantém constante.
 
-As equações de estado são dadas por
+It is noteworthy,  that when the sum of the longitudinal forces is zero the velocity \(v_{\rm T}\) remains constant.
+
+State equations are given by:
 
 \begin{subequations} \label{linearEqMot}
 \begin{equation}
@@ -969,12 +980,14 @@ As equações de estado são dadas por
 \end{equation}
 \end{subequations}
 
-Escrevendo a equação \eqref{linearEqMot} na forma matricial da pela equação \eqref{linearEq} a matriz \({\bf E}\) é dada por
+
+Writing equation \eqref{linearEqMot} in the matrix form of the equation \eqref {linearEq}, the matrix \({\ bf E}\) is given by:
 
 \begin{equation} \label{matrixE}
     {\bf E} = \left[ \begin{array}{ccccccccc} 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & E_{55} & E_{56} & E_{57} & E_{58} \\ 0 & 0 & 0 & 0 & E_{65} & E_{66} & E_{67} & E_{68} \\ 0 & 0 & 0 & 0 & E_{75} & E_{76} & E_{77} & E_{78} \\ 0 & 0 & 0 & 0 & E_{85} & E_{86} & E_{87} & E_{88} \end{array} \right],
 \end{equation}
-onde os elementros são
+
+where the elements are
 
 \begin{subequations}
 \begin{equation}
@@ -1027,7 +1040,7 @@ onde os elementros são
 \end{equation}
 \end{subequations}
 
-A matriz dinâmica do sistema é dada por
+The dynamic matrix of the system is given by:
 
 \begin{equation} \label{matrixA}
 {\bf A} = \left[ \begin{array}{cccccccc} 0 & 0 &  0 & 0 & 1 &  0 &                 0 & 0 \\
@@ -1052,8 +1065,7 @@ A matriz dinâmica do sistema é dada por
 0 & 0 & 0 & 0 & 0 &  0 &           d + e \end{array} \right]
 \end{equation}
 
-Portanto, o modelo linear de veículo articulado é dado pela equação \eqref{linearEq} com as matrizes dadas pelas equações \eqref{matrixE}, \eqref{matrixA} e \eqref{matrixB}.
-
+Therefore, the linear articulated vehicle model is given by the equation \eqref{linearEq} with the matrices given by the equations \eqref{matrixE}, \eqref{matrixA} and \eqref{matrixB}.
 
 \subsection{Ângulos de deriva}
 
