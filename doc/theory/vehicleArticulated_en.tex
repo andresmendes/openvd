@@ -54,9 +54,20 @@
 
 \section{Modelo do veículo articulado}
 
-O modelo físico do conjunto é ilustrado na figura \ref{modelSimple}. Para caracterizar a dinâmica deste sistema é utilizada a base \( \Omega_{\rm O} = \{ {\rm O} {\bf i} {\bf j} {\bf k} \}\) fixa no referencial inercial. A base \( \Omega_{\rm T} = \{ {\rm T} {\bf t}_x {\bf t}_y {\bf t}_z \}\) é solidária ao caminhão-trator e a base \( \Omega_{\rm S} = \{ {\rm S} {\bf s}_x {\bf s}_y {\bf s}_z \}\) é solidária ao semirreboque. Os versores \({\bf t}_x\) e \({\bf s}_x\) apontam para frente na direção longitudinal de ambos os módulos e os versores \({\bf t}_y\) e \({\bf s}_y\) apontam para a esquerda. Para auxiliar a descrição das grandezas no eixo dianteiro é definida a base \( \Omega_{\rm F} = \{ {\rm F} {\bf e}_x {\bf e}_y {\bf e}_z \}\) solidária ao eixo dianteiro com o versor \({\bf e}_x\) apontando para frente na direção longitudinal do pneu e \({\bf e}_y\) apontando para a esquerda. Os pontos \({\rm T}\) e \({\rm S}\) localizam o centro da massa do caminhão-trator e do semirreboque, respectivamente. \({\rm F}\) e \({\rm R}\) localizam os eixos dianteiro e traseiro, respectivamente. \({\rm A}\) é o ponto de articulação e \({\rm M}\) é o eixo do semirreboque. O ponto \({\rm O}\) é a origem do sistema e se encontra fixo no referencial inercial. A distância \(a\) separa os pontos \({\rm F}\) e \({\rm T}\) e a distância \(b\) separa os pontos \({\rm T}\) e \({\rm R}\). \(c\) separa os pontos \({\rm R}\) e \({\rm A}\), \(d\) separa os pontos \({\rm A}\) e \({\rm S}\) e \(e\) separa os pontos \({\rm S}\) e \({\rm M}\). Os vetores velocidade \({\bf v}\) e os ângulos de deriva \(\alpha\) recebem os subscritos referentes aos pontos aos quais eles estão associados.
+The physical model of the set is illustrated in the figure \ref{modelSimple}. In order to characterize the dynamics of this system we use the base \( \Omega_{\rm O} = \{ {\rm O} {\bf i} {\bf j} {\bf k} \}\) fixed in the inertial frame .
 
-The modeling of the tractor-trailer and semi-trailer consists of the use of two rigid bodies that move on a horizontal plane and are joined by a point of articulation. In this way, the model has four degrees of freedom. Therefore, generalized coordinates can be given by
+The base  \( \Omega_{\rm T} = \{ {\rm T} {\bf t}_x {\bf t}_y {\bf t}_z \}\)  is solidary to the tractor truck and the base \( \Omega_{\rm S} = \{ {\rm S} {\bf s}_x {\bf s}_y {\bf s}_z \}\)  is integral with the semi-trailer. The unit vectors  \({\bf t}_x\) and \({\bf s}_x\) point forward in the longitudinal direction of both modules and the verses \({\bf t}_y\) e \({\bf s}_y\) point to the left. 
+
+To assist in the description of the magnitudes on the front axle, the base \( \Omega_{\rm F} = \{ {\rm F} {\bf e}_x {\bf e}_y {\bf e}_z \}\)  is defined with respect to the front axle with the vector  \({\bf e}_x\)pointing forward in the longitudinal direction of the tire and \({\bf e}_y\) pointing to the left.
+
+The points  \({\rm T}\) and \({\rm S}\)  define the center of mass of the tractor-truck and the semi-trailer, respectively. \({\rm F}\) and \({\rm R}\) locate the front and rear axles, respectively. \({\rm A}\)  is the point of articulation and \({\rm M}\) is the axis of the semi-trailer.
+
+The point \({\rm O}\) is the origin of the system and is fixed in the inertial frame. The distance \(a\) separates the points \({\rm F}\) and \({\rm T}\)  and the distance  \(b\) separates the points \({\rm T}\) and \({\rm R}\) .  \(c\) separates points \({\rm R}\) and \({\rm A}\), \(d\) separates points \({\rm A}\) e \({\rm S}\) and  \(e\) separates points \({\rm S}\) e \({\rm M}\). 
+
+
+The velocity vectors  \({\bf v}\)  and the drift angles \(\alpha\) receive the subscripts referring to the points to which they are associated.
+	
+The modelling of the tractor-trailer and semi-trailer consists of the use of two rigid bodies that move on a horizontal plane and are joined by a point of articulation. In this way, the model has four degrees of freedom. Therefore, generalized coordinates can be given by
 
 \begin{subequations}
 \begin{equation}
@@ -896,7 +907,7 @@ The input point vector of inputs is:
     {\bf u}_{op} = \left[ \begin{array}{c} \delta_{op} \\ F_{x,{\rm F},op} \\ F_{x,{\rm R},op} \\ F_{y,{\rm F},op} \\ F_{y,{\rm R},op} \end{array} \right].
 \end{equation}
 
-Use the Taylor's series to expand the equation \ eqref {eqMovMatrix} and truncating (beyond ?) the first order terms, we obtain:
+Use the Taylor's series to expand the equation \eqref{eqMovMatrix} and truncating (beyond ?) the first order terms, we obtain:
 
 \begin{equation} \label{TaylorSeries}
     \nabla{\bf g}\left( {\bf x}_{op}, \dot{{\bf x}}_{op},  {\bf u}_{op} \right) \left[ \begin{array}{c} {\bf x} - {\bf x}_{op} \\ \dot{{\bf x}} - \dot{{\bf x}}_{op} \\ {\bf u} - {\bf u}_{op} \end{array} \right] = \nabla{\bf f}\left( {\bf x}_{op}, \dot{{\bf x}}_{op},  {\bf u}_{op} \right) \left[ \begin{array}{c} {\bf x} - {\bf x}_{op} \\ \dot{{\bf x}} - \dot{{\bf x}}_{op} \\ {\bf u} - {\bf u}_{op} \end{array} \right],
@@ -908,13 +919,13 @@ where:
     {\bf g} = \left[ \begin{array}{c} {\rm g}_1 \\ {\rm g}_2 \\ {\rm g}_3 \\ {\rm g}_4 \\ {\rm g}_5 \\ {\rm g}_6 \\ {\rm g}_7 \\ {\rm g}_8 \end{array} \right].
 \end{equation}
 
-is the left side of the equation \eqref {eqMovMatrix}, while the right side is given by
+is the left side of the equation \eqref{eqMovMatrix}, while the right side is given by
 
 \begin{equation} \label{functionf}
     {\bf f} = \left[ \begin{array}{c} {\rm f}_1 \\ {\rm f}_2 \\ {\rm f}_3 \\ {\rm f}_4 \\ {\rm f}_5 \\ {\rm f}_6 \\ {\rm f}_7 \\ {\rm f}_8 \end{array} \right].
 \end{equation}
 
-The Jacobian of the functions \eqref{functiong} and \eqref{functionf} faith
+The Jacobian of the functions \eqref{functiong} and \eqref{functionf} is:
 
 \begin{subequations}
 \begin{equation}
@@ -925,7 +936,7 @@ The Jacobian of the functions \eqref{functiong} and \eqref{functionf} faith
 \end{equation}
 \end{subequations}
 
-Therefore, linearized equations of motion are given by:
+Therefore, linearised equations of motion are given by:
 
 \begin{subequations}
 \begin{equation}
@@ -1067,31 +1078,33 @@ The dynamic matrix of the system is given by:
 
 Therefore, the linear articulated vehicle model is given by the equation \eqref{linearEq} with the matrices given by the equations \eqref{matrixE}, \eqref{matrixA} and \eqref{matrixB}.
 
-\subsection{Ângulos de deriva}
+\subsection{Drift angles}
 
-A velocidade no eixo dianteiro é dada por
+The speed on the front axle is given by
 
 \begin{equation}
     {\bf v}_{\rm F} = {\bf v}_{\rm T} + {\bf w}_T \wedge {\bf r}_{{\rm F}/{\rm T}},
 \end{equation}
-onde \({\bf r}_{{\rm F}/{\rm T}}\) é o vetor posição do ponto \({\rm F}\) em relação ao ponto \({\rm T}\). Logo,
+
+where \({\bf r}_{{\rm F}/{\rm T}}\) is the position vector of the point \({\rm F}\) with respect to the point \({\rm T}\). Therefore,
 
 \begin{equation} \label{velocityVectorFront}
     {\bf v}_{\rm F} = \left( \dot{x} - a \dot{\psi} \sin \psi \right) {\bf i} + \left( \dot{y} + a \dot{\psi} \cos \psi \right) {\bf j}.
 \end{equation}
 
-A velocidade no eixo traseiro é
+The speed on the rear axle is:
 
 \begin{equation}
     {\bf v}_{\rm R} = {\bf v}_{\rm T} + {\bf w}_T \wedge {\bf r}_{{\rm R}/{\rm T}},
 \end{equation}
-onde \({\bf r}_{{\rm R}/{\rm T}}\) é o vetor posição do ponto \({\rm R}\) em relação ao ponto \({\rm T}\). Logo,
+
+where \({\bf r}_{{\rm R}/{\rm T}}\) is the position vector of point \({\rm R}\) with respect to point \({\rm T}\). Therefore,
 
 \begin{equation} \label{velocityVectorRear}
     {\bf v}_{\rm R} = \left( \dot{x} + b \dot{\psi} \sin \psi \right) {\bf i} + \left( \dot{y} -b \dot{\psi} \cos \psi \right) {\bf j}
 \end{equation}
 
-De maneira análoga, a velocidade do eixo do semirreboque é
+In an analogous way, the speed of the semi-trailer axle is:
 
 \begin{eqnarray} \label{velocitySemi}
     \nonumber
@@ -1100,13 +1113,14 @@ De maneira análoga, a velocidade do eixo do semirreboque é
     ... &+& \left[ \dot{y} - \left( b + c \right) \dot{\psi} \cos \psi - \left( d + e \right) \left( \dot{\psi} - \dot{\phi} \right) \cos \left( \psi - \phi \right) \right] {\bf j}. \\
 \end{eqnarray}
 
-Utilizando as equações \eqref{velocityVectorFront}, \eqref{velocityVectorRear} e \eqref{velocitySemi}, os ângulos de deriva podem ser escritos como
+
+Using the equations \eqref{velocityVectorFront}, \eqref{velocityVectorRear} and \eqref{velocitySemi}, the drift angles can be written as
 
 \begin{subequations}
 \begin{equation} \label{slipAngleFront}
     \alpha_{\rm F} = \arctan \left( \frac{\dot{y} + a \dot{\psi} \cos \psi}{ \dot{x} - a \dot{\psi} \sin \psi} \right) - \left( \delta + \psi \right)
 \end{equation}
-\begin{equation} \label{slipAngleRear}
+\begin{equation} \label{slipAngleRear.0}
     \alpha_{\rm R} = \arctan \left( \frac{\dot{y} - b \dot{\psi} \cos \psi}{ \dot{x} + b \dot{\psi} \sin \psi} \right) - \psi
 \end{equation}
 \begin{equation} \label{slipAngleRear}
@@ -1114,7 +1128,7 @@ Utilizando as equações \eqref{velocityVectorFront}, \eqref{velocityVectorRear}
 \end{equation}
 \end{subequations}
 
-Realizando a mudança de varíaveis proposta na equação \eqref{stateSubstitution}, os ângulos de deriva passam a ser
+By performing the change of variables proposed in the equation \eqref{stateSubstitution}, the drift angles become:
 
 \begin{subequations}
 \begin{equation}
@@ -1128,7 +1142,7 @@ Realizando a mudança de varíaveis proposta na equação \eqref{stateSubstituti
 \end{equation}
 \end{subequations}
 
-Simplificando, temos que
+Simply put, we obtain:
 
 \begin{subequations} \label{slipAngleSimple}
 \begin{equation}
@@ -1142,7 +1156,7 @@ Simplificando, temos que
 \end{equation}
 \end{subequations}
 
-Linearizando em torno do ponto de operação dado pelas equações \eqref{opStates}, \eqref{opDiffStates} e \eqref{opInput} temos
+Linearising around the point of operation given by the equations \eqref{opStates}, \eqref{opDiffStates} and \eqref{opInput} we obtain:
 
 \begin{subequations}
 \begin{equation}
@@ -1156,17 +1170,18 @@ Linearizando em torno do ponto de operação dado pelas equações \eqref{opStat
 \end{equation}
 \end{subequations}
 
-\section{Simulação}
+\section{Simulation}
 
-\section{Conclusão}
-
-
-\section{Incluindo pneu linear}
-
-Linearizando o valor do dos ângulos de deriva em \eqref{slipAngleSimple} no mesmo ponto de operação temos
+\section{Conclusions}
 
 
-Supondo uma lei de força linear para os pneu temos
+\section{Linear tire}
+
+Linearising the value of the drift angles in \eqref{slipAngleSimple} at the same operating point we have
+
+
+Assuming a linear force tire law we obtain:
+
 
 \begin{subequations} \label{linearTire}
 \begin{equation}
@@ -1177,7 +1192,7 @@ Supondo uma lei de força linear para os pneu temos
 \end{equation}
 \end{subequations}
 
-Substituir as equações \eqref{linearTire} nas equações linearizadas em \eqref{linearModel} temos
+Replacing the equations \eqref{linearTire} in the linearized equations in \eqref{linearModel} we have
 
 \begin{subequations}
 \begin{equation}
@@ -1200,13 +1215,13 @@ Substituir as equações \eqref{linearTire} nas equações linearizadas em \eqre
 \end{equation}
 \end{subequations}
 
-Na forma matricial
+In matrix form:
 
 \begin{equation}
     \dot{{\bf x}} = {\bf A} {\bf x} + {\bf B} {\bf \hat{u}}
 \end{equation}
 
-Ou ainda
+or:
 
 \begin{equation}
     \left[ \begin{array}{c} \dot{x} \\ \dot{y} \\ \dot{\psi} \\ \dot{v}_{\rm T} \\ \dot{\alpha}_{\rm T} \\ \ddot{\psi} \end{array} \right] = \left[ \begin{array}{cccccc} 0 & 0 & 0 & 1 & 0 & 0 \\ 0 & 0 & v_{{\rm T},0} & 0 & v_{{\rm T},0} & 0 \\ 0 & 0 & 0 & 0 & 0 & 1 \\ 0 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & - \frac{K_{\rm F} + K_{\rm R}}{m_{T} v_{{\rm T},0}} & - \frac{m_{T} v_{{\rm T},0} + \frac{a K_{\rm F} - b K_{\rm R}}{v_{{\rm T},0}}}{m_{T} v_{{\rm T},0}} \\ 0 & 0 & 0 & 0 & - \frac{a K_{\rm F} - b K_{\rm R}}{I_{T}} & - \frac{a^2 K_{\rm F} + b^2 K_{\rm R}}{I_{T}  v_{{\rm T},0}} \end{array} \right] \left[ \begin{array}{c} x \\ y \\ \psi \\ v_{\rm T} \\ \alpha_{\rm T} \\ \dot{\psi} \end{array} \right] + \left[ \begin{array}{ccccc} 0 & 0 & 0 & \\ 0 & 0 & 0 & \\ 0 & 0 & 0 & \\ 0 & \frac{1}{m_{T}} & \frac{1}{m_{T}} & \\ \frac{K_{\rm F}}{m_{T} v_{{\rm T},0}} & 0 & 0 & \\  \frac{a K_{\rm F}}{I_{T}} & 0 & 0 \end{array} \right] \left[ \begin{array}{c} \delta \\ F_{x,{\rm F}} \\ F_{x,{\rm R}} \end{array} \right]
