@@ -1,0 +1,21 @@
+*.pyc
+doc/build/
+.vscode/
+
+# Temporary files for latex
+*.acn
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.dvi
+*.idx
+*.ist
+*.kig
+*.log
+*.mw
+*.out
+*.slo
+*.synctex.gz
+*.toc
+

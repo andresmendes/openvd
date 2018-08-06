@@ -147,4 +147,4 @@ Articulated Vehicle S-Function
 
 The articulated vehicle S-Function is depicted below.
 
-.. literalinclude:: ../../docs/examples/TemplateArticulatedSimulink/ArticulatedVehicleSFunction.m
+.. literalinclude:: ../../doc/examples/TemplateArticulatedSimulink/ArticulatedVehicleSFunction.m

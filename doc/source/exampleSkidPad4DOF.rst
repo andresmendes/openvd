@@ -329,7 +329,7 @@ VelControl4DOF.m
 
 The control law of the longitudinal dynamics is depicted below.
 
-.. literalinclude:: ../../docs/examples/SkidPad4DOF/VelControl4DOF.m
+.. literalinclude:: ../../doc/examples/SkidPad4DOF/VelControl4DOF.m
 
 .. _circfit-skidpad-4dof:
 
@@ -338,4 +338,4 @@ circfit.m
 
 The function used do fit a circle is depicted below.
 
-.. literalinclude:: ../../docs/examples/SkidPad4DOF/circfit.m
+.. literalinclude:: ../../doc/examples/SkidPad4DOF/circfit.m

@@ -9,5 +9,8 @@ class Tire(object):
         self.param = 10
 
     def Characteristic(self, alpha, varargin):
-        '''Tell my details.'''
+        ''' an abstract method that should be overriden from other models
+        
+        Returns: Not Applicable
+        '''
         pass
