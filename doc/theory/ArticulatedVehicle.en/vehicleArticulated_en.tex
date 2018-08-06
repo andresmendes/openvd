@@ -1,18 +1,41 @@
-\documentclass[sublist]{fei}
-\usepackage[utf8]{inputenc}
+% use xelatex to compile the document. 
 
-\author{André de Souza Mendes, Nikolaos Papadakis}
-\title{Articulated vehicle model}
-%\subtitulo{subtítulo}
-%\cidade{cidade}
-\instituicao{Vehicle Dynamics - Lateral}
+\documentclass[sublist,a4paper,twoside,11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{a4wide}
+%%% Various other
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+}
+
+\urlstyle{same}
+
+\usepackage{amsmath}
+\usepackage{breqn}
+\usepackage{amssymb}
+\usepackage{tabularx}
+\usepackage{xltxtra}
+%\usepackage{xgreek}
+\usepackage{graphicx}
+
+\usepackage{amsthm}
+
+\author{André de Souza Mendes, N. Papadakis}
+\title{Simple vehicle model 4dof }
 
 \makeindex
-\makeglossaries
+
+% \makeglossaries
 
 \begin{document}
 
 \maketitle
+
+\tableofcontents
 
 % \begin{folhaderosto}
 % Dissertação de Mestrado apresentada ao Centro Universitário da FEI para obtenção do título de Mestre em Engenharia Mecânica, orientado pelo Prof. Dr. Agenor de Toledo Fleury.
@@ -52,13 +75,13 @@
 
 
 
-\section{Modelo do veículo articulado}
+\section{Articulated Vehicle Model}
 
 The physical model of the set is illustrated in the figure \ref{modelSimple}. In order to characterize the dynamics of this system we use the base \( \Omega_{\rm O} = \{ {\rm O} {\bf i} {\bf j} {\bf k} \}\) fixed in the inertial frame .
 
-The base  \( \Omega_{\rm T} = \{ {\rm T} {\bf t}_x {\bf t}_y {\bf t}_z \}\)  is solidary to the tractor truck and the base \( \Omega_{\rm S} = \{ {\rm S} {\bf s}_x {\bf s}_y {\bf s}_z \}\)  is integral with the semi-trailer. The unit vectors  \({\bf t}_x\) and \({\bf s}_x\) point forward in the longitudinal direction of both modules and the verses \({\bf t}_y\) e \({\bf s}_y\) point to the left. 
+The base  \( \Omega_{\rm T} = \{ {\rm T} {\bf t}_x {\bf t}_y {\bf t}_z \}\)  is attached to the tractor truck and base \( \Omega_{\rm S} = \{ {\rm S} {\bf s}_x {\bf s}_y {\bf s}_z \}\)  is attached to the semi-trailer. The unit vectors  \({\bf t}_x\) and \({\bf s}_x\) point forward in the longitudinal direction of both modules and the verses \({\bf t}_y\) e \({\bf s}_y\) point to the left. 
 
-To assist in the description of the magnitudes on the front axle, the base \( \Omega_{\rm F} = \{ {\rm F} {\bf e}_x {\bf e}_y {\bf e}_z \}\)  is defined with respect to the front axle with the vector  \({\bf e}_x\)pointing forward in the longitudinal direction of the tire and \({\bf e}_y\) pointing to the left.
+To assist in the description of the magnitudes on the front axle, the base \( \Omega_{\rm F} = \{ {\rm F} {\bf e}_x {\bf e}_y {\bf e}_z \}\)  is defined with respect to the front axle with the vector  \({\bf e}_x\) pointing forward in the longitudinal direction of the tire and \({\bf e}_y\) pointing to the left.
 
 The points  \({\rm T}\) and \({\rm S}\)  define the center of mass of the tractor-truck and the semi-trailer, respectively. \({\rm F}\) and \({\rm R}\) locate the front and rear axles, respectively. \({\rm A}\)  is the point of articulation and \({\rm M}\) is the axis of the semi-trailer.
 
@@ -67,7 +90,7 @@ The point \({\rm O}\) is the origin of the system and is fixed in the inertial f
 
 The velocity vectors  \({\bf v}\)  and the drift angles \(\alpha\) receive the subscripts referring to the points to which they are associated.
 	
-The modelling of the tractor-trailer and semi-trailer consists of the use of two rigid bodies that move on a horizontal plane and are joined by a point of articulation. In this way, the model has four degrees of freedom. Therefore, generalized coordinates can be given by
+The modeling of the tractor-trailer and semi-trailer consists of the use of two rigid bodies that move on a horizontal plane and are joined by a point of articulation. In this way, the model has four degrees of freedom. Therefore, generalized coordinates can be given by
 
 \begin{subequations}
 \begin{equation}
@@ -83,13 +106,16 @@ The modelling of the tractor-trailer and semi-trailer consists of the use of two
     q_4 = \phi,
 \end{equation}
 \end{subequations}
+
 where \(x \) and \(y \) are the longitudinal and transverse coordinates of the center of mass of the tractor-truck, respectively. \(\psi \) is the absolute orientation angle of the tractor-trailer and \(\phi \) is the relative orientation angle of the semi-trailer.
-\begin{figure}
-    \begin{center}
-    %\includegraphics{../illustrations/modelArticulated.pdf}
-    \caption{Single track bicycle model.} \label{modelSimple}
-    \end{center}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figures/SingeTrackBicycleModel}
+    \caption{Single track bicycle model.}	\label{fig:singetrackbicyclemodel}
 \end{figure}
+
+
 
 \subsection{Nonlinear Model}
 
