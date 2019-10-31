@@ -9,11 +9,11 @@ Open source simulation package for Octave/Matlab
 
 ## Modules
 
-[Vehicle Dynamics - Lateral](http://andresmendes.github.io/Vehicle-Dynamics-Lateral/)
+[Vehicle Dynamics - Lateral](https://github.com/andresmendes/Vehicle-Dynamics-Lateral/)
 
-[Vehicle Dynamics - Longitudinal](http://andresmendes.github.io/Vehicle-Dynamics-Longitudinal/)
+[Vehicle Dynamics - Longitudinal](https://github.com/andresmendes/Vehicle-Dynamics-Longitudinal/)
 
-[Vehicle Dynamics - Vertical](http://andresmendes.github.io/Vehicle-Dynamics-Vertical/)
+[Vehicle Dynamics - Vertical](https://github.com/andresmendes/Vehicle-Dynamics-Vertical/)
 
 ## Publications
 
