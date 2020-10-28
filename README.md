@@ -1,3 +1,5 @@
+[![View OpenVD: Open Vehicle Dynamics on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/81933-openvd-open-vehicle-dynamics)
+
 # OpenVD: Open Vehicle Dynamics
 Open source simulation package for Octave/Matlab
 
